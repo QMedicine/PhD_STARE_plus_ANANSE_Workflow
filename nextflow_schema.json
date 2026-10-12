@@ -444,6 +444,19 @@
         "annotation_symbol_sum"
       ],
       "default": "historical_selection"
+    },
+    "atac_samtools": {
+      "type": "string",
+      "enum": [
+        "samtools120",
+        "samtools"
+      ],
+      "default": "samtools120"
+    },
+    "atac_sort_threads": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 1
     }
   },
   "additionalProperties": true

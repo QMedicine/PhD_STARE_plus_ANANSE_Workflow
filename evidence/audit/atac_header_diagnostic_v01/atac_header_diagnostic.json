@@ -1,0 +1,228 @@
+{
+  "original": {
+    "program_headers": [
+      "@PG\tID:bowtie2\tPN:bowtie2\tVN:2.5.3\tCL:\"/stornext/System/data/software/rhel/9/base/bioinf/bowtie2/2.5.3/bin/bowtie2-align-s --wrapper basic-0 -p 32 --very-sensitive -x /vast/projects/Immune_Aging/Reference_genomes/mm39/Bowtie2/mm39 -U /vast/scratch/users/stacpoole.q/Itokawa_et_al_2022_ATACseq/raw_data/SRR13186609.fastq\"",
+      "@PG\tID:samtools\tPN:samtools\tPP:bowtie2\tVN:1.20\tCL:samtools view -bS -",
+      "@PG\tID:samtools.1\tPN:samtools\tPP:samtools\tVN:1.20\tCL:samtools sort -o /vast/scratch/users/stacpoole.q/Itokawa_et_al_2022_ATACseq/aligned/SRR13186609_Young_HSC_B1_Rep1_sorted.bam /vast/scratch/users/stacpoole.q/Itokawa_et_al_2022_ATACseq/aligned/SRR13186609_Young_HSC_B1_Rep1_aligned.bam",
+      "@PG\tID:MarkDuplicates\tVN:3.1.1\tCL:MarkDuplicates INPUT=[/vast/scratch/users/stacpoole.q/Itokawa_et_al_2022_ATACseq/aligned/SRR13186609_Young_HSC_B1_Rep1_sorted.bam] OUTPUT=/vast/scratch/users/stacpoole.q/Itokawa_et_al_2022_ATACseq/deduped/SRR13186609_Young_HSC_B1_Rep1_dedup.bam METRICS_FILE=/vast/scratch/users/stacpoole.q/Itokawa_et_al_2022_ATACseq/deduped/metrics/SRR13186609_Young_HSC_B1_Rep1_dedup_metrics.txt REMOVE_DUPLICATES=true    MAX_SEQUENCES_FOR_DISK_READ_ENDS_MAP=50000 MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=8000 SORTING_COLLECTION_SIZE_RATIO=0.25 TAG_DUPLICATE_SET_MEMBERS=false REMOVE_SEQUENCING_DUPLICATES=false TAGGING_POLICY=DontTag CLEAR_DT=true DUPLEX_UMI=false FLOW_MODE=false FLOW_QUALITY_SUM_STRATEGY=false USE_END_IN_UNPAIRED_READS=false USE_UNPAIRED_CLIPPED_END=false UNPAIRED_END_UNCERTAINTY=0 FLOW_SKIP_FIRST_N_FLOWS=0 FLOW_Q_IS_KNOWN_END=false FLOW_EFFECTIVE_QUALITY_THRESHOLD=15 ADD_PG_TAG_TO_READS=true ASSUME_SORTED=false DUPLICATE_SCORING_STRATEGY=SUM_OF_BASE_QUALITIES PROGRAM_RECORD_ID=MarkDuplicates PROGRAM_GROUP_NAME=MarkDuplicates READ_NAME_REGEX=<optimized capture of last three ':' separated fields as numeric values> OPTICAL_DUPLICATE_PIXEL_DISTANCE=100 MAX_OPTICAL_DUPLICATE_SET_SIZE=300000 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false USE_JDK_DEFLATER=false USE_JDK_INFLATER=false\tPN:MarkDuplicates",
+      "@PG\tID:samtools.2\tPN:samtools\tPP:samtools.1\tVN:1.20\tCL:samtools view -@ 32 -h -q 10 -F 4 /vast/scratch/users/stacpoole.q/Itokawa_et_al_2022_ATACseq/deduped/SRR13186609_Young_HSC_B1_Rep1_dedup.bam",
+      "@PG\tID:samtools.3\tPN:samtools\tPP:samtools.2\tVN:1.20\tCL:samtools view -@ 32 -b -o /vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186609_Young_HSC_B1_Rep1_filtered.bam",
+      "@PG\tID:samtools.4\tPN:samtools\tPP:samtools.3\tVN:1.22.1\tCL:samtools view -H /vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186609_Young_HSC_B1_Rep1_filtered.bam"
+    ],
+    "first10_records": [
+      {
+        "qname": "SRR13186609.18464958",
+        "flag": "0",
+        "rname": "1",
+        "pos": "3050050",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "ca228c4783f6b63be220be043d36ecdaed6f388b4d90480a7f4861da7ff92f68",
+        "quality_sha256": "7b67a0a6444b97a82cc52152fab4982231e3a1c5a043f9cd801e795979b5f6ef"
+      },
+      {
+        "qname": "SRR13186609.18437737",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3050326",
+        "mapq": "30",
+        "cigar": "60M",
+        "sequence_sha256": "a2b643bcfd2ec38c429c91d24372a023c23ec0e37417e93ef6c6383842735881",
+        "quality_sha256": "08f2fd498caf7d5c3f457eb4e4f4675b62497195c5f36d053108eacfbfc3d894"
+      },
+      {
+        "qname": "SRR13186609.6412444",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3050562",
+        "mapq": "30",
+        "cigar": "60M",
+        "sequence_sha256": "957bb5543be1e6f05b6fb7afd93f4d399b8b3050c983c115c2b09c1ca32c34c8",
+        "quality_sha256": "88c5030484ba8e8bf8d2f190acfdd2b17c29c4152015949812b05c76221a6807"
+      },
+      {
+        "qname": "SRR13186609.1188754",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3050825",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "7fbffac0d2a5284799cb5b8b35d67c2b40cd520dd4618815299f908665721f2e",
+        "quality_sha256": "68ce1a5ec31c38726d5627d09f72255e4ffbf0ed264828ba7094376b7a072fa6"
+      },
+      {
+        "qname": "SRR13186609.18527595",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3050848",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "a4d810de182fea0eba8ebd8b7cc39917810adcb879b39f0d6086b884bfe4bbfc",
+        "quality_sha256": "259cb248db88f8f71aa490f20f05aa20abdb36c18fd4655c6c810018e74d6128"
+      },
+      {
+        "qname": "SRR13186609.8451618",
+        "flag": "0",
+        "rname": "1",
+        "pos": "3050893",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "d9373ea1c0713f656fcac1f6a2071abafd00ccb3518bca41603ea2191901f0b1",
+        "quality_sha256": "d9bb4b9255e02657273c4d3c9b2e2c3707b10d48047598e13ff8ab202abcc9eb"
+      },
+      {
+        "qname": "SRR13186609.16853938",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3050925",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "9c7c540ac0ae08375a3f07ea001f5ff14f32fdad2715cc66c3722b92197bd024",
+        "quality_sha256": "c9d455b881ee713317ee6c75ddc0dc10f23cc52ab1f124ebe61270ab89382047"
+      },
+      {
+        "qname": "SRR13186609.15244921",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3051045",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "c701bf3b2105a002af43407a40815a051bbe637b4b7854952db0c546a50d03ad",
+        "quality_sha256": "b7691e294dbf89859690e945f0855725e78bd8892429242acbe34be636d2bc03"
+      },
+      {
+        "qname": "SRR13186609.12291606",
+        "flag": "0",
+        "rname": "1",
+        "pos": "3051135",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "4c44dd7b40e693c9789747b2cefddde599496826bb88eb952bdf49186bae5bcb",
+        "quality_sha256": "2d1a06d7840c0c99abc2635e836346fa05ff244bf5b8d16ad585ed6bb5063bb3"
+      },
+      {
+        "qname": "SRR13186609.13464751",
+        "flag": "0",
+        "rname": "1",
+        "pos": "3051195",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "d88d628d9564dc449c72d7476a17d4f5988e1f4aad521b4ee7d9cbb076dbbb22",
+        "quality_sha256": "f33c74f7276a76b872bc7fb99ca924565f6618a2fbdbd07fd314813788bf6cd7"
+      }
+    ]
+  },
+  "rebuilt": {
+    "program_headers": [
+      "@PG\tID:bowtie2\tPN:bowtie2\tVN:2.5.3\tCL:\"/opt/raw/bin/bowtie2-align-s --wrapper basic-0 -p 32 --very-sensitive -x Bowtie2/mm39 -U SRR13186609.fastq.gz\"",
+      "@PG\tID:samtools\tPN:samtools\tPP:bowtie2\tVN:1.22.1\tCL:samtools view -bS -",
+      "@PG\tID:samtools.1\tPN:samtools\tPP:samtools\tVN:1.22.1\tCL:samtools sort -@ 32 -o aligned.sorted.bam -",
+      "@PG\tID:MarkDuplicates\tVN:3.1.1\tCL:MarkDuplicates INPUT=[aligned.sorted.bam] OUTPUT=dedup.bam METRICS_FILE=SRR13186609_Young_HSC_B1_Rep1.dedup_metrics.txt REMOVE_DUPLICATES=true    MAX_SEQUENCES_FOR_DISK_READ_ENDS_MAP=50000 MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=8000 SORTING_COLLECTION_SIZE_RATIO=0.25 TAG_DUPLICATE_SET_MEMBERS=false REMOVE_SEQUENCING_DUPLICATES=false TAGGING_POLICY=DontTag CLEAR_DT=true DUPLEX_UMI=false FLOW_MODE=false FLOW_QUALITY_SUM_STRATEGY=false USE_END_IN_UNPAIRED_READS=false USE_UNPAIRED_CLIPPED_END=false UNPAIRED_END_UNCERTAINTY=0 FLOW_SKIP_FIRST_N_FLOWS=0 FLOW_Q_IS_KNOWN_END=false FLOW_EFFECTIVE_QUALITY_THRESHOLD=15 ADD_PG_TAG_TO_READS=true ASSUME_SORTED=false DUPLICATE_SCORING_STRATEGY=SUM_OF_BASE_QUALITIES PROGRAM_RECORD_ID=MarkDuplicates PROGRAM_GROUP_NAME=MarkDuplicates READ_NAME_REGEX=<optimized capture of last three ':' separated fields as numeric values> OPTICAL_DUPLICATE_PIXEL_DISTANCE=100 MAX_OPTICAL_DUPLICATE_SET_SIZE=300000 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false USE_JDK_DEFLATER=false USE_JDK_INFLATER=false\tPN:MarkDuplicates",
+      "@PG\tID:samtools.2\tPN:samtools\tPP:samtools.1\tVN:1.22.1\tCL:samtools view -h -q 10 -F 4 dedup.bam",
+      "@PG\tID:samtools.3\tPN:samtools\tPP:samtools.2\tVN:1.22.1\tCL:samtools view -@ 32 -b -o SRR13186609_Young_HSC_B1_Rep1.filtered.bam -",
+      "@PG\tID:samtools.4\tPN:samtools\tPP:samtools.3\tVN:1.22.1\tCL:samtools view -H /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/raw_ATAC_pilot_v15/results/raw/ATAC/SRR13186609_Young_HSC_B1_Rep1/SRR13186609_Young_HSC_B1_Rep1.filtered.bam"
+    ],
+    "first10_records": [
+      {
+        "qname": "SRR13186609.18464958",
+        "flag": "0",
+        "rname": "1",
+        "pos": "3050050",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "ca228c4783f6b63be220be043d36ecdaed6f388b4d90480a7f4861da7ff92f68",
+        "quality_sha256": "7b67a0a6444b97a82cc52152fab4982231e3a1c5a043f9cd801e795979b5f6ef"
+      },
+      {
+        "qname": "SRR13186609.18437737",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3050326",
+        "mapq": "30",
+        "cigar": "60M",
+        "sequence_sha256": "a2b643bcfd2ec38c429c91d24372a023c23ec0e37417e93ef6c6383842735881",
+        "quality_sha256": "08f2fd498caf7d5c3f457eb4e4f4675b62497195c5f36d053108eacfbfc3d894"
+      },
+      {
+        "qname": "SRR13186609.6412444",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3050562",
+        "mapq": "30",
+        "cigar": "60M",
+        "sequence_sha256": "957bb5543be1e6f05b6fb7afd93f4d399b8b3050c983c115c2b09c1ca32c34c8",
+        "quality_sha256": "88c5030484ba8e8bf8d2f190acfdd2b17c29c4152015949812b05c76221a6807"
+      },
+      {
+        "qname": "SRR13186609.1188754",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3050825",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "7fbffac0d2a5284799cb5b8b35d67c2b40cd520dd4618815299f908665721f2e",
+        "quality_sha256": "68ce1a5ec31c38726d5627d09f72255e4ffbf0ed264828ba7094376b7a072fa6"
+      },
+      {
+        "qname": "SRR13186609.18527595",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3050848",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "a4d810de182fea0eba8ebd8b7cc39917810adcb879b39f0d6086b884bfe4bbfc",
+        "quality_sha256": "259cb248db88f8f71aa490f20f05aa20abdb36c18fd4655c6c810018e74d6128"
+      },
+      {
+        "qname": "SRR13186609.8451618",
+        "flag": "0",
+        "rname": "1",
+        "pos": "3050893",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "d9373ea1c0713f656fcac1f6a2071abafd00ccb3518bca41603ea2191901f0b1",
+        "quality_sha256": "d9bb4b9255e02657273c4d3c9b2e2c3707b10d48047598e13ff8ab202abcc9eb"
+      },
+      {
+        "qname": "SRR13186609.16853938",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3050925",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "9c7c540ac0ae08375a3f07ea001f5ff14f32fdad2715cc66c3722b92197bd024",
+        "quality_sha256": "c9d455b881ee713317ee6c75ddc0dc10f23cc52ab1f124ebe61270ab89382047"
+      },
+      {
+        "qname": "SRR13186609.15244921",
+        "flag": "16",
+        "rname": "1",
+        "pos": "3051045",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "c701bf3b2105a002af43407a40815a051bbe637b4b7854952db0c546a50d03ad",
+        "quality_sha256": "b7691e294dbf89859690e945f0855725e78bd8892429242acbe34be636d2bc03"
+      },
+      {
+        "qname": "SRR13186609.12291606",
+        "flag": "0",
+        "rname": "1",
+        "pos": "3051135",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "4c44dd7b40e693c9789747b2cefddde599496826bb88eb952bdf49186bae5bcb",
+        "quality_sha256": "2d1a06d7840c0c99abc2635e836346fa05ff244bf5b8d16ad585ed6bb5063bb3"
+      },
+      {
+        "qname": "SRR13186609.13464751",
+        "flag": "0",
+        "rname": "1",
+        "pos": "3051195",
+        "mapq": "42",
+        "cigar": "60M",
+        "sequence_sha256": "d88d628d9564dc449c72d7476a17d4f5988e1f4aad521b4ee7d9cbb076dbbb22",
+        "quality_sha256": "f33c74f7276a76b872bc7fb99ca924565f6618a2fbdbd07fd314813788bf6cd7"
+      }
+    ]
+  }
+}

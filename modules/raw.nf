@@ -69,14 +69,16 @@ process ATAC_ALIGN_DEDUP_FILTER {
     def readArgs = paired ? "-1 '${readFiles[0]}' -2 '${readFiles[1]}'" : "-U '${readFiles[0]}'"
     // Explicit excluded contig labels preserve the legacy chrM-only study setting.
     def contigs = params.atac_excluded_contigs.join(',')
+    def sortArgs = params.atac_sort_threads > 1 ? "-@ ${params.atac_sort_threads}" : ''
     """
     mkdir -p tmp
     bowtie2 -p ${task.cpus} --very-sensitive -x "${bowtie_index}/${params.bowtie_index_name}" ${readArgs} 2> '${meta.sample_name}.bowtie2.log' \
-      | samtools view -bS - | samtools sort -@ ${task.cpus} -o aligned.sorted.bam -
+      | ${params.atac_samtools} view -bS - > aligned.bam
+    ${params.atac_samtools} sort ${sortArgs} -o aligned.sorted.bam aligned.bam
     java -Djava.io.tmpdir="\$PWD/tmp" -jar /opt/raw/picard/picard.jar MarkDuplicates \
       I=aligned.sorted.bam O=dedup.bam M='${meta.sample_name}.dedup_metrics.txt' REMOVE_DUPLICATES=true
     filter_atac_contigs.py --bam dedup.bam --output '${meta.sample_name}.filtered.bam' \
-      --mapq ${params.atac_mapq} --exclude '${contigs}' --mode '${params.atac_contig_filter_mode}' --threads ${task.cpus}
+      --mapq ${params.atac_mapq} --exclude '${contigs}' --mode '${params.atac_contig_filter_mode}' --threads ${task.cpus} --samtools '${params.atac_samtools}'
     """
 }
 

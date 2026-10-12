@@ -38,8 +38,10 @@ containers/raw_tools_v03.def
 containers/raw_tools_v04.def
 containers/raw_tools_v05.def
 containers/raw_tools_v06.def
+containers/raw_tools_v07.def
 containers/software_lock_v01.json
 docs/ANANSE_FLAG_INVESTIGATION_v01.md
+docs/ATAC_ALIGNMENT_PROVENANCE_v01.md
 docs/ATAC_ORDERING_DECISION_v01.md
 docs/COHORT_METADATA_v01.md
 docs/DEVELOPMENT_STATUS_v01.md
@@ -59,6 +61,8 @@ docs/RNA_NUMERICAL_EQUIVALENCE_v01.md
 docs/SAVED_UNION_REPRODUCTION_v01.md
 docs/SOFTWARE_PROVENANCE_v01.md
 docs/THIRD_PARTY_CODE_v01.md
+evidence/audit/atac_fastq_regression_v01/atac_fastq_regression.json
+evidence/audit/atac_header_diagnostic_v01/atac_header_diagnostic.json
 evidence/audit/curated_assets_observed_v01.jsonl
 evidence/audit/deseq_cellmeans_v02/forward_comparison.json
 evidence/audit/deseq_cellmeans_v02/reverse_comparison.json
@@ -84,6 +88,7 @@ evidence/audit/rna_numerical_regression_v01/forward_de.json
 evidence/audit/rna_numerical_regression_v01/reverse_de.json
 evidence/audit/rna_numerical_regression_v01/unfiltered_tpm.json
 evidence/audit/saved_union_affinity_regression_v01/rebuilt_affinity_regression.json
+evidence/audit/source_snapshot_v12/source_snapshot_receipt.json
 evidence/audit/tpm_boundary_v01/counts.clean.tsv.comparison.json
 evidence/audit/tpm_boundary_v01/counts.counts_filtered.tsv.comparison.json
 evidence/audit/tpm_boundary_v01/counts.tpm.tsv.comparison.json
@@ -458,6 +463,7 @@ templates/networks_archived_affinity_replay_v01.tsv
 templates/params_ATAC_fastq_pilot_v01.json
 templates/params_ATAC_fastq_pilot_v02.json
 templates/params_ATAC_fastq_pilot_v03.json
+templates/params_ATAC_fastq_pilot_v04.json
 templates/params_RNA_fastq_integration_v03.json
 templates/params_RNA_fastq_pilot_v01.json
 templates/params_RNA_fastq_pilot_v02.json
@@ -512,6 +518,7 @@ tools/build_raw_tools_v03.sh
 tools/build_raw_tools_v04.sh
 tools/build_raw_tools_v05.sh
 tools/build_raw_tools_v06.sh
+tools/build_raw_tools_v07.sh
 tools/compare_numeric_tables.py
 tools/diagnose_rna_annotation_groups_v01.py
 tools/diagnose_rna_counts_v01.py
@@ -526,6 +533,8 @@ tools/native_acquire_fastq_v03.sh
 tools/native_acquire_fastq_v04.py
 tools/native_acquire_fastq_v04.sh
 tools/native_atac_fastq_regression_v01.sh
+tools/native_atac_fastq_regression_v02.sh
+tools/native_atac_header_diagnostic_v01.sh
 tools/native_cached_container_audit_v01.sh
 tools/native_contracts_v01.sh
 tools/native_contracts_v02.sh
@@ -570,6 +579,7 @@ tools/package_r_runtime_v01.py
 tools/package_raw_tools_v01.py
 tools/package_raw_tools_v02.py
 tools/package_raw_tools_v03.py
+tools/package_samtools120_v01.py
 tools/prepare_publication_allowlist_v01.py
 tools/qualify_result_bundle_v01.py
 tools/remote_audit_more_v01.py

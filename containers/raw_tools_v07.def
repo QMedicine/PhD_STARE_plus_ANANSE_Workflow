@@ -1,0 +1,30 @@
+Bootstrap: localimage
+From: /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/raw_tools_v06.sif
+
+%files
+    /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/samtools120_v01.tar /opt/samtools120_v01.tar
+
+%post
+    mkdir -p /opt/samtools120
+    tar -xf /opt/samtools120_v01.tar -C /opt/samtools120
+    rm /opt/samtools120_v01.tar
+    cat > /opt/raw/bin/samtools120 <<'SH'
+#!/bin/sh
+export LD_LIBRARY_PATH=/opt/samtools120/lib:${LD_LIBRARY_PATH:-}
+exec /opt/samtools120/samtools "$@"
+SH
+    chmod 755 /opt/raw/bin/samtools120
+
+%test
+    set -eu
+    /opt/raw/bin/samtools120 --version > /tmp/samtools120.version
+    head -2 /tmp/samtools120.version
+    grep -q '^samtools 1.20$' /tmp/samtools120.version
+    grep -q '^Using htslib 1.20$' /tmp/samtools120.version
+    /opt/raw/bin/cutadapt --version
+    /opt/raw/bin/macs3 --version
+    /opt/raw/bin/STAR --version
+    /opt/raw/bin/ps -o pid= -p $$
+
+%labels
+    role historical_raw_atac_samtools120_with_latest_blacklist_tools

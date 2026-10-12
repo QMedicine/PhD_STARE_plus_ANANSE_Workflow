@@ -38,7 +38,7 @@ def make(source,root):
     with sheet.open('w') as f:
         writer=csv.DictWriter(f,fields,delimiter='\t',lineterminator='\n');writer.writeheader();writer.writerows(rows)
     transitions=root/'source2target.tsv';transitions.write_text('source\ttarget\nState_1\tState_2\n')
-    params.update(samplesheet=str(sheet),source2target=str(transitions),atac_modes=['corrected_column_order'],historical_header_samples=[],historical_data_samples=[],deseq_state_order=[],plot_settings={},stage='raw_prepare',raw_sample_names=['paired_atac_fixture'],rna_adapters=None,star_index=None)
+    params.update(samplesheet=str(sheet),source2target=str(transitions),atac_modes=['corrected_column_order'],historical_header_samples=[],historical_data_samples=[],deseq_state_order=[],plot_settings={},stage='raw_prepare',atac_samtools='samtools',atac_sort_threads=32,raw_sample_names=['paired_atac_fixture'],rna_adapters=None,star_index=None)
     (root/'params.json').write_text(json.dumps(params,indent=2)+'\n')
     receipt=dict(status='SYNTHETIC_NOT_BIOLOGICAL_DATA',reference=str(fasta),region=region,fragments=len(read1),read_length=75,fragment_length_range=[250,450],paired_fastqs=[dict(path=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in paths],purpose='Qualify generic labels, paired Bowtie2/Picard/filtering and MACS3 BAMPE; no historical-equivalence claim')
     (root/'fixture_identity.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt,indent=2))

@@ -1,0 +1,9 @@
+{
+  "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/source_v12",
+  "source_files": 87,
+  "source_bytes": 457210,
+  "archive_sha256": "eadf677b197b87eec9ec75669c364b0d8f41975fa45391c65466e5ac82f8b599",
+  "inventory_sha256": "a768be7e9c6384b9e298b04456f5591525129af8f362d5ad51df7768c8b289cc",
+  "durable_directory": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/validated_results/atac_saved_union_v12/provenance",
+  "status": "SOURCE_SNAPSHOT_COPY_VERIFIED"
+}

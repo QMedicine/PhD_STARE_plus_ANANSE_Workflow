@@ -148,8 +148,8 @@
     "diagnostic_job": "30366644",
     "failure": "EXPECTED_SIZE_BUT_MD5_AND_GZIP_CRC_FAILED",
     "official_ftp_retry_job": "30367215",
-    "dependent_pilot_job": "30368308",
-    "status": "NATIVE_PILOT_RUNNING",
+    "dependent_pilot_job": "30368403",
+    "status": "ORIGINAL_RUNTIME_PILOT_RUNNING",
     "resume_job": "30367334",
     "resume_status": "FAILED_MD5",
     "byte_diagnostic_job": "30367635",
@@ -157,7 +157,14 @@
     "different_chunks": 3,
     "range_retry_job": "30368276",
     "range_retry_status": "VERIFIED_ENA_MD5_AND_GZIP_CRC",
-    "regression_job": "30368309"
+    "regression_job": "30368411",
+    "first_pilot_job": "30368308",
+    "first_regression_job": "30368309",
+    "first_regression": "FAILED_EXACT_COUNTS_267_WINDOWS_MAX6",
+    "header_diagnostic_job": "30368354",
+    "authenticated_original_alignment_samtools": "1.20",
+    "original_sort_threads": 1,
+    "original_runtime_image_build": "30368384"
   },
   "rna_count_modes": {
     "source": "source_v16",
