@@ -28,12 +28,14 @@ containers/ananse_v03.def
 containers/bam_tools_v01.def
 containers/cooler-env.explicit_v01.txt
 containers/cooler-env.packages_v01.json
+containers/hic_python_wheels_v01.sha256
 containers/hic_raw_standard_v01.def
 containers/hicexplorer.explicit_v01.txt
 containers/hicexplorer.packages_v01.json
 containers/hicexplorer_v01.def
 containers/python3.explicit_v01.txt
 containers/python3.packages_v01.json
+containers/r_diffhic_library_closure_v01.tsv
 containers/r_diffhic_v01.def
 containers/r_library_closure_v01.tsv
 containers/r_plot_v01.def
