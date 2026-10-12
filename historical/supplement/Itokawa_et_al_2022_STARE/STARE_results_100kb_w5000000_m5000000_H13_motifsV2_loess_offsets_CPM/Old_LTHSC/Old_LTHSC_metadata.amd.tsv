@@ -1,0 +1,36 @@
+[Description]
+process	STARE 1.0.5
+run_by_user	
+date	01_23_26
+time	10_30_45_%N
+analysis_id	/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/STARE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/Old_LTHSC/Old_LTHSC
+
+[Command]
+STARE.sh -b /vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/union_bed/union_summit500.with_activity.loessOffsets.tsv -n 7,8 -a /vast/projects/Immune_Aging/Reference_genomes/mm39/ensembl_release-113/Mus_musculus.GRCm39.113.gtf -g /vast/projects/Immune_Aging/Reference_genomes/mm39/ensembl_release-113/Mus_musculus.GRCm39.dna.primary_assembly.fa -f /vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/STARE_files/Old_HSC/100kb -k 100000 -w 5000000 -m 5000000 -t 0.02 -p /vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs/02_motifs/06_psem/motifs.psem -c 32 -i all_tss -q True -d True -o /vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/STARE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/Old_LTHSC
+
+[Inputs]
+-b region_file	/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/union_bed/union_summit500.with_activity.loessOffsets.tsv
+-n signal_column	7,8
+
+[References]
+-g genome_reference	/vast/projects/Immune_Aging/Reference_genomes/mm39/ensembl_release-113/Mus_musculus.GRCm39.dna.primary_assembly.fa
+-p psems	/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs/02_motifs/06_psem/motifs.psem
+-a genome_annotation	/vast/projects/Immune_Aging/Reference_genomes/mm39/ensembl_release-113/Mus_musculus.GRCm39.113.gtf
+
+[Output path]
+/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/STARE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/Old_LTHSC
+
+[Parameters]
+-c cores	32
+-w window	5000000
+-i tss_mode	all_tss
+-f path with hi-c contact files	/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/STARE_files/Old_HSC/100kb
+-k bin size of hi-c contacts	100000
+-t ABC-score cut-off	0.02
+-d Use pseudocount for contact frequency	True
+-q Use adaptedABC version	True
+-m Window size for the adaptedABC	5000000
+
+[Metrics]
+Number of provided regions	206351
+Number of considered psems	756

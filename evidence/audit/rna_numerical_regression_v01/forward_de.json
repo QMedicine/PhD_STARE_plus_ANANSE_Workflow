@@ -1,0 +1,21 @@
+{
+  "expected": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs_Young_over_Old/01_counts/05_deseq2/A_Old_HSC:B_Young_HSC/A_Old_HSC:B_Young_HSC.deseq2.results.tsv",
+  "observed": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/rna_recount_v06/results/rna/de/Old_HSC_to_Young_HSC/forward.deseq2.tsv",
+  "expected_sha256": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30",
+  "observed_sha256": "77410bde0b1b0562ec6643ed72ab169960d4df577f230b9dd8c8ca07f5e38e4f",
+  "same_keys": true,
+  "same_columns": true,
+  "expected_shape": [
+    13402,
+    5
+  ],
+  "observed_shape": [
+    13402,
+    5
+  ],
+  "exact_numeric": false,
+  "n_different_values": 53608,
+  "max_absolute_error": 0.0016401082615793428,
+  "max_relative_error": 0.01282007997347674,
+  "within_1e_12": false
+}

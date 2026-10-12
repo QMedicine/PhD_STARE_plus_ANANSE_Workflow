@@ -1,0 +1,58 @@
+{
+  "status": "NATIVE_IMAGES_BUILT_METHOD_REGRESSION_ONGOING",
+  "platform": "linux/amd64",
+  "host_modules": {
+    "Nextflow": "26.04.3",
+    "Apptainer": "1.3.5"
+  },
+  "images": [
+    {
+      "role": "ananse",
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/ananse_v03.sif",
+      "sha256": "1000aa92a4a678c5f466d1856b2db84d08253308dcdc1d0e8dbaf61f0e13b418",
+      "version": "ANANSE 0.5.1"
+    },
+    {
+      "role": "r_plot",
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/r_plot_v01.sif",
+      "sha256": "80deab9a5e055993e557aea5c8df3abdf3687704e1750ce03bcdbf3081fad9d8",
+      "version": "R 4.5.1 and archived current library closure"
+    },
+    {
+      "role": "hicexplorer",
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/hicexplorer_v01.sif",
+      "sha256": "685f89361c86d8664d673ceac161c0e7fea3911fcf3ec2074a8d08ad1206c3bd",
+      "version": "HiCExplorer 3.7.6"
+    },
+    {
+      "role": "bam_tools",
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/bam_tools_v01.sif",
+      "sha256": "0608926747c4c57cb6a68f5dbdf60e67030efbc7bf937713bd41d1ac9d19aebc",
+      "version": "samtools 1.22.1, bedtools 2.31.1, featureCounts 2.0.6"
+    },
+    {
+      "role": "stare",
+      "path": "/vast/projects/Immune_Aging/apptainer_singularity_cache/stare-abc_1.0.5.sif",
+      "sha256": "991095738409027e345981806f3d9ffbf6e86670791c5151dc6037083b5684ee",
+      "version": "STARE 1.0.5"
+    },
+    {
+      "role": "deseq2",
+      "path": "/vast/projects/Immune_Aging/apptainer_singularity_cache/depot.galaxyproject.org-singularity-bioconductor-deseq2-1.34.0--r41hc247a5b_3.img",
+      "sha256": "425e77b97dbe465ad4b0b399c0b33b7c02c7ee60b082e32fd8a848e86832bfa3",
+      "version": "R 4.1.3, DESeq2 1.34.0, ashr 2.2.54"
+    },
+    {
+      "role": "tpm",
+      "path": "/vast/projects/Immune_Aging/apptainer_singularity_cache/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-7c-7c256e63e08633ac420692d3ceec1f554fe4fcc794e5bdd331994f743096a46d-data.img",
+      "sha256": "7c256e63e08633ac420692d3ceec1f554fe4fcc794e5bdd331994f743096a46d",
+      "version": "Python 3.13.3, pandas 2.3.0"
+    },
+    {
+      "role": "bedtools",
+      "path": "/vast/projects/Immune_Aging/apptainer_singularity_cache/depot.galaxyproject.org-singularity-bedtools-2.31.1--hf5e1c6e_0.img",
+      "sha256": "17f608347ebe19d0440a648d89cc17ee915f034351e3bccd0787bcb99303d16b",
+      "version": "bedtools 2.31.1"
+    }
+  ]
+}

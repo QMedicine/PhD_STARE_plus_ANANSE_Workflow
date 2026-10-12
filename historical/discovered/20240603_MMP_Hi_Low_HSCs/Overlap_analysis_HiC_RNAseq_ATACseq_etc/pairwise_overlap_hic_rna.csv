@@ -1,0 +1,1 @@
+seqnames,start,end,width,strand,rna_gene_id,rna_logFC,rna_logCPM,rna_LR,rna_PValue,rna_FDR,rna_gene_name,rna_color,i.start,i.end,i.width,i.strand,hic_anchor1_nfrags,hic_anchor1_interaction_id,hic_anchor2_nfrags,hic_anchor2_interaction_id

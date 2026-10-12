@@ -1,0 +1,8 @@
+{
+  "n_genes": 56098,
+  "n_samples": 4,
+  "n_different_values": 0,
+  "exact_numeric_match": true,
+  "summed_groups": 311,
+  "selection_policy": "Historical selected IDs are an explicit checkpoint; same chromosome/strand groups summed; distinct loci retain selected ID"
+}

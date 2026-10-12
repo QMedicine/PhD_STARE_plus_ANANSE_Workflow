@@ -1,0 +1,23 @@
+Bootstrap: localimage
+From: /vast/scratch/users/stacpoole.q/FateFactors_development/runs/stage009-r-base-0342300-20261003-r1/r_base.sif
+
+%files
+    /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/r_runtime_v01.tar /opt/r_runtime_v01.tar
+
+%post
+    tar -xf /opt/r_runtime_v01.tar -C /opt
+    rm /opt/r_runtime_v01.tar
+
+%environment
+    export R_LIBS_USER=/opt/Rlibrary
+    export R_LIBS_SITE=/opt/Rlibrary
+    export LD_LIBRARY_PATH=/opt/host-libs:${LD_LIBRARY_PATH:-}
+
+%test
+    R_LIBS_USER=/opt/Rlibrary R_LIBS_SITE=/opt/Rlibrary LD_LIBRARY_PATH=/opt/host-libs:${LD_LIBRARY_PATH:-} Rscript --vanilla -e 'stopifnot(getRversion()=="4.5.1"); for(p in c("csaw","SummarizedExperiment","data.table","ggraph","igraph","Cairo","units","patchwork")) {library(p,character.only=TRUE);cat(p,as.character(packageVersion(p)),"\n")}; cairo_pdf("/tmp/phd_vector_smoke.pdf");plot(1:3,main="Vector text smoke");dev.off()'
+
+%labels
+    workflow phd_stare_plus_ananse_workflow
+    role atac_offsets_and_historical_plots
+    audit_date 2026-10-12
+    provenance current_library_snapshot_pending_historical_numeric_regression

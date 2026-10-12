@@ -1,0 +1,14 @@
+{
+  "allowed_files": 497,
+  "allowed_bytes": 4490771,
+  "secret_pattern_matches": 0,
+  "status": "PREPARED_NOT_STAGED",
+  "excluded_formats": [
+    "reads",
+    "BAM",
+    "contact matrices",
+    "images",
+    "large scientific outputs",
+    "PDF/HTML reports"
+  ]
+}

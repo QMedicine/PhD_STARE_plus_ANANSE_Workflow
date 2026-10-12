@@ -1,0 +1,11 @@
+{
+  "status": "DEVELOPMENT_INCOMPLETE",
+  "generic_labels": {"literal_study_labels_in_main_config_bin_modules_workflows": 0, "native_contract_tests": 6, "job": "30364431"},
+  "historical_archive": {"verified_files": 306},
+  "rna": {"run": "rna_recount_v08", "job": "30364544", "completed_tasks": 8, "exact_resume_job": "30364640", "cached_tasks": 8, "byte_identical": ["selected_counts.csv", "counts.tpm.tsv", "counts.counts_filtered.tsv", "primary_forward_deseq2.tsv"], "reverse_rule": "Negate primary forward log2FoldChange; independently fitted historical reverse table differs slightly"},
+  "archived_affinity_networks": {"run": "historical_replay_v05", "converter_jobs": ["30364402", "30364404"], "byte_identical_states": ["Old_HSC", "Young_HSC"], "sha256": {"Old_HSC": "04b7d275e65551fb93a7d52f157e6a3f62039302513b827fac85302053d8ee94", "Young_HSC": "31c66fe294329cdc825aa0a6d9fc6c01af185654649f9cbf4c2c79cf82da95eb"}},
+  "hic_container": {"job": "30364235", "functional_contact_export": "PASS"},
+  "atac_normalization": {"job": "30364030", "saved_matrix_numeric_match": "EXACT", "native_rebuilt_mode_comparison": "PENDING"},
+  "plots": {"job": "30364364", "selected_section_rendered": 38, "strict_failures": ["Old_HSC->Young_HSC:SATB1", "Young_HSC->Old_HSC:ARX"], "complete_reports": "WITHHELD_PENDING_FILTER_REVISION"},
+  "pending": ["native influence regression without incompatible full-output flag", "two-mode ATAC/STARE reconstruction regression", "cooler-to-ICE blacklist gap and estimated-threshold route", "FASTQ routes and native qualification", "self-contained final report package validation", "validated final result transfer"]
+}

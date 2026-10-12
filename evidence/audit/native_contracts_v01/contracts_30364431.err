@@ -1,0 +1,11 @@
+test_both_directions_and_file_routes (test_contracts.Contracts.test_both_directions_and_file_routes) ... ok
+test_generic_cell_states (test_contracts.Contracts.test_generic_cell_states) ... ok
+test_generic_selected_plot_chunk (test_contracts.Contracts.test_generic_selected_plot_chunk) ... ok
+test_header_and_data_order_modes (test_contracts.Contracts.test_header_and_data_order_modes) ... ok
+test_unknown_state_rejected (test_contracts.Contracts.test_unknown_state_rejected) ... ok
+test_same_locus_sum_and_distinct_locus_representative (test_count_cleanup.Cleanup.test_same_locus_sum_and_distinct_locus_representative) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.049s
+
+OK

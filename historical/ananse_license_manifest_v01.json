@@ -1,0 +1,8 @@
+[
+  {
+    "stage": "software_provenance",
+    "remote_path": "/home/users/allstaff/stacpoole.q/.conda/envs/ananse/lib/python3.10/site-packages/ananse-0.5.1.dist-info/LICENSE",
+    "local_path": "historical/software/ananse/LICENSE",
+    "sha256": "feb87a2e0c305de3464cc44077da5393c52d8ca6362d37427157d04ec6f4510d"
+  }
+]

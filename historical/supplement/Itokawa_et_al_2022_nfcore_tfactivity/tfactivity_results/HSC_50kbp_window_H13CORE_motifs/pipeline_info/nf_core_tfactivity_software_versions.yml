@@ -1,0 +1,109 @@
+AFFINITY_MEAN:
+  numpy: 2.3.0
+  pandas: 2.3.0
+  python: 3.13.3
+AFFINITY_RATIO:
+  numpy: 2.3.0
+  pandas: 2.3.0
+  python: 3.13.3
+AFFINITY_SUM:
+  numpy: 2.3.0
+  pandas: 2.3.0
+  python: 3.13.3
+AGGREGATE_SYNONYMS:
+  pandas: 2.3.0
+  python: 3.13.3
+CALCULATE_TPM:
+  pandas: 2.3.0
+  python: 3.13.3
+CLEAN_BED:
+  gawk: 5.3.0
+COMBINE_COUNTS:
+  pandas: 2.3.0
+  python: 3.13.3
+COMBINE_RESULTS:
+  pandas: 2.3.0
+  python: 3.13.3
+COMBINE_TFS_ACROSS_ASSAYS:
+  numpy: 2.3.0
+  pandas: 2.3.0
+  python: 3.13.3
+COMBINE_TFS_PER_ASSAY:
+  numpy: 2.3.0
+  pandas: 2.3.0
+  python: 3.13.3
+COMBINE_TGS_ACROSS_ASSAYS:
+  numpy: 2.3.0
+  pandas: 2.3.0
+  python: 3.13.3
+COMBINE_TGS_PER_ASSAY:
+  numpy: 2.3.0
+  pandas: 2.3.0
+  python: 3.13.3
+CONSTRUCT_TSS:
+  bedtools: 2.31.1
+CONVERT_TO_MEME:
+  r-base: 4.3.2
+  bioconductor-universalmotif: 1.20.0
+CONVERT_TO_TRANSFAC:
+  r-base: 4.3.2
+  bioconductor-universalmotif: 1.20.0
+CONVERT_TO_UNIVERSAL:
+  r-base: 4.3.2
+  bioconductor-universalmotif: 1.20.0
+CREATE_RANKING:
+  python: 3.13.3
+  pandas: 2.3.0
+  scipy: 1.15.2
+DESEQ2_DIFFERENTIAL:
+  r-base: 4.1.3
+  bioconductor-deseq2: 1.34.0
+EXTRACT_SEQUENCE:
+  bedtools: 2.31.1
+FILTER:
+  gawk: 5.3.0
+FILTER_CONVERT_GTF:
+  gawk: 5.3.0
+FILTER_GENES:
+  pandas: 2.3.0
+  python: 3.13.3
+FILTER_MOTIFS:
+  pandas: 2.3.0
+  python: 3.13.3
+FILTER_MOTIFS:
+  r-base: 4.3.2
+  bioconductor-universalmotif: 1.20.0
+FILTER_TFS:
+  pandas: 2.3.0
+  python: 3.13.3
+INVERT_TSS:
+  bedtools: 2.31.1
+PREPARE_DESIGN:
+  pandas: 2.3.0
+  python: 3.13.3
+PREPROCESS:
+  pandas: 2.3.0
+  python: 3.13.3
+RUN_DYNAMITE:
+  DYNAMITE: 1.0
+RUN_FIMO:
+  fimo: 5.5.8
+SORT_BED:
+  coreutils: 9.1
+SORT_CHROM_SIZES:
+  coreutils: 9.1
+SORT_PEAKS:
+  bedtools: 2.31.1
+STARE:
+  STARE: STARE version 1.0.5
+TF_TG_SCORE:
+  pandas: 2.3.0
+  python: 3.13.3
+TRANSFAC_TO_PSEM:
+  python: 3.11.0
+  numpy: 1.24.2
+UNTAR:
+  untar: 1.34
+Workflow:
+    nf-core/tfactivity: v0.0.1dev-ga6d7fec
+    Nextflow: 25.04.2

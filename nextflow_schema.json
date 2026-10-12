@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/QMedicine/PhD_STARE_plus_ANANSE_Workflow/nextflow_schema.json",
+  "title": "phd_stare_plus_ananse_workflow parameters",
+  "type": "object",
+  "required": [
+    "samplesheet",
+    "source2target"
+  ],
+  "properties": {
+    "stage": {
+      "type": "string",
+      "enum": [
+        "preflight",
+        "rna_recount",
+        "historical_replay",
+        "bam_historical_hic_checkpoint",
+        "atac_historical_hic_checkpoint",
+        "network_replay"
+      ],
+      "default": "preflight"
+    },
+    "reverse_contrast": {
+      "type": "boolean",
+      "default": true
+    },
+    "make_reports": {
+      "type": "boolean",
+      "default": true
+    },
+    "atac_modes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "corrected_column_order",
+          "historical_column_order"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "default": [
+        "corrected_column_order"
+      ]
+    },
+    "historical_header_samples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "historical_data_samples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "deseq_state_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "container_binds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^/"
+      }
+    },
+    "chosen_res": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 100000
+    },
+    "resolutions": {
+      "type": "string",
+      "pattern": "^[0-9]+(,[0-9]+)*$",
+      "default": "30000,50000,100000"
+    },
+    "hicexp_norm": {
+      "type": "string",
+      "enum": [
+        "ICE"
+      ],
+      "default": "ICE"
+    },
+    "hicexp_depth_norm": {
+      "type": "string",
+      "enum": [
+        "smallest"
+      ],
+      "default": "smallest"
+    },
+    "atac_norm": {
+      "type": "string",
+      "enum": [
+        "loess_offsets"
+      ],
+      "default": "loess_offsets"
+    },
+    "diffhic_norm": {
+      "type": "string",
+      "enum": [
+        "loess_offsets"
+      ],
+      "default": "loess_offsets"
+    },
+    "empty_plot_policy": {
+      "enum": [
+        "fail"
+      ],
+      "default": "fail"
+    },
+    "plot_settings": {
+      "type": "object"
+    },
+    "plot_fc_limits": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "plot_fc_breaks": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "min_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "min_count_tf": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "summit_flank": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "stare_window": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "enhancer_window": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "influence_edges": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "min_tpm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "min_tpm_tf": {
+      "type": "number",
+      "minimum": 0
+    },
+    "gabc_threshold": {
+      "type": "number",
+      "minimum": 0
+    },
+    "min_binding": {
+      "type": "number",
+      "minimum": 0
+    },
+    "samplesheet": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source2target": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "affinities": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "de_manifest": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hic_checkpoints": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "selected_counts": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tpm": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "idmap": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "gene_lengths": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fasta": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "gtf": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "psem": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "chrom_sizes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "atac_blacklist": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "summit_blacklist": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "plot_template": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ananse_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "r_plot_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tpm_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "featurecounts_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hicexplorer_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "atac_tools_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "bedtools_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "stare_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deseq2_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "network_manifest": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

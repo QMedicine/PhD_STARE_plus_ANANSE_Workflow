@@ -1,0 +1,3 @@
+mode	cell_state	path
+archived_affinity_replay	Old_HSC	/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/historical_replay_v05/results/archived_affinity_replay/networks/Old_HSC/Old_HSC_SYMBOLS.tsv
+archived_affinity_replay	Young_HSC	/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/historical_replay_v05/results/archived_affinity_replay/networks/Young_HSC/Young_HSC_SYMBOLS.tsv

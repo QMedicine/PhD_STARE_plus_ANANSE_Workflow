@@ -1,0 +1,5 @@
+sample,condition,assay,peak_file,footprinting
+Old_HSC_B1_Rep1,Old_HSC,ATAC-seq,/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/union_bed/union_peaks_6_cols.bed,false
+Old_HSC_B1_Rep2,Old_HSC,ATAC-seq,/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/union_bed/union_peaks_6_cols.bed,false
+Young_HSC_B1_Rep1,Young_HSC,ATAC-seq,/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/union_bed/union_peaks_6_cols.bed,false
+Young_HSC_B1_Rep2,Young_HSC,ATAC-seq,/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/union_bed/union_peaks_6_cols.bed,false

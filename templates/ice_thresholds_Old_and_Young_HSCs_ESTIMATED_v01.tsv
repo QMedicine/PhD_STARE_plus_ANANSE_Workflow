@@ -1,0 +1,3 @@
+cell_state	resolution	lower	upper	provenance
+Old_HSC	100000	-3	3	exploratory_pre_blacklist_visual_estimate
+Young_HSC	100000	-3	3	exploratory_pre_blacklist_visual_estimate

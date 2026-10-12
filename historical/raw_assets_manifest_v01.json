@@ -1,0 +1,694 @@
+[
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_SraRunTable.csv",
+    "size": 2114,
+    "sha256": "127fff65e3c5f923ffa98fda254ca64e4bd1d2c93e9a9664ed03a8068a5a62b0",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_SraRunTable.csv"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_SraRunTable_p2.csv",
+    "size": 12696,
+    "sha256": "911355144460075ca4a786e77086912d858f0249c2eec52917ca208f3df98a8f",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_SraRunTable_p2.csv"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_convert_wig_to_bigwig.sh",
+    "size": 2655,
+    "sha256": "e652023c5fcfa508230b1232d8fd8eff946017529d5c41fc6afa5789206298cd",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_convert_wig_to_bigwig.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_STAR_alignment.sh",
+    "size": 2177,
+    "sha256": "101b9b433a6601cfa1ff7f35d9a412e477617f3a8ef4c6e1ffaefe90c3ee3699",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_STAR_alignment.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_STAR_alignment_generate_star_scripts_for_part2_files.sh",
+    "size": 3707,
+    "sha256": "571507ead85635ee9522d7f41c0b24a92f7adfc1de2262e37bd1da09e137943f",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_STAR_alignment_generate_star_scripts_for_part2_files.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_STAR_alignment_part2_files.sh",
+    "size": 2106,
+    "sha256": "5324be48b4e4c02f1850f9de22cde28db95391fd1c6656dacc3e8872acd9dc0f",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_STAR_alignment_part2_files.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_cutadapt.sh",
+    "size": 6741,
+    "sha256": "5bc629ebc601cadd0797f8bf756fa9b96679378379b3650ce525a378ac8e08b6",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_cutadapt.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_cutadapt_part2_files.sh",
+    "size": 6587,
+    "sha256": "294b364a0c1d70e9d90eaa6945c89c7fd6f59ad6ede8b6217ed5c1f518c4ab55",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_cutadapt_part2_files.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_deepTools_coverage.sh",
+    "size": 1811,
+    "sha256": "15344fee211eda43a20222b904c37b0d6cd4135936f868f34cbea6f6bb9b8c9f",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_deepTools_coverage.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_fastqc.sh",
+    "size": 3978,
+    "sha256": "75a2067b9a016583161fb71ba45c1b112f658f5776ff33cb0289d0137a4e0f4e",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_fastqc.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_fastqc_extract_adapters_part2.sh",
+    "size": 3255,
+    "sha256": "d6d047d84b2b3e1d6671ca5a8c1245f68c5336b36f4b0435aefd45895bd3328e",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_fastqc_extract_adapters_part2.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_fastqc_part2_files.sh",
+    "size": 3230,
+    "sha256": "1ed481b5cf58bc6d32394f5473f2c87c4c6174680661571501b4e41165f0b26c",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_fastqc_part2_files.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_featureCounts.sh",
+    "size": 1119,
+    "sha256": "d3e8e7df83fdcec1400f254d90c6b738762f14fda25c5d1665e5d48e4762ec1b",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_featureCounts.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_index_bam.sh",
+    "size": 1479,
+    "sha256": "ae1805657fc1c6e4f0b074f0beaf01f79f7dfcb979efe673df8718e02d24d4fc",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_index_bam.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_salmon_alignment.sh",
+    "size": 2382,
+    "sha256": "82cc4a17359dcee1420f0b7df54e4c71f1f1d6a1e492e43e7a4f6a7568bc029f",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_salmon_alignment.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_sample_information.tsv",
+    "size": 2937,
+    "sha256": "8892f1b2fcbf05a35fdd579aa35e09cb1ab5dd58e9309db7b9b49b9ac40d4f96",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_sample_information.tsv"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_sample_information_p2.tsv",
+    "size": 17683,
+    "sha256": "dcbd232a3e597820cfbbae514f5515210a3b96ea1702a1d162d2b6f802f2acbe",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_sample_information_p2.tsv"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_wiggletools_merge_coverage.sh",
+    "size": 3316,
+    "sha256": "5d66acf2b9707082fa92f8a1838fd4e0bff90b56d7aff2dd6db8d37096559dd9",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_wiggletools_merge_coverage.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/Kuribayashi_et_al_2021_RNAseq_job_array_cutadapt.sh",
+    "size": 3865,
+    "sha256": "38a6c34d3fffbbdce8e51fc59cfcb63ea4171f4bd7ac2ac46979dc4d44c362ed",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/Kuribayashi_et_al_2021_RNAseq_job_array_cutadapt.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/download_and_convert_SRA_files_for_Itokawa_et_al_2022_RNAseq.sh",
+    "size": 896,
+    "sha256": "a1873bcb95cc6804a7b103ce37b53dfeb58d1b6ce035ccffe29e79dd332d2917",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/download_and_convert_SRA_files_for_Itokawa_et_al_2022_RNAseq.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/download_and_convert_SRA_files_for_Itokawa_et_al_2022_RNAseq_p2.sh",
+    "size": 1239,
+    "sha256": "826bc137c8ea2ce3dadeed6666ee3f3ebab8627c24a9ba2fdf8fc6d18899b54c",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/download_and_convert_SRA_files_for_Itokawa_et_al_2022_RNAseq_p2.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/download_and_convert_SRA_files_for_Itokawa_et_al_2022_RNAseq_p2_convertSRA_to_fastq.sh",
+    "size": 6166,
+    "sha256": "1925260fec656290d77a51f794675c94d85be4de92a8624dcd654925df5e1967",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/download_and_convert_SRA_files_for_Itokawa_et_al_2022_RNAseq_p2_convertSRA_to_fastq.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/prepare_salmon_index_single_ended_60bp_reads.sh",
+    "size": 882,
+    "sha256": "61cb4ebc627dc257c6347a0f2797194dcd00124cee09697b3b6e99921ded1c29",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/prepare_salmon_index_single_ended_60bp_reads.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/prepare_star_index_single_ended_60bp_reads.sh",
+    "size": 1417,
+    "sha256": "0275649fb55863edbcc9b9501486816e3baddad23801e48ba47e200defb6a81a",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_RNAseq/prepare_star_index_single_ended_60bp_reads.sh"
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/SRR13192285.fastq",
+    "size": 3461799876
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/SRR13192286.fastq",
+    "size": 4427586876
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/SRR13192301.fastq",
+    "size": 3763808004
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/SRR13192302.fastq",
+    "size": 4591009644
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192287_1.fastq",
+    "size": 3968184384
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192288_1.fastq",
+    "size": 4005676932
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192289_1.fastq",
+    "size": 3704155752
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192290_1.fastq",
+    "size": 3908763060
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192291_1.fastq",
+    "size": 4061466444
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192292_1.fastq",
+    "size": 3552194724
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192293_1.fastq",
+    "size": 4512882336
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192294_1.fastq",
+    "size": 3682262268
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192295_1.fastq",
+    "size": 4812825250
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192296_1.fastq",
+    "size": 4919939648
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192297_1.fastq",
+    "size": 4543480088
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192298_1.fastq",
+    "size": 4050913282
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192299_1.fastq",
+    "size": 3722769732
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192300_1.fastq",
+    "size": 3792834348
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192303_1.fastq",
+    "size": 3815648076
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192304_1.fastq",
+    "size": 4253429832
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192305_1.fastq",
+    "size": 4144882248
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192306_1.fastq",
+    "size": 4295120496
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192307_1.fastq",
+    "size": 4287410724
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192308_1.fastq",
+    "size": 3800118780
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192309_1.fastq",
+    "size": 3921000000
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192310_1.fastq",
+    "size": 3947067936
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192311_1.fastq",
+    "size": 3582153144
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192312_1.fastq",
+    "size": 3652458480
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192313_1.fastq",
+    "size": 3076394712
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192314_1.fastq",
+    "size": 3310470228
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192315_1.fastq",
+    "size": 4000627524
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/raw_data/part_2_files_MPP_etc/SRR13192316_1.fastq",
+    "size": 4015909572
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed/SRR13192285_Young_HSC_Rep1_trimmed.fastq.gz",
+    "size": 796866996
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed/SRR13192286_Young_HSC_Rep2_trimmed.fastq.gz",
+    "size": 1022724816
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed/SRR13192301_Old_HSC_Rep1_trimmed.fastq.gz",
+    "size": 864421258
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed/SRR13192302_Old_HSC_Rep2_trimmed.fastq.gz",
+    "size": 1058837362
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192287_Young_MPP1_Rep1_trimmed_1.fastq.gz",
+    "size": 916642942
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192288_Young_MPP1_Rep2_trimmed_1.fastq.gz",
+    "size": 935592511
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192289_Young_MPP2_Rep1_trimmed_1.fastq.gz",
+    "size": 869169611
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192290_Young_MPP2_Rep2_trimmed_1.fastq.gz",
+    "size": 927091898
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192291_Young_MPP3_Rep1_trimmed_1.fastq.gz",
+    "size": 951844418
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192292_Young_MPP3_Rep2_trimmed_1.fastq.gz",
+    "size": 827648307
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192293_Young_MPP4_Rep1_trimmed_1.fastq.gz",
+    "size": 1052477843
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192294_Young_MPP4_Rep2_trimmed_1.fastq.gz",
+    "size": 857167940
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192295_Young_GMP_Rep1_trimmed_1.fastq.gz",
+    "size": 1111453393
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192296_Young_GMP_Rep2_trimmed_1.fastq.gz",
+    "size": 1134333090
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192297_Young_MEP_Rep1_trimmed_1.fastq.gz",
+    "size": 1050629621
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192298_Young_MEP_Rep2_trimmed_1.fastq.gz",
+    "size": 939319915
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192299_Young_CLP_Rep1_trimmed_1.fastq.gz",
+    "size": 763642597
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192300_Young_CLP_Rep2_trimmed_1.fastq.gz",
+    "size": 778539804
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192303_Old_MPP1_Rep1_trimmed_1.fastq.gz",
+    "size": 887549367
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192304_Old_MPP1_Rep2_trimmed_1.fastq.gz",
+    "size": 992251417
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192305_Old_MPP2_Rep1_trimmed_1.fastq.gz",
+    "size": 966995472
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192306_Old_MPP2_Rep2_trimmed_1.fastq.gz",
+    "size": 1001796872
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192307_Old_MPP3_Rep1_trimmed_1.fastq.gz",
+    "size": 1000263445
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192308_Old_MPP3_Rep2_trimmed_1.fastq.gz",
+    "size": 886802310
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192309_Old_MPP4_Rep1_trimmed_1.fastq.gz",
+    "size": 914126307
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192310_Old_MPP4_Rep2_trimmed_1.fastq.gz",
+    "size": 919355290
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192311_Old_GMP_Rep1_trimmed_1.fastq.gz",
+    "size": 736558943
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192312_Old_GMP_Rep2_trimmed_1.fastq.gz",
+    "size": 749515205
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192313_Old_MEP_Rep1_trimmed_1.fastq.gz",
+    "size": 639684629
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192314_Old_MEP_Rep2_trimmed_1.fastq.gz",
+    "size": 677924499
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192315_Old_CLP_Rep1_trimmed_1.fastq.gz",
+    "size": 820640873
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/trimmed_part2/SRR13192316_Old_CLP_Rep2_trimmed_1.fastq.gz",
+    "size": 823692375
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Extract_file_paths_to_txt.sh",
+    "size": 1632,
+    "sha256": "b42d6df09b3c9a0639f975bc10425747ee4a05303e86f73688ab94f10e09ae73",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/Extract_file_paths_to_txt.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_convert_wig_to_bigwig.sh",
+    "size": 2660,
+    "sha256": "663bcf5e71769d51a861ff17720b401be5cdb29be734a1bef7e01de58720fe72",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_convert_wig_to_bigwig.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array.sh",
+    "size": 4766,
+    "sha256": "f2f1529748dc0c6f8580c8f1ac98a67740d63e788135220af74ddc5fb0f90d2b",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_deepTools_coverage.sh",
+    "size": 1856,
+    "sha256": "76215210f5874fd1193c5baba63ae7ef5406dc7f32a343caace0cd659209f6b6",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_deepTools_coverage.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_fastqc.sh",
+    "size": 3078,
+    "sha256": "f0d158669c5414bb0668c029463ccda91f9a74e9d4334dfa4208544ebdca1a40",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_fastqc.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_remove_blacklist_call_peaks.sh",
+    "size": 2928,
+    "sha256": "ef826e0c921d1f4a613a602fdb8cc4a0cfb4695c3e46f2d4a40fd1a18ebe46dc",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_remove_blacklist_call_peaks.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_wiggletools_merge_coverage.sh",
+    "size": 10708,
+    "sha256": "61e6f37bcd011d5784888db68cb56cd27a5ac11b5ac35b1bb50d06e98e503e6e",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_wiggletools_merge_coverage.sh"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/data_summary.csv",
+    "size": 3721,
+    "sha256": "810661d57a1a70e5459fa3b24219b3158dfcfad4f99395c33152ec0a5f84bc8b",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/data_summary.csv"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet.csv",
+    "size": 10705,
+    "sha256": "c28c6a804c7ab02ceb26629722df378f0320d8e8436a5d9ecc5288b2e0fecfa9",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet.csv"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet_no_B2_BL_removed.csv",
+    "size": 9181,
+    "sha256": "3071b66f3e7c1eb8f30df5ba48b4301c6190110d86742a0bb4f0c7d797319ffc",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet_no_B2_BL_removed.csv"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/files_list.csv",
+    "size": 2601,
+    "sha256": "025203657f1f99a1a5b73200ff1426f526f1c6ada9dd6464c6482c392f91a1bd",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/files_list.csv"
+  },
+  {
+    "type": "supporting_script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/sample_information.csv",
+    "size": 12675,
+    "sha256": "1f74f6fed70b8ca44bb5bad0f012098d5d7ce1931b7f45d7a5d0e8b286d9faad",
+    "local_path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/sample_information.csv"
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_High_Rep1_S1_R1_001.fastq.gz",
+    "size": 4585256265
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_High_Rep1_S1_R2_001.fastq.gz",
+    "size": 4705226029
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_High_Rep2_S5_R1_001.fastq.gz",
+    "size": 7314357480
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_High_Rep2_S5_R2_001.fastq.gz",
+    "size": 7420088811
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_High_Rep3_S9_R1_001.fastq.gz",
+    "size": 5377588502
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_High_Rep3_S9_R2_001.fastq.gz",
+    "size": 5444273761
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_Low_Rep1_S2_R1_001.fastq.gz",
+    "size": 4866738777
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_Low_Rep1_S2_R2_001.fastq.gz",
+    "size": 4935619231
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_Low_Rep2_S6_R1_001.fastq.gz",
+    "size": 5306178321
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_Low_Rep2_S6_R2_001.fastq.gz",
+    "size": 5395828981
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_Low_Rep3_S10_R1_001.fastq.gz",
+    "size": 6564658306
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/O_LTHSC_MMP_Low_Rep3_S10_R2_001.fastq.gz",
+    "size": 6660643861
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_High_Rep1_S3_R1_001.fastq.gz",
+    "size": 3215257852
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_High_Rep1_S3_R2_001.fastq.gz",
+    "size": 3256469259
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_High_Rep2_S7_R1_001.fastq.gz",
+    "size": 4715433714
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_High_Rep2_S7_R2_001.fastq.gz",
+    "size": 4783311538
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_High_Rep3_S11_R1_001.fastq.gz",
+    "size": 3285448067
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_High_Rep3_S11_R2_001.fastq.gz",
+    "size": 3338390976
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_Low_Rep1_S4_R1_001.fastq.gz",
+    "size": 2250552668
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_Low_Rep1_S4_R2_001.fastq.gz",
+    "size": 2279660342
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_Low_Rep2_S8_R1_001.fastq.gz",
+    "size": 4650202596
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_Low_Rep2_S8_R2_001.fastq.gz",
+    "size": 4710066752
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_Low_Rep3_S12_R1_001.fastq.gz",
+    "size": 4399850980
+  },
+  {
+    "type": "fastq",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/raw_fastq_MMP_high_low/Y_LTHSC_MMP_Low_Rep3_S12_R2_001.fastq.gz",
+    "size": 4468869788
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "stage": "preflight",
+  "samplesheet": "/absolute/path/samplesheet.tsv",
+  "source2target": "/absolute/path/source2target.tsv",
+  "reverse_contrast": true,
+  "atac_modes": ["corrected_column_order"],
+  "deseq_state_order": [],
+  "container_binds": ["/absolute/input/root", "/absolute/scratch/root"],
+  "ananse_container": "/absolute/path/ananse.sif"
+}

@@ -1,0 +1,945 @@
+---
+title: "DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final"
+output: html_document
+date: "2025-10-26"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+lib.path <- "/vast/projects/Immune_Aging/R_libraries/R/x86_64-pc-linux-gnu-library/4.5.1"
+
+```
+
+
+```{r}
+
+suppressPackageStartupMessages({
+  library(readr)
+  library(dplyr)
+  library(stringr)
+  library(tibble)
+  library(DESeq2)
+})
+```
+
+
+```{r}
+## ===== File paths etc =====
+in_path  <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final.tsv"
+out_dir  <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final"
+prefix   <- "Itokawa_et_al_2022_RNAseq_HSC_only"
+```
+
+
+```{r}
+## ===== IO =====
+# File appears tab-delimited with quoted headers/fields
+dat <- read_tsv(in_path, quote = "\"", col_types = cols(.default = col_guess()))
+
+head(dat)
+```
+
+
+```{r}
+## ===== Sanity checks =====
+# 1) Duplicated gene_name count (expect 0)
+dup_mask  <- duplicated(dat$gene_name) & !is.na(dat$gene_name) & dat$gene_name != ""
+dup_count <- sum(dup_mask)
+message("Duplicated gene_name entries: ", dup_count)
+```
+
+
+```{r}
+# list a few:
+if (dup_count > 0) {
+  dups <- dat$gene_name[dup_mask]
+  message("Example duplicated gene_name(s): ", paste(unique(head(dups, 10)), collapse = ", "))
+}
+```
+
+```{r}
+library(dplyr)
+library(stringr)
+library(tibble)
+library(purrr)
+library(tidyr)
+
+# Identify sample columns
+sample_cols <- setdiff(colnames(dat), c("Geneid","gene_name","gene_biotype","EntrezID","MGI_ID","Chr","Start","End","Strand","Length"))
+
+# Helper: split a semicolon field and return unique tokens (ignoring blanks/NA)
+split_unique <- function(x) {
+  x <- x %>% as.character()
+  unlist(strsplit(x, ";")) %>% trimws() %>% discard(~ .x == "" | is.na(.x)) %>% unique()
+}
+
+# Summarise one gene_name group according to the rules
+collapse_group <- function(df_group) {
+  # Gather locus evidence
+  chrs   <- unique(unlist(strsplit(paste(df_group$Chr, collapse=";"), ";")))
+  chrs   <- chrs[chrs != "" & !is.na(chrs)]
+  strands <- unique(unlist(strsplit(paste(df_group$Strand, collapse=";"), ";")))
+  strands <- strands[strands != "" & !is.na(strands)]
+
+  same_locus <- (length(chrs) == 1) && (length(strands) == 1)
+
+  # Biotype priority
+  biotype_rank <- c("protein_coding"=1, "lincRNA"=2, "lncRNA"=3, "antisense"=4, "processed_transcript"=5,
+                    "TEC"=6, "pseudogene"=7, "rRNA"=8, "snRNA"=9, "snoRNA"=10, "misc_RNA"=11, "other"=99)
+  biotype_ranker <- function(bt) {
+    biotype_rank[bt] %||% biotype_rank["other"]
+  }
+
+  # Count totals across samples
+  totals <- df_group %>% select(all_of(sample_cols)) %>% mutate(across(everything(), as.numeric))
+  row_totals <- totals %>% mutate(.rowsum = rowSums(across(everything()), na.rm = TRUE)) %>% pull(.rowsum)
+
+  action <- NA_character_
+
+  if (nrow(df_group) == 1) {
+    # Nothing to do
+    chosen <- df_group
+    action <- "single"
+  } else if (same_locus) {
+    # Collapse: sum counts; choose Length = max(Length); pick representative metadata from the row with max Length
+    idx_lenmax <- which.max(df_group$Length %>% as.numeric())
+    meta_row <- df_group[idx_lenmax, c("Geneid","gene_name","gene_biotype","EntrezID","MGI_ID","Chr","Start","End","Strand"), drop = FALSE]
+    summed <- totals %>% summarise(across(everything(), ~ sum(.x, na.rm = TRUE)))
+    out <- bind_cols(meta_row,
+                     tibble(Length = max(as.numeric(df_group$Length), na.rm = TRUE)),
+                     summed)
+    chosen <- out
+    action <- "collapsed_same_locus_sumCounts_maxLength"
+  } else {
+    # Distinct loci share the same symbol → choose representative
+    # 1) restrict to best biotype
+    ranks <- sapply(df_group$gene_biotype, biotype_ranker)
+    best_rank <- min(ranks, na.rm = TRUE)
+    df_best <- df_group[ranks == best_rank, , drop = FALSE]
+    totals_best <- totals[ranks == best_rank, , drop = FALSE]
+    totals_best_sum <- rowSums(totals_best, na.rm = TRUE)
+
+    # 2) among ties, pick the row with the largest total counts
+    idx <- which.max(totals_best_sum)
+    chosen_row <- df_best[idx, , drop = FALSE]
+
+    # Keep its own counts (do NOT sum across distinct loci)
+    chosen_counts <- df_group[rownames(chosen_row), sample_cols, drop = FALSE]
+    # But depending on how you subset, indices may not align—rebuild from the selected row index:
+    chosen_counts <- df_best[idx, sample_cols, drop = FALSE]
+
+    chosen <- bind_cols(
+      chosen_row[c("Geneid","gene_name","gene_biotype","EntrezID","MGI_ID","Chr","Start","End","Strand")],
+      tibble(Length = as.numeric(chosen_row$Length)),
+      chosen_counts
+    )
+
+    action <- paste0("distinct_loci_kept_one(biotype_rank=", best_rank, ";max_counts)")
+  }
+
+  chosen$.collapse_action <- action
+  chosen
+}
+
+# Apply per gene_name
+dat_split <- split(dat, dat$gene_name %>% replace_na("NA_gene_name"))
+agg_list <- lapply(dat_split, collapse_group)
+dat_agg <- bind_rows(agg_list)
+```
+
+```{r}
+## ===== Sanity checks =====
+# 1) Duplicated gene_name count (expect 0)
+dup_mask2  <- duplicated(dat_agg$gene_name) & !is.na(dat_agg$gene_name) & dat_agg$gene_name != ""
+dup_count2 <- sum(dup_mask2)
+message("Duplicated gene_name entries: ", dup_count2)
+```
+
+```{r}
+# 2) Non-finite or <= 0 Length (expect 0)
+bad_len_mask <- !is.finite(dat_agg$Length) | dat_agg$Length <= 0
+bad_len_count <- sum(bad_len_mask, na.rm = TRUE)
+message("Rows with non-finite or <= 0 Length: ", bad_len_count)
+```
+```{r}
+# 3) NA gene_id (expect 0)
+NA_count3 <- sum(is.na(dat_agg$Geneid))
+message("number of NA gene_id entries: ", NA_count3)
+```
+
+
+```{r}
+write.table(dat_agg, file="/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned.tsv", sep="\t", row.names = FALSE, col.names = TRUE)
+```
+## as cvs too
+```{r}
+write.table(dat_agg, file="/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned.csv", sep=",", row.names = FALSE, col.names = TRUE)
+```
+
+# Also make gene counts matrix where no ENSMUS IDs are in the gene name column
+```{r}
+library(dplyr)
+
+# --- Filter out Ensembl IDs ---
+
+# Get the original number of rows
+original_rows <- nrow(dat_agg)
+
+# Filter to keep only rows that *do not* start with "ENSMUS"
+# grepl() searches for the pattern "^ENSMUS" (ENSMUS at the start of the string)
+# The "!" negates it, keeping only rows where the pattern is NOT found.
+dat_agg_only_known_symbols <- dat_agg %>%
+  filter(!grepl("^ENSMUS", gene_name))
+
+# --- Check and report counts ---
+
+# Get the new number of rows
+new_rows <- nrow(dat_agg_only_known_symbols)
+
+# Calculate the number of rows removed
+removed_rows <- original_rows - new_rows
+
+# Print the summary to the console
+message(paste("Original rows in dat_agg:", original_rows))
+message(paste("Rows removed (starting with 'ENSMUS'):", removed_rows))
+message(paste("Rows remaining (gene symbols):", new_rows))
+
+head(dat_agg_only_known_symbols)
+```
+
+
+```{r}
+write.table(dat_agg_only_known_symbols, file="/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Counts_tables_no_ENSMUS_in_gene_name/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned_no_ENSMUS_in_gene_name.tsv", sep="\t", row.names = FALSE, col.names = TRUE)
+```
+## as cvs too
+```{r}
+write.table(dat_agg_only_known_symbols, file="/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Counts_tables_no_ENSMUS_in_gene_name/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned_no_ENSMUS_in_gene_name.csv", sep=",", row.names = FALSE, col.names = TRUE)
+```
+
+
+# As an extra, create a seperate expression csv file for each cell type ready for tfactivity
+```{r}
+# This script processes a main counts tibble (dat_agg) to generate
+# cell-type-specific counts files for use in downstream workflows.
+#
+# For each cell type, it:
+# 1. Finds the 4 corresponding sample columns (Young_Rep1/2, Old_Rep1/2).
+# 2. Creates a data frame with "Geneid" as the first column, plus samples.
+# 3. Creates a data frame with "gene_name" as the first column, plus samples.
+# 4. Saves both versions in both .tsv and .csv formats.
+
+# Load necessary libraries
+# install.packages("tidyverse") # Uncomment if you don't have it
+library(tidyverse)
+# Or, load packages individually
+# library(dplyr)
+# library(readr)
+
+# --- 1. Configuration ---
+
+# Set the base output directory
+output_dir <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types"
+
+# Set the base for output filenames
+base_filename <- "Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned"
+
+# List of cell types to process (based on your column names)
+cell_types <- c("HSC", "MPP1", "MPP2", "MPP3", "MPP4", "GMP", "MEP", "CLP")
+
+# --- (Optional) Load main data ---
+# Your prompt mentioned `dat_agg` is already in your environment.
+# If you need to run this script standalone, uncomment the following lines:
+#
+# full_data_path <- file.path(output_dir, "Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned.tsv")
+# dat_agg <- read_tsv(full_data_path)
+#
+# --- End (Optional) Load main data ---
+
+
+# Check if dat_agg exists
+if (!exists("dat_agg")) {
+  stop("The object 'dat_agg' was not found. Please load it before running the script.")
+}
+
+# Get all column names from the data
+all_cols <- colnames(dat_agg)
+
+print(paste("Starting to process", length(cell_types), "cell types..."))
+
+# --- 2. Main Processing Loop ---
+
+for (cell in cell_types) {
+  
+  # 1. Find the 4 sample columns for this cell type
+  # We create a regex pattern that looks for "_<cell_type>_Rep"
+  # e.g., "_HSC_Rep", "_MPP1_Rep"
+  cell_pattern <- paste0("_", cell, "_Rep")
+  
+  # Use grep to find all columns matching the pattern
+  sample_cols <- grep(cell_pattern, all_cols, value = TRUE)
+  
+  # 2. Safety Check
+  # Verify that we found exactly 4 columns
+  if (length(sample_cols) != 4) {
+    warning(paste("Expected 4 columns for cell type:", cell, "but found", length(sample_cols)))
+    warning(paste("Found columns:", paste(sample_cols, collapse = ", ")))
+    warning("Skipping this cell type.")
+    next # Skip to the next iteration of the loop
+  }
+  
+  # 3. Create the 'Geneid' version data frame
+  # We select the 'Geneid' column and the 4 sample columns
+  dat_geneid <- dat_agg %>%
+    select(Geneid, all_of(sample_cols))
+    
+  # 4. Create the 'gene_name' version data frame
+  # We select the 'gene_name' column and the 4 sample columns
+  dat_genename <- dat_agg %>%
+    select(gene_name, all_of(sample_cols))
+    
+  # 5. Define output filenames
+  # We'll create descriptive names, e.g., ..._HSC_Geneid.tsv
+  
+  # Base name for this cell type, e.g., ..._HSC
+  file_base_cell <- paste(base_filename, cell, sep = "_")
+  
+  # Paths for Geneid files
+  path_geneid_tsv <- file.path(output_dir, paste0(file_base_cell, "_Geneid.tsv"))
+  path_geneid_csv <- file.path(output_dir, paste0(file_base_cell, "_Geneid.csv"))
+  
+  # Paths for gene_name files
+  path_genename_tsv <- file.path(output_dir, paste0(file_base_cell, "_gene_name.tsv"))
+  path_genename_csv <- file.path(output_dir, paste0(file_base_cell, "_gene_name.csv"))
+  
+  # 6. Write all 4 files
+  
+  # Write Geneid versions
+  write_tsv(dat_geneid, path_geneid_tsv, col_names = TRUE)
+  write_csv(dat_geneid, path_geneid_csv, col_names = TRUE)
+  
+  # Write gene_name versions
+  write_tsv(dat_genename, path_genename_tsv, col_names = TRUE)
+  write_csv(dat_genename, path_genename_csv, col_names = TRUE)
+  
+  print(paste("Successfully processed and saved 4 files for", cell))
+  
+} # End of for loop
+
+print("All cell types processed.")
+
+```
+
+
+# Then do the same for dat_agg_only_known_symbols
+```{r}
+# This script processes a main counts tibble (dat_agg) to generate
+# cell-type-specific counts files for use in downstream workflows.
+#
+# For each cell type, it:
+# 1. Finds the 4 corresponding sample columns (Young_Rep1/2, Old_Rep1/2).
+# 2. Creates a data frame with "Geneid" as the first column, plus samples.
+# 3. Creates a data frame with "gene_name" as the first column, plus samples.
+# 4. Saves both versions in both .tsv and .csv formats.
+
+# Load necessary libraries
+# install.packages("tidyverse") # Uncomment if you don't have it
+library(tidyverse)
+# Or, load packages individually
+# library(dplyr)
+# library(readr)
+
+# --- 1. Configuration ---
+
+# Set the base output directory
+output_dir <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Counts_tables_no_ENSMUS_in_gene_name"
+
+# Set the base for output filenames
+base_filename <- "Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned_no_ENSMUS_in_gene_name"
+
+# List of cell types to process (based on your column names)
+cell_types <- c("HSC", "MPP1", "MPP2", "MPP3", "MPP4", "GMP", "MEP", "CLP")
+
+# --- (Optional) Load main data ---
+# Your prompt mentioned `dat_agg_only_known_symbols` is already in your environment.
+# If you need to run this script standalone, uncomment the following lines:
+#
+# full_data_path <- file.path(output_dir, "Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned_no_ENSMUS_in_gene_name.tsv")
+# dat_agg_only_known_symbols <- read_tsv(full_data_path)
+#
+# --- End (Optional) Load main data ---
+
+
+# Check if dat_agg_only_known_symbols exists
+if (!exists("dat_agg_only_known_symbols")) {
+  stop("The object 'dat_agg_only_known_symbols' was not found. Please load it before running the script.")
+}
+
+# Get all column names from the data
+all_cols <- colnames(dat_agg_only_known_symbols)
+
+print(paste("Starting to process", length(cell_types), "cell types..."))
+
+# --- 2. Main Processing Loop ---
+
+for (cell in cell_types) {
+  
+  # 1. Find the 4 sample columns for this cell type
+  # We create a regex pattern that looks for "_<cell_type>_Rep"
+  # e.g., "_HSC_Rep", "_MPP1_Rep"
+  cell_pattern <- paste0("_", cell, "_Rep")
+  
+  # Use grep to find all columns matching the pattern
+  sample_cols <- grep(cell_pattern, all_cols, value = TRUE)
+  
+  # 2. Safety Check
+  # Verify that we found exactly 4 columns
+  if (length(sample_cols) != 4) {
+    warning(paste("Expected 4 columns for cell type:", cell, "but found", length(sample_cols)))
+    warning(paste("Found columns:", paste(sample_cols, collapse = ", ")))
+    warning("Skipping this cell type.")
+    next # Skip to the next iteration of the loop
+  }
+  
+  # 3. Create the 'Geneid' version data frame
+  # We select the 'Geneid' column and the 4 sample columns
+  dat_geneid <- dat_agg_only_known_symbols %>%
+    select(Geneid, all_of(sample_cols))
+    
+  # 4. Create the 'gene_name' version data frame
+  # We select the 'gene_name' column and the 4 sample columns
+  dat_genename <- dat_agg_only_known_symbols %>%
+    select(gene_name, all_of(sample_cols))
+    
+  # 5. Define output filenames
+  # We'll create descriptive names, e.g., ..._HSC_Geneid.tsv
+  
+  # Base name for this cell type, e.g., ..._HSC
+  file_base_cell <- paste(base_filename, cell, sep = "_")
+  
+  # Paths for Geneid files
+  path_geneid_tsv <- file.path(output_dir, paste0(file_base_cell, "_Geneid.tsv"))
+  path_geneid_csv <- file.path(output_dir, paste0(file_base_cell, "_Geneid.csv"))
+  
+  # Paths for gene_name files
+  path_genename_tsv <- file.path(output_dir, paste0(file_base_cell, "_gene_name.tsv"))
+  path_genename_csv <- file.path(output_dir, paste0(file_base_cell, "_gene_name.csv"))
+  
+  # 6. Write all 4 files
+  
+  # Write Geneid versions
+  write_tsv(dat_geneid, path_geneid_tsv, col_names = TRUE)
+  write_csv(dat_geneid, path_geneid_csv, col_names = TRUE)
+  
+  # Write gene_name versions
+  write_tsv(dat_genename, path_genename_tsv, col_names = TRUE)
+  write_csv(dat_genename, path_genename_csv, col_names = TRUE)
+  
+  print(paste("Successfully processed and saved 4 files for", cell))
+  
+} # End of for loop
+
+print("All cell types processed.")
+
+```
+
+
+```{r}
+## ===== Identify HSC columns =====
+hsc_cols <- grep("HSC", colnames(dat_agg), value = TRUE)
+if (length(hsc_cols) == 0) stop("No columns containing 'HSC' were found.")
+message("HSC sample columns detected (", length(hsc_cols), "): ",
+        paste(hsc_cols, collapse = ", "))
+```
+
+
+```{r}
+## ===== Build stable gene labels =====
+# Prefer gene_name; fall back to Geneid if missing/blank.
+gene_labels <- ifelse(is.na(dat_agg$gene_name) | dat_agg$gene_name == "", dat_agg$Geneid, dat_agg$gene_name)
+
+# Ensure rownames are unique (should be already, but just in case)
+if (any(duplicated(gene_labels))) {
+  message("Note: gene_name duplicates detected; making rownames unique by appending Geneid.")
+  gene_labels <- ifelse(duplicated(gene_labels) | duplicated(gene_labels, fromLast = TRUE),
+                        paste0(dat_agg$gene_name, "__", dat_agg$Geneid),
+                        gene_labels)
+}
+```
+
+
+```{r}
+## ===== TPM for HSC samples =====
+# Keep rows with valid lengths for TPM
+tpm_dat_agg <- dat_agg %>% filter(is.finite(Length), Length > 0)
+
+# Extract HSC count matrix
+hsc_counts_mat <- tpm_dat_agg %>%
+  select(all_of(hsc_cols)) %>%
+  as.matrix()
+storage.mode(hsc_counts_mat) <- "numeric"
+rownames(hsc_counts_mat) <- gene_labels[match(rownames(hsc_counts_mat), rownames(hsc_counts_mat))] # no-op; keep for clarity
+rownames(hsc_counts_mat) <- gene_labels[match(1:nrow(tpm_dat_agg), 1:nrow(tpm_dat_agg))]
+```
+
+
+```{r}
+head(hsc_counts_mat)
+```
+
+
+
+```{r}
+# TPM function
+counts_to_tpm <- function(counts_vec, lengths_bp) {
+  lengths_kb <- lengths_bp / 1000
+  rpk <- counts_vec / lengths_kb
+  scale_factor <- sum(rpk, na.rm = TRUE) / 1e6
+  if (!is.finite(scale_factor) || scale_factor == 0) return(rep(0, length(rpk)))
+  rpk / scale_factor
+}
+
+tpm_mat <- apply(hsc_counts_mat, 2, counts_to_tpm, lengths_bp = tpm_dat_agg$Length)
+tpm_df <- as_tibble(tpm_mat, .name_repair = "minimal") %>%
+  mutate(gene_name = gene_labels[match(1:nrow(tpm_dat_agg), 1:nrow(tpm_dat_agg))], .before = 1)
+
+# Write TPM table (HSC only), first column = gene_name
+tpm_out <- file.path(out_dir, paste0(prefix, "_TPM_matrix.tsv"))
+write_tsv(tpm_df, tpm_out)
+message("TPM matrix (HSC only): ", tpm_out)
+```
+
+
+```{r}
+head(tpm_df)
+```
+
+#################################################################
+# Now build HSC TPM for matrix with no ENSMUS IDs in gene name col
+```{r}
+## ===== Identify HSC columns =====
+hsc_cols <- grep("HSC", colnames(dat_agg_only_known_symbols), value = TRUE)
+if (length(hsc_cols) == 0) stop("No columns containing 'HSC' were found.")
+message("HSC sample columns detected (", length(hsc_cols), "): ",
+        paste(hsc_cols, collapse = ", "))
+```
+
+
+```{r}
+## ===== Build stable gene labels =====
+# Prefer gene_name; fall back to Geneid if missing/blank.
+gene_labels <- ifelse(is.na(dat_agg_only_known_symbols$gene_name) | dat_agg_only_known_symbols$gene_name == "", dat_agg_only_known_symbols$Geneid, dat_agg_only_known_symbols$gene_name)
+
+# Ensure rownames are unique (should be already, but just in case)
+if (any(duplicated(gene_labels))) {
+  message("Note: gene_name duplicates detected; making rownames unique by appending Geneid.")
+  gene_labels <- ifelse(duplicated(gene_labels) | duplicated(gene_labels, fromLast = TRUE),
+                        paste0(dat_agg_only_known_symbols$gene_name, "__", dat_agg_only_known_symbols$Geneid),
+                        gene_labels)
+}
+```
+
+
+```{r}
+## ===== TPM for HSC samples =====
+# Keep rows with valid lengths for TPM
+tpm_dat_agg_only_known_symbols <- dat_agg_only_known_symbols %>% filter(is.finite(Length), Length > 0)
+
+# Extract HSC count matrix
+hsc_counts_mat <- tpm_dat_agg_only_known_symbols %>%
+  select(all_of(hsc_cols)) %>%
+  as.matrix()
+storage.mode(hsc_counts_mat) <- "numeric"
+rownames(hsc_counts_mat) <- gene_labels[match(rownames(hsc_counts_mat), rownames(hsc_counts_mat))] # no-op; keep for clarity
+rownames(hsc_counts_mat) <- gene_labels[match(1:nrow(tpm_dat_agg_only_known_symbols), 1:nrow(tpm_dat_agg_only_known_symbols))]
+```
+
+
+```{r}
+head(hsc_counts_mat)
+```
+
+
+
+```{r}
+out_dir<-"/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Counts_tables_no_ENSMUS_in_gene_name"
+
+prefix<-"Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned_no_ENSMUS_in_gene_name_HSC_gene_name"
+
+# TPM function
+counts_to_tpm <- function(counts_vec, lengths_bp) {
+  lengths_kb <- lengths_bp / 1000
+  rpk <- counts_vec / lengths_kb
+  scale_factor <- sum(rpk, na.rm = TRUE) / 1e6
+  if (!is.finite(scale_factor) || scale_factor == 0) return(rep(0, length(rpk)))
+  rpk / scale_factor
+}
+
+tpm_mat <- apply(hsc_counts_mat, 2, counts_to_tpm, lengths_bp = tpm_dat_agg_only_known_symbols$Length)
+tpm_df <- as_tibble(tpm_mat, .name_repair = "minimal") %>%
+  mutate(gene_name = gene_labels[match(1:nrow(tpm_dat_agg_only_known_symbols), 1:nrow(tpm_dat_agg_only_known_symbols))], .before = 1)
+
+# Write TPM table (HSC only), first column = gene_name
+tpm_out <- file.path(out_dir, paste0(prefix, "_TPM_matrix.tsv"))
+write_tsv(tpm_df, tpm_out)
+message("TPM matrix (HSC only): ", tpm_out)
+```
+
+
+```{r}
+head(tpm_df)
+```
+
+
+################
+##--DESeq2--####
+################
+# OLD VS YOUNG #
+```{r}
+## ===== DESeq2: Old_HSC vs Young_HSC (raw counts, HSC only) =====
+# Subset to HSC columns from the *original* data (even if some Length rows were filtered from TPM)
+hsc_counts_full <- dat_agg %>% select(all_of(hsc_cols)) %>% as.matrix()
+storage.mode(hsc_counts_full) <- "integer"
+rownames(hsc_counts_full) <- gene_labels
+
+# Sample metadata: condition from column names
+sample_names <- colnames(hsc_counts_full)
+condition <- ifelse(str_detect(sample_names, "_Old_"), "Old", "Young")
+coldata <- data.frame(
+  sample = sample_names,
+  condition = factor(condition, levels = c("Young","Old")),
+  row.names = sample_names,
+  check.names = FALSE
+)
+
+dds <- DESeqDataSetFromMatrix(countData = hsc_counts_full,
+                              colData   = coldata,
+                              design    = ~ condition)
+
+# Filter low-count genes
+keep <- rowSums(counts(dds)) >= 10
+dds <- dds[keep, ]
+
+dds <- DESeq(dds)
+res <- results(dds, contrast = c("condition","Old","Young"))  # log2FC = Old / Young
+
+# Assemble results with gene_name as first column
+res_df <- as.data.frame(res) %>%
+  rownames_to_column(var = "gene_name") %>%
+  as_tibble() %>%
+  arrange(padj, desc(log2FoldChange)) %>%
+  mutate(direction = case_when(
+    is.na(padj) ~ NA_character_,
+    padj <= 0.05 & log2FoldChange > 0 ~ "Up_in_Old",
+    padj <= 0.05 & log2FoldChange < 0 ~ "Down_in_Old",
+    TRUE ~ "NS"
+  ))
+
+res_out <- file.path(out_dir, paste0(prefix, "_DESeq2_Old_vs_Young_results.tsv"))
+write_tsv(res_df, res_out)
+
+# Convenience exports: size-factor normalized counts and VST
+norm_counts <- counts(dds, normalized = TRUE) %>% as.data.frame() %>%
+  rownames_to_column("gene_name")
+norm_out <- file.path(out_dir, paste0(prefix, "_DESeq2_normalized_counts.tsv"))
+write_tsv(norm_counts, norm_out)
+
+vst_mat <- assay(vst(dds, blind = TRUE)) %>% as.data.frame() %>%
+  rownames_to_column("gene_name")
+vst_out <- file.path(out_dir, paste0(prefix, "_DESeq2_VST.tsv"))
+write_tsv(vst_mat, vst_out)
+
+# Also: DE genes up in Old (padj <= 0.05 & log2FC > 0)
+up_in_old <- res_df %>% filter(direction == "Up_in_Old")
+up_out <- file.path(out_dir, paste0(prefix, "_DEGs_Up_in_Old_padj05.tsv"))
+write_tsv(up_in_old, up_out)
+
+message("Done.")
+
+message("DESeq2 results (Old vs Young, HSC): ", res_out)
+message("DESeq2 normalized counts: ", norm_out)
+message("DESeq2 VST: ", vst_out)
+message("DEGs Up in Old (padj<=0.05): ", up_out)
+
+```
+
+################
+################
+################
+# YOUNG VS OLD #
+```{r}
+## ===== DESeq2: Young_HSC vs Old_HSC (raw counts, HSC only) =====
+# Subset to HSC columns from the *original* data (even if some Length rows were filtered from TPM)
+hsc_counts_full <- dat_agg %>% select(all_of(hsc_cols)) %>% as.matrix()
+storage.mode(hsc_counts_full) <- "integer"
+rownames(hsc_counts_full) <- gene_labels
+
+# Sample metadata: condition from column names
+sample_names <- colnames(hsc_counts_full)
+condition <- ifelse(str_detect(sample_names, "_Old_"), "Old", "Young")
+coldata <- data.frame(
+  sample = sample_names,
+  condition = factor(condition, levels = c("Young","Old")), # 'Young' remains the reference level, but we explicitly define the contrast below
+  row.names = sample_names,
+  check.names = FALSE
+)
+
+dds <- DESeqDataSetFromMatrix(countData = hsc_counts_full,
+                              colData   = coldata,
+                              design    = ~ condition)
+
+# Filter low-count genes
+keep <- rowSums(counts(dds)) >= 10
+dds <- dds[keep, ]
+
+dds <- DESeq(dds)
+
+# ***MODIFIED***: Flipped contrast to Young vs Old
+res <- results(dds, contrast = c("condition","Young","Old"))  # log2FC = Young / Old
+
+# Assemble results with gene_name as first column
+res_df <- as.data.frame(res) %>%
+  rownames_to_column(var = "gene_name") %>%
+  as_tibble() %>%
+  arrange(padj, desc(log2FoldChange)) %>%
+  # ***MODIFIED***: Updated direction labels
+  mutate(direction = case_when(
+    is.na(padj) ~ NA_character_,
+    padj <= 0.05 & log2FoldChange > 0 ~ "Up_in_Young",
+    padj <= 0.05 & log2FoldChange < 0 ~ "Down_in_Young",
+    TRUE ~ "NS"
+  ))
+
+# ***MODIFIED***: Updated output filename
+res_out <- file.path(out_dir, paste0(prefix, "_DESeq2_Young_vs_Old_results.tsv"))
+write_tsv(res_df, res_out)
+
+# Convenience exports: size-factor normalized counts and VST
+# (These file names are generic and do not need to change)
+norm_counts <- counts(dds, normalized = TRUE) %>% as.data.frame() %>%
+  rownames_to_column("gene_name")
+norm_out <- file.path(out_dir, paste0(prefix, "_DESeq2_normalized_counts.tsv"))
+write_tsv(norm_counts, norm_out)
+
+vst_mat <- assay(vst(dds, blind = TRUE)) %>% as.data.frame() %>%
+  rownames_to_column("gene_name")
+vst_out <- file.path(out_dir, paste0(prefix, "_DESeq2_VST.tsv"))
+write_tsv(vst_mat, vst_out)
+
+# ***MODIFIED***: Changed to filter for DE genes up in Young
+# Also: DE genes up in Young (padj <= 0.05 & log2FC > 0)
+up_in_young <- res_df %>% filter(direction == "Up_in_Young")
+up_out <- file.path(out_dir, paste0(prefix, "_DEGs_Up_in_Young_padj05.tsv"))
+write_tsv(up_in_young, up_out)
+
+# ***MODIFIED***: Updated log messages
+message("Done.")
+
+message("DESeq2 results (Young vs Old, HSC): ", res_out)
+message("DESeq2 normalized counts: ", norm_out)
+message("DESeq2 VST: ", vst_out)
+message("DEGs Up in Young (padj<=0.05): ", up_out)
+```
+
+
+
+```{r}
+COUNTS_FILE <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned.tsv"
+Counts_df <- read.csv(COUNTS_FILE, sep="\t")
+head(Counts_df)
+```
+
+
+```{r}
+sum(is.na(Counts_df$Geneid))
+```
+
+
+# tfactivity is saying 21883 out of 77981 genes (28.1%) are not present in the GTF file
+## let's check
+```{r}
+# R script to check for annotation mismatches between a counts file and a GTF
+
+library(rtracklayer)
+
+GTF_FILE <- "/vast/projects/Immune_Aging/Reference_genomes/mm39/ensembl_release-113/Mus_musculus.GRCm39.113.gtf"
+
+# Extract unique gene IDs and names from counts file
+# Remove any potential NA values from the lists
+counts_gene_ids <- unique(Counts_df$Geneid)
+counts_gene_ids <- counts_gene_ids[!is.na(counts_gene_ids)]
+
+counts_gene_names <- unique(Counts_df$gene_name)
+counts_gene_names <- counts_gene_names[!is.na(counts_gene_names)]
+
+cat(sprintf("Loaded %d rows.\n", nrow(Counts_df)))
+cat(sprintf("Found %d unique, non-NA Geneids in counts file.\n", length(counts_gene_ids)))
+cat(sprintf("Found %d unique, non-NA gene_names in counts file.\n\n", length(counts_gene_names)))
+```
+
+
+```{r}
+# --- Load GTF File ---
+cat(sprintf("Loading GTF file: %s\nThis may take a minute...\n", GTF_FILE))
+tryCatch({
+    gtf <- rtracklayer::import(GTF_FILE)
+}, error = function(e) {
+    stop(sprintf("Failed to read GTF file. Is the path correct? Error: %s", e$message))
+})
+
+# Extract all unique gene_id and gene_name attributes from the *entire* GTF
+# featureCounts and other tools read all attributes, not just from "gene" type lines.
+# This is the most robust way to check.
+gtf_metadata <- mcols(gtf)
+
+# Get all unique, non-NA gene_ids
+gtf_all_gene_ids <- unique(gtf_metadata$gene_id)
+gtf_all_gene_ids <- gtf_all_gene_ids[!is.na(gtf_all_gene_ids)]
+
+# Get all unique, non-NA gene_names
+gtf_all_gene_names <- unique(gtf_metadata$gene_name)
+gtf_all_gene_names <- gtf_all_gene_names[!is.na(gtf_all_gene_names)]
+
+cat("GTF file loaded and parsed.\n")
+cat(sprintf("Found %d unique, non-NA gene_id attributes in GTF.\n", length(gtf_all_gene_ids)))
+cat(sprintf("Found %d unique, non-NA gene_name attributes in GTF.\n\n", length(gtf_all_gene_names)))
+
+```
+
+
+```{r}
+# --- Compare and Report ---
+
+cat("--- Checking Geneid (Ensembl IDs) ---\n")
+missing_ids <- setdiff(counts_gene_ids, gtf_all_gene_ids)
+
+if (length(missing_ids) == 0) {
+    cat("SUCCESS: All Geneids from the counts file are present in the GTF file.\n")
+} else {
+    cat(sprintf("ERROR: Found %d Geneids in the counts file that are NOT in the GTF file.\n", length(missing_ids)))
+    
+    # Show a sample of missing IDs
+    if (length(missing_ids) > 50) {
+        cat("Showing the first 50 missing Geneids:\n")
+        print(head(missing_ids, 50))
+    } else {
+        cat("Missing Geneids:\n")
+        print(missing_ids)
+    }
+}
+
+cat("\n--- Checking gene_name (Gene Symbols) ---\n")
+missing_names <- setdiff(counts_gene_names, gtf_all_gene_names)
+
+if (length(missing_names) == 0) {
+    cat("SUCCESS: All gene_names from the counts file are present in the GTF file.\n")
+} else {
+    cat(sprintf("WARNING: Found %d gene_names in the counts file that are NOT in the GTF file.\n", length(missing_names)))
+    
+    # Show a sample of missing names
+    if (length(missing_names) > 50) {
+        cat("Showing the first 50 missing gene_names:\n")
+        print(head(missing_names, 50))
+    } else {
+        cat("Missing gene_names:\n")
+        print(missing_names)
+    }
+}
+
+cat("\n--- Analysis Complete ---\n")
+
+```
+
+
+# Add a ensembl ID column to the DESeq2 results tsv file
+```{r}
+#!/usr/bin/env Rscript
+suppressPackageStartupMessages(library(data.table))
+
+res_path <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final/Itokawa_et_al_2022_RNAseq_HSC_only_DESeq2_Old_vs_Young_results.tsv"
+map_path <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned.tsv"
+out_path <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final/Itokawa_et_al_2022_RNAseq_HSC_only_DESeq2_Old_vs_Young_results_with_ensembl_ID.tsv"
+
+# Read DESeq2 results (already ordered by padj ascending per your file)
+res <- fread(res_path, sep = "\t")
+
+# Read mapping (we only need Geneid <-> gene_name)
+map <- fread(map_path, sep = "\t", select = c("Geneid", "gene_name"))
+
+# Sanity checks
+if (anyDuplicated(map$gene_name))
+  stop("Mapping file contains duplicated gene_name entries; resolve before proceeding.")
+
+n0 <- nrow(res)
+
+# Left-join by gene_name, preserve original order
+res2 <- merge(res, map, by = "gene_name", all.x = TRUE, sort = FALSE)
+
+# Reorder columns: Geneid, gene_name, then the rest in their original order
+first_cols <- c("Geneid", "gene_name")
+other_cols <- setdiff(names(res2), first_cols)
+setcolorder(res2, c(first_cols, other_cols))
+
+# Validate: same row count and same padj ordering (merge with sort=FALSE preserves order)
+if (nrow(res2) != n0)
+  stop("Row count changed after merge; aborting write.")
+# Optional: ensure no NA in Geneid (comment out if some genes legitimately lack IDs)
+# if (any(is.na(res2$Geneid))) stop("Some rows lack Geneid after mapping.")
+
+# Write TSV (no quotes)
+fwrite(res2, out_path, sep = "\t", quote = FALSE)
+
+```
+
+
+# Now one with gene names as all caps
+```{r}
+#!/usr/bin/env Rscript
+suppressPackageStartupMessages(library(data.table))
+
+# Inputs / outputs
+res_path <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final/Itokawa_et_al_2022_RNAseq_HSC_only_DESeq2_Old_vs_Young_results.tsv"
+map_path <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned.tsv"
+
+out_path_normal <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final/Itokawa_et_al_2022_RNAseq_HSC_only_DESeq2_Old_vs_Young_results_with_ensembl_ID.tsv"
+out_path_caps   <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final/Itokawa_et_al_2022_RNAseq_HSC_only_DESeq2_Old_vs_Young_results_with_ensembl_ID_ALL_CAPS.tsv"
+
+# Read DESeq2 results and the mapping (only need Geneid <-> gene_name)
+res <- fread(res_path, sep = "\t")
+map <- fread(map_path, sep = "\t", select = c("Geneid", "gene_name"))
+
+# Sanity: mapping should have unique gene_name
+if (anyDuplicated(map$gene_name))
+  stop("Mapping file contains duplicated gene_name entries; resolve before proceeding.")
+
+n0 <- nrow(res)
+
+# Left-join by gene_name, keep original order (assumed padj asc)
+res2 <- merge(res, map, by = "gene_name", all.x = TRUE, sort = FALSE)
+
+# Reorder columns: Geneid, gene_name, then the rest
+first_cols <- c("Geneid", "gene_name")
+setcolorder(res2, c(first_cols, setdiff(names(res2), first_cols)))
+
+# Validate row count preserved
+if (nrow(res2) != n0) stop("Row count changed after merge; aborting.")
+
+# Write the normal-cased version
+fwrite(res2, out_path_normal, sep = "\t", quote = FALSE)
+
+# Create and write the ALL CAPS version of gene_name
+res2_caps <- copy(res2)
+res2_caps[, gene_name := toupper(gene_name)]
+# (Row count and order unchanged, columns unchanged)
+fwrite(res2_caps, out_path_caps, sep = "\t", quote = FALSE)
+
+```
+
+
+
+```{r}
+save.image(file="/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final.RData")
+```
+

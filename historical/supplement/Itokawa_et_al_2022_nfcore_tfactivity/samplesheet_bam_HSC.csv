@@ -1,0 +1,5 @@
+sample,condition,assay,signal,control
+Old_HSC_B1_Rep1,Old_HSC,ATAC-seq,/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186627_Old_HSC_B1_Rep1_filtered_no_blacklist.bam,
+Old_HSC_B1_Rep2,Old_HSC,ATAC-seq,/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186628_Old_HSC_B1_Rep2_filtered_no_blacklist.bam,
+Young_HSC_B1_Rep1,Young_HSC,ATAC-seq,/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186609_Young_HSC_B1_Rep1_filtered_no_blacklist.bam,
+Young_HSC_B1_Rep2,Young_HSC,ATAC-seq,/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186610_Young_HSC_B1_Rep2_filtered_no_blacklist.bam,

@@ -1,0 +1,1 @@
+seqnames,start,end,width,strand,proteomics_logFC,proteomics_FDR,proteomics_name,proteomics_EnrezID,i.start,i.end,i.width,i.strand,hic_anchor1_nfrags,hic_anchor1_interaction_id,hic_anchor2_nfrags,hic_anchor2_interaction_id

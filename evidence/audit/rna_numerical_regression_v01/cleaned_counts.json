@@ -1,0 +1,21 @@
+{
+  "expected": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Counts_tables_no_ENSMUS_in_gene_name/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned_no_ENSMUS_in_gene_name_HSC_Geneid.csv",
+  "observed": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/rna_recount_v06/results/rna/recount/selected_counts.csv",
+  "expected_sha256": "7566126cabd67c2fe55a7275e0654b1005d8f5caecff608f8d344b65ea2d8363",
+  "observed_sha256": "7566126cabd67c2fe55a7275e0654b1005d8f5caecff608f8d344b65ea2d8363",
+  "same_keys": true,
+  "same_columns": true,
+  "expected_shape": [
+    56098,
+    4
+  ],
+  "observed_shape": [
+    56098,
+    4
+  ],
+  "exact_numeric": true,
+  "n_different_values": 0,
+  "max_absolute_error": 0.0,
+  "max_relative_error": 0.0,
+  "within_1e_12": true
+}

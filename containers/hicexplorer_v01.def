@@ -1,0 +1,35 @@
+Bootstrap: localimage
+From: /vast/projects/Immune_Aging/apptainer_singularity_cache/stare-abc_1.0.5.sif
+
+%files
+    /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/hicexplorer_env_v01.tar /opt/hicexplorer_env_v01.tar
+
+%post
+    mkdir -p /opt/hicexplorer
+    busybox tar -xf /opt/hicexplorer_env_v01.tar -C /opt/hicexplorer
+    rm /opt/hicexplorer_env_v01.tar
+    /opt/hicexplorer/bin/python - <<'PY'
+from pathlib import Path
+old = b'/home/users/allstaff/stacpoole.q/.conda/envs/hicexplorer'
+for p in Path('/opt/hicexplorer/bin').iterdir():
+    if p.is_file() and not p.is_symlink():
+        data = p.read_bytes()
+        if data.startswith(b'#!') and old in data.split(b'\n', 1)[0]:
+            p.write_bytes(data.replace(old, b'/opt/hicexplorer'))
+PY
+
+%environment
+    export PATH=/opt/hicexplorer/bin:$PATH
+    export PYTHONNOUSERSITE=1
+    export XDG_CONFIG_HOME=${PWD}/.config
+    export XDG_CACHE_HOME=${PWD}/.cache
+
+%test
+    /opt/hicexplorer/bin/python -c 'import hicexplorer, cooler, hicmatrix; print(cooler.__version__)'
+    /opt/hicexplorer/bin/hicConvertFormat --version
+
+%labels
+    workflow phd_stare_plus_ananse_workflow
+    role historical_hic_tools
+    audit_date 2026-10-12
+    provenance current_environment_snapshot_not_yet_historical_equivalence

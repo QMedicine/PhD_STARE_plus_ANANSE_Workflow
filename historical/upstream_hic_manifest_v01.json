@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Hannah's_Hi-C_fastq_alignment_QC_processing_scripts/20240620_Hannah's_Processing_data_quality_control.Rmd",
+    "sha256": "cd32e0b8f602ada8cad8140e43cee585cf88a97400ae0c14fa11c133c7746e40",
+    "local_path": "historical/upstream_hic/20240620_Hannah's_Processing_data_quality_control.Rmd"
+  },
+  {
+    "path": "/vast/projects/Immune_Aging/.nextflow_assets/nf-core/tfactivity/LICENSE",
+    "sha256": "cf01b6b48097b12b3f3a4e85cbd508342560a9de574dfdfcea085b8acaa4a9ce",
+    "local_path": "historical/upstream_hic/LICENSE"
+  },
+  {
+    "path": "/home/users/allstaff/stacpoole.q/.conda/envs/ananse/lib/python3.10/site-packages/ananse-0.5.1.dist-info/LICENSE",
+    "sha256": "feb87a2e0c305de3464cc44077da5393c52d8ca6362d37427157d04ec6f4510d",
+    "local_path": "historical/upstream_hic/LICENSE"
+  }
+]

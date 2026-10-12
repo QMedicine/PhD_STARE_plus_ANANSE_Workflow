@@ -1,0 +1,40 @@
+Bootstrap: localimage
+From: /vast/projects/Immune_Aging/apptainer_singularity_cache/stare-abc_1.0.5.sif
+
+%files
+    /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/ananse_env_v02.tar /opt/ananse_env_v02.tar
+
+%post
+    mkdir -p /opt/ananse
+    busybox tar -xf /opt/ananse_env_v02.tar -C /opt/ananse
+    rm /opt/ananse_env_v02.tar
+    /opt/ananse/bin/python - <<'PY'
+from pathlib import Path
+old = b'/home/users/allstaff/stacpoole.q/.conda/envs/ananse'
+for p in Path('/opt/ananse/bin').iterdir():
+    if p.is_file() and not p.is_symlink():
+        data = p.read_bytes()
+        if data.startswith(b'#!') and old in data.split(b'\n', 1)[0]:
+            p.write_bytes(data.replace(old, b'/opt/ananse'))
+PY
+
+%environment
+    export PATH=/opt/ananse/bin:$PATH
+    export PYTHONNOUSERSITE=1
+
+%test
+    /opt/ananse/bin/python - <<'PY'
+import sys, numpy, pandas, sklearn, ananse
+assert sys.version_info[:2] == (3, 10)
+assert numpy.__version__ == '1.26.4'
+assert pandas.__version__ == '1.5.3'
+assert sklearn.__version__ == '1.7.2'
+print(sys.version, numpy.__version__, pandas.__version__, sklearn.__version__)
+PY
+    /opt/ananse/bin/ananse --version
+
+%labels
+    workflow phd_stare_plus_ananse_workflow
+    role historical_network_and_influence
+    audit_date 2026-10-12
+    provenance current_environment_snapshot_not_yet_historical_equivalence

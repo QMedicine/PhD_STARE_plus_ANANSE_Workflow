@@ -1,0 +1,1310 @@
+---
+title: "Low input HiC of old and young HSC populations in mouse with low and high mitochondria membrane potential"
+author: "Hannah Coughlan"
+date: "24 June, 2024"
+output: html_document
+---
+
+# Introduction for the project
+
+Aging is relevant to the functional decline of normal HSCs as well as increased risk of hematologic malignancies in human. Abnormal clonal hematopoiesis which frequently occurs in the HSCs of the elderly is caused by DNA mutation in specific loci and shortening telomerase. Besides, there are several emerging intrinsic factors such as increased polarity, reactive oxygen species, and injured autophagy and mitochondria metabolism as ample evidence of aging of HSCs, which show the main features of aged HSCs compared to that of young HSCs (PMID: 31887851).
+
+Our previous experiment
+
+The aim of this study is to compare old and young HSC with low and high mitochondria membrane potential. Is there a difference in the chromatin and is this the difference in old and young populations?
+
+The next aim of the
+
+# Sequencing data
+
+There is 12 samples in the dataset: - 3x old low MMP - 3x old high MMP - 3x young low MMP - 3x young high MMP
+
+Data was sequenced by the genomics facilty at WEHI on 20240619 (folder quinnS_151223) by the NextSeq2000 in one run (1.2 billion reads) 66 bp reads.
+
+Open the targets file for the experiment:
+
+```{r}
+targets<-read.csv("/stornext/General/data/academic/lab_allan/Hannah/20230605_HSC_HiC_ageing_project/Fastq/20240603_Experimental_information_quinnS_Hi-C_YandO_MMP_hi_low_HSC.csv",
+                  stringsAsFactors = FALSE)
+targets
+```
+
+I performed fastqc on the data and created a report with multiQC. I plan to process and analyse the data with diffhic
+
+# Processing data with diffHic pipeline
+
+To create the SLURM scripts for alignment for each sample:
+
+```{r}
+#Reading in the targets files with sample information
+targets<-read.csv("/stornext/General/data/academic/lab_allan/Hannah/20230605_HSC_HiC_ageing_project/Fastq/20240603_Experimental_information_quinnS_Hi-C_YandO_MMP_hi_low_HSC.csv",
+                  stringsAsFactors = FALSE)
+
+#Remove the .gz part
+targets$Read1<-substr(targets$Read1,1,nchar(targets$Read1)-3)
+targets$Read2<-substr(targets$Read2,1,nchar(targets$Read2)-3)
+
+# Set location of output
+location<-"/vast/projects/coughlan.h.project/20230606_Old_young/20240603_MMP_Hi_Low_HSCs/Processing/"
+
+#Location of fastq files
+fastq.loc<-"/vast/scratch/users/coughlan.h/Fastq/20240603_MMP_Hi_Low_HSCs/stephen_w_QS/"
+
+#Output tmp files
+tmp.loc<-"/vast/scratch/users/coughlan.h/tmp/"
+
+#strings
+ALIGN<-"_aligned"
+BAM<-".bam"
+SORT<-"_sort"
+FMI<-"_FMI"
+MD<-"_MD"
+
+#file names
+samples<-paste0(targets$Sample,"_",targets$Rep)
+output<-paste0(tmp.loc,"Aligned/",samples)
+    
+#Make SLURM script per sample
+for (i in 1:length(samples)){
+                    
+                    fastqc_1_command<-paste0("fastqc ",fastq.loc,targets$Read1[i],".gz")
+                    fastqc_2_command<-paste0("fastqc ",fastq.loc,targets$Read2[i],".gz")
+                    
+                    unzip1_command<-paste0("unpigz -p 32 ",fastq.loc,targets$Read1[i],".gz")
+                    unzip2_command<-paste0("unpigz -p 32 ",fastq.loc,targets$Read2[i],".gz")
+                    
+                    align_command<-paste0("~/Python_install/python_3_8_8_test/bin/python3 ~/20210719_Scripts/presplit_map_t32.py -G /vast/projects/coughlan.h.project/bowtie2_mm39/mm39 -1 ",
+                                          fastq.loc,targets$Read1[i]," -2 ",
+                                          fastq.loc,targets$Read2[i]," --sig GATCGATC --cmd bowtie2 -o ",output[i],ALIGN,BAM)
+                    
+                    zip1_command<-paste0("pigz -p 32 ",fastq.loc,targets$Read1[i])
+                    zip2_command<-paste0("pigz -p 32 ",fastq.loc,targets$Read2[i])
+                    
+                    FMI_command <- paste0("FixMateInformation I=",output[i],ALIGN,BAM, 
+                                  " O=",output[i],ALIGN,FMI,BAM, " MAX_RECORDS_IN_RAM=1000000 VALIDATION_STRINGENCY=SILENT AS=false SO=coordinate TMP_DIR=",tmp.loc,"tmp_FMI_",samples[i])
+            
+                    MD_command <- paste0("MarkDuplicates I=",output[i],ALIGN,FMI,BAM, " O=",output[i],ALIGN,FMI,MD,BAM, 
+                                 " M=",output[i],"_mark_dup_metrices.txt VALIDATION_STRINGENCY=SILENT MAX_RECORDS_IN_RAM=1000000 REMOVE_DUPLICATES=false tmp_DIR=",tmp.loc,"MD_com_",samples[i])
+            
+                    SORT_command <- paste0("samtools sort --threads 32 -n -O bam -o ",output[i],ALIGN,FMI,MD,SORT,BAM, " -T ",tmp.loc,"tmp_SORT_",samples[i]," ",output[i],ALIGN,FMI,MD,BAM)
+                    
+                    script.file<-paste0("#!/bin/bash","\n",
+                                        "#SBATCH --job-name=",samples[i],"_HiC","\n",
+                                        "#SBATCH --time=48:00:00","\n",
+                                        "#SBATCH --cpus-per-task=32","\n",
+                                        "#SBATCH --mem=64G","\n",
+                                        "#SBATCH --output=SLURM_stout_",samples[i],"\n",
+                                        "#SBATCH --error=SLURM_err_",samples[i],"\n",
+                                        "\n",
+                                        "module purge","\n",
+                                        "module load python","\n",
+                                        "module load bowtie2","\n",
+                                        "module load cutadapt","\n",
+                                        "module load fastqc","\n",
+                                        "module load pigz","\n",
+                                        "module load biobambam2","\n",
+                                        "module load samtools","\n",
+                                        "module load picard-tools","\n",
+                                        "export TMPDIR=/vast/scratch/users/coughlan.h/tmp","\n",
+                                        "\n",
+                                        #fastqc_1_command,"\n",
+                                        #fastqc_2_command,"\n",
+                                        unzip1_command,"\n",
+                                        unzip2_command,"\n",
+                                        align_command,"\n",
+                                        zip1_command,"\n",
+                                        zip2_command,"\n",
+                                        FMI_command,"\n",
+                                        MD_command,"\n",
+                                        SORT_command)
+                    write.table(script.file,paste0(tmp.loc,"20240620_SLURM_align_",
+                                                   samples[i]),row.names=F,col.names=F,quote = FALSE)
+                    
+                }
+                
+                #Make overall script to launch jobs
+                write.table(paste0("sbatch ",tmp.loc,"20240620_SLURM_align_",samples), 
+                            file=paste0(tmp.loc,"20240620_SLURM_all_align_samples.sh"),
+                            row.names=F,col.names=F,quote = FALSE)
+```
+
+Copy across the metrics file.
+
+Complexity of the samples as determined from MarkDuplicates:
+
+```{r}
+#Location of outout
+location<-"/vast/projects/coughlan.h.project/20230606_Old_young/20240603_MMP_Hi_Low_HSCs/"
+samples<-paste0(targets$Sample,"_",targets$Rep)
+#Make SLURM script per sample
+for (i in samples){
+                x<-read.delim(paste0(location,"Processing/Metrics/",i,"_mark_dup_metrices.txt"),header = TRUE, skip = 10)
+                plot(x=x$BIN,y=x$CoverageMult, xlim=c(1,10), xlab="x times more sequencing", ylab="Return of sequencing", main=i)
+}
+```
+
+# Mapping reads to restriction fragments
+
+As HiC is based on ligation between restriction fragments the reads are actually two different restriction fragments containing the interaction loci. Therefore we report the reads in terms of the restriction fragment in the genome to which that read was mapped. We now create the fragment library for the genome required to create anchors for the data with the mm39 genome (the same one the samples were mapped to) and MboI restriction size.
+
+We can now map the paired-end reads in the bam file to restriction fragments in the reference genome. The fragments to which the reads are mapped are now referred to as anchors. Each read of the paired-end read is aligned separately to a restriction fragment therefore each paired-end read records two different restriction fragment locations.
+
+Only the 5′ end(s) will be used to determine the restriction fragment index for that read pair. The total number of chimeric read pairs will be reported, along with the number where 5′ ends or 3′ ends are mapped. Of course, the function will also work if the mapping location is only given for the 5′ end, though chimeric statistics will not be properly computed. The proportion of invalid chimeric pairs can then be calculated.
+
+Invalid pairs are those where the 3′ location of a chimeric read disagrees with the 5′ location of the mate. The invalid proportion can be used as an empirical measure of the mapping error rate - or, at least, the upper bound thereof, given that error rates are likely to be lower for longer, non-chimeric alignments. High error rates may be indicative of a fault in the mapping pipeline.
+
+Duplicate reads have previously been marked and will also be reported.
+
+Open the fragments of the genome and set up the processed bam file location.
+
+```{r}
+library(diffHic)
+library(edgeR)
+mm39.frag<-cutGenome("~/Reference_genomes/mm39/mm39.fa", "GATC",4)
+mm.param<-pairParam(mm39.frag)
+mm.param
+```
+
+```{r}
+samples<-paste0(targets$Sample,"_",targets$Rep)
+location<-"/vast/projects/coughlan.h.project/20230606_Old_young/20240603_MMP_Hi_Low_HSCs/"
+```
+
+Produce the hdf files and diagnostics for the samples:
+
+```{r}
+Diagnostics<-list()
+
+for (i in samples){
+    diagnostics<-preparePairs(paste0("/vast/scratch/users/coughlan.h/tmp/Aligned/",i,"_aligned_FMI_MD_sort.bam"),
+                              mm.param,file=paste0(location,"Processed/",i,"_mm.h5"),
+                              dedup = TRUE, minq = 10, chim.dist=1000)
+    #Ssave the diagnostics for each file
+    saveRDS(diagnostics, paste0(location,"Processed/20240620_Diagnostics_",i,".rds"))
+}
+```
+
+Lets look at the diagnostics for the files:
+
+```{r}
+Diagnostics<-list()
+    
+for (i in samples){
+    Diagnostics[[i]]<-readRDS(paste0(location,"Processed/20240620_Diagnostics_",i,".rds"))
+}
+
+Diagnostic<-matrix(unlist(Diagnostics), ncol=11, byrow=T)
+colnames(Diagnostic)<-names(unlist(Diagnostics[[1]]))
+rownames(Diagnostic)<-paste0(names(Diagnostics))
+
+Diagnostic<-as.data.frame(Diagnostic)
+
+Diagnostic_All<-as.data.frame(cbind(Diagnostic, 
+                                 Prop.map=Diagnostic$pairs.mapped/Diagnostic$pairs.total,
+                                 invalchi=Diagnostic$chimeras.invalid/Diagnostic$chimeras.multi))
+
+Diagnostic_All
+```
+
+Plots of diagnostics:
+
+```{r}
+reads_plto<-t(as.matrix(Diagnostic_All[,c(1,4,5,6)]))
+
+stats<-as.data.frame(cbind(Total=reads_plto[1,],
+              Dup_fil_unmapped=reads_plto[1,]-reads_plto[2,],
+              Dangling=reads_plto[3,],
+              Self_circle=reads_plto[4,],
+              Valid=reads_plto[2,]-reads_plto[3,]-reads_plto[4,]))
+
+par(mfrow=c(1,2))
+barplot(t(as.matrix(stats)[,-1])/1e6, names.arg = rownames(stats), las=1,col = c("yellow","orange","red","purple"),cex.names =0.65, main="Read pairs of libraries", ylab="Library size (millions)",las=2, ylim=c(0,200))
+
+barplot(t((as.matrix(stats)[,-1])/(stats)[,1]), names.arg = rownames(stats), las=1,col = c("yellow","orange","red","purple"),cex.names =0.65, main="Read pairs of libraries", ylab="Prop",las=2)
+legend("topright", legend = colnames(stats)[-1], col =c("yellow","orange","red","purple"), pch = as.numeric(15), cex=0.9, title.col = "black")
+```
+
+Valid reads:
+
+```{r}
+stats
+```
+
+Look at the individual stats:
+
+```{r}
+col<-targets$Colour
+
+barplot(100*(Diagnostic_All$pairs.marked/Diagnostic_All$pairs.total), 
+        main="Duplicates marked", names.arg = rownames(Diagnostic_All), 
+        las=2, cex.names =0.65,col=col, ylab="% of marked duplicates",ylim=c(0,100))
+```
+
+```{r}
+barplot(100*(Diagnostic_All$pairs.mapped/Diagnostic_All$pairs.total), 
+        main="Reads mapped", names.arg = rownames(Diagnostic_All), 
+        las=2, cex.names =0.65,col=col,ylim=c(0,100))
+```
+
+```{r}
+barplot(100*(Diagnostic_All$chimeras.invalid/Diagnostic_All$chimeras.multi), 
+        main="Invalid chimeras", names.arg = rownames(Diagnostic_All), 
+        las=2, col=col,ylim=c(0,20),cex.names =0.65)
+```
+
+```{r}
+barplot(100*(Diagnostic_All$same.id.dangling/Diagnostic_All$pairs.total), 
+        main="Dangling ends", names.arg = rownames(Diagnostic_All), 
+        las=2, cex.names =0.65, col=col,ylim=c(0,2))
+```
+
+```{r}
+barplot(100*(Diagnostic_All$same.id.self.circle/Diagnostic_All$pairs.total), 
+        main="Self circles", names.arg = rownames(Diagnostic_All), 
+        las=2, cex.names =0.65, col=col,ylim=c(0,0.5))
+```
+
+## Usable reads from the sequencing
+
+How many reads across the run (in billions):
+
+```{r}
+sum(Diagnostic_All$pairs.total)/(1e9)
+```
+
+How many reads duplicated across the run (in billions):
+
+```{r}
+sum(Diagnostic_All$pairs.marked)/(1e9)
+```
+
+How many reads filtered across the run (in billions):
+
+```{r}
+sum(Diagnostic_All$pairs.filtered)/(1e9)
+```
+
+How many reads are mapped across the run (in billions):
+
+```{r}
+sum(Diagnostic_All$pairs.mapped)/(1e9)
+```
+
+Percentage:
+
+```{r}
+100*(sum(Diagnostic_All$pairs.mapped)/(1e9))/(sum(Diagnostic_All$pairs.total)/(1e9))
+```
+
+## Artifact removal
+
+In this process of read mapping discover that some reads are most likely artefacts and not true chimeric reads originating from two different locations in the genome. Read pairs mapping to the same restriction fragment provide little information on interactions between fragments. Dangling ends are inward-facing read pairs that are mapped to the same fragment. These are uninformative as they are usually formed from sequencing of the restriction fragment prior to ligation. Self-circles are outward-facing read pairs that are formed when two ends of the same restriction fragment ligate to one another. Interactions within a fragment cannot be easily distinguished from these self-circularization events. Both structures are removed to avoid confusion in downstream steps.
+
+To determine whether a read is a dangling end or self-circling read we can plot the strand orientation of the two ends as a function of insert size. The strand orientation for a read pair refers to the combination of strands for the two alignments. If different pieces of DNA were randomly ligated together, one would expect to observe equal proportions of all strand orientations. This can be tested by examining the distribution of strand orientations for read pairs. At high insert sizes, the distributions will converge for all strand orientations. At lower insert sizes, spikes are observed in the outward- and inward-facing distributions due to self-circularization and dangling ends, respectively. We set thresholds after the spikes to remove artefacts.
+
+The length of the sequencing fragment is inferred by summing the distance between the mapping location of the 5′ end of each read and the nearest restriction site on the 3′ end of that read. The threshold value can be chosen based on the size selection interval in library preparation, or by examining the distribution of inferred fragment length.
+
+```{r}
+for (i in samples[11]){     
+            diags <- getPairData(paste0(location,"Processed/",i,"_mm.h5"), mm.param)
+            #create a histogram of the fragments
+            pdf(paste0(location,"Processed/",i,'_combined_hist.pdf'))
+            hist(diags$length[diags$length < 1500], ylab="Frequency", xlab="Spacing (bp)", main= paste0(i,'histogram fragment length'))
+            abline(v=800, col="red", lty=2) 
+            dev.off()
+            
+            png(paste0(location,"Processed/",i,'_combined_hist.png'))
+            hist(diags$length[diags$length < 1500], ylab="Frequency", xlab="Spacing (bp)", main= paste0(i,'histogram fragment length'))
+            abline(v=800, col="red", lty=2) 
+            dev.off()
+            
+            #Create a plot of fragment orientations
+            min.inward<- 1000
+            min.outward<- 1000
+            llinsert <- log2(diags$insert + 1L) 
+            intra <- !is.na(llinsert) 
+            breaks <- seq(min(llinsert[intra]), max(llinsert[intra]), length.out=30) 
+            inward <- hist(llinsert[diags$orientation==1L], plot=FALSE, breaks=breaks) 
+            outward <- hist(llinsert[diags$orientation==2L] ,plot=FALSE, breaks=breaks) 
+            samestr <- hist(llinsert[diags$orientation==0L | diags$orientation==3L], plot=FALSE, breaks=breaks) 
+            samestr$counts <- samestr$counts/2
+            ymax <- max(inward$counts, outward$counts, samestr$counts)/1e6 
+            xmax <- max(inward$mids, outward$mids, samestr$mids) 
+            xmin <- min(inward$mids, outward$mids, samestr$mids)
+            pdf(paste0(location,"Processed/",i,'_combined_insertsizes.pdf'))
+            plot(0,0,type="n", xlim=c(xmin, xmax), ylim=c(0, ymax),xlab=expression(log[2]~"[insert size (bp)]"), ylab="Frequency (millions)", 
+                 main= paste0(i,' insert size')) 
+            lines(inward$mids, inward$counts/1e6, col="darkgreen", lwd=2) 
+            abline(v=log2(min.inward), col="darkgrey") 
+            lines(outward$mids, outward$counts/1e6, col="red", lwd=2) 
+            abline(v=log2(min.outward), col="darkgrey", lty=2) 
+            lines(samestr$mids, samestr$counts/1e6, col="blue", lwd=2) 
+            legend("topright", c("inward", "outward", "same"), col=c("darkgreen", "red", "blue"), lwd=2)
+            dev.off()
+            
+            png(paste0(location,"Processed/",i,'_combined_insertsizes.png'))
+            plot(0,0,type="n", xlim=c(xmin, xmax), ylim=c(0, ymax),xlab=expression(log[2]~"[insert size (bp)]"), ylab="Frequency (millions)",
+                  main= paste0(i,' insert size')) 
+            lines(inward$mids, inward$counts/1e6, col="darkgreen", lwd=2) 
+            abline(v=log2(min.inward), col="darkgrey") 
+            lines(outward$mids, outward$counts/1e6, col="red", lwd=2) 
+            abline(v=log2(min.outward), col="darkgrey", lty=2) 
+            lines(samestr$mids, samestr$counts/1e6, col="blue", lwd=2) 
+            legend("topright", c("inward", "outward", "same"), col=c("darkgreen", "red", "blue"), lwd=2)
+            dev.off()
+}
+```
+
+Plots:
+
+```{r}
+for (i in samples){
+    print(knitr::include_graphics(paste0(location,"Processed/",i,"_combined_hist.png")))
+    print(knitr::include_graphics(paste0(location,"Processed/",i,"_combined_insertsizes.png")))
+}
+```
+
+Distribution of interaction frequency information:
+
+```{r}
+cis_trans<-list()
+disb_frq<-list()
+
+for (i in samples){    
+            diags <- getPairData(file=paste0(location,"Processed/",i,"_mm.h5"), param=mm.param)
+            
+            #Cis/trans numbers
+            cis_trans[[i]]<-table(is.na(diags$insert))
+            
+            intra<-diags$insert[!is.na(diags$insert)]
+            
+            breaks <- c(0,100,200,300,400,500,1000,2000,5000,10000,25e3,50e3,75e3,100e3,150e3,200e3,300e3,500e3,1e6,2e6,5e6,10e6,20e6,50e6,100e6,150e6,200e6) 
+            inward <- hist(intra, plot=FALSE, breaks=breaks) 
+            png(paste0(location,"Processed/",i,'_barplot.png'))
+            barplot(inward$counts/nrow(diags), names=inward$breaks[-1]/1e3, las=2,ylab="Proportion of interactions", 
+                    xlab="Span bin (kbp)", main=paste0("Distribution of interaction frequency binned by span: ",i))
+            
+            dis<-inward$counts
+            names(dis)<-inward$breaks[-1]
+            disb_frq[[i]]<-dis
+            dev.off()
+                    
+}       
+saveRDS(cis_trans, "20240620_cis_trans.rds")
+saveRDS(disb_frq, "20240620_disb_frq.rds")
+```
+
+Plots:
+
+```{r}
+for (i in samples){
+    print(knitr::include_graphics(paste0(location,"Processed/",i,"_barplot.png")))
+}
+```
+
+```{r}
+disb_frq<-readRDS("20240620_disb_frq.rds")
+cis_trans<-readRDS("20240620_cis_trans.rds")
+
+disb_frq<-do.call(cbind,disb_frq)
+
+cis_trans<-do.call(cbind,cis_trans)
+rownames(cis_trans)<-c("cis","trans")
+
+all_reads<-rbind(disb_frq,cis_trans)
+```
+
+```{r}
+barplot(t(t(all_reads[c("cis","trans"),])/colSums(all_reads[c("cis","trans"),])), 
+        las=2, main="Proportion of cis and tran read pairs", cex.names = 0.7)
+```
+
+Summing into bins:
+
+```{r}
+Bins_10<-data.frame(matrix(data = NA,
+                  nrow = 4,
+                  ncol=ncol(all_reads)))
+
+Bins_10[1,]<-colSums(all_reads[1:6,])
+Bins_10[2,]<-colSums(all_reads[7:9,])
+Bins_10[3,]<-colSums(all_reads[10:26,])
+Bins_10[4,]<-(all_reads[28,])
+
+colnames(Bins_10)<-colnames(all_reads)
+rownames(Bins_10)<-c("0-1kbp",
+                     "1-10kbp",
+                     ">10kbp",
+                     "Trans")
+Bins_10
+```
+
+```{r}
+barplot(t(t(Bins_10)/colSums(all_reads[c("cis","trans"),])), cex.names = 0.6, las=2, main="Proportion of read pairs with different span",
+        col=c("yellow1","orange2","darkgreen","red"))
+
+legend("topleft", legend=c(rownames(Bins_10)),
+       col=c("yellow1","orange2","darkgreen","red"), lty=1,lwd = 3,pch=15, cex=0.8)
+```
+
+Sequenced reads:
+
+```{r}
+barplot(t(t(Bins_10)/Diagnostic_All[,1]), cex.names = 0.6, las=2, main="Proportion of read pairs with different span \n (sequenced reads)",
+        col=c("yellow1","orange2","darkgreen","red"))
+
+legend("topright", legend=c(rownames(Bins_10)),
+       col=c("yellow1","orange2","darkgreen","red"), lty=1,lwd = 3,pch=15, cex=0.8)
+```
+
+```{r}
+Bins_10.p<-as.data.frame(signif(t(t(Bins_10)/colSums(all_reads[c("cis","trans"),])),4))
+Bins_10.p
+```
+
+```{r}
+Bins_10.p<-as.data.frame(signif(t(t(Bins_10)/colSums(all_reads[c("cis","trans"),])),4))
+Bins_10.p
+```
+
+```{r}
+colnames(Bins_10.p)<-substr(colnames(Bins_10.p),1,nchar(colnames(Bins_10.p))-4)
+Bins_10.p<-cbind(Range=rownames(Bins_10.p),Bins_10.p)
+
+library(tidyr)
+```
+
+```{r}
+bins_longer<-pivot_longer(Bins_10.p, -c(Range), values_to = "Prop", names_to = "Group")
+
+library(tidyverse)
+```
+
+```{r}
+ggplot(bins_longer, aes(x = factor(Group), y = Prop, fill=Range)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="0-1kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 0-1kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="1-10kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 1-10kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range==">10kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at >10kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="Trans",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at Trans")
+```
+
+Summing into bins:
+
+```{r}
+Bins_10<-data.frame(matrix(data = NA,
+                  nrow = 10,
+                  ncol=ncol(all_reads)))
+
+Bins_10[1,]<-colSums(all_reads[1:6,])
+Bins_10[2,]<-colSums(all_reads[7:8,])
+Bins_10[3,]<-colSums(all_reads[9:10,])
+Bins_10[4,]<-colSums(all_reads[11:13,])
+Bins_10[5,]<-colSums(all_reads[14:15,])
+Bins_10[6,]<-colSums(all_reads[16:17,])
+Bins_10[7,]<-(all_reads[18,])
+Bins_10[8,]<-colSums(all_reads[19:21,])
+Bins_10[9,]<-colSums(all_reads[22:26,])
+Bins_10[10,]<-(all_reads[28,])
+
+colnames(Bins_10)<-colnames(all_reads)
+rownames(Bins_10)<-c("0-1kbp",
+                     "1-5kbp",
+                     "5-25kbp",
+                     "25-100kbp",
+                     "100-250kbp",
+                     "250-500kbp",
+                     "0.5-1Mbp",
+                     "1-10Mbp",
+                     ">10Mbp",
+                     "Trans")
+Bins_10
+```
+
+```{r}
+Bins_10.p<-as.data.frame(signif(t(t(Bins_10)/colSums(all_reads[c("cis","trans"),])),4))
+Bins_10.p
+```
+
+```{r}
+Bins_10.p<-as.data.frame(signif(t(t(Bins_10)/colSums(all_reads[c("cis","trans"),])),4))
+Bins_10.p
+```
+
+```{r}
+colnames(Bins_10.p)<-substr(colnames(Bins_10.p),1,nchar(colnames(Bins_10.p))-1)
+Bins_10.p<-cbind(Range=rownames(Bins_10.p),Bins_10.p)
+
+library(tidyr)
+bins_longer<-pivot_longer(Bins_10.p, -c(Range), values_to = "Prop", names_to = "Group")
+
+library(tidyverse)
+
+ggplot(bins_longer, aes(x = factor(Group), y = Prop, fill=Range)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="0-1kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 0-1kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="1-5kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 1-5kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="5-25kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 5-25kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="25-100kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 25-100kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="100-250kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 100-250kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="250-500kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 250-500kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="0.5-1Mbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 0.5-1Mbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="1-10Mbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 1-10Mbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range==">10Mbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at >10Mbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="Trans",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at Trans")
+```
+
+## Mitochondrial reads
+
+We investigate the number of trans mitochondria reads as a metric of data quality.
+
+```{r}
+mito_reads<-function(files){
+    #####################################All chromosomes extracted###########################################
+    library(rhdf5)
+    all_sams<-list()
+    for (n in files){
+        #Get the names of all the chromosomes
+        chroms.1<-h5ls(n)$name[h5ls(n)$otype=="H5I_GROUP"]
+        number.1<-list()
+        number<-list()
+        
+        for (k in chroms.1[!grepl("chrM",chroms.1)]){
+             OW <- nrow(h5read(n, k)$chrM)
+             if (is.null(OW)){
+                 number.1[[k]] <- 0
+             } else
+                number.1[[k]] <- OW
+        }
+        
+        #Open the hdf5 file with the chrom
+        data.chr <- h5read(n, "chrM")
+        for (k in chroms.1){
+             if (is.null(nrow(data.chr[[k]]))){
+                 number[[k]] <- number.1[[k]] + 0
+             } else
+                number[[k]] <- nrow(data.chr[[k]])
+        }
+        
+        all_sams[[n]]<- (sum(unlist(number))-unlist(number)[("chrM")])/unlist(number)[("chrM")] }
+        return(all_sams)
+}
+
+mito.2<-mito_reads(paste0(location,"Processed/",samples,"_mm.h5"))
+
+saveRDS(mito.2,"20240621_mito_reads.rds")
+```
+
+```{r}
+mito.2<-readRDS("20240621_mito_reads.rds")
+par(mfrow=c(1,1))
+mito.l<-unlist(mito.2)
+names(mito.l)<-samples
+barplot(mito.l, col=col, pch=15, main="Ratio of inter-to-intra mitochondrial interactions", ylab="trans ChrM/cis ChrM", las=2, cex.names = 0.6)
+legend("topright", legend = unique(paste0(targets$Young.or.Old,"_",targets$Membrane.potential)), col =unique(col), pch = as.numeric(15), cex=0.6, title.col = "black")
+```
+
+## Trimming artefacts
+
+Now we remove the artifacts from the libraries by setting threshold of the inferred fragment lengths (max.frag) and minimum insert size based on strand orientation (min.outward/min.inward).
+
+```{r}
+min.inward<- 1000
+min.outward<- 1000
+max.frag<-800
+for (i in samples){
+            prunePairs(file.in=paste0(location,"Processed/",i,"_mm.h5"), mm.param, 
+                       file.out = paste0(location,"Processed/",i,'_mm_trim.h5'),
+                       max.frag = max.frag,
+                       min.inward = min.inward,
+                       min.outward = min.outward)
+}
+```
+
+Distribution of interaction frequency information:
+
+```{r}
+cis_trans<-list()
+disb_frq<-list()
+
+for (i in samples){    
+            diags <- getPairData(file=paste0(location,"Processed/",i,"_mm_trim.h5"), param=mm.param)
+            
+            #Cis/trans numbers
+            cis_trans[[i]]<-table(is.na(diags$insert))
+            
+            intra<-diags$insert[!is.na(diags$insert)]7
+            
+            breaks <- c(0,100,200,300,400,500,1000,2000,5000,10000,25e3,50e3,75e3,100e3,150e3,200e3,300e3,500e3,1e6,2e6,5e6,10e6,20e6,50e6,100e6,150e6,200e6) 
+            inward <- hist(intra, plot=FALSE, breaks=breaks) 
+            png(paste0(location,"Processed/",i,'_barplot_trim.png'))
+            barplot(inward$counts/nrow(diags), names=inward$breaks[-1]/1e3, las=2,ylab="Proportion of interactions", 
+                    xlab="Span bin (kbp)", main=paste0("Distribution of interaction frequency binned by span: ",i))
+            
+            dis<-inward$counts
+            names(dis)<-inward$breaks[-1]
+            disb_frq[[i]]<-dis
+            dev.off()
+                    
+}       
+saveRDS(cis_trans, "20240621_cis_trans_trim.rds")
+saveRDS(disb_frq, "20240621_disb_frq_trim.rds")
+```
+
+Plots:
+
+```{r}
+for (i in samples){
+    print(knitr::include_graphics(paste0(location,"Processed/",i,"_barplot_trim.png")))
+}
+```
+
+```{r}
+disb_frq<-readRDS("20240621_disb_frq_trim.rds")
+cis_trans<-readRDS("20240621_cis_trans_trim.rds")
+
+disb_frq<-do.call(cbind,disb_frq)
+
+cis_trans<-do.call(cbind,cis_trans)
+rownames(cis_trans)<-c("cis","trans")
+
+all_reads<-rbind(disb_frq,cis_trans)
+```
+
+```{r}
+barplot(t(t(all_reads[c("cis","trans"),])/colSums(all_reads[c("cis","trans"),])), 
+        las=2, main="Proportion of cis and tran read pairs", cex.names = 0.7)
+```
+
+Summing into bins:
+
+```{r}
+Bins_10<-data.frame(matrix(data = NA,
+                  nrow = 4,
+                  ncol=ncol(all_reads)))
+
+Bins_10[1,]<-colSums(all_reads[1:6,])
+Bins_10[2,]<-colSums(all_reads[7:9,])
+Bins_10[3,]<-colSums(all_reads[10:26,])
+Bins_10[4,]<-(all_reads[28,])
+
+colnames(Bins_10)<-colnames(all_reads)
+rownames(Bins_10)<-c("0-1kbp",
+                     "1-10kbp",
+                     ">10kbp",
+                     "Trans")
+Bins_10
+```
+
+```{r}
+barplot(t(t(Bins_10)/colSums(all_reads[c("cis","trans"),])), cex.names = 0.6, las=2, main="Proportion of read pairs with different span",
+        col=c("yellow1","orange2","darkgreen","red"))
+
+legend("topleft", legend=c(rownames(Bins_10)),
+       col=c("yellow1","orange2","darkgreen","red"), lty=1,lwd = 3,pch=15, cex=0.8)
+```
+
+Sequenced reads:
+
+```{r}
+barplot(t(t(Bins_10)/Diagnostic_All[,1]), cex.names = 0.6, las=2, main="Proportion of read pairs with different span \n (sequenced reads)",
+        col=c("yellow1","orange2","darkgreen","red"))
+
+legend("topright", legend=c(rownames(Bins_10)),
+       col=c("yellow1","orange2","darkgreen","red"), lty=1,lwd = 3,pch=15, cex=0.8)
+```
+
+```{r}
+Bins_10.p<-as.data.frame(signif(t(t(Bins_10)/colSums(all_reads[c("cis","trans"),])),4))
+Bins_10.p
+```
+
+```{r}
+Bins_10.p<-as.data.frame(signif(t(t(Bins_10)/colSums(all_reads[c("cis","trans"),])),4))
+Bins_10.p
+```
+
+```{r}
+colnames(Bins_10.p)<-substr(colnames(Bins_10.p),1,nchar(colnames(Bins_10.p))-4)
+Bins_10.p<-cbind(Range=rownames(Bins_10.p),Bins_10.p)
+
+library(tidyr)
+bins_longer<-pivot_longer(Bins_10.p, -c(Range), values_to = "Prop", names_to = "Group")
+
+library(tidyverse)
+
+ggplot(bins_longer, aes(x = factor(Group), y = Prop, fill=Range)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="0-1kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 0-1kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="1-10kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 1-10kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range==">10kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at >10kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="Trans",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at Trans")
+```
+
+Summing into bins:
+
+```{r}
+Bins_10<-data.frame(matrix(data = NA,
+                  nrow = 10,
+                  ncol=ncol(all_reads)))
+
+Bins_10[1,]<-colSums(all_reads[1:6,])
+Bins_10[2,]<-colSums(all_reads[7:8,])
+Bins_10[3,]<-colSums(all_reads[9:10,])
+Bins_10[4,]<-colSums(all_reads[11:13,])
+Bins_10[5,]<-colSums(all_reads[14:15,])
+Bins_10[6,]<-colSums(all_reads[16:17,])
+Bins_10[7,]<-(all_reads[18,])
+Bins_10[8,]<-colSums(all_reads[19:21,])
+Bins_10[9,]<-colSums(all_reads[22:26,])
+Bins_10[10,]<-(all_reads[28,])
+
+colnames(Bins_10)<-colnames(all_reads)
+rownames(Bins_10)<-c("0-1kbp",
+                     "1-5kbp",
+                     "5-25kbp",
+                     "25-100kbp",
+                     "100-250kbp",
+                     "250-500kbp",
+                     "0.5-1Mbp",
+                     "1-10Mbp",
+                     ">10Mbp",
+                     "Trans")
+Bins_10
+```
+
+```{r}
+Bins_10.p<-as.data.frame(signif(t(t(Bins_10)/colSums(all_reads[c("cis","trans"),])),4))
+Bins_10.p
+```
+
+```{r}
+Bins_10.p<-as.data.frame(signif(t(t(Bins_10)/colSums(all_reads[c("cis","trans"),])),4))
+Bins_10.p
+```
+
+```{r}
+colnames(Bins_10.p)<-substr(colnames(Bins_10.p),1,nchar(colnames(Bins_10.p))-1)
+Bins_10.p<-cbind(Range=rownames(Bins_10.p),Bins_10.p)
+
+library(tidyr)
+bins_longer<-pivot_longer(Bins_10.p, -c(Range), values_to = "Prop", names_to = "Group")
+
+library(tidyverse)
+
+ggplot(bins_longer, aes(x = factor(Group), y = Prop, fill=Range)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="0-1kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 0-1kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="1-5kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 1-5kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="5-25kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 5-25kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="25-100kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 25-100kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="100-250kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 100-250kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="250-500kbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 250-500kbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="0.5-1Mbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 0.5-1Mbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="1-10Mbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at 1-10Mbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range==">10Mbp",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at >10Mbp")
+```
+
+```{r}
+ggplot(bins_longer[bins_longer$Range=="Trans",], aes(x = factor(Group), y = Prop, fill=Group)) +
+        geom_dotplot(binaxis = "y", stackdir = "center")+ labs(title="Plot of proportion of interactions at Trans")
+```
+
+## Mitochondrial reads
+
+We investigate the number of trans mitochondria reads as a metric of data quality.
+
+```{r}
+mito_reads<-function(files){
+    #####################################All chromosomes extracted###########################################
+    library(rhdf5)
+    all_sams<-list()
+    for (n in files){
+        #Get the names of all the chromosomes
+        chroms.1<-h5ls(n)$name[h5ls(n)$otype=="H5I_GROUP"]
+        number.1<-list()
+        number<-list()
+        
+        for (k in chroms.1[!grepl("chrM",chroms.1)]){
+             OW <- nrow(h5read(n, k)$chrM)
+             if (is.null(OW)){
+                 number.1[[k]] <- 0
+             } else
+                number.1[[k]] <- OW
+        }
+        
+        #Open the hdf5 file with the chrom
+        data.chr <- h5read(n, "chrM")
+        for (k in chroms.1){
+             if (is.null(nrow(data.chr[[k]]))){
+                 number[[k]] <- number.1[[k]] + 0
+             } else
+                number[[k]] <- nrow(data.chr[[k]])
+        }
+        
+        all_sams[[n]]<- (sum(unlist(number))-unlist(number)[("chrM")])/unlist(number)[("chrM")] }
+        return(all_sams)
+}
+
+mito.2<-mito_reads(paste0(location,"Processed/",samples,"_mm_trim.h5"))
+
+saveRDS(mito.2,"20240621_mito_reads_trim.rds")
+```
+
+```{r}
+mito.2<-readRDS("20240621_mito_reads_trim.rds")
+par(mfrow=c(1,1))
+mito.l<-unlist(mito.2)
+names(mito.l)<-samples
+barplot(mito.l, col=col, pch=15, main="Ratio of inter-to-intra mitochondrial interactions", ylab="trans ChrM/cis ChrM", las=2, cex.names = 0.6)
+legend("topright", legend = unique(paste0(targets$Young.or.Old,"_",targets$Cell.type)), col =unique(col), pch = as.numeric(15), cex=0.6, title.col = "black")
+```
+
+Percentage of trans interactions that are from chrM:
+
+```{r}
+mito_reads_trans<-function(files){
+    #####################################All chromosomes extracted###########################################
+    library(rhdf5)
+    all_sams<-list()
+    for (n in files){
+        #Get the names of all the chromosomes
+        chroms.1<-h5ls(n)$name[h5ls(n)$otype=="H5I_GROUP"]
+        number.1<-list()
+        number<-list()
+        
+        for (k in chroms.1[!grepl("chrM",chroms.1)]){
+             OW <- nrow(h5read(n, k)$chrM)
+             if (is.null(OW)){
+                 number.1[[k]] <- 0
+             } else
+                number.1[[k]] <- OW
+        }
+        
+        #Open the hdf5 file with the chrom
+        data.chr <- h5read(n, "chrM")
+        for (k in chroms.1){
+             if (is.null(nrow(data.chr[[k]]))){
+                 number[[k]] <- number.1[[k]] + 0
+             } else
+                number[[k]] <- nrow(data.chr[[k]])
+        }
+        
+        all_sams[[n]]<- (sum(unlist(number))-unlist(number)[("chrM")]) }
+        return(all_sams)
+}
+
+mito.2<-mito_reads_trans(paste0(location,"Processed/",samples,"_mm_trim.h5"))
+
+mito.trans<-unlist(mito.2)
+names(mito.trans)<-samples
+saveRDS(mito.trans,"20240621_mito_trans_trim.rds")
+```
+
+```{r}
+mito.trans<-readRDS("20240621_mito_trans_trim.rds")
+cis_trans<-readRDS("20240621_cis_trans_trim.rds")
+cis_trans<-do.call(cbind,cis_trans)
+rownames(cis_trans)<-c("cis","trans")
+
+cis_trans_mito<-as.data.frame(rbind(cis_trans,mito.trans))
+cis_trans_mito[2,]<-cis_trans_mito[2,]-cis_trans_mito[3,]
+```
+
+```{r}
+100*t(t(cis_trans_mito)/colSums(cis_trans_mito))
+```
+
+```{r}
+par(mfrow=c(1,2))
+barplot(100*t(t(cis_trans_mito)/colSums(cis_trans_mito)), cex.names = 0.6, las=2, main="Proportion of cis/trans read pairs",
+        col=c("yellow1","darkgreen","purple"))
+legend("topleft", legend=c("cis","trans","mito_trans"),
+       col=c("yellow1","darkgreen","purple"), lty=1,lwd = 3,pch=15, cex=0.8)
+barplot(t(t(cis_trans_mito)), cex.names = 0.6, las=2, main="Cis/trans read pairs",
+        col=c("yellow1","darkgreen","purple"))
+
+legend("topleft", legend=c("cis","trans","mito_trans"),
+       col=c("yellow1","darkgreen","purple"), lty=1,lwd = 3,pch=15, cex=0.8)
+```
+
+```{r}
+par(mfrow=c(1,3))
+barplot(1*t(t(cis_trans_mito[1,])/colSums(cis_trans_mito)), cex.names = 0.6, las=2, main="Proportion of cis/trans\n read pairs: cis",
+        col=c("yellow1","darkgreen","purple"), ylab="Proportion of library")
+barplot(1*t(t(cis_trans_mito[2,])/colSums(cis_trans_mito)), cex.names = 0.6, las=2, main="Proportion of cis/trans\n read pairs: trans_all-trans_mito",
+        col=c("darkgreen","purple"))
+barplot(1*t(t(cis_trans_mito[3,])/colSums(cis_trans_mito)), cex.names = 0.6, las=2, main="Proportion of cis/trans\n read pairs: trans_mito",
+        col=c("purple"))
+```
+
+```{r}
+plot(t(t(cis_trans_mito[2,])/colSums(cis_trans_mito)),
+     t(t(cis_trans_mito[3,])/colSums(cis_trans_mito)), ylab="Prop mito trans reads", xlab="Prop trans read(-mito)", col=c(rep("darkgreen",5),rep("blue",5),rep("darkgreen",5),rep("blue",5))
+     )
+legend("topleft", legend=c("Old","Young"),
+       col=c("darkgreen","blue"), lty=1,lwd = 3,pch=15, cex=0.8)
+```
+
+# Decay curves
+
+Note: move the hdf5 files to vast/projects:
+
+```{r}
+hdf5.location<-"/vast/projects/coughlan.h.project/20230606_Old_young/20240603_MMP_Hi_Low_HSCs/Processed/"
+```
+
+Decay curves (will plot the replicates together):
+
+Define a function for getting the points:
+
+```{r}
+get_decay_curve <- function(file,param, break_size) {
+                    diags <- getPairData(file=file, 
+                                         param=param)
+            
+                    intra<-diags$insert[!is.na(diags$insert)]
+                    breaks <- seq(0,300e6,break_size)
+                    inward <- hist(intra, plot=FALSE, breaks=breaks) 
+            
+                    cum_sum<-as.data.frame(cbind(span=inward$breaks[-1],
+                                                 freq=(inward$counts/break_size)/length(diags$insert)
+                                                 )
+                                           )
+                    return(cum_sum)
+}
+
+
+
+get_decay_curve_per_chrom <- function(file,param, break_size) {
+                    diags <- getPairData(file=file, 
+                                         param=param)
+            
+                    intra<-diags$insert[!is.na(diags$insert)]
+                    breaks <- seq(0,300e6,break_size)
+                    inward <- hist(intra, plot=FALSE, breaks=breaks) 
+            
+                    cum_sum<-as.data.frame(cbind(span=inward$breaks[-1],
+                                                 freq=(inward$counts/break_size)/length(diags$insert)
+                                                 )
+                                           )
+                    return(cum_sum)
+}
+
+get_decay_curve_intra <- function(file,param, break_size) {
+                    diags <- getPairData(file=file, 
+                                         param=param)
+            
+                    intra <- diags$insert[!is.na(diags$insert)]
+                    breaks <- seq(0,300e6,break_size)
+                    inward <- hist(intra, plot=FALSE, breaks=breaks) 
+            
+                    cum_sum<-as.data.frame(cbind(span=inward$breaks[-1],
+                                                 freq=(inward$counts/break_size)/length(intra)
+                                                 )
+                                           )
+                    return(cum_sum)
+}
+```
+
+Loop over the samples:
+
+```{r}
+decay_curves<-list()
+
+for (i in samples){
+    decay_curves[[i]]<-get_decay_curve(paste0(hdf5.location,i,"_mm_trim.h5"),
+                                       break_size = 1e3, 
+                                       param=mm.param)
+}
+
+saveRDS(decay_curves, "20240624_decay_curves.rds")
+```
+
+Open file and clean up the data frame:
+
+```{r}
+decay_curves<-readRDS("20240624_decay_curves.rds")
+decay_curves<-do.call("cbind",decay_curves)
+
+decay_curves<-as.data.frame(cbind(Span=decay_curves[,1], 
+                                  decay_curves[,!grepl("span",colnames(decay_curves))]
+                                 )
+                            )
+
+colnames(decay_curves)<-unlist(strsplit(colnames(decay_curves),split = ".freq"))
+head(decay_curves)
+```
+
+## Zoomed out plots
+
+Write a plotting function:
+
+```{r}
+plot_decay_curve <- function(samples_to, colours, xmin=4.0, xmax=8, ymin=-11, ymax=-5.0, name="Decay curves"){
+                           
+                            plot(log10(samples_to[,1]),
+                                 log10(samples_to[,2]),
+                                 xlim=c(xmin,xmax),
+                                 ylim=c(ymin,ymax),
+                            ylab="Average interaction frequency (log10)",
+                            xlab="Interaction distance (log10) bp",
+                            type = "l", col=colours[1],
+                            main=name)
+                            for (i in c(3:ncol(samples_to))){
+                                points(x = log10(samples_to[,1]),
+                                       y = log10(samples_to[,i]),
+                                type = "l",
+                                col = colours[c(i-1)])
+                            }
+                            legend("bottomleft", legend=colnames(samples_to)[-1],
+                            col=(colours), lty=1, cex=0.7,lwd = 2)
+}
+```
+
+Plot all samples:
+
+```{r}
+plot_decay_curve(samples_to = decay_curves, colours = col,
+                 name="Decay curves: all samples")
+```
+
+Groups:
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1:7)], colours = col[c(1:6)],
+                 name="Decay curves: all old samples")
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,8:13)], colours = col[c(7:12)],
+                 name="Decay curves: all young samples")
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,5:7,11:13)], colours = col[c(4:6,10:12)],
+                 name="Decay curves: low MMP")
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,2:4,8:10)], colours = col[c(1:3,7:9)],
+                 name="Decay curves: high MMP")
+```
+
+Zoom in:
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1:7)], colours = col[c(1:6)],
+                 name="Decay curves: all old samples",xmin=3.5, xmax=6, ymin=-8, ymax=-4.2)
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,8:13)], colours = col[c(7:12)],
+                 name="Decay curves: all young samples",xmin=3.5, xmax=6, ymin=-8, ymax=-4.2)
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,5:7,11:13)], colours = col[c(4:6,10:12)],
+                 name="Decay curves: low MMP",xmin=3.5, xmax=6, ymin=-8, ymax=-4.2)
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,2:4,8:10)], colours = col[c(1:3,7:9)],
+                 name="Decay curves: high MMP",xmin=3.5, xmax=6, ymin=-8, ymax=-4.2)
+```
+
+### Decay curves with intra
+
+Loop over the samples:
+
+```{r}
+decay_curves<-list()
+
+for (i in samples){
+    decay_curves[[i]]<-get_decay_curve_intra(paste0(hdf5.location,i,"_mm_trim.h5"),
+                                       break_size = 1e3, 
+                                       param=mm.param)
+}
+
+saveRDS(decay_curves, "20240624_decay_curves_intra.rds")
+```
+
+Open file and clean up the data frame:
+
+```{r}
+decay_curves<-readRDS("20240624_decay_curves_intra.rds")
+decay_curves<-do.call("cbind",decay_curves)
+
+decay_curves<-as.data.frame(cbind(Span=decay_curves[,1], 
+                                  decay_curves[,!grepl("span",colnames(decay_curves))]
+                                 )
+                            )
+
+colnames(decay_curves)<-unlist(strsplit(colnames(decay_curves),split = ".freq"))
+head(decay_curves)
+```
+
+Plot all samples:
+
+```{r}
+plot_decay_curve(samples_to = decay_curves, colours = col,
+                 name="Decay curves: all samples")
+```
+
+Groups:
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1:7)], colours = col[c(1:6)],
+                 name="Decay curves: all old samples")
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,8:13)], colours = col[c(7:12)],
+                 name="Decay curves: all young samples")
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,5:7,11:13)], colours = col[c(4:6,10:12)],
+                 name="Decay curves: low MMP")
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,2:4,8:10)], colours = col[c(1:3,7:9)],
+                 name="Decay curves: high MMP")
+```
+
+Zoom in:
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1:7)], colours = col[c(1:6)],
+                 name="Decay curves: all old samples",xmin=3.5, xmax=6, ymin=-8, ymax=-4.2)
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,8:13)], colours = col[c(7:12)],
+                 name="Decay curves: all young samples",xmin=3.5, xmax=6, ymin=-8, ymax=-4.2)
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,5:7,11:13)], colours = col[c(4:6,10:12)],
+                 name="Decay curves: low MMP",xmin=3.5, xmax=6, ymin=-8, ymax=-4.2)
+```
+
+```{r}
+plot_decay_curve(samples_to = decay_curves[,c(1,2:4,8:10)], colours = col[c(1:3,7:9)],
+                 name="Decay curves: high MMP",xmin=3.5, xmax=6, ymin=-8, ymax=-4.2)
+```
+
+# Sessioninfo
+
+```{r}
+sessionInfo()
+```

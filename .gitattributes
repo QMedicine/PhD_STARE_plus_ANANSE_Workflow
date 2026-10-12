@@ -1,0 +1,8 @@
+*.tsv text eol=lf -whitespace
+*.sh text eol=lf
+*.nf text eol=lf
+*.R text eol=lf
+*.py text eol=lf
+
+# Preserve verbatim historical source whitespace.
+historical/** -text -whitespace

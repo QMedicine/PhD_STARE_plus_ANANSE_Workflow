@@ -1,0 +1,1 @@
+seqnames,start,end,width,strand,atac_mcols.width,atac_mcols.Conc,atac_mcols.Conc_Old,atac_mcols.Conc_Young,atac_mcols.Fold,atac_mcols.p.value,atac_mcols.FDR,atac_mcols.overlapping_genes,atac_mcols.overlapping_regulatory_elements,atac_mcols.PeakID,i.start,i.end,i.width,i.strand,hic_anchor1_nfrags,hic_anchor1_interaction_id,hic_anchor2_nfrags,hic_anchor2_interaction_id

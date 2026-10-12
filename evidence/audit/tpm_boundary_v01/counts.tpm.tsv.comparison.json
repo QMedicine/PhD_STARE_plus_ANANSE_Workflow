@@ -1,0 +1,21 @@
+{
+  "expected": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs/01_counts/02_tpm/counts.tpm.tsv",
+  "observed": "counts.tpm.tsv",
+  "expected_sha256": "b51e5c1e08368f7e613e6940dc47498e92293d52870ebd267212e01c854a82b3",
+  "observed_sha256": "b51e5c1e08368f7e613e6940dc47498e92293d52870ebd267212e01c854a82b3",
+  "same_keys": true,
+  "same_columns": true,
+  "expected_shape": [
+    56058,
+    4
+  ],
+  "observed_shape": [
+    56058,
+    4
+  ],
+  "exact_numeric": true,
+  "n_different_values": 0,
+  "max_absolute_error": 0.0,
+  "max_relative_error": 0.0,
+  "within_1e_12": true
+}

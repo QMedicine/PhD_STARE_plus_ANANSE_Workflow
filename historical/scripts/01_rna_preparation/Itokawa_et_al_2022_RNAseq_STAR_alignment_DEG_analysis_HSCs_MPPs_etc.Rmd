@@ -1,0 +1,1430 @@
+---
+title: "Itokawa et al 2022 RNA-seq analysis - STAR alignment DI analysis"
+author: "Quinn Stacpoole"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Import the Counts Data into R
+```{r}
+# Load necessary packages
+library(edgeR)
+library(dplyr)
+
+# Read the counts data
+counts <- read.table("/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/featureCounts/gene_counts_HSCs_MPPs_etc_with_gene_names_biotype.txt", header = TRUE, sep = "\t", comment.char = "#")
+
+
+# Clean up sample names if needed
+colnames(counts) <- sub("_Aligned\\.sortedByCoord\\.out\\.bam$", "", colnames(counts))
+
+
+colnames(counts) <- sub("X\\.vast\\.projects\\.Immune_Aging\\.Itokawa_et_al_2022_RNAseq\\.STAR_aligned_bams\\.", "", colnames(counts))
+
+# Examine the counts data
+head(counts)
+
+```
+
+```{r}
+anyNA(counts$gene_name)
+```
+
+```{r}
+sum(is.na(counts$gene_name))
+```
+
+# Try to find gene names/symbols for missing values
+```{r}
+# --- Prerequisites ---
+# Ensure you have the necessary packages installed.
+# Run these lines in your R console if you haven't installed them before:
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install("biomaRt")
+# install.packages("dplyr") # For easier data manipulation
+# install.packages("progress") # For a progress bar during BioMart query
+
+# Load the required libraries
+library(biomaRt)
+library(dplyr)
+library(progress) # Optional, but helpful for long queries
+
+# --- Load your counts data ---
+# Assuming your data frame is already loaded and named 'counts'
+# If loading from the featureCounts file:
+# counts_file <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/featureCounts/gene_counts_HSCs_MPPs_etc_with_gene_names.txt"
+# counts <- read.table(counts_file, header = TRUE, sep = "\t", comment.char = "#", stringsAsFactors = FALSE)
+# # Fix column names if needed (remove paths, suffixes)
+# data_colnames <- grep("^SRR", colnames(counts), value = TRUE) # Get only data columns
+# clean_colnames <- gsub("^_", "", gsub(".bam$", "", gsub(".*part2.", "", data_colnames))) # Example cleaning
+# colnames(counts)[match(data_colnames, colnames(counts))] <- clean_colnames
+
+# Check initial state
+print("Original data dimensions:")
+print(dim(counts))
+print(paste("Initial number of NA gene names:", sum(is.na(counts$gene_name))))
+print("Columns before enrichment:")
+print(colnames(counts))
+
+# --- Connect to Ensembl using biomaRt ---
+print("Connecting to Ensembl BioMart...")
+tryCatch({
+  ensembl_mart <- useMart(biomart = "ENSEMBL_MART_ENSEMBL",
+                          host = "https://www.ensembl.org")
+  ensembl_mart <- useDataset(dataset = "mmusculus_gene_ensembl", mart = ensembl_mart)
+  print("Connected successfully.")
+}, error = function(e) {
+  message("Error connecting to Ensembl. Check internet connection or Ensembl status.")
+  message("Original error: ", e$message)
+  stop("BioMart connection failed.")
+})
+
+
+# --- Prepare Ensembl IDs ---
+# Get unique Ensembl IDs from your counts table
+ensembl_ids <- unique(counts$Geneid)
+# Optional: Remove potential version suffixes (e.g., ".1") if they exist
+# ensembl_ids <- gsub("\\..*$", "", ensembl_ids)
+print(paste("Number of unique Ensembl IDs to query:", length(ensembl_ids)))
+
+# --- Query BioMart ---
+# Define the attributes we want to retrieve
+attributes_to_get <- c(
+  "ensembl_gene_id",  # The ID we are using to query
+  "entrezgene_id",    # Entrez Gene ID
+  "mgi_symbol",       # The common gene symbol from MGI
+  "mgi_id"            # The MGI database ID
+)
+
+# Define the filter (what we are searching by)
+filters_to_use <- "ensembl_gene_id"
+
+print("Querying BioMart for Entrez IDs, MGI symbols, and MGI IDs...")
+# Estimate chunks if querying a very large number of IDs (e.g., > 5000)
+# chunk_size <- 2000
+# id_chunks <- split(ensembl_ids, ceiling(seq_along(ensembl_ids)/chunk_size))
+# gene_info_list <- list()
+
+# Initialize progress bar
+# pb <- progress_bar$new(
+#   format = "  Querying BioMart [:bar] :percent eta: :eta",
+#   total = length(id_chunks), clear = FALSE, width = 60)
+
+# Perform the query (can take a few minutes for many genes)
+# Consider chunking if you get timeouts or errors with a large list
+# for(i in seq_along(id_chunks)){
+#   chunk_info <- getBM(
+#     attributes = attributes_to_get,
+#     filters    = filters_to_use,
+#     values     = id_chunks[[i]],
+#     mart       = ensembl_mart
+#   )
+#   gene_info_list[[i]] <- chunk_info
+#   pb$tick()
+# }
+# Combine results from chunks
+# gene_info <- bind_rows(gene_info_list)
+
+# Single query (usually fine for < ~20k IDs)
+tryCatch({
+ gene_info <- getBM(
+   attributes = attributes_to_get,
+   filters    = filters_to_use,
+   values     = ensembl_ids,
+   mart       = ensembl_mart
+ )
+}, error = function(e){
+    message("Error during getBM query. Consider querying in smaller chunks.")
+    message("Original error: ", e$message)
+    stop("BioMart query failed.")
+})
+
+
+print(paste("Retrieved info for", nrow(gene_info), "entries from BioMart."))
+head(gene_info) # Optional: view the retrieved info
+```
+
+
+```{r}
+# --- Process BioMart results ---
+print("Processing BioMart results...")
+# 1. Handle cases where MGI might be NA or empty strings ""
+#    NOTE: Removed the line for entrezgene_id as it's integer and doesn't contain "".
+gene_info <- gene_info %>%
+  dplyr::mutate( # Explicitly use dplyr::mutate
+    # entrezgene_id = na_if(entrezgene_id, ""), # Removed this line in previous step
+    mgi_symbol = na_if(mgi_symbol, ""),
+    mgi_id = na_if(mgi_id, "")
+  ) %>%
+  # Ensure EntrezID is character for flexibility later if needed, handle actual NAs
+  dplyr::mutate(entrezgene_id = as.character(entrezgene_id)) # Explicitly use dplyr::mutate
+
+# 2. Remove duplicated Ensembl IDs (e.g., if one Ensembl ID maps to multiple Entrez IDs)
+#    Keep the first match found by BioMart. Prioritize rows with MGI symbols if deciding between duplicates.
+gene_info <- gene_info %>%
+  dplyr::arrange(ensembl_gene_id, desc(!is.na(mgi_symbol))) %>% # Explicitly use dplyr::arrange
+  dplyr::filter(!duplicated(ensembl_gene_id))                   # Explicitly use dplyr::filter
+
+print(paste("Retained info for", nrow(gene_info), "unique Ensembl IDs after processing."))
+# head(gene_info) # Optional check
+
+# --- Merge BioMart info with the counts table ---
+print("Merging BioMart information with counts table...")
+# Select only necessary columns before join to avoid duplicate info columns
+# --- CORRECTED LINE using dplyr::select ---
+counts_orig_info <- counts %>% dplyr::select(Geneid, Chr, Start, End, Strand, Length, gene_name, gene_biotype)
+
+# Assuming count columns start with SRR or similar pattern, adjust if needed
+# --- CORRECTED LINE using dplyr::select and tidyselect helpers ---
+counts_data <- counts %>% dplyr::select(Geneid, matches("^SRR")) # Use tidyselect helper
+
+# Check if the selection worked
+if(nrow(counts_orig_info) == 0 || ncol(counts_orig_info) < 8) {
+    stop("Selection of original info columns failed. Check column names in 'counts'.")
+}
+if(nrow(counts_data) == 0 || ncol(counts_data) < 2) {
+    stop("Selection of count data columns failed. Check column names starting with 'SRR'.")
+}
+
+
+# Join annotation info fetched from biomart
+counts_annotated <- dplyr::left_join(counts_orig_info, gene_info, by = c("Geneid" = "ensembl_gene_id"))
+
+# Join back the count data
+counts_final <- dplyr::left_join(counts_annotated, counts_data, by = "Geneid")
+
+# Check columns after merge
+print("Columns after merging:")
+print(colnames(counts_final))
+# head(counts_final) # Optional: view merged data
+
+# --- Fill missing original gene_name values ---
+# (This part remains the same as it uses base R indexing)
+# Step 1: Fill NA 'gene_name' with 'mgi_symbol' where available
+print("Attempting to fill missing original gene names using fetched MGI symbols...")
+initial_na_count <- sum(is.na(counts_final$gene_name))
+# Need to check if mgi_symbol column exists after join
+if("mgi_symbol" %in% colnames(counts_final)) {
+    indices_to_fill_mgi <- which(is.na(counts_final$gene_name) & !is.na(counts_final$mgi_symbol))
+    if(length(indices_to_fill_mgi) > 0) {
+      counts_final$gene_name[indices_to_fill_mgi] <- counts_final$mgi_symbol[indices_to_fill_mgi]
+      print(paste("Filled", length(indices_to_fill_mgi), "gene names using MGI symbols."))
+    } else {
+      print("No missing gene names could be filled using available MGI symbols.")
+    }
+} else {
+     print("Column 'mgi_symbol' not found after merge. Skipping fill step.")
+}
+print(paste("NA gene names remaining after MGI fill:", sum(is.na(counts_final$gene_name))))
+
+# Step 2: Fill remaining NA 'gene_name' with the 'Geneid' (Ensembl ID)
+print("Filling any remaining missing gene names with Ensembl Gene IDs as fallback...")
+indices_to_fill_ensembl <- which(is.na(counts_final$gene_name))
+
+if(length(indices_to_fill_ensembl) > 0) {
+  counts_final$gene_name[indices_to_fill_ensembl] <- counts_final$Geneid[indices_to_fill_ensembl]
+  print(paste("Filled", length(indices_to_fill_ensembl), "gene names using Ensembl IDs."))
+} else {
+  print("No remaining NA gene names to fill with Ensembl IDs.")
+}
+
+# Final check for NAs in gene_name
+final_na_count <- sum(is.na(counts_final$gene_name))
+print(paste("Final count of NA gene names:", final_na_count))
+if(final_na_count > 0) {
+    print("Warning: Some gene names are still NA after all steps. This should not happen with the fallback.")
+}
+
+# --- Finalize Columns ---
+print("Finalizing columns...")
+# Ensure column names from BioMart are handled correctly after the join
+# --- CORRECTED LINE using dplyr::rename and dplyr::select ---
+counts_final <- counts_final %>%
+  dplyr::rename(EntrezID = entrezgene_id, MGI_ID = mgi_id) %>%
+  # Reorder and remove temporary mgi_symbol. Adjust if columns differ.
+  dplyr::select(Geneid, gene_name, gene_biotype, EntrezID, MGI_ID, Chr, Start, End, Strand, Length, matches("^SRR"), -any_of("mgi_symbol"))
+
+
+print("Final columns reordered:")
+print(colnames(counts_final))
+print("Final data dimensions:")
+print(dim(counts_final))
+print("Sample of final data:")
+print(head(counts_final))
+```
+
+
+```{r}
+# --- Optional: Save the updated counts_final table ---
+output_file_rds <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final.rds" # Save as RDS object
+saveRDS(counts_final, file = output_file_rds)
+# Or save as CSV/TSV
+output_file_tsv <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final.tsv"
+write.table(counts_final, file=output_file_tsv, row.names=FALSE, quote=TRUE, sep="\t")
+
+print("Script finished.")
+```
+
+
+
+```{r}
+# Remove unnecessary columns (first 6 columns are annotations)
+counts_data <- counts_final[, -(1:10)]
+rownames(counts_data) <- counts_final$Geneid
+
+# Check the data
+head(counts_data)
+
+```
+
+```{r}
+library(edgeR)
+library(ComplexHeatmap)
+library(GenomicRanges)
+```
+
+
+```{r}
+# Load the edgeR library
+library(edgeR)
+library(stringr) # For easier string manipulation if needed
+library(dplyr)   # For easier data frame manipulation if needed
+
+# Assuming your raw counts matrix is 'counts_data'
+# Assuming your gene annotation data frame is 'counts_final'
+
+# --- 1. Prepare Sample Information ---
+
+# Extract sample information from column names
+sample_names <- colnames(counts_data)
+
+# Create a data frame to hold sample metadata
+sample_info <- data.frame(
+  SampleName = sample_names,
+  # Extract Age (Young/Old) - Assumes format like "..._Age_..."
+  Age = str_extract(sample_names, "(Young|Old)"),
+  # Extract Cell Type - Assumes format like "..._CellType_..."
+  CellType = str_extract(sample_names, "(HSC|MPP1|MPP2|MPP3|MPP4|GMP|MEP|CLP)"),
+  # Extract Replicate - Assumes format like "..._RepX"
+  Replicate = str_extract(sample_names, "Rep[0-9]+"),
+  row.names = sample_names # Optional: set row names for easier matching
+)
+
+# Create a combined 'Group' factor for easier modeling initially
+# This represents each unique combination of Age and CellType
+sample_info$Group <- factor(paste(sample_info$Age, sample_info$CellType, sep = "_"))
+
+sample_info
+```
+
+```{r}
+sample_info
+```
+
+
+```{r}
+levels(sample_info$Group) # Check the groups created
+```
+
+
+```{r}
+# --- 2. Create DGEList Object and Add Gene Annotation ---
+
+# Ensure gene IDs in counts_final match the rownames of counts_data
+# It's CRUCIAL that the order of genes in counts_final matches the order
+# of genes (rownames) in counts_data *after* creating the DGEList.
+
+# Create the DGEList object
+# We use the combined 'Group' factor here for initial setup
+dge <- DGEList(counts = counts_data,
+               group = sample_info$Group,
+               samples = sample_info) # Add all sample info
+
+# Add gene annotations from counts_final to dge$genes
+# First, make sure the order matches
+gene_order_match <- match(rownames(dge), counts_final$Geneid)
+
+# Check if all gene IDs were found (optional but recommended)
+if (any(is.na(gene_order_match))) {
+  warning("Not all rownames in counts_data matched Geneid in counts_final!")
+  # You might need to investigate missing/mismatched IDs here
+}
+
+# Reorder counts_final to match the DGEList rownames and select desired columns
+dge$genes <- counts_final[gene_order_match,
+                          c("Geneid", "gene_name", "gene_biotype",
+                            "EntrezID", "MGI_ID", "Length")]
+
+# Sanity check: verify row names of counts match Geneid in dge$genes
+# print(head(cbind(rownames(dge$counts), dge$genes$Geneid)))
+stopifnot(all(rownames(dge) == dge$genes$Geneid))
+
+# Ensure the 'Length' column is numeric for RPKM calculation
+dge$genes$Length <- as.numeric(dge$genes$Length)
+if(any(is.na(dge$genes$Length))) {
+    warning("Some gene lengths were NA or could not be converted to numeric. RPKM might be NA for these genes.")
+}
+head(dge$genes)
+```
+
+
+```{r}
+dim(dge)
+```
+
+# Save the dge object
+```{r}
+saveRDS(dge, file = "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_dge.rds")
+```
+
+
+```{r}
+# --- 3. Calculate RPKM Values (Before Filtering/Normalization) ---
+
+# RPKM uses the original library sizes and requires gene lengths
+# Ensure gene lengths are present and numeric (done in the previous step)
+# Note: rpkm() uses library sizes from dge$samples$lib.size, which DGEList() calculates automatically
+# from column sums of the counts matrix.
+
+# Calculate RPKM for all genes and samples present *before* filtering
+rpkm_matrix <- rpkm(dge, gene.length = dge$genes$Length)
+```
+
+```{r}
+head(rpkm_matrix)
+```
+
+# Save the rpkm object
+```{r}
+saveRDS(rpkm_matrix, file = "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_rpkm_matrix.rds")
+```
+
+
+```{r}
+dim(rpkm_matrix) # Dimensions should match genes with valid lengths x samples
+```
+
+
+########################
+# DE analysis with edgeR
+```{r}
+# --- 4. Filtering Lowly Expressed Genes ---
+
+# Define the design matrix based on the groups you want to keep track of.
+# Using the combined 'Group' is suitable here for filtering across all conditions.
+# The ~0+ formulation creates a coefficient for each group level without an intercept.
+design <- model.matrix(~0 + Group, data = dge$samples)
+colnames(design) <- levels(dge$samples$Group) # Make column names cleaner
+
+# Use filterByExpr - it considers library sizes and the design matrix
+# to suggest genes to keep. Minimum group size is automatically detected.
+keep <- filterByExpr(dge, design = design)
+dge_filtered <- dge[keep, , keep.lib.sizes = FALSE] # keep.lib.sizes=FALSE recalculates lib sizes
+
+n_genes_before <- nrow(dge)
+n_genes_after <- nrow(dge_filtered)
+print(paste("Filtering removed", n_genes_before - n_genes_after, "genes."))
+print(paste("Remaining genes:", n_genes_after))
+```
+
+
+```{r}
+# --- 5. TMM Normalization ---
+
+# Calculate normalization factors using the Trimmed Mean of M-values (TMM) method
+# This accounts for library size and compositional differences.
+# It calculates factors which adjust the library sizes used in downstream modeling.
+dge_norm <- calcNormFactors(dge_filtered)
+
+head(dge_norm$samples)
+```
+
+
+```{r}
+saveRDS(dge_norm, file = "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_dge_TMM_norm.rds")
+```
+
+
+
+```{r}
+# Plot MDS to visualize sample relationships after normalization
+plotMDS(dge_norm, labels = dge_norm$samples$Group, col = as.numeric(dge_norm$samples$Group))
+title("MDS Plot after TMM Normalization")
+```
+
+
+```{r}
+# --- 6. Differential Expression Analysis (Old HSC vs Young HSC) ---
+
+# edgeR's recommended approach is the Quasi-Likelihood F-test pipeline.
+# We use the design matrix created earlier (~0 + Group).
+
+# Estimate dispersions (common, trended, and tagwise/gene-wise)
+# estimateDisp uses the design matrix. robust=TRUE is recommended.
+dge_disp <- estimateDisp(dge_norm, design = design, robust = TRUE)
+
+# Optional: Visualize dispersion estimates
+# plotBCV(dge_disp)
+# title("Biological Coefficient of Variation (BCV) Plot")
+
+# Fit the Quasi-Likelihood Negative Binomial GLM
+# This fits the model for each gene and estimates QL dispersions.
+fit_ql <- glmQLFit(dge_disp, design = design, robust = TRUE)
+```
+
+
+```{r}
+# Plot QL dispersions
+plotQLDisp(fit_ql)
+title("Quasi-Likelihood (QL) Dispersion Plot")
+```
+
+
+```{r}
+# Define the contrast for the comparison of interest: Old HSC vs Young HSC
+# We use makeContrasts based on the column names of the design matrix.
+# The column names should be 'Old_HSC', 'Young_HSC', etc.
+contrast_hsc <- makeContrasts(Old_vs_Young_HSC = Old_HSC - Young_HSC, levels = design)
+print("Contrast matrix for Old HSC vs Young HSC:")
+print(contrast_hsc)
+```
+
+
+```{r}
+# Perform the Quasi-Likelihood F-test for the defined contrast
+qlf_hsc <- glmQLFTest(fit_ql, contrast = contrast_hsc)
+```
+
+```{r}
+# --- 7. View Results ---
+
+# Get the table of top differentially expressed genes (ranked by FDR)
+top_hsc_tags <- topTags(qlf_hsc, n = 20) # Show top 20
+print("Top differentially expressed genes (Old HSC vs Young HSC):")
+print(top_hsc_tags)
+```
+
+
+```{r}
+
+# Get results for ALL tested genes, sorted by p-value
+all_hsc_results <- topTags(qlf_hsc, n = Inf)$table
+```
+
+
+```{r}
+head(all_hsc_results, n=20)
+```
+
+
+```{r}
+
+OvY_HSC_DEGs_FDR_p05 <- all_hsc_results[all_hsc_results$FDR<0.05, ]
+
+```
+
+
+```{r}
+# Create an MA plot (Smear plot in edgeR terms)
+plotMD(qlf_hsc, main = "MA Plot: Old HSC vs Young HSC", cex=0.5, bg.cex=0.5)
+
+```
+
+
+```{r}
+# Define the directory
+plot_dir <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_DEG_Plots"
+
+# Get the current date
+current_date <- Sys.Date()
+
+# Create the full file paths with date prefix
+pdf_file <- file.path(plot_dir, paste0(current_date, "_MA_Plot_Old_HSC_vs_Young_HSC.pdf"))
+
+# Open a new Cairo device with specified dimensions
+library(Cairo)
+CairoPDF(file = pdf_file, width=5, height=5, pointsize = 12, bg = "transparent", onefile = TRUE, canvas = "white")
+
+# Create an MA plot (Smear plot in edgeR terms)
+plotMD(qlf_hsc, main = "MA Plot: Old HSC vs Young HSC", cex=0.5, bg.cex=0.5)
+
+dev.off()
+```
+
+
+
+
+```{r}
+# --- Final Outputs ---
+output_file_rds <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_OvY_HSC_DEGs_FDR_p05.rds" # Save as RDS object
+saveRDS(OvY_HSC_DEGs_FDR_p05, file = output_file_rds)
+# Or save as CSV/TSV
+output_file_tsv <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_OvY_HSC_DEGs_FDR_p05.tsv"
+write.table(OvY_HSC_DEGs_FDR_p05, file=output_file_tsv, row.names=FALSE, sep="\t")
+
+```
+
+
+Create genomic ranges object of significant DEGs
+```{r}
+# Load required packages
+library(edgeR)
+library(rtracklayer)
+
+# Import the GTF file
+gtf_file <- "/vast/projects/Immune_Aging/Reference_genomes/mm39/ensembl_release-113/Mus_musculus.GRCm39.113.gtf"
+gtf <- import(gtf_file)
+
+# Extract gene-level annotations
+genes_gtf <- gtf[gtf$type == "gene"]
+```
+
+
+```{r}
+# Create a data frame with genomic ranges
+gene_ranges <- data.frame(
+  Geneid = mcols(genes_gtf)$gene_id,
+  seqnames = as.character(seqnames(genes_gtf)),
+  start = start(genes_gtf),
+  end = end(genes_gtf),
+  strand = as.character(strand(genes_gtf)),
+  stringsAsFactors = FALSE
+)
+
+head(gene_ranges)
+```
+
+
+```{r}
+# Merge genomic ranges with significant DEGs
+OvY_HSC_DEGs_FDR_p05_ranges <- merge(
+  OvY_HSC_DEGs_FDR_p05,
+  gene_ranges,
+  by = "Geneid",
+  all.x = TRUE
+)
+
+head(OvY_HSC_DEGs_FDR_p05_ranges)
+```
+
+
+```{r}
+# Check for missing genomic ranges
+num_missing_ranges <- sum(is.na(OvY_HSC_DEGs_FDR_p05_ranges$seqnames))
+cat("Number of DEGs without genomic ranges:", num_missing_ranges, "\n")
+
+```
+
+
+```{r}
+# order by FDR
+OvY_HSC_DEGs_FDR_p05_ranges <- OvY_HSC_DEGs_FDR_p05_ranges[order(OvY_HSC_DEGs_FDR_p05_ranges$FDR), ]
+head(OvY_HSC_DEGs_FDR_p05_ranges)
+```
+
+
+```{r}
+
+# Save the annotated data frame
+
+# Define the directory
+tables_dir <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types"
+
+
+# Get the current date
+current_date <- Sys.Date()
+
+# Create the full file paths with date prefix
+tsv_file <- file.path(tables_dir, paste0(current_date, "_Itokawa_et_al_2022_RNAseq_STAR_aligned_OvY_HSC_DEGs_FDR_p05_with_ranges.tsv"))
+
+write.table(OvY_HSC_DEGs_FDR_p05_ranges, tsv_file, sep = "\t", row.names = FALSE)
+
+```
+
+
+```{r}
+# Create GRanges object from the annotated DEGs
+degs_granges <- makeGRangesFromDataFrame(OvY_HSC_DEGs_FDR_p05_ranges,
+                                         seqnames.field = "seqnames",
+                                         start.field = "start",
+                                         end.field = "end",
+                                         strand.field = "strand",
+                                         keep.extra.columns = TRUE,
+                                         )
+head(degs_granges)
+```
+
+```{r}
+# Assuming 'gtf' is your imported GTF GRanges object
+seqlevels(gtf)  # Get the sequence names (chromosomes)
+```
+```{r}
+seqlevels(degs_granges)
+```
+
+```{r}
+# Read the chromosome lengths from the .fai file
+fai_file <- "/vast/projects/Immune_Aging/Reference_genomes/mm39/ensembl_release-113/Mus_musculus.GRCm39.dna.primary_assembly.fa.fai"
+chrom_lengths <- read.table(fai_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE)
+
+# Create a named vector of chromosome lengths
+seqlengths_fai <- setNames(chrom_lengths$V2, chrom_lengths$V1)
+seqlengths_fai
+```
+
+```{r}
+
+# Then, ensure that the chromosome names in 'seqlengths_vector' match those in 'degs_granges'
+common_seqnames <- intersect(seqlevels(degs_granges), names(seqlengths_fai))
+
+# Subset 'seqlengths_fai' to include only the relevant chromosomes
+seqlengths_to_add <- seqlengths_fai[common_seqnames]
+
+# Set the seqlengths in your GRanges object
+seqlengths(degs_granges) <- seqlengths_to_add
+
+# Create a Seqinfo object
+seqinfo_degs <- Seqinfo(
+  seqnames = names(seqlengths_to_add),
+  seqlengths = seqlengths_to_add,
+  genome = "GRCm39"  # Specify the genome assembly
+)
+
+# Assign the Seqinfo object to your GRanges object
+seqinfo(degs_granges) <- seqinfo_degs
+seqinfo(degs_granges)
+head(degs_granges)
+
+```
+
+Harmonize seqinfo Across GRanges Objects
+Extend seqinfo to Include All Chromosomes, obtain the full Seqinfo object for the genome assembly and save as an object you can use on all future granges objects from other omics granges objects you wish to compare or findOverlaps for.
+```{r}
+# Use the genome assembly to create a full Seqinfo object
+full_seqinfo <- Seqinfo(
+  seqnames = names(seqlengths_fai),
+  seqlengths = seqlengths_fai,
+  genome = "GRCm39"
+)
+
+saveRDS(full_seqinfo, file = "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/full_seqinfo.rds")
+```
+
+
+```{r}
+# Extend seqlevels to include all chromosomes
+seqlevels(degs_granges) <- seqlevels(full_seqinfo)
+
+# Assign full_seqinfo to degs_granges
+seqinfo(degs_granges) <- full_seqinfo
+seqinfo(degs_granges)
+
+# then do the same for all granges object you wish to compare with findOverlaps
+```
+
+
+```{r}
+# Load necessary libraries
+library(GenomicRanges)
+library(rtracklayer)
+
+# Create a new column for RGB color coding
+degs_granges$rgb_color <- ifelse(degs_granges$logFC > 0, "255,0,0", "0,0,255") # Red for upregulated, Blue for downregulated
+```
+
+```{r}
+head(degs_granges)
+```
+
+
+Save the granges object
+```{r}
+saveRDS(degs_granges, file = "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_OvY_HSC_DEGs_FDR_p05_Granges.rds")
+```
+
+```{r}
+# Convert GRanges object to a data frame
+granges_df <- as.data.frame(degs_granges)
+
+# Ensure the BED file has the correct columns
+bed_df <- data.frame(
+  chrom = granges_df$seqnames,
+  chromStart = granges_df$start - 1, # BED format uses 0-based start
+  chromEnd = granges_df$end,
+  name = granges_df$gene_name, # Assuming 'gene_id' is a column in your GRanges object
+  score = 0, # Placeholder score
+  strand = granges_df$strand,
+  thickStart = granges_df$start - 1,
+  thickEnd = granges_df$end,
+  itemRgb = granges_df$rgb_color
+)
+
+# Export the data frame to a BED file
+output_file <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_aligned_OvY_HSC_DEGs_FDR_p05_Granges_colored.bed"
+write.table(bed_df, file = output_file, quote = FALSE, sep = "\t", row.names = FALSE, col.names = FALSE)
+
+head(bed_df)
+```
+
+
+
+Create bedgraph files for DEGs
+```{r}
+library(GenomicRanges)
+library(rtracklayer)
+
+bedgraph_data <- data.frame(
+  chrom = granges_df$seqnames,
+  chromStart = granges_df$start - 1, # BED format uses 0-based start
+  chromEnd = granges_df$end,
+  score = granges_df$logFC
+)
+
+
+# Define output directory for BEDGRAPH files
+bedgraph_dir <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types"
+
+# Export BEDGRAPH file
+bedgraph_path <- file.path(bedgraph_dir, "Itokawa_et_al_2022_RNAseq_STAR_aligned_OvY_HSC_DEGs_FDR_p05_Granges_colored.bedgraph")
+
+write.table(bedgraph_data, file = bedgraph_path, quote = FALSE, sep = "\t", row.names = FALSE, col.names = FALSE)
+
+```
+
+
+```{r}
+head(bedgraph_data)
+```
+
+
+
+
+###########################
+###########################
+###########################
+###########################
+# Heatmaps
+Counts Per Million (CPM):
+CPM is a normalization method that adjusts raw read counts by:
+Accounting for library size differences (total number of reads per sample).
+Scaling counts to a "per million" reads basis for comparability across samples.
+
+Log Transformation:
+CPM values are often log-transformed to:
+Reduce the skew caused by highly expressed genes.
+Stabilize variance across genes with differing expression levels.
+
+Color Scale:
+Blue (low logCPM): Indicates low expression.
+Red (high logCPM): Indicates high expression.
+White (middle values): Represents medium expression levels.
+```{r fig.width=5, fig.height=10}
+library(ComplexHeatmap)
+library(circlize)
+
+# Log-transform normalized counts for heatmap
+logCPM <- cpm(dge, log = TRUE)
+
+rownames(OvY_HSC_DEGs_FDR_p05_Granges)<-OvY_HSC_DEGs_FDR_p05_Granges$Geneid
+
+# Select top 50 DE genes by FDR for heatmap
+top_genes <- head(OvY_HSC_DEGs_FDR_p05_Granges[order(OvY_HSC_DEGs_FDR_p05_Granges$FDR), ], 50)
+
+# Extract the gene names for the top DE genes
+top_gene_names <- top_genes$gene_name
+
+# Subset logCPM for the top genes
+heatmap_data <- logCPM[top_genes, ]
+
+column_order <- order(group)
+
+# Generate heatmap with gene names as row labels
+Heatmap(
+  heatmap_data,
+  name = "logCPM",
+  row_names_gp = gpar(fontsize = 8),  # Adjust font size if needed
+  row_labels = top_gene_names,       # Use gene names as labels
+  column_split = group,              # Split columns by group
+  column_order = column_order,
+  show_row_names = TRUE,             # Display row names (gene names)
+  show_column_names = TRUE,          # Display column names (samples)
+  cluster_columns = FALSE,            # Cluster columns
+  cluster_rows = TRUE,                # Cluster rows
+  col = colorRamp2(c(min(heatmap_data), 0, max(heatmap_data)), c("white", "pink", "purple")), #set colour range
+  column_names_rot = 45              # Rotate column names by 45 degrees
+  #clustering_distance_rows = "pearson",  # Use Pearson correlation for distance
+  #clustering_method_rows = "complete"   # Use complete linkage for clustering
+)
+
+# Define the directory
+plot_dir <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_DEG_Plots"
+
+
+# Get the current date
+current_date <- Sys.Date()
+
+# Create the full file paths with date prefix
+pdf_file <- file.path(plot_dir, paste0(current_date, "_top50_DEG_logCPM_Heatmap.pdf"))
+
+# Open a new Cairo device with specified dimensions
+library(Cairo)
+CairoPDF(file = pdf_file, width=5, height=10, pointsize = 12, bg = "transparent", onefile = TRUE, canvas = "white")
+
+# Generate heatmap with gene names as row labels
+Heatmap(
+  heatmap_data,
+  name = "logCPM",
+  row_names_gp = gpar(fontsize = 8),  # Adjust font size if needed
+  row_labels = top_gene_names,       # Use gene names as labels
+  column_split = group,              # Split columns by group
+  column_order = column_order,
+  show_row_names = TRUE,             # Display row names (gene names)
+  show_column_names = TRUE,          # Display column names (samples)
+  cluster_columns = FALSE,            # Cluster columns
+  cluster_rows = TRUE,                # Cluster rows
+  col = colorRamp2(c(min(heatmap_data), 0, max(heatmap_data)), c("white", "pink", "purple")), #set colour range
+  column_names_rot = 45              # Rotate column names by 45 degrees
+  #clustering_distance_rows = "pearson",  # Use Pearson correlation for distance
+  #clustering_method_rows = "complete"   # Use complete linkage for clustering
+)
+dev.off()
+```
+
+
+Script for Heatmap with logFC
+```{r fig.width=5, fig.height=10}
+library(ComplexHeatmap)
+library(circlize)
+
+# Select top 50 DE genes by FDR
+top_de_genes <- head(OvY_HSC_DEGs_FDR_p05_Granges[order(OvY_HSC_DEGs_FDR_p05_Granges$FDR), ], 50)
+
+# Extract logFC for the top genes
+logFC_matrix <- matrix(top_de_genes$logFC, ncol = 1)
+rownames(logFC_matrix) <- top_de_genes$gene_name
+colnames(logFC_matrix) <- "logFC"
+
+# Define color scale (red for upregulated, blue for downregulated)
+col_fun <- colorRamp2(c(min(logFC_matrix), 0, max(logFC_matrix)),
+                      c("blue", "white", "red"))
+
+# Generate heatmap
+Heatmap(
+  logFC_matrix,
+  name = "logFC",
+  col = col_fun,
+  row_names_gp = gpar(fontsize = 8),  # Adjust font size for row labels
+  column_names_gp = gpar(fontsize = 10),  # Adjust font size for column label
+  cluster_rows = TRUE,  # Cluster genes
+  show_column_names = TRUE,  # Show logFC as column name
+  heatmap_legend_param = list(title = "logFC", legend_direction = "horizontal")
+)
+
+```
+
+Combine logCPM and logFC: You can overlay the expression heatmap (logCPM) with annotations for logFC using a separate annotation bar.
+```{r fig.width=5, fig.height=10}
+library(ComplexHeatmap)
+library(circlize)
+
+# Log-transform normalized counts for heatmap
+logCPM <- cpm(dge, log = TRUE)
+
+# Select top 100 DE genes by FDR for heatmap
+top_genes <- head(rownames(OvY_HSC_DEGs_FDR_p05_Granges[order(OvY_HSC_DEGs_FDR_p05_Granges$FDR), ]), 100)
+
+# Extract the gene names for the top DE genes
+top_gene_names <- OvY_HSC_DEGs_FDR_p05_Granges$gene_name[match(top_genes, OvY_HSC_DEGs_FDR_p05_Granges$gene_id)]
+
+# Select top 100 DE genes by FDR
+top_de_genes <- head(OvY_HSC_DEGs_FDR_p05_Granges[order(OvY_HSC_DEGs_FDR_p05_Granges$FDR), ], 100)
+
+# Extract logFC for the top genes
+logFC_matrix <- matrix(top_de_genes$logFC, ncol = 1)
+rownames(logFC_matrix) <- top_de_genes$gene_name
+colnames(logFC_matrix) <- "logFC"
+
+# Subset logCPM for the top DE genes
+heatmap_data <- logCPM[top_genes, ]
+rownames(heatmap_data) <- top_gene_names
+
+# Define color functions
+logCPM_col_fun <- colorRamp2(c(min(heatmap_data), 0, max(heatmap_data)), c("white", "pink", "purple"))
+logFC_col_fun <- colorRamp2(c(min(top_de_genes$logFC), 0, max(top_de_genes$logFC)), c("blue", "white", "red"))
+
+# Define row annotation for logFC
+logFC_annotation <- rowAnnotation(
+  logFC = anno_simple(
+    top_de_genes$logFC,
+    col = logFC_col_fun,
+    width = unit(1, "cm")
+  )
+)
+
+# Create heatmap
+heatmap <- Heatmap(
+  heatmap_data,
+  name = "logCPM",
+  right_annotation = logFC_annotation,
+  col = logCPM_col_fun,
+  row_names_gp = gpar(fontsize = 6),
+  cluster_rows = TRUE,
+  cluster_columns = FALSE,
+  column_order = order(group),
+  show_column_names = TRUE,
+  heatmap_legend_param = list(title = "logCPM", legend_direction = "horizontal"),
+  column_names_rot = 45,
+  column_title = "Top 100 DE genes, FDR<0.05",
+  column_title_gp = gpar(fontsize = 14)
+)
+
+# Add a separate legend for logFC
+logFC_legend <- Legend(
+  title = "logFC",
+  col_fun = logFC_col_fun,
+  at = c(min(top_de_genes$logFC), 0, max(top_de_genes$logFC)),
+  labels = c("Downregulated", "No Change", "Upregulated"),
+  legend_height = unit(1, "in")
+)
+
+# Combine the heatmap and additional legend
+draw(heatmap, annotation_legend_list = list(logFC_legend), merge_legend = TRUE)
+
+# Define the directory
+plot_dir <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_DEG_Plots"
+
+
+# Get the current date
+current_date <- Sys.Date()
+
+# Create the full file paths with date prefix
+pdf_file <- file.path(plot_dir, paste0(current_date, "_top100_DEG_logCPM_Heatmap_w_logFC.pdf"))
+
+# Open a new Cairo device with specified dimensions
+library(Cairo)
+CairoPDF(file = pdf_file, width=5, height=10, pointsize = 12, bg = "transparent", onefile = TRUE, canvas = "white")
+
+# Combine the heatmap and additional legend
+draw(heatmap, annotation_legend_list = list(logFC_legend), merge_legend = TRUE)
+
+dev.off()
+```
+
+
+
+Custom theme for plotting
+```{r}
+library(ggplot2)
+custom_theme <- theme_minimal() +
+  theme(
+    text = element_text(family = "Arial", size = 12),
+    plot.title = element_text(size = 14, face = "bold"),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10),
+    panel.grid = element_blank(),
+    axis.line = element_line(color="black"),
+    axis.ticks = element_line(color="black")
+  )
+```
+
+# MA Plot
+
+```{r fig.width=5, fig.height=4}
+library(edgeR)
+library(ggplot2)
+library(ggrepel)
+
+de_genes_annotated <- OvY_HSC_DEGs_FDR_p05_Granges
+# Create a column for coloring points
+de_genes_annotated$color <- "grey"
+de_genes_annotated$color[de_genes_annotated$logFC > 1 & de_genes_annotated$FDR < 0.05] <- "red"
+de_genes_annotated$color[de_genes_annotated$logFC < -1 & de_genes_annotated$FDR < 0.05] <- "blue"
+
+# Create the MA plot
+p <- ggplot(de_genes_annotated, aes(x = logCPM, y = logFC)) +
+  geom_point(aes(color = color), alpha = 0.5) +
+  scale_color_identity() +
+  theme_bw() +
+  labs(x = "Average log CPM", y = "log2 Fold Change",
+       title = "Differentially expressed genes\nOld vs Young, FDR < 0.05") +
+  geom_hline(yintercept = c(-1, 1), linetype = "dashed", color = "darkgrey") +
+  geom_hline(yintercept = 0, linetype = "solid", color = "black")+
+  custom_theme
+
+# Display the plot
+print(p)
+
+# To label specific genes, you can create a subset of genes to label
+# For example, let's label the top 10 most significant genes
+top_genes <- de_genes_annotated[order(de_genes_annotated$FDR),][1:10,]
+
+# Add labels to the plot
+p_labeled <- p +
+  geom_text_repel(data = top_genes, 
+                  aes(label = gene_name),
+                  size = 4,
+                  box.padding = unit(0.35, "lines"),
+                  point.padding = unit(0.3, "lines"))
+
+# Display the labeled plot
+print(p_labeled)
+
+# Define the directory
+plot_dir <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_DEG_Plots"
+
+
+# Get the current date
+current_date <- Sys.Date()
+
+# Create the full file paths with date prefix
+pdf_file <- file.path(plot_dir, paste0(current_date, "_MA_plot_DEGs_FDR_0.05.pdf"))
+
+# Open a new Cairo device with specified dimensions
+library(Cairo)
+CairoPDF(file = pdf_file, width=5, height=4, pointsize = 12, bg = "transparent", onefile = TRUE)
+
+# Create the MA plot
+p <- ggplot(de_genes_annotated, aes(x = logCPM, y = logFC)) +
+  geom_point(aes(color = color), alpha = 0.5) +
+  scale_color_identity() +
+  theme_bw() +
+  labs(x = "Average log CPM", y = "log2 Fold Change",
+       title = "Differentially expressed genes\nOld vs Young, FDR < 0.05") +
+  geom_hline(yintercept = c(-1, 1), linetype = "dashed", color = "darkgrey") +
+  geom_hline(yintercept = 0, linetype = "solid", color = "black")+
+  custom_theme+
+  theme(plot.title = element_text(hjust = 0.5))
+
+# To label specific genes, you can create a subset of genes to label
+# For example, let's label the top 10 most significant genes
+top_genes <- de_genes_annotated[order(de_genes_annotated$FDR),][1:10,]
+
+# Add labels to the plot
+  p +
+  geom_text_repel(data = top_genes, 
+                  aes(label = gene_name),
+                  size = 4,
+                  box.padding = unit(0.35, "lines"),
+                  point.padding = unit(0.3, "lines"))
+
+dev.off()
+```
+
+
+Heatmap of all significant DEGs
+```{r fig.width=5, fig.height=60}
+library(ComplexHeatmap)
+library(circlize)
+
+
+# Log-transform normalized counts for heatmap
+logCPM <- cpm(dge, log = TRUE)
+
+# Select all sig genes by FDR for heatmap
+all_sig_gene_ids <- rownames(de_genes_annotated[de_genes_annotated$FDR < 0.05, ])[order(de_genes_annotated$FDR[de_genes_annotated$FDR < 0.05])]
+
+# Extract the gene names for all sig DE genes
+all_sig_gene_names <- de_genes_annotated$gene_name[match(all_sig_gene_ids, de_genes_annotated$gene_id)]
+
+# Extract logFC for all sig genes
+all_sig_logFC_matrix <- matrix(OvY_HSC_DEGs_FDR_p05_Granges$logFC, ncol = 1)
+rownames(all_sig_logFC_matrix) <- OvY_HSC_DEGs_FDR_p05_Granges$gene_name
+colnames(all_sig_logFC_matrix) <- "logFC"
+
+# Subset logCPM for the top genes
+heatmap_data_all_sig <- logCPM[all_sig_gene_ids, ]
+rownames(heatmap_data_all_sig) <- OvY_HSC_DEGs_FDR_p05_Granges$gene_name
+
+# set column order for plot
+column_order <- order(group)
+
+# Define row annotation for logFC
+all_sig_logFC_annotation <- rowAnnotation(
+  logFC = anno_simple(
+    OvY_HSC_DEGs_FDR_p05_Granges$logFC,
+    col = colorRamp2(c(min(OvY_HSC_DEGs_FDR_p05_Granges$logFC), 0, max(OvY_HSC_DEGs_FDR_p05_Granges$logFC)), c("blue", "white", "red")),
+    width = unit(1, "cm")  # Adjust width if needed
+  )
+)
+
+# Generate heatmap
+Heatmap(
+  heatmap_data_all_sig,
+  name = "logCPM",
+  right_annotation = all_sig_logFC_annotation,  # Add logFC as a row annotation
+  col = colorRamp2(c(min(heatmap_data_all_sig), 0, max(heatmap_data_all_sig)), c("white", "pink", "purple")), #set colour range
+  row_names_gp = gpar(fontsize = 3),  # Adjust font size for row labels
+  cluster_rows = TRUE,  # Cluster genes
+  cluster_columns = FALSE,  # Cluster samples
+  column_order = column_order,
+  show_column_names = TRUE,  # Display sample names
+  heatmap_legend_param = list(title = "logCPM", legend_direction = "horizontal"),
+  column_names_rot = 45
+)
+
+
+# Define the directory
+plot_dir <- "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_DEG_Plots"
+
+
+# Get the current date
+current_date <- Sys.Date()
+
+# Create the full file paths with date prefix
+pdf_file <- file.path(plot_dir, paste0(current_date, "_all_sig_DEG_logCPM_Heatmap_w_logFC.pdf"))
+
+# Open a new Cairo device with specified dimensions
+library(Cairo)
+CairoPDF(file = pdf_file, width=5, height=60, pointsize = 12, bg = "transparent", onefile = TRUE, canvas = "white")
+
+# Generate heatmap
+Heatmap(
+  heatmap_data_all_sig,
+  name = "logCPM",
+  right_annotation = all_sig_logFC_annotation,  # Add logFC as a row annotation
+  col = colorRamp2(c(min(heatmap_data_all_sig), 0, max(heatmap_data_all_sig)), c("white", "pink", "purple")), #set colour range
+  row_names_gp = gpar(fontsize = 3),  # Adjust font size for row labels
+  cluster_rows = TRUE,  # Cluster genes
+  cluster_columns = FALSE,  # Cluster samples
+  column_order = column_order,
+  show_column_names = TRUE,  # Display sample names
+  heatmap_legend_param = list(title = "logCPM", legend_direction = "horizontal"),
+  column_names_rot = 45
+)
+
+dev.off()
+```
+
+
+
+MDS plot of samples
+```{r}
+
+# Define colors for the groups
+group_color <- c("lightgreen", "lightgreen", "orange", "orange")
+
+# Plot MDS
+mds <- plotMDS(dge, col = group_color, pch = 16, top = 10000, cex = 1.8, 
+               main = "MDS plot, Old and Young HSCs\n gene expression", 
+               xlim = c(-0.4, 0.7), ylim = c(-0.35, 0.4))
+
+# Add legend
+legend("bottomright", legend = unique(group), col = unique(group_color), 
+       pch = 16, cex = 0.8, title.col = "black")
+
+# Extract replicate numbers from sample names
+sample_labels <- sub(".*_HSC_", "", rownames(dge$samples))
+
+# Add labels to the points
+text(mds$x, mds$y, labels = sample_labels, pos = 3, cex = 0.8)
+```
+
+```{r}
+
+# Get the current date
+current_date <- Sys.Date()
+
+# Create the full file paths with date prefix
+pdf_file <- file.path(plot_dir, paste0(current_date, "_Itokawa_et_al_2022_RNAseq_MDS_plot_O_and_Y_HSC.pdf"))
+
+
+library(Cairo)
+CairoPDF(pdf_file, width = 4, height = 3, family = "Arial", pointsize = 12)
+
+# Define colors for the groups
+group_color <- c("lightgreen", "lightgreen", "orange", "orange")
+
+# Plot MDS
+mds <- plotMDS(dge, col = group_color, pch = 16, top = 10000, cex = 1.8, 
+               main = "MDS plot, Old and Young HSCs\n gene expression", 
+               xlim = c(-0.4, 0.8), ylim = c(-0.35, 0.4))
+
+# Add legend
+legend("bottomright", legend = unique(group), col = unique(group_color), 
+       pch = 16, cex = 0.8, title.col = "black")
+
+# Extract replicate numbers from sample names
+sample_labels <- sub(".*_HSC_", "", rownames(dge$samples))
+
+# Add labels to the points
+text(mds$x, mds$y, labels = sample_labels, pos = 3, cex = 0.8)
+
+dev.off()
+
+```
+
+
+```{r}
+library(ggplot2)
+# Use the custom theme provided
+custom_theme <- theme_minimal() +
+  theme(
+    text = element_text(family = "Arial", size = 12),
+    plot.title = element_text(size = 14, face = "bold"),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 10),
+    panel.grid = element_blank(),
+    axis.line = element_line(color="black"),
+    axis.ticks = element_line(color="black")
+  )
+```
+
+
+```{r}
+library(ggplot2)
+
+# Count upregulated and downregulated genes
+upregulated_count <- sum(OvY_HSC_DEGs_FDR_p05_Granges$logFC > 0)
+downregulated_count <- sum(OvY_HSC_DEGs_FDR_p05_Granges$logFC < 0)
+
+# Create a data frame for ggplot2
+de_counts_df <- data.frame(
+  Direction = c("Upregulated", "Downregulated"),
+  Count = c(upregulated_count, downregulated_count)
+)
+
+# Plot using ggplot2 with custom theme
+ggplot(de_counts_df, aes(x = Direction, y = Count, fill = Direction)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Upregulated" = "red", "Downregulated" = "blue")) +
+  labs(title = "Total Number of Differentially Expressed Genes",
+       x = "Direction",
+       y = "Count") +
+  custom_theme
+```
+
+```{r}
+# Get the current date
+current_date <- Sys.Date()
+
+# Create the full file paths with date prefix
+pdf_file <- file.path(plot_dir, paste0(current_date, "_Itokawa_et_al_2022_RNAseq_O_and_Y_HSC_DEG_numbers_barpplot.pdf"))
+
+
+library(Cairo)
+CairoPDF(pdf_file, width = 3, height = 3, family = "Arial", pointsize = 12)
+
+# Count upregulated and downregulated genes
+upregulated_count <- sum(OvY_HSC_DEGs_FDR_p05_Granges$logFC > 0)
+downregulated_count <- sum(OvY_HSC_DEGs_FDR_p05_Granges$logFC < 0)
+
+# Create a data frame for ggplot2
+de_counts_df <- data.frame(
+  Direction = c("Upregulated", "Downregulated"),
+  Count = c(upregulated_count, downregulated_count)
+)
+
+# Plot using ggplot2 with custom theme
+ggplot(de_counts_df, aes(x = Direction, y = Count, fill = Direction)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Upregulated" = "red", "Downregulated" = "blue")) +
+  labs(title = "Total Number of\nDifferentially Expressed Genes",
+       x = "Direction",
+       y = "Count") +
+  custom_theme
+
+dev.off()
+```
+
+
+
+```{r fig.width=8, fig.height=3}
+
+library(ggplot2)
+
+# Filter for chromosomes 1-19 and X
+filtered_genes <- granges_df[granges_df$seqnames %in% c(1:19, "X"), ]
+
+# Add a column for direction based on logFC
+filtered_genes$Direction <- ifelse(filtered_genes$logFC > 0, "Upregulated", "Downregulated")
+
+# Count differentially expressed genes by chromosome and direction
+de_chrom_counts <- table(filtered_genes$seqnames, filtered_genes$Direction)
+
+# Convert to a data frame for ggplot2
+de_chrom_counts_df <- as.data.frame(de_chrom_counts)
+colnames(de_chrom_counts_df) <- c("Chromosome", "Direction", "Count")
+
+# Ensure Chromosome is a factor and order levels
+de_chrom_counts_df$Chromosome <- factor(de_chrom_counts_df$Chromosome, levels = c(1:19, "X"))
+
+# Ensure Direction is a factor and order levels
+de_chrom_counts_df$Direction <- factor(de_chrom_counts_df$Direction, levels = c("Upregulated", "Downregulated"))
+
+# Plot using ggplot2 with custom theme
+ggplot(de_chrom_counts_df, aes(x = Chromosome, y = Count, fill = Direction)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  scale_fill_manual(values = c("Upregulated" = "red", "Downregulated" = "blue")) +
+  labs(title = "Differentially Expressed Genes by Chromosome",
+       x = "Chromosome",
+       y = "Count") +
+  custom_theme +
+  theme(axis.text.x = element_text(angle = 0, hjust = 1),
+        legend.position = "top")
+
+
+```
+
+```{r}
+# Get the current date
+current_date <- Sys.Date()
+
+# Create the full file paths with date prefix
+pdf_file <- file.path(plot_dir, paste0(current_date, "_Itokawa_et_al_2022_RNAseq_O_and_Y_HSC_DEG_numbers_by_chromosome_barpplot.pdf"))
+
+
+library(Cairo)
+CairoPDF(pdf_file, width = 8, height = 3, family = "Arial", pointsize = 12)
+
+library(ggplot2)
+
+# Filter for chromosomes 1-19 and X
+filtered_genes <- granges_df[granges_df$seqnames %in% c(1:19, "X"), ]
+
+# Add a column for direction based on logFC
+filtered_genes$Direction <- ifelse(filtered_genes$logFC > 0, "Upregulated", "Downregulated")
+
+# Count differentially expressed genes by chromosome and direction
+de_chrom_counts <- table(filtered_genes$seqnames, filtered_genes$Direction)
+
+# Convert to a data frame for ggplot2
+de_chrom_counts_df <- as.data.frame(de_chrom_counts)
+colnames(de_chrom_counts_df) <- c("Chromosome", "Direction", "Count")
+
+# Ensure Chromosome is a factor and order levels
+de_chrom_counts_df$Chromosome <- factor(de_chrom_counts_df$Chromosome, levels = c(1:19, "X"))
+
+# Ensure Direction is a factor and order levels
+de_chrom_counts_df$Direction <- factor(de_chrom_counts_df$Direction, levels = c("Upregulated", "Downregulated"))
+
+# Plot using ggplot2 with custom theme
+ggplot(de_chrom_counts_df, aes(x = Chromosome, y = Count, fill = Direction)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  scale_fill_manual(values = c("Upregulated" = "red", "Downregulated" = "blue")) +
+  labs(title = "Differentially Expressed Genes by Chromosome",
+       x = "Chromosome",
+       y = "Count") +
+  custom_theme +
+  theme(axis.text.x = element_text(angle = 0, hjust = 1),
+        legend.position = "top")
+
+
+dev.off()
+
+```
+
+
+```{r}
+save.image(file = "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Itokawa_et_al_2022_RNAseq_STAR_DEG_analysis_HSCs_MPPs_etc.RData")
+```
+
+

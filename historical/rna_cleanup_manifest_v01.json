@@ -1,0 +1,8 @@
+[
+  {
+    "stage": "RNA_counts_cleanup",
+    "remote_path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final.Rmd",
+    "local_path": "historical/raw_support/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final.Rmd",
+    "sha256": "2deb510bc9f016ace9bf32f64414868768f885f50b802c49c9d39cd6e4547979"
+  }
+]

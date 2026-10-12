@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+"""Self-contained HTML with embedded PDF bytes and native vector PDF viewers."""
+import argparse,base64,csv,hashlib,html,json
+from pathlib import Path
+
+def build_report(source,target,mode,ranking,samplesheet,pdfs,versions,output):
+    esc=html.escape
+    with Path(ranking).open() as f:
+        reader=csv.DictReader(f,delimiter='\t');fields=reader.fieldnames;rows=list(reader)[:20]
+    required={'factor','influence_score','target_score_scaled','G_score_scaled'}
+    if not required.issubset(fields or []):raise ValueError('Ranking component columns missing')
+    if len(rows)!=20:raise ValueError('Expected 20 ranked TFs for the report')
+    with Path(samplesheet).open() as f:
+        samples=[r for r in csv.DictReader(f,delimiter='\t') if r['cell_state'] in [source,target]]
+    cards=[];payload={};checksums={}
+    for i,row in enumerate(rows,1):
+        tf=row['factor'];file=Path(pdfs)/f'ANANSE_2step_branch_{tf}_{source}_to_{target}.pdf'
+        data=file.read_bytes()
+        if not data.startswith(b'%PDF-'):raise ValueError(f'Invalid PDF {file}')
+        payload[str(i)]={'bytes':base64.b64encode(data).decode(),'name':file.name}
+        checksums[file.name]=hashlib.sha256(data).hexdigest()
+        cards.append(f'<section><h2>{i}. {esc(tf)}</h2><button type="button" class="show" data-id="{i}">Open vector PDF viewer</button> <a class="download" data-id="{i}">Download PDF</a><iframe data-id="{i}" title="{esc(tf)} differential GRN" loading="lazy"></iframe></section>')
+    table='<table><thead><tr>'+''.join('<th>'+esc(x or 'row')+'</th>' for x in fields)+'</tr></thead><tbody>'+''.join('<tr>'+''.join('<td>'+esc(r.get(x) or '')+'</td>' for x in fields)+'</tr>' for r in rows)+'</tbody></table>'
+    methods='''Summit windows were generated from 1-bp summits by adding 250 bp on each side (501 bp before boundary clipping), without merging or deduplication. Blacklisted overlaps were removed and BAM alignment overlaps counted with bedtools. ATAC activities were normalized with csaw normOffsets and calculateCPM(use.offsets=TRUE, use.norm.factors=FALSE, log=FALSE). State-specific Hi-C contacts were supplied to STARE 1.0.5 with 100-kb bins, 5-Mb windows, gABC threshold 0.02, all_tss, -q True and -d True, the configured PSEM motifs and the archived modified STARE shell script. <a href="https://doi.org/10.1093/bioinformatics/btad062">Hecker et al., 2023</a>.'''
+    conversion='''STARE TF–gene affinities were averaged across replicates after intersecting genes and TF columns. Each TF affinity column was min–max scaled. The same RNA TPM vector, averaged across all RNA samples supplied to the converter, was used for both networks. Edge prob = scaled_affinity × (0.5 + 0.5 × scaled_TF_TPM) × (0.5 + 0.5 × scaled_target_TPM). Constant affinity columns were set to zero and zero-affinity edges excluded. GTF mapping converted targets to uppercase symbols, removed duplicate TF suffixes and retained the maximum probability for duplicate edges. These custom probabilities are regulatory scores, without a probability-calibration claim.'''
+    ranking_method='''DESeq2 1.34.0 (R 4.1.3) used filtered raw counts, ratio size factors, a cell-means design (~0 + cell_state), Wald tests, parametric dispersion fitting and ashr shrinkage. TPM used mean merged gene length per uppercase symbol; gene and TF filters used sum of counts ≥50 and mean TPM ≥0.1. The network converter consumed the unfiltered TPM output. ANANSE 0.5.1 selected the top 100,000 edges before subtraction and retained positive target-minus-source differences. Candidate TFs required positive target/source log2 fold change. G_score is absolute TF log2 fold change gated by adjusted p&lt;0.05. target_score sums the analogous DE gene scores weighted by the best cumulative differential-edge path probability divided by its path length, within the two-hop ego graph. Each component is dense-ranked then min–max scaled. The two scaled components contribute equally through their sum; influence_score is the dense rank of that sum, min–max scaled again. influence_score_raw is the sum of the unscaled components and is distinct from the ranking score. Direct/total target counts, target_fc and Mann–Whitney p values are annotations, without additional weight in the final ranking. Reverse comparisons use target/source DE signs in the corresponding direction. <a href="https://doi.org/10.1093/nar/gkab598">Xu et al., 2021</a>. Rankings nominate TFs for investigation; they do not establish inhibition effects or experimentally verified rejuvenation.'''
+    sample_text='<ul>'+''.join('<li>'+esc(' | '.join(r[k] for k in ['sample_name','replicate','assay','paired','cell_state']))+'</li>' for r in samples)+'</ul>'
+    payload_json=json.dumps(payload).replace("<", chr(92)+"u003c")
+    body=f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{esc(source)} → {esc(target)}</title><style>body{{font:16px system-ui;max-width:1300px;margin:2em auto;padding:1em;color:#17212b}}table{{border-collapse:collapse;font-size:12px;display:block;overflow:auto}}td,th{{padding:6px;border:1px solid #ccd2d8}}iframe{{width:100%;height:650px;border:1px solid #bbb;display:block;margin-top:1em}}section{{margin:3em 0}}button,a.download{{cursor:pointer;padding:8px}}p{{line-height:1.6}}pre{{white-space:pre-wrap}}</style><h1>{esc(source)} → {esc(target)}</h1><p>phd_stare_plus_ananse_workflow | ATAC mode: <strong>{esc(mode)}</strong> | The same directional DE table supplies ranking and plots.</p><h2>Input samples</h2>{sample_text}<h2>Methods</h2><p>{methods}</p><p>{conversion}</p><p>{ranking_method}</p><h3>Recorded software</h3><pre>{esc(Path(versions).read_text())}</pre><h2>Top 20 TFs and component scores</h2>{table}<h2>Differential GRN plots</h2><p>The PDFs below are stored inside this HTML. The browser PDF viewer preserves vector graphics and selectable text, with zoom controls. Download is available even when the browser has no PDF viewer.</p>{''.join(cards)}<script id="pdf-data" type="application/json">{payload_json}</script><script>const payload=JSON.parse(document.getElementById('pdf-data').textContent), urls={{}};function url(id){{if(!urls[id]){{const data=Uint8Array.from(atob(payload[id].bytes), c=>c.charCodeAt(0));urls[id]=URL.createObjectURL(new Blob([data],{{type:'application/pdf'}}));}}return urls[id];}}document.querySelectorAll('a.download').forEach(a=>{{a.href=url(a.dataset.id);a.download=payload[a.dataset.id].name;}});document.querySelectorAll('button.show').forEach(b=>b.addEventListener('click',()=>{{document.querySelector('iframe[data-id="'+b.dataset.id+'"]').src=url(b.dataset.id)+'#toolbar=1';}}));const observer=new IntersectionObserver(entries=>entries.forEach(e=>{{if(e.isIntersecting){{e.target.src=url(e.target.dataset.id)+'#toolbar=1';observer.unobserve(e.target);}}}}),{{rootMargin:'200px'}});document.querySelectorAll('iframe').forEach(f=>observer.observe(f));</script></html>'''
+    Path(output).write_text(body)
+    Path(str(output)+'.pdf_checksums.json').write_text(json.dumps(checksums,indent=2)+'\n')
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser()
+    for key in ['source','target','mode','ranking','samplesheet','pdfs','versions','output']:p.add_argument('--'+key,required=True)
+    build_report(**vars(p.parse_args()))

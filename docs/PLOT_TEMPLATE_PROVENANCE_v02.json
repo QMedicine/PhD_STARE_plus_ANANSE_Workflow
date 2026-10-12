@@ -1,0 +1,21 @@
+{
+  "archived_file": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+  "archive_sha256": "888725630f83d9cfb64f3f825e6e6f9ed9663301363a36222cf6dde62e1c91ff",
+  "chunk_sha256": "93690821df4c0873861bd208882036efc507e0b8536196be01bcd5fbd0b76941",
+  "selection_marker": "# - Uses FILTERED diffnetwork for PLOT (min_edge_weight)",
+  "adaptations": [
+    "Input/output paths and TF supplied by adapter",
+    "Directional legend uses exact source and target labels",
+    "Trailing whitespace normalized only in the derived template; archive bytes preserved"
+  ],
+  "defaults": {
+    "max_steps": 2,
+    "min_edge_weight": 0.01,
+    "padj_cutoff": 0.05,
+    "abs_lfc_cutoff": 0.25,
+    "edge_width_mode": "path2",
+    "out_width": 12,
+    "out_height": 9
+  },
+  "directions": "Same user-selected design in all source-to-target comparisons"
+}

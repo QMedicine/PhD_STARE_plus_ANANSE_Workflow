@@ -1,0 +1,42 @@
+[
+  {
+    "path": "/vast/projects/Immune_Aging/.nextflow_assets/nf-core/tfactivity/modules/local/counts/combine/main.nf",
+    "sha256": "751594517da9ead9d0f8c3b3de94f240c6f259353fdd66f891a320bd7e16319b",
+    "local_path": "historical/supplement/.nextflow_assets/nf-core/tfactivity/modules/local/counts/combine/main.nf"
+  },
+  {
+    "path": "/vast/projects/Immune_Aging/.nextflow_assets/nf-core/tfactivity/modules/local/counts/combine/templates/combine.py",
+    "sha256": "0c0f6379f920f58f2761646add286e58a09a995c754e27214223c72e4a524759",
+    "local_path": "historical/supplement/.nextflow_assets/nf-core/tfactivity/modules/local/counts/combine/templates/combine.py"
+  },
+  {
+    "path": "/vast/projects/Immune_Aging/.nextflow_assets/nf-core/tfactivity/subworkflows/local/prepare_genome/main.nf",
+    "sha256": "3009e461527ac5e223fa468890784c9cdede31998658879eb23fd0c711befa95",
+    "local_path": "historical/supplement/.nextflow_assets/nf-core/tfactivity/subworkflows/local/prepare_genome/main.nf"
+  },
+  {
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ANANSE/STARE_output_in_ANANSE/STARE_output_in_ANANSE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/TF_Influence_Old2Young/STARE_OldHSC_to_YoungHSC_TF_influence.txt",
+    "sha256": "9b96bddc7e623353462670b9c1cd47463c0c1fd5abdadd1beda14a6eb190c639",
+    "local_path": "historical/supplement/Itokawa_et_al_2022_ANANSE/STARE_output_in_ANANSE/STARE_output_in_ANANSE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/TF_Influence_Old2Young/STARE_OldHSC_to_YoungHSC_TF_influence.txt"
+  },
+  {
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ANANSE/STARE_output_in_ANANSE/STARE_output_in_ANANSE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/TF_Influence_Young2Old/STARE_YoungHSC_to_OldHSC_TF_influence.txt",
+    "sha256": "f784ef0187154e0ec126c4ebdb79009a077baa86f1c526a983e52ece3926c676",
+    "local_path": "historical/supplement/Itokawa_et_al_2022_ANANSE/STARE_output_in_ANANSE/STARE_output_in_ANANSE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/TF_Influence_Young2Old/STARE_YoungHSC_to_OldHSC_TF_influence.txt"
+  },
+  {
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/sample_information.csv",
+    "sha256": "1f74f6fed70b8ca44bb5bad0f012098d5d7ce1931b7f45d7a5d0e8b286d9faad",
+    "local_path": "historical/supplement/Itokawa_et_al_2022_ATACseq/sample_information.csv"
+  },
+  {
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/STARE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/Old_LTHSC/Old_LTHSC_metadata.amd.tsv",
+    "sha256": "fac2031fc3d99c201a8c261c37201d5de87fd3e1b6faa966ad4443d35b02a2ef",
+    "local_path": "historical/supplement/Itokawa_et_al_2022_STARE/STARE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/Old_LTHSC/Old_LTHSC_metadata.amd.tsv"
+  },
+  {
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/STARE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/Young_LTHSC/Young_LTHSC_metadata.amd.tsv",
+    "sha256": "75ea551dbbfcb05daf396a2be5fc547d641a4911809fc43c34c9d2efa3d5c835",
+    "local_path": "historical/supplement/Itokawa_et_al_2022_STARE/STARE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/Young_LTHSC/Young_LTHSC_metadata.amd.tsv"
+  }
+]
