@@ -19,7 +19,9 @@
         "network_replay",
         "raw_prepare",
         "cooler_estimated_ice",
-        "hic_diffhic_counts"
+        "hic_diffhic_counts",
+        "atac_diffhic_hic_contacts",
+        "bam_diffhic_hic_contacts"
       ],
       "default": "preflight"
     },
@@ -542,6 +544,11 @@
         "sra_spot_length"
       ],
       "default": "preserve"
+    },
+    "hic_contacts_from_diffhic": {
+      "type": "boolean",
+      "default": false,
+      "description": "Direct fixed-grid retained-pair contact normalization; rounded counts remain separate"
     }
   },
   "additionalProperties": true

@@ -18,7 +18,8 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
     VALIDATE_INPUTS(samplesheet, source2target)
     if (params.stage == 'hic_diffhic_counts') {
         diffhic_manifest = VALIDATE_INPUTS.out.manifest.map { json -> new groovy.json.JsonSlurper().parseText(json.text) }
-        DIFFHIC_COUNTS(diffhic_manifest,samplesheet)
+        if (params.process_fastq) { RAW_PREPARE(diffhic_manifest) }
+        DIFFHIC_COUNTS(diffhic_manifest,samplesheet,params.process_fastq ? RAW_PREPARE.out.hic_bam : channel.empty())
     }
     if (params.stage == 'cooler_estimated_ice') {
         hic_manifest = VALIDATE_INPUTS.out.manifest.map { json -> new groovy.json.JsonSlurper().parseText(json.text) }
@@ -33,7 +34,7 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
         if (params.process_fastq) { RAW_PREPARE(rna_manifest) }
         RNA_RECONSTRUCTION(rna_manifest,samplesheet,source2target,params.process_fastq ? RAW_PREPARE.out.rna_bam : channel.empty())
     }
-    if (params.stage in ['historical_replay','network_replay','bam_historical_hic_checkpoint','atac_historical_hic_checkpoint']) {
+    if (params.stage in ['historical_replay','network_replay','bam_historical_hic_checkpoint','atac_historical_hic_checkpoint','atac_diffhic_hic_contacts','bam_diffhic_hic_contacts']) {
         manifest = VALIDATE_INPUTS.out.manifest.map { json -> new groovy.json.JsonSlurper().parseText(json.text) }
         transitions = manifest.flatMap { it.transitions.collect { t -> tuple(t.source, t.target) } }
         if (params.stage == 'network_replay') {
@@ -52,7 +53,7 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
                 tuple(row.source, row.target, file(row.path, checkIfExists: true))
             }
         } else {
-            if (!params.hic_checkpoints) {
+            if (!params.hic_checkpoints && !params.hic_contacts_from_diffhic) {
                 error 'Hi-C checkpoint routes require --hic_checkpoints'
             }
             if (params.process_fastq) { RAW_PREPARE(manifest) }
@@ -67,7 +68,7 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
                 // Raw ATAC output has already undergone the historical blacklist step.
                 raw_atac = RAW_PREPARE.out.atac_bam_peaks
             }
-            if (params.stage == 'atac_historical_hic_checkpoint') {
+            if (params.stage in ['atac_historical_hic_checkpoint','atac_diffhic_hic_contacts']) {
                 tpm = channel.value(file(params.tpm,checkIfExists:true))
                 de_ch = channel.fromPath(params.de_manifest,checkIfExists:true).splitCsv(header:true,sep:'\t').map { row -> tuple(row.source,row.target,file(row.path,checkIfExists:true)) }
             } else {
@@ -100,8 +101,14 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
             ATAC_WINDOW_COUNTS(prepared_atac,union_windows_ch)
             ATAC_ASSEMBLE(Channel.fromList(params.atac_modes), ATAC_WINDOW_COUNTS.out.counts.collect(), samplesheet)
             ATAC_NORMALIZE(ATAC_ASSEMBLE.out.counts)
-            hic_matrices = Channel.fromPath(params.hic_checkpoints, checkIfExists: true).splitCsv(header: true, sep: '\t').map { row -> tuple(row.cell_state, file(row.path, checkIfExists: true)) }
-            HIC_CONTACTS_FROM_H5(hic_matrices)
+            if (params.hic_contacts_from_diffhic) {
+                DIFFHIC_COUNTS(manifest,samplesheet,params.process_fastq ? RAW_PREPARE.out.hic_bam : channel.empty())
+                hic_contacts_ch = DIFFHIC_COUNTS.out.contacts
+            } else {
+                hic_matrices = Channel.fromPath(params.hic_checkpoints, checkIfExists: true).splitCsv(header: true, sep: '\t').map { row -> tuple(row.cell_state, file(row.path, checkIfExists: true)) }
+                HIC_CONTACTS_FROM_H5(hic_matrices)
+                hic_contacts_ch = HIC_CONTACTS_FROM_H5.out.contacts
+            }
             state_columns = manifest.flatMap { m ->
                 def states = m.samples.findAll { it.assay == 'ATAC' }.collect { it.cell_state }.unique()
                 states.collectMany { state ->
@@ -119,12 +126,12 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
                     }
                 }
             }
-            stare_inputs = state_columns.combine(ATAC_NORMALIZE.out.activity, by: 0).map { mode,state,columns,activity -> tuple(state,mode,columns,activity) }.combine(HIC_CONTACTS_FROM_H5.out.contacts, by: 0).map { state,mode,columns,activity,contacts -> tuple(mode,state,columns,activity,contacts) }
+            stare_inputs = state_columns.combine(ATAC_NORMALIZE.out.activity, by: 0).map { mode,state,columns,activity -> tuple(state,mode,columns,activity) }.combine(hic_contacts_ch, by: 0).map { state,mode,columns,activity,contacts -> tuple(params.hic_contacts_from_diffhic ? 'diffhic_loess_fixed_grid__'+mode : mode,state,columns,activity,contacts) }
             STARE_GABC(stare_inputs, samplesheet, file(params.fasta, checkIfExists: true), file(params.gtf, checkIfExists: true), file(params.psem, checkIfExists: true), file("${projectDir}/historical/scripts/06_stare/modified_STARE.sh"))
             affinities = STARE_GABC.out.affinities
         }
         if (params.stage != 'network_replay') {
-        conversion_map = params.stage=='bam_historical_hic_checkpoint' ? expression_map : channel.value(file(params.idmap,checkIfExists:true))
+        conversion_map = params.stage in ['bam_historical_hic_checkpoint','bam_diffhic_hic_contacts'] ? expression_map : channel.value(file(params.idmap,checkIfExists:true))
         STARE_TO_NETWORK(affinities, tpm, conversion_map, file(params.gtf, checkIfExists: true), file("${projectDir}/historical/scripts/07_network_conversion/01_STARE_TF_Gene_Affinities_to_ananse_network.py"), file("${projectDir}/historical/scripts/07_network_conversion/02_convert_ensembl_to_symbol.py"))
         // Value-channel collection is bounded by the number of states; explicit keys drive lookup.
         }

@@ -1,0 +1,11 @@
+# Development checkpoint: raw Hi-C and plot audit, 13 October 2026
+
+The actual ATAC FASTQ header reconstruction passed full regression (30370523/30370526): 7,876,998 retained alignments and all 206,350 window counts match the historical checkpoint exactly. The generic default preserves headers; the study explicitly uses sra_spot_length. Recalled peaks remain separate from the saved historical union.
+
+plot_audit/index.html in the laptop repository contains 27 verified, text-selectable PDFs for Maf and Gfi1. Forty-three attempts include retained failures and clearly labelled edge-attribute/star-API repairs. Notebook hashes still match the current HPC files. Source sections, lines, script/PDF checksums, input tables and logs are included. All DE tables are H13CORE. The selected older branching section displays zero Maf neighbourhood counts because it uses weighted distances; the later section uses unweighted hop distances. These differences and long-title clipping are preserved for review. Production graph filters and strict failure are unchanged.
+
+The direct fixed-grid retained-pair connector is implemented and passed native counting, signed-coordinate, pooling and STARE product checks. Four real STARE affinity matrices have the expected three synthetic genes, 759 finite numeric columns and nonzero scores; all six tasks cache on resume. All 15 native identity/pooling contracts pass. See RAW_HIC_STARE_CONNECTOR_v01.md.
+
+The full raw Hi-C cohort is processing all 12 High/Low libraries (30370773), with compressed-input/QNAME qualification running as array 30371329. BAM qualification 30372233, downstream six-pool analysis 30372275 and durable validated-result publication 30372419 are gated in that order. At this checkpoint these biological results remain unqualified and are not represented as complete.
+
+Existing exact RNA and historical corrected-H5/ATAC GRN qualifications remain as documented in DEVELOPMENT_STATUS_v02.md. The new diffHic contact method is separately labelled and does not claim identity to the historical ICE route or unrecovered custom mapper. All compute and development logs stay on scratch; the requested plot audit is copied to the laptop, and validated final GRNs/tables will be checksum-copied into the authorized project run folder after qualification.

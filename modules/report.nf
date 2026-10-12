@@ -28,9 +28,9 @@ process SELF_CONTAINED_REPORT {
     path '*.html', emit: html
     path '*.json', emit: checksums
     script:
-    def keys = ['stage','process_fastq','rna_counts_mode','chosen_res','summit_flank','stare_window','enhancer_window','gabc_threshold','min_binding','influence_edges','min_count','min_count_tf','min_tpm','min_tpm_tf','union_windows','reverse_contrast','gtf','fasta','psem','atac_blacklist','hic_checkpoints']
+    def keys = ['stage','process_fastq','rna_counts_mode','chosen_res','summit_flank','stare_window','enhancer_window','gabc_threshold','min_binding','influence_edges','min_count','min_count_tf','min_tpm','min_tpm_tf','union_windows','reverse_contrast','gtf','fasta','psem','atac_blacklist','hic_checkpoints','hic_contacts_from_diffhic','hic_mapq','hic_chim_dist','hic_max_frag','hic_min_inward','hic_min_outward','hic_restriction_sites','hic_overhang','diffhic_norm']
     def context = keys.collectEntries { key -> [(key):params[key]] }
-    context.containers = ['ananse','r_plot','tpm','featurecounts','hicexplorer','atac_tools','bedtools','stare','deseq2','raw_tools'].collectEntries { role -> [(role):params[role+'_container']] }
+    context.containers = ['ananse','r_plot','tpm','featurecounts','hicexplorer','atac_tools','bedtools','stare','deseq2','raw_tools','hic_raw','diffhic'].collectEntries { role -> [(role):params[role+'_container']] }
     def encoded = groovy.json.JsonOutput.toJson(context).bytes.encodeBase64().toString()
     """
     printf '%s' '${encoded}' | base64 -d > methods_context.json

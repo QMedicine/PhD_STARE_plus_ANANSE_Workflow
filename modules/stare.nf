@@ -25,7 +25,7 @@ process STARE_GABC {
     time '2h'
     publishDir { "${params.outdir}/${mode}/stare/${state}" }, mode: 'copy'
     input:
-    tuple val(mode), val(state), val(columns), path(activity), path(contacts)
+    tuple val(mode), val(state), val(columns), path(activity), path(contacts, stageAs: 'contacts')
     path samplesheet
     path fasta
     path gtf

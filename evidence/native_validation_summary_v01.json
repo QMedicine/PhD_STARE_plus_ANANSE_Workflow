@@ -171,7 +171,8 @@
     "header_probe_job": "30370506",
     "header_reconstruction_pilot": "30370523",
     "header_reconstruction_regression": "30370526",
-    "header_reconstruction_status": "RUNNING_NOT_QUALIFIED"
+    "header_reconstruction_status": "PASSED_EXACT_ALL_206350_WINDOW_COUNTS",
+    "header_reconstruction_alignments": 7876998
   },
   "rna_count_modes": {
     "source": "source_v16",
@@ -203,5 +204,27 @@
     "resume_job": "30370549",
     "status": "PASS_SYNTHETIC_TWO_RESOLUTION_COUNTING",
     "cached_tasks": 5
+  },
+  "connector": {
+    "fixed_count_job": "30371675",
+    "fixed_count_validation": "30371704",
+    "pooling_job": "30372052",
+    "stare_smoke_job": "30372058",
+    "validation_job": "30372136",
+    "resume_job": "30372277",
+    "cached_tasks": 6,
+    "native_contract_job": "30372097",
+    "native_contract_tests": 15,
+    "status": "PASS_SYNTHETIC_NATIVE_CONNECTOR"
+  },
+  "raw_hic_cohort": {
+    "raw_libraries": 12,
+    "biological_pools": 6,
+    "mapping_job": "30370773",
+    "input_qualification_array": "30371329",
+    "bam_qualification_array": "30372233",
+    "downstream_job": "30372275",
+    "durable_publication_job": "30372419",
+    "status": "RUNNING_NOT_FULL_COHORT_QUALIFIED"
   }
 }

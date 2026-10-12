@@ -2,6 +2,7 @@
 .DS_Store
 work/
 results/
+plot_audit/
 __pycache__/
 *.pyc
 *.sif

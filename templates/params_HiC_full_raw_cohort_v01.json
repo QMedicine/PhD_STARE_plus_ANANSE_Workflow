@@ -1,0 +1,125 @@
+{
+  "fasta": "/vast/projects/Immune_Aging/Reference_genomes/mm39/ensembl_release-113/Mus_musculus.GRCm39.dna.primary_assembly.fa",
+  "gtf": "/vast/projects/Immune_Aging/Reference_genomes/mm39/ensembl_release-113/Mus_musculus.GRCm39.113.gtf",
+  "chrom_sizes": "/vast/projects/Immune_Aging/Reference_genomes/mm39/mm39_ensembl.chrom.sizes",
+  "atac_blacklist": "/vast/projects/Immune_Aging/Reference_genomes/mm39/mm39.excluderanges_ensembl_chrom_names.bed",
+  "summit_blacklist": "/vast/projects/Immune_Aging/Reference_genomes/mm39/mm39.excluderanges.bed",
+  "selected_counts": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_RNAseq/DEG_analysis_STAR_aligned_counts_all_cell_types/Counts_tables_no_ENSMUS_in_gene_name/Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final_gene_name_dups_cleaned_no_ENSMUS_in_gene_name_HSC_Geneid.csv",
+  "stare_container": "/vast/projects/Immune_Aging/apptainer_singularity_cache/stare-abc_1.0.5.sif",
+  "deseq2_container": "/vast/projects/Immune_Aging/apptainer_singularity_cache/depot.galaxyproject.org-singularity-bioconductor-deseq2-1.34.0--r41hc247a5b_3.img",
+  "tpm": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs/01_counts/02_tpm/counts.tpm.tsv",
+  "idmap": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs/00_prepare_genome/03_id_symbol_map/id_symbol_map.txt",
+  "psem": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs/02_motifs/06_psem/motifs.psem",
+  "samplesheet": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/samplesheet_HiC_full_raw_cohort_v01.tsv",
+  "source2target": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/source2target_Old_and_Young_HSCs_v01.tsv",
+  "reverse_contrast": true,
+  "gene_lengths": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs/00_prepare_genome/04_gtftools_length/gtf.txt",
+  "ananse_container": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/ananse_v03.sif",
+  "r_plot_container": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/r_plot_v01.sif",
+  "hicexplorer_container": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/hicexplorer_v01.sif",
+  "tpm_container": "/vast/projects/Immune_Aging/apptainer_singularity_cache/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-7c-7c256e63e08633ac420692d3ceec1f554fe4fcc794e5bdd331994f743096a46d-data.img",
+  "featurecounts_container": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/bam_tools_v01.sif",
+  "atac_tools_container": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/bam_tools_v01.sif",
+  "bedtools_container": "/vast/projects/Immune_Aging/apptainer_singularity_cache/depot.galaxyproject.org-singularity-bedtools-2.31.1--hf5e1c6e_0.img",
+  "stage": "raw_prepare",
+  "hic_checkpoints": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/hic_checkpoints_Old_and_Young_HSCs_v01.tsv",
+  "de_manifest": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/de_Old_and_Young_HSCs_v01.tsv",
+  "atac_modes": [
+    "historical_column_order",
+    "corrected_column_order"
+  ],
+  "historical_header_samples": [
+    "SRR13186609_Young_HSC_B1_Rep1",
+    "SRR13186610_Young_HSC_B1_Rep2",
+    "SRR13186627_Old_HSC_B1_Rep1",
+    "SRR13186628_Old_HSC_B1_Rep2"
+  ],
+  "historical_data_samples": [
+    "SRR13186627_Old_HSC_B1_Rep1",
+    "SRR13186628_Old_HSC_B1_Rep2",
+    "SRR13186609_Young_HSC_B1_Rep1",
+    "SRR13186610_Young_HSC_B1_Rep2"
+  ],
+  "deseq_state_order": [
+    "Old_HSC",
+    "Young_HSC"
+  ],
+  "container_binds": [
+    "/vast/projects/Immune_Aging",
+    "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow"
+  ],
+  "plot_settings": {
+    "Old_HSC->Young_HSC": {
+      "limits": [
+        -2,
+        2
+      ],
+      "breaks": [
+        -2,
+        -1,
+        0,
+        2
+      ]
+    },
+    "Young_HSC->Old_HSC": {
+      "limits": [
+        -2,
+        4
+      ],
+      "breaks": [
+        -2,
+        -1,
+        0,
+        2,
+        4
+      ]
+    }
+  },
+  "make_reports": false,
+  "union_windows": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/union_bed/union_summit500.named.bed",
+  "chromosomes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "X"
+  ],
+  "hic_alignment_mode": "diffhic_presplit_standard_compat",
+  "hic_ligation_signature": "GATCGATC",
+  "hic_restriction_sites": [
+    "GATC"
+  ],
+  "hic_raw_container": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/hic_raw_standard_v01.sif",
+  "raw_tools_container": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/raw_tools_v07.sif",
+  "bowtie_index": "/vast/projects/Immune_Aging/Reference_genomes/mm39/Bowtie2",
+  "bowtie_index_name": "mm39",
+  "raw_sample_names": [
+    "O_LTHSC_MMP_High_Rep1",
+    "O_LTHSC_MMP_Low_Rep1",
+    "O_LTHSC_MMP_High_Rep2",
+    "O_LTHSC_MMP_Low_Rep2",
+    "O_LTHSC_MMP_High_Rep3",
+    "O_LTHSC_MMP_Low_Rep3",
+    "Y_LTHSC_MMP_High_Rep1",
+    "Y_LTHSC_MMP_Low_Rep1",
+    "Y_LTHSC_MMP_High_Rep2",
+    "Y_LTHSC_MMP_Low_Rep2",
+    "Y_LTHSC_MMP_High_Rep3",
+    "Y_LTHSC_MMP_Low_Rep3"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS_FIXED_GRID_RETAINED_PAIRS",
+  "retained_pair_counts": [
+    7,
+    7
+  ],
+  "negative_strand_boundary": "PASS_HAND_DERIVED_5PRIME_COORDINATES",
+  "grid_alignment": "PASS",
+  "upper_triangle": "PASS",
+  "state_contacts_identical": "PASS_IDENTICAL_SYNTHETIC_LIBRARIES",
+  "offsets_finite": true,
+  "contact_values_finite_positive": true,
+  "method": "Synthetic qualification, not historical equivalence",
+  "driver_job": "30371675",
+  "validation_job": "30371704",
+  "resume_job": "30372096",
+  "resume_cached_tasks": 6
+}

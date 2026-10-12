@@ -10,6 +10,21 @@ prepare=module('prepare','bin/prepare_ananse_de.py')
 contacts=module('contacts','bin/split_contacts.py')
 report=module('report','bin/build_report.py')
 class Contracts(unittest.TestCase):
+ def test_explicit_hic_pooling_preserves_biological_replicates(self):
+  result=validate.validate(ROOT/'templates/samplesheet_HiC_full_raw_cohort_v01.tsv',ROOT/'templates/source2target_Old_and_Young_HSCs_v01.tsv',check_files=False)
+  hic=[r for r in result['samples'] if r['assay']=='HiC']
+  from collections import Counter
+  self.assertEqual(len(hic),12);self.assertEqual(len({r['pool_group'] for r in hic}),6)
+  self.assertEqual(set(Counter((r['cell_state'],r['replicate']) for r in hic).values()),{2})
+ def test_conflicting_hic_pool_metadata_rejected(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   path=Path(tmp)/'samples.tsv'
+   with (ROOT/'templates/samplesheet_HiC_full_raw_cohort_v01.tsv').open() as f:
+    reader=csv.DictReader(f,delimiter='\t');fields=reader.fieldnames;rows=list(reader)
+   rows[1]['replicate']='2'
+   with path.open('w') as f:
+    writer=csv.DictWriter(f,fields,delimiter='\t');writer.writeheader();writer.writerows(rows)
+   with self.assertRaisesRegex(ValueError,'pool_group'):validate.validate(path,ROOT/'templates/source2target_Old_and_Young_HSCs_v01.tsv',check_files=False)
  def test_both_directions_and_file_routes(self):
   r=validate.validate(ROOT/'templates/samplesheet_Old_and_Young_HSCs_v01.tsv',ROOT/'templates/source2target_Old_and_Young_HSCs_v01.tsv',check_files=False)
   self.assertEqual(r['transitions'],[dict(source='Old_HSC',target='Young_HSC'),dict(source='Young_HSC',target='Old_HSC')]);self.assertEqual(len(r['samples']),14)

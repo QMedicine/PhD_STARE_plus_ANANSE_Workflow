@@ -16,15 +16,21 @@ def read_tsv(path,required):
 
 def validate(samplesheet,source2target,reverse=True,check_files=True,header_order=None,data_order=None,stage=None,process_fastq=False,raw_samples=None):
     samples=read_tsv(samplesheet,REQUIRED)
-    identities=set();keys=set();state_meta={};routes=[]
+    identities=set();keys={};state_meta={};routes=[];pools={}
     for i,r in enumerate(samples,2):
         for key in REQUIRED[:8]:
             if not TOKEN.fullmatch(r[key] or ''):raise ValueError(f'Row {i}: invalid {key}')
         if r['sample_name'] in identities:raise ValueError('Duplicate sample_name '+r['sample_name'])
         identities.add(r['sample_name'])
         key=(r['cell_state'],r['assay'],r['replicate'])
-        if key in keys:raise ValueError('Duplicate state/assay/replicate '+str(key))
-        keys.add(key)
+        pool=r.get('pool_group','')
+        if pool:
+            if r['assay']!='HiC' or not TOKEN.fullmatch(pool):raise ValueError('pool_group is an optional safe Hi-C library-pooling identity')
+            pool_meta=(r['cell_state'],r['replicate'],r['species'],r['cell_type'],r['condition'])
+            if pool in pools and pools[pool]!=pool_meta:raise ValueError('Conflicting pool_group metadata')
+            pools[pool]=pool_meta
+        if key in keys and not (pool and keys[key]==pool and r['assay']=='HiC'):raise ValueError('Duplicate state/assay/replicate '+str(key))
+        keys[key]=pool
         meta=(r['species'],r['cell_type'],r['condition'])
         if r['cell_state'] in state_meta and state_meta[r['cell_state']]!=meta:raise ValueError('Conflicting state metadata')
         state_meta[r['cell_state']]=meta
@@ -35,6 +41,7 @@ def validate(samplesheet,source2target,reverse=True,check_files=True,header_orde
         if len(options)!=1:raise ValueError(f'{r["sample_name"]}: exactly one of fastq_1, bam, cooler required')
         route=options[0]
         if route=='cooler' and r['assay']!='HiC':raise ValueError('cooler is only valid for HiC')
+        if r['assay']=='HiC' and stage in ['hic_diffhic_counts','atac_diffhic_hic_contacts','bam_diffhic_hic_contacts'] and route=='cooler':raise ValueError('diffHic routes require Hi-C BAM or explicitly enabled FASTQ entry')
         if route=='fastq_1' and (bool(r['fastq_2'])!=(r['paired']=='TRUE')):raise ValueError('fastq_2 and paired disagree')
         if route!='fastq_1' and r['fastq_2']:raise ValueError('fastq_2 without fastq_1')
         if r['peak'] and r['assay']!='ATAC':raise ValueError('peak is only valid for ATAC')
@@ -44,7 +51,7 @@ def validate(samplesheet,source2target,reverse=True,check_files=True,header_orde
                 if not Path(value).is_absolute() or any(x in value for x in ['\n','\r','\t',"'",'"','`','$']):raise ValueError('Input paths must be safe absolute paths')
                 if check_files and not Path(value).is_file():raise ValueError('Missing file '+value)
         if stage not in [None,'preflight'] and route=='fastq_1':
-            if r['assay']=='HiC' and stage!='raw_prepare':raise ValueError('Standard raw Hi-C currently ends at a name-sorted BAM in raw_prepare; downstream counting must be qualified separately')
+            if r['assay']=='HiC' and stage not in ['raw_prepare','hic_diffhic_counts','atac_diffhic_hic_contacts','bam_diffhic_hic_contacts']:raise ValueError('Raw Hi-C requires raw_prepare or an explicit diffHic route')
             if stage!='raw_prepare' and not process_fastq:raise ValueError('FASTQ entry requires --process_fastq or the raw_prepare pilot stage')
         routes.append(dict(sample_name=r['sample_name'],assay=r['assay'],entry=route))
     for name,order in [('historical_header_samples',header_order),('historical_data_samples',data_order)]:

@@ -1,0 +1,52 @@
+{
+  "status": "PASS_FIXED_CONTACTS_TO_STARE_AND_POOLING",
+  "stare_affinity_matrices": [
+    {
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/fixed_contacts_stare_smoke_v28/results/diffhic_loess_fixed_grid__synthetic_smoke/stare/State_1/State_1/Gene_TF_matrices/State_1_TF_Gene_Affinities_synthetic_rep1.txt.gz",
+      "sha256": "e9b624c8b587c9f334cc4d9bae632b5fc5e76ae44b91dbd5c3c7e77188dda15c",
+      "genes": 3,
+      "numeric_columns": 759,
+      "finite": true,
+      "positive_values": 2164
+    },
+    {
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/fixed_contacts_stare_smoke_v28/results/diffhic_loess_fixed_grid__synthetic_smoke/stare/State_1/State_1/Gene_TF_matrices/State_1_TF_Gene_Affinities_synthetic_rep2.txt.gz",
+      "sha256": "08559021ad197ac4df46d673aa3cd96f886125cc11e712f65107b6dd76c6c0c2",
+      "genes": 3,
+      "numeric_columns": 759,
+      "finite": true,
+      "positive_values": 2177
+    },
+    {
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/fixed_contacts_stare_smoke_v28/results/diffhic_loess_fixed_grid__synthetic_smoke/stare/State_2/State_2/Gene_TF_matrices/State_2_TF_Gene_Affinities_synthetic_rep1.txt.gz",
+      "sha256": "e9b624c8b587c9f334cc4d9bae632b5fc5e76ae44b91dbd5c3c7e77188dda15c",
+      "genes": 3,
+      "numeric_columns": 759,
+      "finite": true,
+      "positive_values": 2164
+    },
+    {
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/fixed_contacts_stare_smoke_v28/results/diffhic_loess_fixed_grid__synthetic_smoke/stare/State_2/State_2/Gene_TF_matrices/State_2_TF_Gene_Affinities_synthetic_rep2.txt.gz",
+      "sha256": "08559021ad197ac4df46d673aa3cd96f886125cc11e712f65107b6dd76c6c0c2",
+      "genes": 3,
+      "numeric_columns": 759,
+      "finite": true,
+      "positive_values": 2177
+    }
+  ],
+  "pooling": {
+    "components": 4,
+    "biological_pools": 2,
+    "retained_pairs_per_pool": [
+      14,
+      14
+    ]
+  },
+  "qualification_boundary": "Synthetic native integration only; full-cohort raw Hi-C and original custom-mapper equivalence not claimed",
+  "driver_job": "30372058",
+  "validation_job": "30372136",
+  "pooling_driver_job": "30372052",
+  "resume_job": "30372277",
+  "resume_cached_tasks": 6,
+  "source": "source_v28"
+}

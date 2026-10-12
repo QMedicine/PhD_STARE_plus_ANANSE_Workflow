@@ -19,7 +19,9 @@ if(operation=='fragments'){
     widths<-as.integer(strsplit(args[4],',',fixed=TRUE)[[1]])
     stopifnot(all(is.finite(widths)),all(widths>0),!anyDuplicated(widths))
     method<-args[5];filter<-as.integer(args[6]);files<-args[-seq_len(6)]
-    labels<-sub('\\.trimmed\\.h5$','',basename(files));order<-match(sheet$sample_name[sheet$assay=='HiC'],labels)
+    hic<-sheet[sheet$assay=='HiC',]
+    groups<-if('pool_group' %in% names(hic))ifelse(!is.na(hic$pool_group) & nzchar(hic$pool_group),hic$pool_group,hic$sample_name) else hic$sample_name
+    labels<-sub('\\.trimmed\\.h5$','',basename(files));order<-match(unique(groups),labels)
     if(anyNA(order)||length(order)!=length(files)||anyDuplicated(labels))stop('Hi-C sample/index identity mismatch')
     files<-files[order];labels<-labels[order]
     if(length(files)<2)stop('Joint loess normalization requires at least two libraries')

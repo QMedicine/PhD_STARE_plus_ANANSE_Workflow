@@ -1,0 +1,574 @@
+{
+  "status": "COMPLETED_LAPTOP_PLOT_AUDIT",
+  "attempts": 43,
+  "completed_pdfs": 27,
+  "failed_attempts": 16,
+  "pdf_text_validation": "PASS_SELECTABLE_PDF_TEXT",
+  "native_jobs": [
+    "30370783",
+    "30370813",
+    "30371454"
+  ],
+  "local_package": "plot_audit/",
+  "artifacts": [
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_nicely",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "nicely",
+      "selection": "as_written_top10",
+      "script_sha256": "2f767f93f158e3d8c5f3e488323552c8a16bc254a238ed7edf1f7c1c059a23b4",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_fr",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "fr",
+      "selection": "as_written_top10",
+      "script_sha256": "32dc06d77a0f221e28fa023847891d1ea8e8b294618d4c4d2fff56407366739d",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_kk",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "kk",
+      "selection": "as_written_top10",
+      "script_sha256": "f46f683f312cad4a170b3b74cdcb7a8355a22567de206e26854980fb883bfab9",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_circle",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "circle",
+      "selection": "as_written_top10",
+      "script_sha256": "228957b220a5c12a8e5a4cf1747e0b4c1bacd65bc300651f90aebbeb2e16d1f7",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_random",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "random",
+      "selection": "as_written_top10",
+      "script_sha256": "f1dd92491b7f526ad39e92bd414165c24b2fe6b4e8dcb2024ffcc587f16472d0",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_sugiyama",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "sugiyama",
+      "selection": "as_written_top10",
+      "script_sha256": "46cb481229144f42e5c52dd0b80caed1c60783feb365e2f82a5dc549829e38f1",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_star",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "star",
+      "selection": "as_written_top10",
+      "script_sha256": "c6252ba9c08f2ae337833470d906daf4c6f3c666e05a0b6c06a4faa9040f8a33",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_nicely",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "nicely",
+      "selection": "focal_TF_only",
+      "script_sha256": "ebe64155b5dc7cf89c0e55948c68426462b18bc8efd771be89b851968ee1431d",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_fr",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "fr",
+      "selection": "focal_TF_only",
+      "script_sha256": "a3989e6586328f0a7bacda90e8887289b295b701271344c94c2f66e72f14849b",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_kk",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "kk",
+      "selection": "focal_TF_only",
+      "script_sha256": "d8542f67cb97b74fdc44d9ecbfcfd4aa44bc4855d93942c3a00d7dbe9639aa31",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_circle",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "circle",
+      "selection": "focal_TF_only",
+      "script_sha256": "a2058e5cc8a7f2311f92562b59eb8a43e619a1662c5bf6b09b679984722eb233",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_random",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "random",
+      "selection": "focal_TF_only",
+      "script_sha256": "086a3663ea97525c47b87fcb417cdc6b8c94aad22ec1d9ab85aa24e631e7c1a1",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_sugiyama",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "sugiyama",
+      "selection": "focal_TF_only",
+      "script_sha256": "c29db6caeda852abe6cc034f2afbddde272a3cb3edaed6e8a029579e85eb80a4",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_star",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "star",
+      "selection": "focal_TF_only",
+      "script_sha256": "fca0e09d7736ca246245b331f83b40d7ca9f18aba8a49b134773d2788de0caee",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section02_L476-845_focal_TF_notebook_default",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        476,
+        845
+      ],
+      "layout": "notebook_default",
+      "selection": "focal_TF",
+      "script_sha256": "28abf4257c93099a11384abda81be7ec1fa9e9a23641c0aeeb32e7b68d72b77c",
+      "pdf_sha256": "9a600c879b3d5e96b168f182196a99baa0c9fac100e07a409acf74a7ac54d399"
+    },
+    {
+      "id": "MAF_Young2Old_section03_L850-1444_focal_TF_notebook_default",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        850,
+        1444
+      ],
+      "layout": "notebook_default",
+      "selection": "focal_TF",
+      "script_sha256": "d07662cd5fa350c5b8e8a43f48b5dc6f866d73b2a57f50cbd7c90ffff3a19a87",
+      "pdf_sha256": "b599e9c54e33556832c1afc09bd6a85420f34359b09e30ce497385424dd63f7c"
+    },
+    {
+      "id": "MAF_Young2Old_section04_L1448-1993_focal_TF_notebook_default",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        1448,
+        1993
+      ],
+      "layout": "notebook_default",
+      "selection": "focal_TF",
+      "script_sha256": "4363c756845ca93126ae5720ea2b163563839e1584abed44071d52af6297fc86",
+      "pdf_sha256": "197dbbe0c2ec83379158bc24010d366d236f600b01937ec232ff36be49eb8a12"
+    },
+    {
+      "id": "MAF_Young2Old_section05_L1997-2554_focal_TF_nicely",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        1997,
+        2554
+      ],
+      "layout": "nicely",
+      "selection": "focal_TF",
+      "script_sha256": "55055cbff88731747c8500766fbc12e9bd6010a98b097f504e1c362b023c4f4a",
+      "pdf_sha256": "d209e4c04c2e43d8b14a0bb424e41ae7a745c6ea9d29b97b1906f1c83739063a"
+    },
+    {
+      "id": "MAF_Young2Old_section05_L1997-2554_focal_TF_fr",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        1997,
+        2554
+      ],
+      "layout": "fr",
+      "selection": "focal_TF",
+      "script_sha256": "66b7e24a12107bd2ac38999f10f983872f5c28fe030d14cfb5145db2d6eced4f",
+      "pdf_sha256": "b9e2a7081128e2d05573b26996fc40636ca44142c5f713f4a50b93e98cc5630a"
+    },
+    {
+      "id": "MAF_Young2Old_section05_L1997-2554_focal_TF_kk",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        1997,
+        2554
+      ],
+      "layout": "kk",
+      "selection": "focal_TF",
+      "script_sha256": "974860954f7acc3f4aab76db6d513b5d4eecfaaeb31041eec233eb263e629cd1",
+      "pdf_sha256": "da3bd49b0a1309fe56ac7d904d32e0969d8359d825607fff9f2953c7a1f894c8"
+    },
+    {
+      "id": "MAF_Young2Old_section05_L1997-2554_focal_TF_circle",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        1997,
+        2554
+      ],
+      "layout": "circle",
+      "selection": "focal_TF",
+      "script_sha256": "7a03edf4ac91f79ad90438a87d74f193fba0cff42787685b240a70fcec2335e5",
+      "pdf_sha256": "d92734d771d683b450619f2a046efae7d07073effd921a2fd37fbc3a8850e046"
+    },
+    {
+      "id": "MAF_Young2Old_section05_L1997-2554_focal_TF_random",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        1997,
+        2554
+      ],
+      "layout": "random",
+      "selection": "focal_TF",
+      "script_sha256": "07b7f064a825bd6c05f8df2cbb6f7bd7f5006e36c9bb880a9030a31df65f19e4",
+      "pdf_sha256": "31dd3a4f99ace6a7aeb80e28832d3adc24a83112a6d0e8cf2ab62ec4bf822b7a"
+    },
+    {
+      "id": "GFI1_Old2Young_section01_L14-571_focal_TF_nicely",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Old2Young.Rmd",
+      "source_lines": [
+        14,
+        571
+      ],
+      "layout": "nicely",
+      "selection": "focal_TF",
+      "script_sha256": "d455e585402256ad6699d0e3ddaf8fbe9c96f0d837a8c185bc98e50e5bfc45d4",
+      "pdf_sha256": "003be9ddf258b1c2513e00db72b20c3c2a3e91bca91295958d7d8ed01b625ce2"
+    },
+    {
+      "id": "GFI1_Old2Young_section01_L14-571_focal_TF_fr",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Old2Young.Rmd",
+      "source_lines": [
+        14,
+        571
+      ],
+      "layout": "fr",
+      "selection": "focal_TF",
+      "script_sha256": "594126b9232c5ef008de2c6afeaa243b48780c16de81d19622ff4f6ef0de7044",
+      "pdf_sha256": "d3d1453062551288af4554741567b19792b9f4930e8a87096600392bc36a6f25"
+    },
+    {
+      "id": "GFI1_Old2Young_section01_L14-571_focal_TF_kk",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Old2Young.Rmd",
+      "source_lines": [
+        14,
+        571
+      ],
+      "layout": "kk",
+      "selection": "focal_TF",
+      "script_sha256": "f4feac519ff16ba7e94738088de3fef9f3696f69971301ac4e228af586809ce8",
+      "pdf_sha256": "52a548c922457d00fe7007c3e70c1f3af8ae2951936b56db1675178404d4840e"
+    },
+    {
+      "id": "GFI1_Old2Young_section01_L14-571_focal_TF_circle",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Old2Young.Rmd",
+      "source_lines": [
+        14,
+        571
+      ],
+      "layout": "circle",
+      "selection": "focal_TF",
+      "script_sha256": "9f3a98686f5d520f241b1582cc37e048e785083ecccdda86eefeb56c78dfd674",
+      "pdf_sha256": "ecc24b550995e6c1ae83fe1f44d288b1f5a237bab0dc4fabdd0c78156f3a64d1"
+    },
+    {
+      "id": "GFI1_Old2Young_section01_L14-571_focal_TF_random",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Old2Young.Rmd",
+      "source_lines": [
+        14,
+        571
+      ],
+      "layout": "random",
+      "selection": "focal_TF",
+      "script_sha256": "40e17dccd217715c82f277344a78c4c6982c8d80cf96b414bf85efe51f4788b6",
+      "pdf_sha256": "34c22d9df4e6173fff3585436a77c996f84970d4816ec2be3da8a51c29c94e50"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_nicely_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "nicely",
+      "selection": "as_written_top10",
+      "script_sha256": "333c9f2fe1300906e13c18599bfec389ed20b59f97939627083c4c3e29e1cda2",
+      "pdf_sha256": "4fefeb091ddb9b8665b901c0e7e5e35e11529ff36961187a42e5fda01bc7b46f"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_fr_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "fr",
+      "selection": "as_written_top10",
+      "script_sha256": "864f6fd3bff1e9a59651b469303d04edec2b31efe90c7a2ffe11a3044f0692ca",
+      "pdf_sha256": "e611a7ae6513e9f282d616943bab7701be5b253d8edde8bbba93648a4ea25376"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_kk_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "kk",
+      "selection": "as_written_top10",
+      "script_sha256": "ce641e1533f025ea817239ec9796ca2f5448ec3382374fb85737e0fd232a8519",
+      "pdf_sha256": "7ac5abcc92fb6c1530d77ea458cae9ac0ca37d026e337dea026d72cba4d0e23a"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_circle_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "circle",
+      "selection": "as_written_top10",
+      "script_sha256": "02724ca076245c1dadeedaf2513c522cc883f3a066a4aae332aa1a615e89273f",
+      "pdf_sha256": "06e93390caf4c2e0335eb234173add5239a8906aad13dba110d1ac30cb0f811e"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_random_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "random",
+      "selection": "as_written_top10",
+      "script_sha256": "7e4517ea077e950ea8ffd07d5d543e16e2cb82d9ca2f845d6f078cba42cc9c68",
+      "pdf_sha256": "dd862b8d8576e14a17ac95a0cdf2465e2e65aa5cf34eb83a16e8862c683e2084"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_sugiyama_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "sugiyama",
+      "selection": "as_written_top10",
+      "script_sha256": "819a1b03d20f62911a9f291966063c9d610c2fe4c66350a19d38817f58bb0863",
+      "pdf_sha256": "d9993356a6a29315911c20389f0afd4b59e25b7ae01b8bd8e2f1ac934f72331a"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_star_edge_attribute_fix",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "star",
+      "selection": "as_written_top10",
+      "script_sha256": "d70893a1e09605984d15cc11894f56ffa17153c8233303b18d826fd5c5500448",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_nicely_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "nicely",
+      "selection": "focal_TF_only",
+      "script_sha256": "3d4b1d28da61a7f3cc7ba2b45f16913e2b57771c19e525fe0d6248c3aa08b47d",
+      "pdf_sha256": "92b3b708625c03d40906761187c70976cab8c1920ddeba7e8ab5de7159eaa447"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_fr_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "fr",
+      "selection": "focal_TF_only",
+      "script_sha256": "45064d6fd8ff31648225c220b8c4ce62d52346bfb496144fb2600a6139822ca3",
+      "pdf_sha256": "7c6bb83bf32b5257740f4c668c10b35a85347eac84a793e3337e85fc1d0852b0"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_kk_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "kk",
+      "selection": "focal_TF_only",
+      "script_sha256": "ae58eec554eabe9f9debdb78d17d7f28d5cc4c2c241e5e4e14e69e7d282da502",
+      "pdf_sha256": "3b9a350f19c4b6952a893de280461ffdd2fbd716427f36f5989daf3a59ae22fc"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_circle_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "circle",
+      "selection": "focal_TF_only",
+      "script_sha256": "2192334181a8273ef41b66eb58399587beeff2c5dd582478b0fc425b3d1a2fd6",
+      "pdf_sha256": "29ab6f1977478ae0e29bc342305c3f068b674d0b8549aa88b26bd7a0c63f92d6"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_random_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "random",
+      "selection": "focal_TF_only",
+      "script_sha256": "03c81850fae6fbe5dc0185311036a2f9db921c7365af6521404c59d0313ef7c7",
+      "pdf_sha256": "868e26d1ec2af8847f8609efda2d2247393f50255e755c02134e34f99abe7269"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_sugiyama_edge_attribute_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "sugiyama",
+      "selection": "focal_TF_only",
+      "script_sha256": "b1e3aacba9a651b1e1cce4e29a722d5f3ea74f185ab0fb38562a55f90064ab12",
+      "pdf_sha256": "1867914ea6ead2939c1220b1130a849bc4c84bda1937ab3add22c2d8d17bee95"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_star_edge_attribute_fix",
+      "status": "FAILED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "star",
+      "selection": "focal_TF_only",
+      "script_sha256": "eb05b270c8c3385006aded56b4a73944427c7cd87c07c8530a344166699b6283",
+      "pdf_sha256": null
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_as_written_top10_star_edge_attribute_fix_star_api_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "star",
+      "selection": "as_written_top10",
+      "script_sha256": "f03106fe69da16457f382b143380ba6ff462252ea3cc9ca351b3e2e56cf7b42c",
+      "pdf_sha256": "9e485fcf44f839713fdc175384957855cdddeccde07fc8abe47a4543c3e5b1e5"
+    },
+    {
+      "id": "MAF_Young2Old_section01_L13-471_focal_TF_only_star_edge_attribute_fix_star_api_fix",
+      "status": "PDF_CREATED",
+      "source_notebook": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+      "source_lines": [
+        13,
+        471
+      ],
+      "layout": "star",
+      "selection": "focal_TF_only",
+      "script_sha256": "1fda27a169fd55fe6c468cd65e84c6ea27d051ec63b78e64ca3b3d059647764c",
+      "pdf_sha256": "4e302097e981a536623953ba40c5b7efbec0684588544d69019998d5c7f989cd"
+    }
+  ]
+}
