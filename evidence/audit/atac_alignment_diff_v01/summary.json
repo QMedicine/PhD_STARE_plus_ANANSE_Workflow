@@ -1,0 +1,16 @@
+{
+  "status": "DIAGNOSTIC_NOT_EQUIVALENCE",
+  "paths": [
+    "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186609_Young_HSC_B1_Rep1_filtered.bam",
+    "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/raw_ATAC_pilot_v17/results/raw/ATAC/SRR13186609_Young_HSC_B1_Rep1/SRR13186609_Young_HSC_B1_Rep1.filtered.bam"
+  ],
+  "alignment_counts": [
+    7876998,
+    7877030
+  ],
+  "differing_read_names": 130270,
+  "different_in_both": 127818,
+  "only_historical": 1210,
+  "only_rebuilt": 1242,
+  "both_with_identical_sequence_and_quality": 127818
+}

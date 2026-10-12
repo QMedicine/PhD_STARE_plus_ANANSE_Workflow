@@ -1,0 +1,19 @@
+{
+  "status": "PASS_SYNTHETIC_SPLIT_READ_GEOMETRY",
+  "pairs": 8,
+  "primary_alignments": 16,
+  "secondary_alignments": 7,
+  "total_alignments": 23,
+  "all_primary_5prime_coordinates_exact": true,
+  "split_hard_clips_bp": 44,
+  "mate_information_synchronized": true,
+  "bam_sha256": "b9bbbc014671924530ae958431ceb65d4fd73db1ed09d385b44c914f84eca5bf",
+  "historical_t32_equivalence": "UNKNOWN",
+  "counts_route": "NOT_YET_QUALIFIED",
+  "build_job": "30370397",
+  "driver_job": "30370413",
+  "validation_job": "30370426",
+  "resume_job": "30370427",
+  "cached_tasks_on_resume": 2,
+  "cocktail_guard": "Rejected in Nextflow preview; no alternate mapper substituted"
+}

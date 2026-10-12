@@ -1,0 +1,21 @@
+{
+  "commit": "11920f8c763501714c16c75d2faff14734fa7edd",
+  "repository": "https://github.com/SmythLab/diffHic",
+  "files": {
+    "inst/python/presplit_map.py": {
+      "sha256": "571ac61c65d068c22ab8b94a3a87a9f7aee8ec570e3fb5a716303fbb2a31b09a",
+      "bytes": 10094
+    },
+    "DESCRIPTION": {
+      "sha256": "26cd0f879812c57878d6765640074bd0f7773fe02056b393a008f71ddaccb6d8",
+      "bytes": 1192
+    }
+  },
+  "stage": "raw_hic_mapping_candidate",
+  "authorization": "User authorizes standard mapper candidate on 2026-10-13",
+  "license": "GPL-3",
+  "license_text": {
+    "source": "https://raw.githubusercontent.com/gcc-mirror/gcc/master/COPYING3",
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+  }
+}

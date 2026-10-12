@@ -149,7 +149,7 @@
     "failure": "EXPECTED_SIZE_BUT_MD5_AND_GZIP_CRC_FAILED",
     "official_ftp_retry_job": "30367215",
     "dependent_pilot_job": "30368403",
-    "status": "ORIGINAL_RUNTIME_PILOT_RUNNING",
+    "status": "ORIGINAL_RUNTIME_PILOT_COMPLETE_EXACT_COUNT_REGRESSION_FAILED",
     "resume_job": "30367334",
     "resume_status": "FAILED_MD5",
     "byte_diagnostic_job": "30367635",
@@ -164,7 +164,14 @@
     "header_diagnostic_job": "30368354",
     "authenticated_original_alignment_samtools": "1.20",
     "original_sort_threads": 1,
-    "original_runtime_image_build": "30368384"
+    "original_runtime_image_build": "30368384",
+    "different_windows": 269,
+    "max_window_difference": 6,
+    "alignment_diff_job": "30370418",
+    "header_probe_job": "30370506",
+    "header_reconstruction_pilot": "30370523",
+    "header_reconstruction_regression": "30370526",
+    "header_reconstruction_status": "RUNNING_NOT_QUALIFIED"
   },
   "rna_count_modes": {
     "source": "source_v16",
@@ -174,5 +181,27 @@
     "legacy_four_checkpoints": "BYTE_IDENTICAL",
     "annotation_count_conservation": "EXACT",
     "annotation_mode": "DISTINCT_METHOD_NOT_HISTORICAL_EQUIVALENCE"
+  },
+  "hic_raw_standard": {
+    "build_job": "30370397",
+    "fixture_run_job": "30370413",
+    "geometry_validation_job": "30370426",
+    "resume_job": "30370427",
+    "primary_alignments": 16,
+    "secondary_alignments": 7,
+    "status": "PASS_SYNTHETIC_GEOMETRY_CUSTOM_T32_EQUIVALENCE_UNKNOWN",
+    "counting_container_build_job": "30370471"
+  },
+  "native_contracts_v21": {
+    "job": "30370542",
+    "tests": 13,
+    "status": "PASSED"
+  },
+  "diffhic_count_fixture": {
+    "job": "30370530",
+    "validation_job": "30370548",
+    "resume_job": "30370549",
+    "status": "PASS_SYNTHETIC_TWO_RESOLUTION_COUNTING",
+    "cached_tasks": 5
   }
 }

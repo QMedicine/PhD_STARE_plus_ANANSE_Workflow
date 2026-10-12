@@ -1,0 +1,22 @@
+Bootstrap: localimage
+From: /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/raw_tools_v07.sif
+
+%files
+    /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/hic_python_wheels_v01 /opt/hic_wheels
+
+%post
+    /usr/local/bin/python -m pip install --no-index --find-links=/opt/hic_wheels --no-deps --target=/opt/hic_python biopython==1.83 pysam==0.22.1 numpy==1.26.4
+    rm -rf /opt/hic_wheels
+
+%environment
+    export PYTHONPATH=/opt/hic_python
+
+%test
+    set -eu
+    PYTHONPATH=/opt/hic_python /usr/local/bin/python -c 'import Bio,pysam,numpy;assert Bio.__version__=="1.83";assert pysam.__version__=="0.22.1";assert numpy.__version__=="1.26.4"'
+    cutadapt --version
+    bowtie2 --version
+
+%labels
+    role explicit_standard_diffhic_presplit_candidate
+    historical_t32_equivalence unknown

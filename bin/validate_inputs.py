@@ -44,7 +44,7 @@ def validate(samplesheet,source2target,reverse=True,check_files=True,header_orde
                 if not Path(value).is_absolute() or any(x in value for x in ['\n','\r','\t',"'",'"','`','$']):raise ValueError('Input paths must be safe absolute paths')
                 if check_files and not Path(value).is_file():raise ValueError('Missing file '+value)
         if stage not in [None,'preflight'] and route=='fastq_1':
-            if r['assay']=='HiC':raise ValueError('Raw Hi-C route requires the missing historical mapper; choose the explicit cooler/H5 checkpoint route')
+            if r['assay']=='HiC' and stage!='raw_prepare':raise ValueError('Standard raw Hi-C currently ends at a name-sorted BAM in raw_prepare; downstream counting must be qualified separately')
             if stage!='raw_prepare' and not process_fastq:raise ValueError('FASTQ entry requires --process_fastq or the raw_prepare pilot stage')
         routes.append(dict(sample_name=r['sample_name'],assay=r['assay'],entry=route))
     for name,order in [('historical_header_samples',header_order),('historical_data_samples',data_order)]:
@@ -68,8 +68,8 @@ def validate(samplesheet,source2target,reverse=True,check_files=True,header_orde
         for pair in [(source,target)]+([(target,source)] if reverse else []):
             if pair not in seen:transitions.append(dict(source=pair[0],target=pair[1]));seen.add(pair)
     if raw_samples:
-        eligible={r['sample_name'] for r in samples if r['assay'] in ['RNA','ATAC'] and r['fastq_1']}
-        if stage!='raw_prepare' or len(raw_samples)!=len(set(raw_samples)) or not set(raw_samples).issubset(eligible):raise ValueError('raw_sample_names must identify unique RNA/ATAC FASTQ entries in raw_prepare')
+        eligible={r['sample_name'] for r in samples if r['fastq_1']}
+        if stage!='raw_prepare' or len(raw_samples)!=len(set(raw_samples)) or not set(raw_samples).issubset(eligible):raise ValueError('raw_sample_names must identify unique FASTQ entries in raw_prepare')
     return dict(schema_version='0.1.0',samples=samples,transitions=transitions,primary_transitions=primary_transitions,routes=routes,files_checked=check_files)
 
 if __name__=='__main__':

@@ -13,7 +13,8 @@ Supported draft routes:
 | Stage | Inputs and output boundary |
 |---|---|
 | preflight | Validate samples/contrasts and files; no GRN calculations |
-| raw_prepare | RNA/ATAC FASTQs → alignment/peak checkpoints; pilot subset allowed through raw_sample_names |
+| raw_prepare | RNA/ATAC FASTQs → alignment/peak checkpoints; explicit standard Hi-C route → name-sorted BAM; pilot subset allowed through raw_sample_names |
+| hic_diffhic_counts | Name-sorted Hi-C BAMs + FASTA → restriction assignment/pruning → restriction-rounded counts and loess log offsets at requested widths |
 | cooler_estimated_ice | Merged coolers + explicit threshold TSV → exploratory depth-normalized/ICE matrices and diagnostics |
 | rna_recount | RNA BAMs → featureCounts → retained-ID cleanup → TPM/filtering → directional DE |
 | network_replay | Explicit mode/state network manifest + directional DE → influence; qualified upstream provenance must be retained |

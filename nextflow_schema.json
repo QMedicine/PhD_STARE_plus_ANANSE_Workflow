@@ -18,7 +18,8 @@
         "atac_historical_hic_checkpoint",
         "network_replay",
         "raw_prepare",
-        "cooler_estimated_ice"
+        "cooler_estimated_ice",
+        "hic_diffhic_counts"
       ],
       "default": "preflight"
     },
@@ -457,6 +458,90 @@
       "type": "integer",
       "minimum": 1,
       "default": 1
+    },
+    "hic_raw_container": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Pinned standard mapper candidate image"
+    },
+    "hic_alignment_mode": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "diffhic_presplit_standard_compat",
+        null
+      ],
+      "default": null
+    },
+    "hic_ligation_signature": {
+      "type": "string",
+      "pattern": "^(?:[ACGT]{2})+$",
+      "default": "GATCGATC"
+    },
+    "hic_restriction_sites": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[ACGT]+$"
+      },
+      "default": [
+        "GATC"
+      ]
+    },
+    "diffhic_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hic_overhang": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 4
+    },
+    "hic_mapq": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 10
+    },
+    "hic_chim_dist": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 1000
+    },
+    "hic_max_frag": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 800
+    },
+    "hic_min_inward": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 1000
+    },
+    "hic_min_outward": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 1000
+    },
+    "hic_count_filter": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 1
+    },
+    "atac_fastq_header_mode": {
+      "type": "string",
+      "enum": [
+        "preserve",
+        "sra_spot_length"
+      ],
+      "default": "preserve"
     }
   },
   "additionalProperties": true

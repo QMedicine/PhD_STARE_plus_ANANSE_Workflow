@@ -12,4 +12,4 @@ The original BAM's program records establish samtools 1.20 and default single-th
 
 The post-blacklist peak caller uses MACS3 3.0.1 and q=0.05. Single-end data uses --nomodel --shift -100 --extsize 200; paired-end data uses BAMPE. Effective genome size is required explicitly for new datasets. BAM/peak checkpoint routes retain the provided peaks; they do not silently overwrite them by recalling peaks.
 
-Raw Hi-C reproduction remains dependent on the missing custom presplit_map_t32.py mapper and its historical Python 3.8.8/runtime provenance. The user has been asked for an accessible copy. No alternate generic aligner is substituted for that method.
+The user authorized a standard diffHic candidate for paired Hi-C. The explicit diffhic_presplit_standard_compat route emits a name-sorted, mate-synchronized, duplicate-marked BAM through modules/hic_raw.nf. Its eight-pair native synthetic test verifies all primary 5-prime coordinates and seven hard-clipped secondary segments. Exact custom _t32 equivalence remains unknown. See HIC_STANDARD_PRESPLIT_AND_ARIMA_v01.md for every adapter change, pinned runtime and the separate future cocktail-library protocol.

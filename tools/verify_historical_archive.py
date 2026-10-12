@@ -10,4 +10,12 @@ for manifest in ['historical/ananse_license_manifest_v01.json','historical/hic_g
    excluded+=1;continue
   if hashlib.sha256(path.read_bytes()).hexdigest()!=row['sha256']:raise SystemExit('Checksum mismatch: '+str(path))
   checked+=1
+public=root/'historical/upstream_diffhic_standard'
+identity=json.loads((public/'source_identity.json').read_text())
+for source,row in identity['files'].items():
+ path=public/Path(source).name
+ if hashlib.sha256(path.read_bytes()).hexdigest()!=row['sha256']:raise SystemExit('Public-source checksum mismatch: '+str(path))
+ checked+=1
+if hashlib.sha256((public/'LICENSE').read_bytes()).hexdigest()!=identity['license_text']['sha256']:raise SystemExit('Public-source license checksum mismatch')
+checked+=1
 print(json.dumps({'status':'PASS','verified_archive_copies':checked,'excluded_scientific_output_fixtures':excluded}))

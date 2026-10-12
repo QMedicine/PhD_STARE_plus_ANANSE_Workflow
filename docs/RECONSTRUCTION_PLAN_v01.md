@@ -17,7 +17,7 @@ The repository starts from an empty directory. All compute, builds, caches, deve
 | Hybrid networks | Verbatim affinity-to-network and symbol scripts | Same four-sample mean TPM for both networks; per-TF min-max; two 0.5+0.5 expression factors; max duplicate probability |
 | Influence | ANANSE 0.5.1; source/target; 100,000 pre-subtraction edges; positive target-source differences; upregulated TF candidates | Compare differential edges, components, dense-rank influence and top-20 ordering; test reverse signs |
 | Plots/report | Preserve R notebook graph/aesthetics; parameterize paths/TF only; H13CORE DE for both ranking and plots | Cairo vector PDFs for top20; embedded PDF bytes, offline viewer/download; inspect text selection and layout |
-| Raw entry routes | Paired Hi-C, single/paired RNA and ATAC | Implement only after recovering raw Hi-C alignment/ligation/duplicate protocol; BAM/cooler development first |
+| Raw entry routes | Paired Hi-C, single/paired RNA and ATAC | RNA exact and paired geometry qualified; standard Hi-C mapper candidate authorized 13 October, explicit method label and split-read qualification; missing custom _t32 equivalence unresolved |
 
 ## Decisions and limitations
 

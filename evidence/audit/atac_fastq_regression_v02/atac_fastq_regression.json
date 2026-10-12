@@ -1,0 +1,14 @@
+{
+  "sample": "SRR13186609_Young_HSC_B1_Rep1",
+  "expected_count_producer": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/work/23/bac8e7091dc6c05a24098ade0622dd/SRR13186609_Young_HSC_B1_Rep1.window_counts.tsv",
+  "n_windows": 206350,
+  "different_window_counts": 269,
+  "max_window_count_difference": 6,
+  "window_counts_exact": false,
+  "expected_window_counts_sha256": "ae645bdc6557af7d30af2df928e6884084dd21687a48fd23b8e62b15f85dccb2",
+  "observed_window_counts_sha256": "cb1c81c2ed7b42dcdfaf45766eed2eff47cb08fc8db1aa3e6cdb8c9c9e25bf9c",
+  "expected_pre_blacklist_alignments": 7876998,
+  "observed_pre_blacklist_alignments": 7877030,
+  "called_summits": 52513,
+  "peak_universe_note": "Recalled summit files are distinct from the preserved historical summit-window checkpoint"
+}

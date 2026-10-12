@@ -1,0 +1,36 @@
+{
+  "status": "HEADER_FORMAT_HYPOTHESIS_TEST",
+  "comparisons": [
+    {
+      "format": "bare",
+      "tested": 20,
+      "exact_alignment_payload_matches": 7
+    },
+    {
+      "format": "spot_length",
+      "tested": 20,
+      "exact_alignment_payload_matches": 20
+    },
+    {
+      "format": "length",
+      "tested": 20,
+      "exact_alignment_payload_matches": 5
+    },
+    {
+      "format": "spot_mate",
+      "tested": 20,
+      "exact_alignment_payload_matches": 0
+    },
+    {
+      "format": "spot",
+      "tested": 20,
+      "exact_alignment_payload_matches": 0
+    },
+    {
+      "format": "slash_mate",
+      "tested": 20,
+      "exact_alignment_payload_matches": 7
+    }
+  ],
+  "note": "A match is evidence for this header hypothesis on a bounded subset; it does not qualify the complete FASTQ route"
+}

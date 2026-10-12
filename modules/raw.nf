@@ -48,6 +48,26 @@ process RNA_STAR {
     """
 }
 
+process ATAC_PREPARE_FASTQ_HEADERS {
+    tag meta.sample_name
+    label 'raw_tools'
+    cpus 1
+    memory '4 GB'
+    time '4h'
+    publishDir { "${params.outdir}/raw/${meta.assay}/${meta.sample_name}/header_provenance" }, mode: 'copy', pattern: '*.json'
+    input:
+    tuple val(meta), path(reads)
+    output:
+    tuple val(meta), path("${meta.sample_name}.R*.fastq"), emit: reads
+    path 'header_transformation.json', emit: provenance
+    script:
+    def readFiles = reads instanceof Collection ? reads : [reads]
+    def files = readFiles.collect { read -> '"'+read+'"' }.join(' ')
+    """
+    prepare_atac_fastq_headers.py --prefix '${meta.sample_name}' --reads ${files}
+    """
+}
+
 process ATAC_ALIGN_DEDUP_FILTER {
     tag meta.sample_name
     publishDir { "${params.outdir}/raw/${meta.assay}/${meta.sample_name}" }, mode: 'copy'

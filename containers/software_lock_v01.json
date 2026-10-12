@@ -59,14 +59,28 @@
       "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/raw_tools_v07.sif",
       "sha256": "19c8c6c0b8e9045ee285f45ad1c6636b6f086141d6485c41fd4cb89c30378a5d",
       "version": "Python 3.9.18, Cutadapt 4.8, STAR 2.7.11b, Bowtie2 2.5.3, MACS3 3.0.1, FastQC 0.12.1, Picard 3.1.1, OpenJDK 21.0.2, native BAM tools, isolated samtools/htslib 1.20 for alignment",
-      "qualification": "Native version tests passed; original-runtime actual ATAC count regression pending"
+      "qualification": "Native version tests passed; actual ATAC exact-count regression failed on 269 windows"
     },
     {
       "role": "raw_tools_qualified_v06",
       "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/raw_tools_v06.sif",
       "sha256": "906adeab69fb2859d85067d9afc33f052b56db89a107710ee13056926bdcf89b",
       "version": "Python 3.9.18, Cutadapt 4.8, STAR 2.7.11b, Bowtie2 2.5.3, MACS3 3.0.1, FastQC 0.12.1, Picard 3.1.1, OpenJDK 21.0.2, native BAM tools",
-      "qualification": "Native version/Picard/ps checks passed; all four RNA FASTQs give exact saved sequence/count and qualified TPM/primary DE values; synthetic paired RNA/ATAC geometry passed; actual ATAC FASTQ pilot pending"
+      "qualification": "Native version/Picard/ps checks passed; all four RNA FASTQs give exact saved sequence/count and qualified TPM/primary DE values; synthetic paired RNA/ATAC geometry passed; actual ATAC exact-count regression failed on 267 windows"
+    },
+    {
+      "role": "hic_raw_standard",
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/hic_raw_standard_v01.sif",
+      "sha256": "5f544e045bb80e207cab30b7a249f6f64ff475202bef79ca5d006514cbe13670",
+      "version": "Python 3.9.18, Biopython 1.83, pysam 0.22.1, NumPy 1.26.4; inherited raw_tools_v07 tools",
+      "qualification": "Native eight-pair split-read geometry passed; custom t32 equivalence unknown"
+    },
+    {
+      "role": "diffhic",
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/r_diffhic_v01.sif",
+      "sha256": "78118537d3e0e6df5e95f1dd93745662503dffecd7d4c03da3ed5ef34d51bbd7",
+      "version": "R 4.5.1, diffHic 1.40.0, current installed dependency closure",
+      "qualification": "Native loading and synthetic squareCounts/loess execution passed; biological/historical equivalence not claimed"
     }
   ]
 }

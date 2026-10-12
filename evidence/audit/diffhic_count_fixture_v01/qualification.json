@@ -1,0 +1,37 @@
+{
+  "status": "PASS_SYNTHETIC_TWO_RESOLUTION_COUNTING",
+  "resolutions": {
+    "500": {
+      "resolution": 500,
+      "bin_pairs": 7,
+      "retained_pair_counts": [
+        7,
+        7
+      ],
+      "offsets_finite": true,
+      "sample_order_exact": true,
+      "table_values_exact": true,
+      "binning": "restriction-site-rounded squareCounts; not fixed-grid cooler bins"
+    },
+    "1000": {
+      "resolution": 1000,
+      "bin_pairs": 7,
+      "retained_pair_counts": [
+        7,
+        7
+      ],
+      "offsets_finite": true,
+      "sample_order_exact": true,
+      "table_values_exact": true,
+      "binning": "restriction-site-rounded squareCounts; not fixed-grid cooler bins"
+    }
+  },
+  "method": "diffHic 1.40.0 current-library candidate; synthetic pruning override; no historical or biological equivalence claim",
+  "build_job": "30370471",
+  "driver_job": "30370530",
+  "failed_initial_driver": "30370493",
+  "failed_initial_validator": "30370541",
+  "validation_job": "30370548",
+  "resume_job": "30370549",
+  "cached_tasks_on_resume": 5
+}

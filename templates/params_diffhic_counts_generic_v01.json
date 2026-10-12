@@ -1,0 +1,18 @@
+{
+  "stage": "hic_diffhic_counts",
+  "samplesheet": "/absolute/path/name_sorted_bam_samplesheet.tsv",
+  "source2target": "/absolute/path/source2target.tsv",
+  "fasta": "/absolute/path/reference.fa",
+  "hic_restriction_sites": ["GATC"],
+  "hic_overhang": 4,
+  "hic_mapq": 10,
+  "hic_chim_dist": 1000,
+  "hic_max_frag": 800,
+  "hic_min_inward": 1000,
+  "hic_min_outward": 1000,
+  "hic_count_filter": 1,
+  "resolutions": "30000,50000,100000",
+  "diffhic_norm": "loess_offsets",
+  "diffhic_container": "/absolute/path/r_diffhic_v01.sif",
+  "ananse_container": "/absolute/path/ananse_v03.sif"
+}

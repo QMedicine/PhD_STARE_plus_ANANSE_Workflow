@@ -1,5 +1,6 @@
 include { RAW_PREPARE } from './raw_prepare'
 include { HIC_ESTIMATED } from './hic_estimated'
+include { DIFFHIC_COUNTS } from './diffhic_counts'
 include { RNA_RECONSTRUCTION } from './rna_reconstruction'
 include { VALIDATE_INPUTS } from '../modules/preflight'
 include { RNA_FEATURECOUNTS; RNA_MERGE_RECOUNT; RNA_ANNOTATION_COUNTS; RNA_TPM_FILTER; RNA_DESEQ2 } from '../modules/rna'
@@ -15,6 +16,10 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
 
     main:
     VALIDATE_INPUTS(samplesheet, source2target)
+    if (params.stage == 'hic_diffhic_counts') {
+        diffhic_manifest = VALIDATE_INPUTS.out.manifest.map { json -> new groovy.json.JsonSlurper().parseText(json.text) }
+        DIFFHIC_COUNTS(diffhic_manifest,samplesheet)
+    }
     if (params.stage == 'cooler_estimated_ice') {
         hic_manifest = VALIDATE_INPUTS.out.manifest.map { json -> new groovy.json.JsonSlurper().parseText(json.text) }
         HIC_ESTIMATED(hic_manifest)

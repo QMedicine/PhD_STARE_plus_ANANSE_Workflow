@@ -1,0 +1,24 @@
+test_ananse_compatibility_preserves_all_de_values (test_contracts.Contracts) ... ok
+test_both_directions_and_file_routes (test_contracts.Contracts) ... ok
+test_explicit_reverse_does_not_duplicate_fits (test_contracts.Contracts) ... ok
+test_generic_cell_states (test_contracts.Contracts) ... ok
+test_generic_selected_plot_chunk (test_contracts.Contracts) ... ok
+test_header_and_data_order_modes (test_contracts.Contracts) ... ok
+test_nonmouse_contacts_and_mixed_aliases (test_contracts.Contracts) ... ok
+test_report_uses_resolved_parameters_and_checkpoint_scope (test_contracts.Contracts) ... ok
+test_transition_between_cell_types (test_contracts.Contracts) ... ok
+test_unknown_raw_sample_rejected (test_contracts.Contracts) ... ok
+test_unknown_state_rejected (test_contracts.Contracts) ... ok
+test_annotation_mode_conserves_counts_and_records_exclusions (test_count_cleanup.Cleanup) ... /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/source_v21/bin/annotation_counts.py:8: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpfiuq89tp/samples.tsv' mode='r' encoding='UTF-8'>
+  samples=[r['sample_name'] for r in csv.DictReader(Path(samplesheet).open(),delimiter='\t') if r['assay']=='RNA']
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/ananse/lib/python3.10/site-packages/pandas/core/algorithms.py:522: DeprecationWarning: np.find_common_type is deprecated.  Please use `np.result_type` or `np.promote_types`.
+See https://numpy.org/devdocs/release/1.25.0-notes.html and the docs for more information.  (Deprecated NumPy 1.25)
+  common = np.find_common_type([values.dtype, comps_array.dtype], [])
+ok
+test_same_locus_sum_and_distinct_locus_representative (test_count_cleanup.Cleanup) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.079s
+
+OK

@@ -1,0 +1,17 @@
+Bootstrap: localimage
+From: /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/r_plot_v01.sif
+
+%files
+    /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/r_diffhic_runtime_v01.tar /opt/r_diffhic_runtime_v01.tar
+
+%post
+    tar -xf /opt/r_diffhic_runtime_v01.tar -C /opt
+    rm /opt/r_diffhic_runtime_v01.tar
+
+%test
+    set -eu
+    R_LIBS_USER=/opt/Rlibrary R_LIBS_SITE=/opt/Rlibrary LD_LIBRARY_PATH=/opt/host-libs:${LD_LIBRARY_PATH:-} Rscript --vanilla -e 'stopifnot(getRversion()=="4.5.1"); library(diffHic);library(jsonlite);stopifnot(packageVersion("diffHic")=="1.40.0");cat("diffHic",as.character(packageVersion("diffHic")),"\n")'
+
+%labels
+    role current_diffhic_counting_snapshot_candidate
+    historical_counting_equivalence unknown
