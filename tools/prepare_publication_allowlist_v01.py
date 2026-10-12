@@ -9,7 +9,7 @@ allowed=[p for p in files if p and (p in standalone or any(p.startswith(root) fo
 receipts=['evidence/audit/rna_locus_groups_v01/','evidence/audit/rna_numerical_regression_v01/','evidence/audit/native_contracts_v01/','evidence/audit/selected_plot_v05/','evidence/audit/deseq_cellmeans_v02/','evidence/audit/tpm_boundary_v01/']
 for p in files:
  if p.startswith('evidence/audit/') and any(p.startswith(x) for x in receipts):allowed.append(p)
-allowed.extend(['evidence/publication_allowlist_v01.txt','evidence/publication_audit_v01.json','evidence/native_validation_summary_v01.json','evidence/audit/curated_assets_observed_v01.jsonl'])
+allowed.extend(['evidence/publication_allowlist_v01.txt','evidence/publication_audit_v01.json','evidence/native_validation_summary_v01.json','evidence/audit/curated_assets_observed_v01.jsonl','evidence/audit/discovery_manifest_v01.json'])
 secret_patterns=[re.compile(x.encode()) for x in [r'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',r'gh[pousr]_[A-Za-z0-9]{30,}',r'github_pat_[A-Za-z0-9_]{30,}',r'(?i)authorization:\s*bearer\s+[A-Za-z0-9._-]{20,}']]
 flagged=[p for p in allowed if Path(p).is_file() and any(pattern.search(Path(p).read_bytes()) for pattern in secret_patterns)]
 if flagged:raise SystemExit('Potential credentials in files: '+str(flagged))

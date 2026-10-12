@@ -1,0 +1,3791 @@
+[
+  {
+    "type": "directory",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs",
+    "exists": true
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/03_HiC_analysis_OvsY_MMP_convert_pairs_to_cool_main_chroms.sh",
+    "size": 1917,
+    "sha256": "3f3418029924e44c4d9506b5c18b805a58ca87816ad3bf6da8416adac66bc96c",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/03_HiC_analysis_OvsY_MMP_convert_pairs_to_cool_main_chroms.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/20240603_Experimental_information_quinnS_Hi-C_YandO_MMP_hi_low_HSC.csv",
+    "size": 3028,
+    "sha256": "2d2650c78c15666ebdf7eb00b94bfce6b436160db2699d602bc6879efe1001c7",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/20240603_Experimental_information_quinnS_Hi-C_YandO_MMP_hi_low_HSC.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_COsort_index_bam.sh",
+    "size": 2634,
+    "sha256": "7185f9db3ff1464ba4fff62559ec19cfccbcd26b54ddd6e8935f910e91be7335",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_COsort_index_bam.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_Name_sort_merged_high_low_bams.sh",
+    "size": 4217,
+    "sha256": "a8f032f47581ee8399f9742f47aff99a7d5205a5ed78c61cde1b168ce4862366",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_Name_sort_merged_high_low_bams.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_downsample_COsorted_bams.sh",
+    "size": 5262,
+    "sha256": "01ab8245092fab10fb868dc45d41fac227b5d83fbc39f89c4d458c61523bb57a",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_downsample_COsorted_bams.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_generate_unique_read_counts.sh",
+    "size": 833,
+    "sha256": "e5d53ef5da7eba00b41d098d02118a6e762f8e3155546406ade1cac2e21c7a92",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_generate_unique_read_counts.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_index_bam.sh",
+    "size": 1461,
+    "sha256": "e1aeb54e8f4657243de387beed1a736fafa99947321a01945b4764e4a5618c2a",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_index_bam.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_merge_high_low_bams.sh",
+    "size": 4193,
+    "sha256": "04ce850d7de0315ad25ecec16509e5c1d68cb142370d960fd7c0205ec00d3abd",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_merge_high_low_bams.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_combined_HSC_generate_unique_read_counts.sh",
+    "size": 933,
+    "sha256": "56734d5a14f1d0e1bbd1eeca48bccd994be1436f9c04e5341ff600a15b44fc44",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_combined_HSC_generate_unique_read_counts.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_combined_convert_bam_to_mcool.sh",
+    "size": 4053,
+    "sha256": "4f747ef9888b9658a0ccfbd64ec98b4a9957ea016f485199a2c333e467bb74c4",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_combined_convert_bam_to_mcool.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_combined_convert_h5_to_mcool.sh",
+    "size": 4051,
+    "sha256": "b77f2dccf7f0336250317e87541328615109332491509b57cb50f72015f5cf0f",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_combined_convert_h5_to_mcool.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_convert_pairs_to_cool.sh",
+    "size": 1846,
+    "sha256": "423abcd66691837c08db1a781197829d24b388fe65c7a31d4ae3c1d6dc5a8bef",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_convert_pairs_to_cool.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_convert_pairs_to_cool_1000bp.sh",
+    "size": 1744,
+    "sha256": "41444ce79c12c28449c31e393f3c6f8d5feb0c11a6d50834eb8a9086dbd33ab5",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_convert_pairs_to_cool_1000bp.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_convert_pairs_to_cool_extra_res.sh",
+    "size": 1746,
+    "sha256": "e3e23edf8fd8fa16a466c2b8a5c90d24d5adbbe88e695b55a827a925fd304e44",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_convert_pairs_to_cool_extra_res.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Manipulating_DI_DE_overlaps_dataframes.R",
+    "size": 5797,
+    "sha256": "dd065cdae1d1b8e6bd520529882d4c03cf799c237990f16141671da8bbd0df07",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Manipulating_DI_DE_overlaps_dataframes.R"
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/O_LTHSC_MMP_High_Rep1_mm_trim.h5",
+    "size": 474884509
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/O_LTHSC_MMP_High_Rep2_mm_trim.h5",
+    "size": 1039598791
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/O_LTHSC_MMP_High_Rep3_mm_trim.h5",
+    "size": 658115320
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/O_LTHSC_MMP_Low_Rep1_mm_trim.h5",
+    "size": 664161601
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/O_LTHSC_MMP_Low_Rep2_mm_trim.h5",
+    "size": 859911268
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/O_LTHSC_MMP_Low_Rep3_mm_trim.h5",
+    "size": 971478566
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/O_LTHSC_Rep1_combined.h5",
+    "size": 1107415842
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/O_LTHSC_Rep2_combined.h5",
+    "size": 1847279290
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/O_LTHSC_Rep3_combined.h5",
+    "size": 1585981706
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Y_LTHSC_MMP_High_Rep1_mm_trim.h5",
+    "size": 243556713
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Y_LTHSC_MMP_High_Rep2_mm_trim.h5",
+    "size": 490381138
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Y_LTHSC_MMP_High_Rep3_mm_trim.h5",
+    "size": 321383572
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Y_LTHSC_MMP_Low_Rep1_mm_trim.h5",
+    "size": 175015242
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Y_LTHSC_MMP_Low_Rep2_mm_trim.h5",
+    "size": 620966062
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Y_LTHSC_MMP_Low_Rep3_mm_trim.h5",
+    "size": 467960850
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Y_LTHSC_Rep1_combined.h5",
+    "size": 403899221
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Y_LTHSC_Rep2_combined.h5",
+    "size": 1080293497
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Y_LTHSC_Rep3_combined.h5",
+    "size": 766243093
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/count_reads_per_chromosome.sh",
+    "size": 1524,
+    "sha256": "1126077d67b4c29a6abdabea139cb8192a7e632e628cc44f4ca6147691fbf78a",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/count_reads_per_chromosome.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/test_select_chromosome_region.py",
+    "size": 1876,
+    "sha256": "8ed3b0b005bc596fe760d65a1fd5da10629d2c1de2860c370c6261993fed2711",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/test_select_chromosome_region.py"
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/COSorted_merged_bam_files_BL_removed/O_LTHSC_MMP_combined_Rep1_COsorted_BL_removed.bam",
+    "size": 18266851359
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/COSorted_merged_bam_files_BL_removed/O_LTHSC_MMP_combined_Rep2_COsorted_BL_removed.bam",
+    "size": 25635529446
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/COSorted_merged_bam_files_BL_removed/O_LTHSC_MMP_combined_Rep3_COsorted_BL_removed.bam",
+    "size": 24138827563
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/COSorted_merged_bam_files_BL_removed/Y_LTHSC_MMP_combined_Rep1_COsorted_BL_removed.bam",
+    "size": 9804759154
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/COSorted_merged_bam_files_BL_removed/Y_LTHSC_MMP_combined_Rep2_COsorted_BL_removed.bam",
+    "size": 18392024770
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/COSorted_merged_bam_files_BL_removed/Y_LTHSC_MMP_combined_Rep3_COsorted_BL_removed.bam",
+    "size": 14960118984
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep1_S1_10000.cool",
+    "size": 40474708
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep1_S1_100000.cool",
+    "size": 16593334
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep1_S1_1000000.cool",
+    "size": 3280613
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep1_S1_20000.cool",
+    "size": 32715999
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep1_S1_200000.cool",
+    "size": 10574835
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep1_S1_2000000.cool",
+    "size": 1116932
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep1_S1_30000.cool",
+    "size": 27687614
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep1_S1_50000.cool",
+    "size": 23610622
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep1_S1_500000.cool",
+    "size": 5904975
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep2_S5_10000.cool",
+    "size": 80565224
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep2_S5_100000.cool",
+    "size": 29863305
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep2_S5_1000000.cool",
+    "size": 3947595
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep2_S5_20000.cool",
+    "size": 65886012
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep2_S5_200000.cool",
+    "size": 19148877
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep2_S5_2000000.cool",
+    "size": 1212959
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep2_S5_30000.cool",
+    "size": 55242548
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep2_S5_50000.cool",
+    "size": 45960457
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep2_S5_500000.cool",
+    "size": 9210013
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep3_S9_10000.cool",
+    "size": 53197788
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep3_S9_100000.cool",
+    "size": 21441078
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep3_S9_1000000.cool",
+    "size": 3654050
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep3_S9_20000.cool",
+    "size": 43564231
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep3_S9_200000.cool",
+    "size": 13644361
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep3_S9_2000000.cool",
+    "size": 1155576
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep3_S9_30000.cool",
+    "size": 36969860
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep3_S9_50000.cool",
+    "size": 31456928
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_High_Rep3_S9_500000.cool",
+    "size": 7330140
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep1_S2_10000.cool",
+    "size": 55764990
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep1_S2_100000.cool",
+    "size": 21940343
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep1_S2_1000000.cool",
+    "size": 3636989
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep1_S2_20000.cool",
+    "size": 45567419
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep1_S2_200000.cool",
+    "size": 13915680
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep1_S2_2000000.cool",
+    "size": 1164196
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep1_S2_30000.cool",
+    "size": 38516864
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep1_S2_50000.cool",
+    "size": 32590949
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep1_S2_500000.cool",
+    "size": 7411510
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep2_S6_10000.cool",
+    "size": 70510140
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep2_S6_100000.cool",
+    "size": 27130237
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep2_S6_1000000.cool",
+    "size": 3868412
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep2_S6_20000.cool",
+    "size": 58162644
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep2_S6_200000.cool",
+    "size": 17402795
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep2_S6_2000000.cool",
+    "size": 1196077
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep2_S6_30000.cool",
+    "size": 49076592
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep2_S6_50000.cool",
+    "size": 41167605
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep2_S6_500000.cool",
+    "size": 8691993
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep3_S10_10000.cool",
+    "size": 75612462
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep3_S10_100000.cool",
+    "size": 28622954
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep3_S10_1000000.cool",
+    "size": 3904806
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep3_S10_20000.cool",
+    "size": 62284818
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep3_S10_200000.cool",
+    "size": 18322450
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep3_S10_2000000.cool",
+    "size": 1205642
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep3_S10_30000.cool",
+    "size": 52452065
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep3_S10_50000.cool",
+    "size": 43821005
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/O_LTHSC_MMP_Low_Rep3_S10_500000.cool",
+    "size": 8947676
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep1_S3_10000.cool",
+    "size": 23455006
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep1_S3_100000.cool",
+    "size": 10133021
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep1_S3_1000000.cool",
+    "size": 2472002
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep1_S3_20000.cool",
+    "size": 18823978
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep1_S3_200000.cool",
+    "size": 6624738
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep1_S3_2000000.cool",
+    "size": 1033689
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep1_S3_30000.cool",
+    "size": 16006288
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep1_S3_50000.cool",
+    "size": 13706393
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep1_S3_500000.cool",
+    "size": 3740809
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep2_S7_10000.cool",
+    "size": 43174354
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep2_S7_100000.cool",
+    "size": 18116521
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep2_S7_1000000.cool",
+    "size": 3487663
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep2_S7_20000.cool",
+    "size": 35457064
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep2_S7_200000.cool",
+    "size": 11651213
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep2_S7_2000000.cool",
+    "size": 1133739
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep2_S7_30000.cool",
+    "size": 30278728
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep2_S7_50000.cool",
+    "size": 25970995
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep2_S7_500000.cool",
+    "size": 6505858
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep3_S11_10000.cool",
+    "size": 29522241
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep3_S11_100000.cool",
+    "size": 12581309
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep3_S11_1000000.cool",
+    "size": 2772180
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep3_S11_20000.cool",
+    "size": 23796099
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep3_S11_200000.cool",
+    "size": 7998306
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep3_S11_2000000.cool",
+    "size": 1070500
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep3_S11_30000.cool",
+    "size": 20277800
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep3_S11_50000.cool",
+    "size": 17410148
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_High_Rep3_S11_500000.cool",
+    "size": 4453640
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep1_S4_10000.cool",
+    "size": 17934156
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep1_S4_100000.cool",
+    "size": 7912834
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep1_S4_1000000.cool",
+    "size": 2031822
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep1_S4_20000.cool",
+    "size": 14391568
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep1_S4_200000.cool",
+    "size": 5300782
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep1_S4_2000000.cool",
+    "size": 961578
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep1_S4_30000.cool",
+    "size": 12268263
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep1_S4_50000.cool",
+    "size": 10463791
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep1_S4_500000.cool",
+    "size": 2942787
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep2_S8_10000.cool",
+    "size": 52894352
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep2_S8_100000.cool",
+    "size": 20667246
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep2_S8_1000000.cool",
+    "size": 3540839
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep2_S8_20000.cool",
+    "size": 43556353
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep2_S8_200000.cool",
+    "size": 12805966
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep2_S8_2000000.cool",
+    "size": 1155096
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep2_S8_30000.cool",
+    "size": 36989126
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep2_S8_50000.cool",
+    "size": 31243720
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep2_S8_500000.cool",
+    "size": 6871537
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep3_S12_10000.cool",
+    "size": 40373160
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep3_S12_100000.cool",
+    "size": 16798482
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep3_S12_1000000.cool",
+    "size": 3305814
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep3_S12_20000.cool",
+    "size": 33072417
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep3_S12_200000.cool",
+    "size": 10606065
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep3_S12_2000000.cool",
+    "size": 1120632
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep3_S12_30000.cool",
+    "size": 28246220
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep3_S12_50000.cool",
+    "size": 24201386
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Y_LTHSC_MMP_Low_Rep3_S12_500000.cool",
+    "size": 5910478
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/test_merged_O_LTHSC_Rep1_100000.cool",
+    "size": 30592506
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp1_S1_10000.cool",
+    "size": 86033026
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp1_S1_100000.cool",
+    "size": 33401515
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp1_S1_1000000.cool",
+    "size": 4062316
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp1_S1_20000.cool",
+    "size": 73386209
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp1_S1_200000.cool",
+    "size": 22329876
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp1_S1_2000000.cool",
+    "size": 1240928
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp1_S1_30000.cool",
+    "size": 62200317
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp1_S1_50000.cool",
+    "size": 51275317
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp1_S1_500000.cool",
+    "size": 10180796
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp2_S5_10000.cool",
+    "size": 97220581
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp2_S5_100000.cool",
+    "size": 37687170
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp2_S5_1000000.cool",
+    "size": 4128665
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp2_S5_20000.cool",
+    "size": 83439854
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp2_S5_200000.cool",
+    "size": 25131549
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp2_S5_2000000.cool",
+    "size": 1266637
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp2_S5_30000.cool",
+    "size": 70488368
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp2_S5_50000.cool",
+    "size": 57667267
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_O_Exp2_S5_500000.cool",
+    "size": 10740695
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp1_S2_10000.cool",
+    "size": 114118519
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp1_S2_100000.cool",
+    "size": 40928257
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp1_S2_1000000.cool",
+    "size": 4199096
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp1_S2_20000.cool",
+    "size": 96728660
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp1_S2_200000.cool",
+    "size": 26625048
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp1_S2_2000000.cool",
+    "size": 1291924
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp1_S2_30000.cool",
+    "size": 80149030
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp1_S2_50000.cool",
+    "size": 63969751
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp1_S2_500000.cool",
+    "size": 10826841
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp2_S6_10000.cool",
+    "size": 84552385
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp2_S6_100000.cool",
+    "size": 32404734
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp2_S6_1000000.cool",
+    "size": 4050714
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp2_S6_20000.cool",
+    "size": 72085391
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp2_S6_200000.cool",
+    "size": 21449950
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp2_S6_2000000.cool",
+    "size": 1242349
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp2_S6_30000.cool",
+    "size": 60969636
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp2_S6_50000.cool",
+    "size": 50047470
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/M_Y_Exp2_S6_500000.cool",
+    "size": 9849066
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp1_S3_10000.cool",
+    "size": 70434707
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp1_S3_100000.cool",
+    "size": 29406661
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp1_S3_1000000.cool",
+    "size": 3962345
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp1_S3_20000.cool",
+    "size": 60555071
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp1_S3_200000.cool",
+    "size": 19439660
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp1_S3_2000000.cool",
+    "size": 1224214
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp1_S3_30000.cool",
+    "size": 52215257
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp1_S3_50000.cool",
+    "size": 44188236
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp1_S3_500000.cool",
+    "size": 9286924
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp2_S7_10000.cool",
+    "size": 104288050
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp2_S7_100000.cool",
+    "size": 40150157
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp2_S7_1000000.cool",
+    "size": 4184704
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp2_S7_20000.cool",
+    "size": 89814618
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp2_S7_200000.cool",
+    "size": 26237693
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp2_S7_2000000.cool",
+    "size": 1288439
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp2_S7_30000.cool",
+    "size": 75897677
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp2_S7_50000.cool",
+    "size": 61901333
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_O_Exp2_S7_500000.cool",
+    "size": 10725839
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp1_S4_10000.cool",
+    "size": 99954013
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp1_S4_100000.cool",
+    "size": 38704940
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp1_S4_1000000.cool",
+    "size": 4154511
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp1_S4_20000.cool",
+    "size": 86085366
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp1_S4_200000.cool",
+    "size": 25288738
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp1_S4_2000000.cool",
+    "size": 1282121
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp1_S4_30000.cool",
+    "size": 72854710
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp1_S4_50000.cool",
+    "size": 59555655
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp1_S4_500000.cool",
+    "size": 10474563
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp2_S8_10000.cool",
+    "size": 95360289
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp2_S8_100000.cool",
+    "size": 37497939
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp2_S8_1000000.cool",
+    "size": 4140424
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp2_S8_20000.cool",
+    "size": 82219311
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp2_S8_200000.cool",
+    "size": 24668593
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp2_S8_2000000.cool",
+    "size": 1275044
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp2_S8_30000.cool",
+    "size": 69844388
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp2_S8_50000.cool",
+    "size": 57430669
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/Monocytes_NK_Cells/NK_Y_Exp2_S8_500000.cool",
+    "size": 10428043
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep1_1000000_MMP_combined.cool",
+    "size": 3948390
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep1_100000_MMP_combined.cool",
+    "size": 30592506
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep1_10000_MMP_combined.cool",
+    "size": 84680382
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep1_2000000_MMP_combined.cool",
+    "size": 1220270
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep1_200000_MMP_combined.cool",
+    "size": 19576643
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep1_20000_MMP_combined.cool",
+    "size": 69256939
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep1_30000_MMP_combined.cool",
+    "size": 57893594
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep1_500000_MMP_combined.cool",
+    "size": 9283329
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep1_50000_MMP_combined.cool",
+    "size": 47823589
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep2_1000000_MMP_combined.cool",
+    "size": 4204888
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep2_100000_MMP_combined.cool",
+    "size": 45034479
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep2_10000_MMP_combined.cool",
+    "size": 133733060
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep2_2000000_MMP_combined.cool",
+    "size": 1295599
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep2_200000_MMP_combined.cool",
+    "size": 28661427
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep2_20000_MMP_combined.cool",
+    "size": 109581675
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep2_30000_MMP_combined.cool",
+    "size": 89984424
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep2_500000_MMP_combined.cool",
+    "size": 11179865
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep2_50000_MMP_combined.cool",
+    "size": 71879796
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep3_1000000_MMP_combined.cool",
+    "size": 4130960
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep3_100000_MMP_combined.cool",
+    "size": 39724819
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep3_10000_MMP_combined.cool",
+    "size": 114221301
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep3_2000000_MMP_combined.cool",
+    "size": 1267060
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep3_200000_MMP_combined.cool",
+    "size": 25409001
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep3_20000_MMP_combined.cool",
+    "size": 94011958
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep3_30000_MMP_combined.cool",
+    "size": 77946293
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep3_500000_MMP_combined.cool",
+    "size": 10645955
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/O_LTHSC_Rep3_50000_MMP_combined.cool",
+    "size": 63107440
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep1_1000000_MMP_combined.cool",
+    "size": 3082537
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep1_100000_MMP_combined.cool",
+    "size": 14832048
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep1_10000_MMP_combined.cool",
+    "size": 35777514
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep1_2000000_MMP_combined.cool",
+    "size": 1102747
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep1_200000_MMP_combined.cool",
+    "size": 9322385
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep1_20000_MMP_combined.cool",
+    "size": 29019078
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep1_30000_MMP_combined.cool",
+    "size": 24703847
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep1_500000_MMP_combined.cool",
+    "size": 5256954
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep1_50000_MMP_combined.cool",
+    "size": 21130453
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep2_1000000_MMP_combined.cool",
+    "size": 3978290
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep2_100000_MMP_combined.cool",
+    "size": 30595842
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep2_10000_MMP_combined.cool",
+    "size": 84901512
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep2_2000000_MMP_combined.cool",
+    "size": 1217752
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep2_200000_MMP_combined.cool",
+    "size": 19502188
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep2_20000_MMP_combined.cool",
+    "size": 70216849
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep2_30000_MMP_combined.cool",
+    "size": 58858077
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep2_500000_MMP_combined.cool",
+    "size": 9330080
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep2_50000_MMP_combined.cool",
+    "size": 48396897
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep3_1000000_MMP_combined.cool",
+    "size": 3724720
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep3_100000_MMP_combined.cool",
+    "size": 23479120
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep3_10000_MMP_combined.cool",
+    "size": 61217616
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep3_2000000_MMP_combined.cool",
+    "size": 1174078
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep3_200000_MMP_combined.cool",
+    "size": 14742579
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep3_20000_MMP_combined.cool",
+    "size": 50392298
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep3_30000_MMP_combined.cool",
+    "size": 42675052
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep3_500000_MMP_combined.cool",
+    "size": 7702558
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/Y_LTHSC_Rep3_50000_MMP_combined.cool",
+    "size": 35867543
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/O_LTHSC_1000000_MMP_combined_replicates_merged.cool",
+    "size": 4577768
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/O_LTHSC_100000_MMP_combined_replicates_merged.cool",
+    "size": 79702361
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/O_LTHSC_10000_MMP_combined_replicates_merged.cool",
+    "size": 274960145
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/O_LTHSC_2000000_MMP_combined_replicates_merged.cool",
+    "size": 1438008
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/O_LTHSC_200000_MMP_combined_replicates_merged.cool",
+    "size": 45719514
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/O_LTHSC_20000_MMP_combined_replicates_merged.cool",
+    "size": 219171358
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/O_LTHSC_30000_MMP_combined_replicates_merged.cool",
+    "size": 169819760
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/O_LTHSC_500000_MMP_combined_replicates_merged.cool",
+    "size": 12799049
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/O_LTHSC_50000_MMP_combined_replicates_merged.cool",
+    "size": 127298107
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/Y_LTHSC_1000000_MMP_combined_replicates_merged.cool",
+    "size": 4251849
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/Y_LTHSC_100000_MMP_combined_replicates_merged.cool",
+    "size": 47888744
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/Y_LTHSC_10000_MMP_combined_replicates_merged.cool",
+    "size": 151620764
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/Y_LTHSC_2000000_MMP_combined_replicates_merged.cool",
+    "size": 1311889
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/Y_LTHSC_200000_MMP_combined_replicates_merged.cool",
+    "size": 30205345
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/Y_LTHSC_20000_MMP_combined_replicates_merged.cool",
+    "size": 124194377
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/Y_LTHSC_30000_MMP_combined_replicates_merged.cool",
+    "size": 100484200
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/Y_LTHSC_500000_MMP_combined_replicates_merged.cool",
+    "size": 11415144
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/OandY_LTHSC_MMP_Merged_Cool_files/merged_replicates_cool_files/Y_LTHSC_50000_MMP_combined_replicates_merged.cool",
+    "size": 78108180
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/O_LTHSC_MMP_High_Rep1_S1.100000.mcool",
+    "size": 16755961
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/O_LTHSC_MMP_High_Rep1_S1.50000.mcool",
+    "size": 23989914
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/O_LTHSC_MMP_High_Rep2_S5.100000.mcool",
+    "size": 29969622
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/O_LTHSC_MMP_High_Rep2_S5.50000.mcool",
+    "size": 46306373
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/O_LTHSC_MMP_High_Rep3_S9.100000.mcool",
+    "size": 21585945
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/O_LTHSC_MMP_High_Rep3_S9.50000.mcool",
+    "size": 31830302
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/Y_LTHSC_MMP_High_Rep1_S3.100000.mcool",
+    "size": 10321090
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/Y_LTHSC_MMP_High_Rep1_S3.50000.mcool",
+    "size": 14080582
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/Y_LTHSC_MMP_High_Rep2_S7.100000.mcool",
+    "size": 18279035
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/Y_LTHSC_MMP_High_Rep2_S7.50000.mcool",
+    "size": 26345562
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/Y_LTHSC_MMP_High_Rep3_S11.100000.mcool",
+    "size": 12764745
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Coolers/mcoolers/Y_LTHSC_MMP_High_Rep3_S11.50000.mcool",
+    "size": 17787685
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/01_HiC_analysis_OvsY_MMP_Hi_Lo_HSC_COsort_index_bam.sh",
+    "size": 2634,
+    "sha256": "7185f9db3ff1464ba4fff62559ec19cfccbcd26b54ddd6e8935f910e91be7335",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/01_HiC_analysis_OvsY_MMP_Hi_Lo_HSC_COsort_index_bam.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/02_HiC_analysis_OvsY_MMP_Hi_Lo_HSC_merge_high_low_bams.sh",
+    "size": 4193,
+    "sha256": "04ce850d7de0315ad25ecec16509e5c1d68cb142370d960fd7c0205ec00d3abd",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/02_HiC_analysis_OvsY_MMP_Hi_Lo_HSC_merge_high_low_bams.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/03_remove_blacklisted_regions_and_name_sort_bams.sh",
+    "size": 13390,
+    "sha256": "f8932f90534e98e996d784983ac2bff3d5692330ad496962b3ff07af623ce54c",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/03_remove_blacklisted_regions_and_name_sort_bams.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/06_convert_bams_to_pairs.sh",
+    "size": 7003,
+    "sha256": "6368281828a3cc8800d3b5a52d7885efc7a153f782a51cc494d361383664b7e6",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/06_convert_bams_to_pairs.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/07_downsample_valid_pairs_and_create_coolers.sh",
+    "size": 8130,
+    "sha256": "1f7edce030024796cdb8715a04ac9db790b69e7df5d4c7367b4cd260a5b86cb4",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/07_downsample_valid_pairs_and_create_coolers.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/08_aggregate_and_plot_HiC_QC.sh",
+    "size": 29144,
+    "sha256": "7774139248dc025b16f61100886fed3a2ebfde786d72f35692630e9641887131",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/08_aggregate_and_plot_HiC_QC.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_Name_sort_merged_high_low_downsampled_bams.sh",
+    "size": 4288,
+    "sha256": "91f022ff9ee4aad0c13a98ee16797ba10e4a384a5ef6aaf412c87709655dc303",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_Name_sort_merged_high_low_downsampled_bams.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_Name_sort_merged_high_low_downsampled_bams_last_non_downsampled_file.sh",
+    "size": 2034,
+    "sha256": "4c9dd5d3736686df74e18e2a07de41ecd97a42d19aa008ea285bd115797bdfa9",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_Name_sort_merged_high_low_downsampled_bams_last_non_downsampled_file.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/HiC_analysis_OvsY_MMP_combined_HSC_downsample_merged_COsorted_bams.sh",
+    "size": 5476,
+    "sha256": "46c99c858eb4c14f651e5fae13f830d58e5cdfb5ee33e4f4d337b2a20036feb0",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/HiC_analysis_OvsY_MMP_combined_HSC_downsample_merged_COsorted_bams.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/HiC_analysis_OvsY_MMP_combined_HSC_generate_unique_read_counts.sh",
+    "size": 933,
+    "sha256": "56734d5a14f1d0e1bbd1eeca48bccd994be1436f9c04e5341ff600a15b44fc44",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/HiC_analysis_OvsY_MMP_combined_HSC_generate_unique_read_counts.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCDOC_analysis_of_OvsY_MMP_combined_HSCs/extract_and_plot_interaction_counts_from_cool_files.R",
+    "size": 3051,
+    "sha256": "58017461096c634008ca32dea28664b412dde90a3e4252991e5ba24a7aeaeec5",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiCDOC_analysis_of_OvsY_MMP_combined_HSCs/extract_and_plot_interaction_counts_from_cool_files.R"
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs/O_LTHSC_100000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 3873703
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs/Y_LTHSC_100000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 3901876
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/O_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_100000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 3830015
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/O_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_200000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 1919068
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/O_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_50000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 7699063
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/O_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_100000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 3808142
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/O_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_200000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 1907747
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/O_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_50000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 7662690
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/O_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_100000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 3851961
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/O_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_200000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 1915629
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/O_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_50000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 7751891
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/Y_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_100000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 3858881
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/Y_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_200000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 1938444
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/Y_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_50000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 7744899
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/Y_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_100000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 3833652
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/Y_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_200000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 1912487
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/Y_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_50000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 7695604
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/Y_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_100000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 3898524
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/Y_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_200000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 1949472
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs_downsampled_BL_removed/06_HiC_analysis_OvsY_MMP_merged_hicFindTADs/Y_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_50000_hicNormalize_hicCorrectMatrix_zscore_matrix.h5",
+    "size": 7820296
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Name_sorted_merged_bam_files_BL_removed/O_LTHSC_MMP_combined_Rep1_Name_sorted_BL_removed.bam",
+    "size": 25714364274
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Name_sorted_merged_bam_files_BL_removed/O_LTHSC_MMP_combined_Rep2_Name_sorted_BL_removed.bam",
+    "size": 34860954653
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Name_sorted_merged_bam_files_BL_removed/O_LTHSC_MMP_combined_Rep3_Name_sorted_BL_removed.bam",
+    "size": 33171949802
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Name_sorted_merged_bam_files_BL_removed/Y_LTHSC_MMP_combined_Rep1_Name_sorted_BL_removed.bam",
+    "size": 14895392732
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Name_sorted_merged_bam_files_BL_removed/Y_LTHSC_MMP_combined_Rep2_Name_sorted_BL_removed.bam",
+    "size": 25783005923
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Name_sorted_merged_bam_files_BL_removed/Y_LTHSC_MMP_combined_Rep3_Name_sorted_BL_removed.bam",
+    "size": 21252513385
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_atac_proteomics.csv",
+    "size": 6702,
+    "sha256": "38c6c6d2d9d583c36437c9f7ba0c9e22a04cdfd2e520baf4068dbcfdbd208772",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_atac_proteomics.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_hic_atac.csv",
+    "size": 370,
+    "sha256": "c3f84c63328f6bb4e14f4d19e9d9d3738c236599353625a04aaffac225a50863",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_hic_atac.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_hic_proteomics.csv",
+    "size": 222,
+    "sha256": "61901fb5cdadaee441ea54d59194c1a205ae31db1047bca7e0b66bfddf557a37",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_hic_proteomics.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_hic_rna.csv",
+    "size": 238,
+    "sha256": "f4d41febeca0b23fa5d8f2053ac76cf3a266ae24cc22e9bdba0539cc6fe665bf",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_hic_rna.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_rna_atac.csv",
+    "size": 57527,
+    "sha256": "f274d3b8b50877878799f3431e36e42b3b48f60b946c0b91be68e6d87fb6b335",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_rna_atac.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_rna_proteomics.csv",
+    "size": 10441,
+    "sha256": "5f28dc38eeb748082ea3a6169a8a5d0fb65d647014799d79c976406831147ab7",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Overlap_analysis_HiC_RNAseq_ATACseq_etc/pairwise_overlap_rna_proteomics.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Sh_entropy_results/Shannon_entropy_downsampled_data_100kbp.csv",
+    "size": 484,
+    "sha256": "091ac5db193dd8e3a8cfff172a6ef3d82b4c92700a2c1ef5889e6e6477ecd2ae",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Sh_entropy_results/Shannon_entropy_downsampled_data_100kbp.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/Sh_entropy_results/Shannon_entropy_downsampled_data_non_random_50kbp.csv",
+    "size": 1036,
+    "sha256": "5065c755355921da3762658fb3cc5002c177262583472fca0ff005c6a1b05fa5",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/Sh_entropy_results/Shannon_entropy_downsampled_data_non_random_50kbp.csv"
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/O_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_100000.cool",
+    "size": 14780267
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/O_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_200000.cool",
+    "size": 9515271
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/O_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_50000.cool",
+    "size": 20653405
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/O_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_100000.cool",
+    "size": 15329035
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/O_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_200000.cool",
+    "size": 9942413
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/O_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_50000.cool",
+    "size": 21359131
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/O_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_100000.cool",
+    "size": 15124329
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/O_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_200000.cool",
+    "size": 9796794
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/O_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_50000.cool",
+    "size": 21018365
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/Y_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_100000.cool",
+    "size": 14677023
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/Y_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_200000.cool",
+    "size": 9292026
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/Y_LTHSC_MMP_combined_Rep1_BL_removed_deduped_downsampled_50000.cool",
+    "size": 20777075
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/Y_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_100000.cool",
+    "size": 15366734
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/Y_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_200000.cool",
+    "size": 9767443
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/Y_LTHSC_MMP_combined_Rep2_BL_removed_deduped_downsampled_50000.cool",
+    "size": 21736988
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/Y_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_100000.cool",
+    "size": 14932830
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/Y_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_200000.cool",
+    "size": 9476656
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/downsampled_merged_BL_removed_coolers_pairs_files/downsampled_merged_cool_files/Y_LTHSC_MMP_combined_Rep3_BL_removed_deduped_downsampled_50000.cool",
+    "size": 21050498
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/01_filter_bam_blacklist.sh",
+    "size": 1682,
+    "sha256": "b0559e53f61e497faf14314012738503bba04b22552ec883dba72f9f705ede8d",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/01_filter_bam_blacklist.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/02_pairtools_process_bam_BL_removed_to_pairs_BL_removed.sh",
+    "size": 3418,
+    "sha256": "c5cdfcd501388a2e3e9f0e9a8e63870ac693877daf477e5d17e1a7d9e4bc04e1",
+    "local_path": "historical/discovered/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/02_pairtools_process_bam_BL_removed_to_pairs_BL_removed.sh"
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/O_LTHSC_MMP_High_Rep1_aligned_FMI_MD_sort.bam",
+    "size": 14056239622
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/O_LTHSC_MMP_High_Rep2_aligned_FMI_MD_sort.bam",
+    "size": 22334862190
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/O_LTHSC_MMP_High_Rep3_aligned_FMI_MD_sort.bam",
+    "size": 16489300710
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/O_LTHSC_MMP_Low_Rep1_aligned_FMI_MD_sort.bam",
+    "size": 14529010545
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/O_LTHSC_MMP_Low_Rep2_aligned_FMI_MD_sort.bam",
+    "size": 16130220135
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/O_LTHSC_MMP_Low_Rep3_aligned_FMI_MD_sort.bam",
+    "size": 19960882961
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/Y_LTHSC_MMP_High_Rep1_aligned_FMI_MD_sort.bam",
+    "size": 9695202143
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/Y_LTHSC_MMP_High_Rep2_aligned_FMI_MD_sort.bam",
+    "size": 14358708511
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/Y_LTHSC_MMP_High_Rep3_aligned_FMI_MD_sort.bam",
+    "size": 9908371532
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/Y_LTHSC_MMP_Low_Rep1_aligned_FMI_MD_sort.bam",
+    "size": 6739954775
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/Y_LTHSC_MMP_Low_Rep2_aligned_FMI_MD_sort.bam",
+    "size": 14073079268
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/filtered_bam_files/Y_LTHSC_MMP_Low_Rep3_aligned_FMI_MD_sort.bam",
+    "size": 13474739108
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/O_LTHSC_100000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.cool",
+    "size": 202916783
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/O_LTHSC_100000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.h5",
+    "size": 492910314
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/O_LTHSC_30000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.cool",
+    "size": 398712070
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/O_LTHSC_30000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.h5",
+    "size": 1044609734
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/O_LTHSC_50000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.cool",
+    "size": 302491964
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/O_LTHSC_50000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.h5",
+    "size": 777027101
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/Y_LTHSC_100000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.cool",
+    "size": 117239541
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/Y_LTHSC_100000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.h5",
+    "size": 298492577
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/Y_LTHSC_30000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.cool",
+    "size": 269864498
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/Y_LTHSC_30000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.h5",
+    "size": 616517377
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/Y_LTHSC_50000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.cool",
+    "size": 188897431
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/20240603_MMP_Hi_Low_HSCs/h5_and_cooler_files_BL_removed_ICE_normalized_using_HiCExplorer/Y_LTHSC_50000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.h5",
+    "size": 472833340
+  },
+  {
+    "type": "directory",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq",
+    "exists": true
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Export_DiffBind_R_Help_documentation_as_HTML.R",
+    "size": 833,
+    "sha256": "37b349aa2b094f66eb4b5a9d78832fc871a45cf82da56430b86d7c7120a6030d",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/Export_DiffBind_R_Help_documentation_as_HTML.R"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Extract_file_paths_to_txt.sh",
+    "size": 1632,
+    "sha256": "b42d6df09b3c9a0639f975bc10425747ee4a05303e86f73688ab94f10e09ae73",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/Extract_file_paths_to_txt.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_convert_wig_to_bigwig.sh",
+    "size": 2660,
+    "sha256": "663bcf5e71769d51a861ff17720b401be5cdb29be734a1bef7e01de58720fe72",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_convert_wig_to_bigwig.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array.sh",
+    "size": 4766,
+    "sha256": "f2f1529748dc0c6f8580c8f1ac98a67740d63e788135220af74ddc5fb0f90d2b",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_deepTools_coverage.sh",
+    "size": 1856,
+    "sha256": "76215210f5874fd1193c5baba63ae7ef5406dc7f32a343caace0cd659209f6b6",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_deepTools_coverage.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_fastqc.sh",
+    "size": 3078,
+    "sha256": "f0d158669c5414bb0668c029463ccda91f9a74e9d4334dfa4208544ebdca1a40",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_fastqc.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_remove_blacklist_call_peaks.sh",
+    "size": 2928,
+    "sha256": "ef826e0c921d1f4a613a602fdb8cc4a0cfb4695c3e46f2d4a40fd1a18ebe46dc",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_remove_blacklist_call_peaks.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_wiggletools_merge_coverage.sh",
+    "size": 10708,
+    "sha256": "61e6f37bcd011d5784888db68cb56cd27a5ac11b5ac35b1bb50d06e98e503e6e",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_wiggletools_merge_coverage.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/data_summary.csv",
+    "size": 3721,
+    "sha256": "810661d57a1a70e5459fa3b24219b3158dfcfad4f99395c33152ec0a5f84bc8b",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/data_summary.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet.csv",
+    "size": 10705,
+    "sha256": "c28c6a804c7ab02ceb26629722df378f0320d8e8436a5d9ecc5288b2e0fecfa9",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet_no_B2_BL_removed.csv",
+    "size": 9181,
+    "sha256": "3071b66f3e7c1eb8f30df5ba48b4301c6190110d86742a0bb4f0c7d797319ffc",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet_no_B2_BL_removed.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/files_list.csv",
+    "size": 2601,
+    "sha256": "025203657f1f99a1a5b73200ff1426f526f1c6ada9dd6464c6482c392f91a1bd",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/files_list.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/sample_information.csv",
+    "size": 12675,
+    "sha256": "1f74f6fed70b8ca44bb5bad0f012098d5d7ce1931b7f45d7a5d0e8b286d9faad",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/sample_information.csv"
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186609_Young_HSC_B1_Rep1_filtered.bam",
+    "size": 338507461
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186609_Young_HSC_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 330921145
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186610_Young_HSC_B1_Rep2_filtered.bam",
+    "size": 319591026
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186610_Young_HSC_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 312624569
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186611_Young_HSC_B2_Rep1_filtered.bam",
+    "size": 341659719
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186611_Young_HSC_B2_Rep1_filtered_no_blacklist.bam",
+    "size": 333949933
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186612_Young_HSC_B2_Rep2_filtered.bam",
+    "size": 385511305
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186612_Young_HSC_B2_Rep2_filtered_no_blacklist.bam",
+    "size": 377010792
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186613_Young_MPP1_B1_Rep1_filtered.bam",
+    "size": 404644545
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186613_Young_MPP1_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 395718935
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186614_Young_MPP1_B1_Rep2_filtered.bam",
+    "size": 388134272
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186614_Young_MPP1_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 379633669
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186615_Young_MPP2_B1_Rep1_filtered.bam",
+    "size": 373735693
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186615_Young_MPP2_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 365494711
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186616_Young_MPP2_B1_Rep2_filtered.bam",
+    "size": 437711777
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186616_Young_MPP2_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 427937382
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186617_Young_MPP3_B1_Rep1_filtered.bam",
+    "size": 309119573
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186617_Young_MPP3_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 302031624
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186618_Young_MPP3_B1_Rep2_filtered.bam",
+    "size": 283031070
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186618_Young_MPP3_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 276980915
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186619_Young_MPP4_B1_Rep1_filtered.bam",
+    "size": 350927443
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186619_Young_MPP4_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 343049415
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186620_Young_MPP4_B1_Rep2_filtered.bam",
+    "size": 275140422
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186620_Young_MPP4_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 269308794
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186621_Young_GMP_B1_Rep1_filtered.bam",
+    "size": 861828922
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186621_Young_GMP_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 845155938
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186622_Young_GMP_B1_Rep2_filtered.bam",
+    "size": 412199782
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186622_Young_GMP_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 404341036
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186623_Young_MEP_B1_Rep1_filtered.bam",
+    "size": 578830136
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186623_Young_MEP_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 566879510
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186624_Young_MEP_B1_Rep2_filtered.bam",
+    "size": 492713296
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186624_Young_MEP_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 482522753
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186625_Young_CLP_B1_Rep1_filtered.bam",
+    "size": 432047925
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186625_Young_CLP_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 422408744
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186626_Young_CLP_B1_Rep2_filtered.bam",
+    "size": 385485333
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186626_Young_CLP_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 376825915
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186627_Old_HSC_B1_Rep1_filtered.bam",
+    "size": 307115178
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186627_Old_HSC_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 300384141
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186628_Old_HSC_B1_Rep2_filtered.bam",
+    "size": 295716476
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186628_Old_HSC_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 289225680
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186629_Old_HSC_B2_Rep1_filtered.bam",
+    "size": 254466732
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186629_Old_HSC_B2_Rep1_filtered_no_blacklist.bam",
+    "size": 248303856
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186630_Old_HSC_B2_Rep2_filtered.bam",
+    "size": 250845823
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186630_Old_HSC_B2_Rep2_filtered_no_blacklist.bam",
+    "size": 245020429
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186631_Old_MPP1_B1_Rep1_filtered.bam",
+    "size": 402533255
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186631_Old_MPP1_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 394154254
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186632_Old_MPP1_B1_Rep2_filtered.bam",
+    "size": 371419549
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186632_Old_MPP1_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 363371701
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186633_Old_MPP2_B1_Rep1_filtered.bam",
+    "size": 396909112
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186633_Old_MPP2_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 388542434
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186634_Old_MPP2_B1_Rep2_filtered.bam",
+    "size": 395162396
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186634_Old_MPP2_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 386643449
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186635_Old_MPP3_B1_Rep1_filtered.bam",
+    "size": 437408872
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186635_Old_MPP3_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 427669751
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186636_Old_MPP3_B1_Rep2_filtered.bam",
+    "size": 438041865
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186636_Old_MPP3_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 428301299
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186637_Old_MPP4_B1_Rep1_filtered.bam",
+    "size": 369892955
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186637_Old_MPP4_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 361540056
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186638_Old_MPP4_B1_Rep2_filtered.bam",
+    "size": 373245326
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186638_Old_MPP4_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 365027035
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186639_Old_GMP_B1_Rep1_filtered.bam",
+    "size": 788118272
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186639_Old_GMP_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 773021702
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186640_Old_GMP_B1_Rep2_filtered.bam",
+    "size": 448924248
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186640_Old_GMP_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 440226333
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186641_Old_MEP_B1_Rep1_filtered.bam",
+    "size": 772848294
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186641_Old_MEP_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 757112067
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186642_Old_MEP_B1_Rep2_filtered.bam",
+    "size": 482976696
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186642_Old_MEP_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 473014812
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186643_Old_CLP_B1_Rep1_filtered.bam",
+    "size": 410689887
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186643_Old_CLP_B1_Rep1_filtered_no_blacklist.bam",
+    "size": 401256407
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186644_Old_CLP_B1_Rep2_filtered.bam",
+    "size": 361339872
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/filtered/SRR13186644_Old_CLP_B1_Rep2_filtered_no_blacklist.bam",
+    "size": 353159444
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186609_Young_HSC_B1_Rep1_peaks.narrowPeak",
+    "size": 4960056
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186609_Young_HSC_B1_Rep1_summits.bed",
+    "size": 3653804
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186610_Young_HSC_B1_Rep2_peaks.narrowPeak",
+    "size": 5228184
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186610_Young_HSC_B1_Rep2_summits.bed",
+    "size": 3853782
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186611_Young_HSC_B2_Rep1_peaks.narrowPeak",
+    "size": 3941958
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186611_Young_HSC_B2_Rep1_summits.bed",
+    "size": 2905759
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186612_Young_HSC_B2_Rep2_peaks.narrowPeak",
+    "size": 3772071
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186612_Young_HSC_B2_Rep2_summits.bed",
+    "size": 2777803
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186613_Young_MPP1_B1_Rep1_peaks.narrowPeak",
+    "size": 4945313
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186613_Young_MPP1_B1_Rep1_summits.bed",
+    "size": 3655380
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186614_Young_MPP1_B1_Rep2_peaks.narrowPeak",
+    "size": 5224953
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186614_Young_MPP1_B1_Rep2_summits.bed",
+    "size": 3861474
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186615_Young_MPP2_B1_Rep1_peaks.narrowPeak",
+    "size": 4461765
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186615_Young_MPP2_B1_Rep1_summits.bed",
+    "size": 3297521
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186616_Young_MPP2_B1_Rep2_peaks.narrowPeak",
+    "size": 5248990
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186616_Young_MPP2_B1_Rep2_summits.bed",
+    "size": 3878793
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186617_Young_MPP3_B1_Rep1_peaks.narrowPeak",
+    "size": 4648498
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186617_Young_MPP3_B1_Rep1_summits.bed",
+    "size": 3439537
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186618_Young_MPP3_B1_Rep2_peaks.narrowPeak",
+    "size": 4468371
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186618_Young_MPP3_B1_Rep2_summits.bed",
+    "size": 3304897
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186619_Young_MPP4_B1_Rep1_peaks.narrowPeak",
+    "size": 5062819
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186619_Young_MPP4_B1_Rep1_summits.bed",
+    "size": 3743942
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186620_Young_MPP4_B1_Rep2_peaks.narrowPeak",
+    "size": 4455461
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186620_Young_MPP4_B1_Rep2_summits.bed",
+    "size": 3295591
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186621_Young_GMP_B1_Rep1_peaks.narrowPeak",
+    "size": 9505980
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186621_Young_GMP_B1_Rep1_summits.bed",
+    "size": 6974085
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186622_Young_GMP_B1_Rep2_peaks.narrowPeak",
+    "size": 8967888
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186622_Young_GMP_B1_Rep2_summits.bed",
+    "size": 6592457
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186623_Young_MEP_B1_Rep1_peaks.narrowPeak",
+    "size": 1760069
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186623_Young_MEP_B1_Rep1_summits.bed",
+    "size": 1295486
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186624_Young_MEP_B1_Rep2_peaks.narrowPeak",
+    "size": 1670514
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186624_Young_MEP_B1_Rep2_summits.bed",
+    "size": 1230134
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186625_Young_CLP_B1_Rep1_peaks.narrowPeak",
+    "size": 4460336
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186625_Young_CLP_B1_Rep1_summits.bed",
+    "size": 3284202
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186626_Young_CLP_B1_Rep2_peaks.narrowPeak",
+    "size": 4914296
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186626_Young_CLP_B1_Rep2_summits.bed",
+    "size": 3616752
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186627_Old_HSC_B1_Rep1_peaks.narrowPeak",
+    "size": 4086077
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186627_Old_HSC_B1_Rep1_summits.bed",
+    "size": 2988022
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186628_Old_HSC_B1_Rep2_peaks.narrowPeak",
+    "size": 4590015
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186628_Old_HSC_B1_Rep2_summits.bed",
+    "size": 3356730
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186629_Old_HSC_B2_Rep1_peaks.narrowPeak",
+    "size": 4058984
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186629_Old_HSC_B2_Rep1_summits.bed",
+    "size": 2970066
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186630_Old_HSC_B2_Rep2_peaks.narrowPeak",
+    "size": 4075133
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186630_Old_HSC_B2_Rep2_summits.bed",
+    "size": 2983740
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186631_Old_MPP1_B1_Rep1_peaks.narrowPeak",
+    "size": 5796582
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186631_Old_MPP1_B1_Rep1_summits.bed",
+    "size": 4249524
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186632_Old_MPP1_B1_Rep2_peaks.narrowPeak",
+    "size": 5053425
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186632_Old_MPP1_B1_Rep2_summits.bed",
+    "size": 3707584
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186633_Old_MPP2_B1_Rep1_peaks.narrowPeak",
+    "size": 5389357
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186633_Old_MPP2_B1_Rep1_summits.bed",
+    "size": 3951674
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186634_Old_MPP2_B1_Rep2_peaks.narrowPeak",
+    "size": 5009733
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186634_Old_MPP2_B1_Rep2_summits.bed",
+    "size": 3676338
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186635_Old_MPP3_B1_Rep1_peaks.narrowPeak",
+    "size": 4749161
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186635_Old_MPP3_B1_Rep1_summits.bed",
+    "size": 3485064
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186636_Old_MPP3_B1_Rep2_peaks.narrowPeak",
+    "size": 4872531
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186636_Old_MPP3_B1_Rep2_summits.bed",
+    "size": 3574734
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186637_Old_MPP4_B1_Rep1_peaks.narrowPeak",
+    "size": 4860210
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186637_Old_MPP4_B1_Rep1_summits.bed",
+    "size": 3565773
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186638_Old_MPP4_B1_Rep2_peaks.narrowPeak",
+    "size": 4810948
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186638_Old_MPP4_B1_Rep2_summits.bed",
+    "size": 3528372
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186639_Old_GMP_B1_Rep1_peaks.narrowPeak",
+    "size": 10316879
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186639_Old_GMP_B1_Rep1_summits.bed",
+    "size": 7513121
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186640_Old_GMP_B1_Rep2_peaks.narrowPeak",
+    "size": 8658280
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186640_Old_GMP_B1_Rep2_summits.bed",
+    "size": 6313197
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186641_Old_MEP_B1_Rep1_peaks.narrowPeak",
+    "size": 2208695
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186641_Old_MEP_B1_Rep1_summits.bed",
+    "size": 1613180
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186642_Old_MEP_B1_Rep2_peaks.narrowPeak",
+    "size": 1731618
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186642_Old_MEP_B1_Rep2_summits.bed",
+    "size": 1264839
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186643_Old_CLP_B1_Rep1_peaks.narrowPeak",
+    "size": 3994249
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186643_Old_CLP_B1_Rep1_summits.bed",
+    "size": 2919487
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186644_Old_CLP_B1_Rep2_peaks.narrowPeak",
+    "size": 4615900
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/macs3_peaks/SRR13186644_Old_CLP_B1_Rep2_summits.bed",
+    "size": 3371916
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_ATACseq/openssl-1.1.1u/appveyor.yml",
+    "size": 2549,
+    "sha256": "d71020aed505f851228ae8d5661d8587c17f3e8967e4d38612c8521da522cb7b",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_ATACseq/openssl-1.1.1u/appveyor.yml"
+  },
+  {
+    "type": "directory",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity",
+    "exists": true
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/Viewing_results.sh",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/Viewing_results.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/abc_by_sample.csv",
+    "size": 650,
+    "sha256": "df77854286420ad0e336cb9a5c3595ebbe2fe36fa0fad3e9c2409fa844b24ac8",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/abc_by_sample.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_HSC.csv",
+    "size": 164,
+    "sha256": "d60ee65477be9befca17ef9c523731d0cf81ab38b4be6014bbbbc070926808c1",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_HSC.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_HSC_Young_over_Old.csv",
+    "size": 164,
+    "sha256": "98157d594752ca185c62e605cf992fc209ba3e00df1e150d013e87495ba9fc90",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_HSC_Young_over_Old.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_all.csv",
+    "size": 1168,
+    "sha256": "b49ef152cef4ca8ceba7daad2dae5f2d3eb32b4472788dda8d2b0d2f2e957ffd",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_all.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/make_jaspar_motif_file.py",
+    "size": 1376,
+    "sha256": "e3bc7f90dcd8b6e278c9cb64da040207ac976ffbb964309f396324ac9fe3ed5a",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/make_jaspar_motif_file.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script.sh",
+    "size": 1743,
+    "sha256": "6b4d9ae22bb94af9ade6f6d837919b2505801e27b27e9e598118a394fd13c255",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_100kbp_window.sh",
+    "size": 1936,
+    "sha256": "33d0a5e324d348e2a8bf1c13fefdd5f835ab5176b68df360a040b60c64977f92",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_100kbp_window.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_10kbp_window.sh",
+    "size": 1849,
+    "sha256": "f16774dc1d0ea090bd4db306ad2d68be2298fee8e61f83c08d6bab7c23842173",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_10kbp_window.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_1Mbp_window.sh",
+    "size": 1848,
+    "sha256": "d3cc9c7858bd7e320870fae2c18e1ea6d1500563cb65989b296698ced9326e30",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_1Mbp_window.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_200gbp_window.sh",
+    "size": 1856,
+    "sha256": "fb37fdad42cb1d7e4d8c11977622091d73c9dde4e6e1665f4932a64b6c8337a2",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_200gbp_window.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window.sh",
+    "size": 1932,
+    "sha256": "4f7a807e544175104db4425c11ef7b157f84336d2f2590b741f0181ef9107967",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_H13CORE_motifs.sh",
+    "size": 2215,
+    "sha256": "047c4d41d43070bf700375ea32094143e2268df146caa87651e8ad3bc0e28f3b",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_H13CORE_motifs.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_H13CORE_motifs_Young_over_Old.sh",
+    "size": 2289,
+    "sha256": "0329a758e054181c917ac660f75ca33c7f9e4d01259a8556dec682b9ff1a3707",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_H13CORE_motifs_Young_over_Old.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_JASPAR2024_all_vert_motifs_Old_over_Young.sh",
+    "size": 2242,
+    "sha256": "4ab5829683619deada6d01905afb5c94a158bc040373c8a2556d849618894e62",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_JASPAR2024_all_vert_motifs_Old_over_Young.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_JASPAR2024_all_vert_motifs_Young_over_Old.sh",
+    "size": 2271,
+    "sha256": "de9bef6631eb8aeb2caa4f755695742fd857bf4527f4242c06c1b713b25ae000",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_JASPAR2024_all_vert_motifs_Young_over_Old.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_expanded_motif_dimers.sh",
+    "size": 2020,
+    "sha256": "09a7cdf72ceca28524676583331fc93f5a162dc69a4deef6f0fa8b3b4526dfc3",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_expanded_motif_dimers.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_with_bams.sh",
+    "size": 1957,
+    "sha256": "a5107025f83f2fd933f38bb236e0151caed6633191eb68f34303161ce6e93a70",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_with_bams.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_with_STARE_ABC.sh",
+    "size": 1911,
+    "sha256": "95c1c7e8e8b737454957b66b96d4465e6abfc1af46cc086501c0893148b99401",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_with_STARE_ABC.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/reuse_abc_wrapper.config",
+    "size": 1360,
+    "sha256": "ff5b130f38728f20c949a2a644b728fe828429fbda27921feaaeba789e2c71ad",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/reuse_abc_wrapper.config"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_CLP.csv",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_CLP.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_GMP.csv",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_GMP.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC.csv",
+    "size": 713,
+    "sha256": "4f25c496585ef203a87c48f8cf80c6c9d554f0b7e79f45bca6a7fa3e47bcaaa4",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC_Young_over_Old.csv",
+    "size": 713,
+    "sha256": "4c2b8ed1ee394bc9ccf203ce857119104bf898d67726c4cdf017a784f2e69807",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC_Young_over_Old.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC_with_union_peaks.csv",
+    "size": 645,
+    "sha256": "b34852f2932daf6e2c0e596054894b1ebadfa9537971d6d2da6e1ce1e43d7d52",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC_with_union_peaks.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MEP.csv",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MEP.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP1.csv",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP1.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP2.csv",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP2.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP3.csv",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP3.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP4.csv",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP4.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_all.csv",
+    "size": 6418,
+    "sha256": "29cf8722a94c02c80c3777df39360ad77a10b6b5d7413038565032cbc21451ea",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_all.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_bam_HSC.csv",
+    "size": 657,
+    "sha256": "3f0886c4c5aee49f6250a29256334006e415be2d79a1c34d9226c69ead356d6a",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_bam_HSC.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_timeout.config",
+    "size": 100,
+    "sha256": "024901e6acb030e258d0bd310d3362e0f745ba732c472426f6a2682436c8b62f",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_timeout.config"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/01_make_stare_contacts_from_h5.sh",
+    "size": 4673,
+    "sha256": "5eb2eefe8bb1bfe24b463b862837ffccd5f38170c65d58a44f009b0a6180e9d1",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/01_make_stare_contacts_from_h5.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/02_make_union_peaks.sh",
+    "size": 4036,
+    "sha256": "5fb9dfa3066e8eaa793e8c06ba8184a57affd87170c7fae8bda4f20ac72ce7c1",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/02_make_union_peaks.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/03_Add_activity_columns_to_union_peaks.sh",
+    "size": 3362,
+    "sha256": "b4d289bad18270c6e70d61e15dcefe088c82abb6564e62311ded3d7c9782d76d",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/03_Add_activity_columns_to_union_peaks.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/04_run_STARE_ABCpp_on_contacts_x_union_peaks_activity.sh",
+    "size": 10991,
+    "sha256": "1cd0a451f581e4f92bab803ab978aef936aeee171d00b22ce282aadc177d6835",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/04_run_STARE_ABCpp_on_contacts_x_union_peaks_activity.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/05_STARE_ABCpp_results_analysis.sh",
+    "size": 4281,
+    "sha256": "be9d48a30fb5b8f67d5c0e4ec96e8196daa2d68196aa5098d470206322f82a79",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/05_STARE_ABCpp_results_analysis.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/06_prepare_union_peaks_bed_for_tfactivity.sh",
+    "size": 325,
+    "sha256": "770f58e07d4593d38e499011b5f80fc22f53d0765fccdfb06711a0bd2c698b00",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/06_prepare_union_peaks_bed_for_tfactivity.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/motifs/expand_motif_dimers_and_map_names.R",
+    "size": 3616,
+    "sha256": "67721e8f246cbb0ed01e27cadf0a79ef5e1bd16f0b14eba67ea67c2815b77857",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/motifs/expand_motif_dimers_and_map_names.R"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/motifs/jaspar_expanded_map.csv",
+    "size": 17913,
+    "sha256": "72a218e8989562b0dc2944bcebf90e95682e6f5608ecdf63dce68e7d4b4a273d",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/motifs/jaspar_expanded_map.csv"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/motifs/make_jaspar_all_vertebrates_motif_file.py",
+    "size": 1490,
+    "sha256": "35f3833359088fced35b6687c53493637522a0d49dc2460d7b436c21a41f4241",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/motifs/make_jaspar_all_vertebrates_motif_file.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/motifs/make_jaspar_motif_file.py",
+    "size": 1376,
+    "sha256": "e3bc7f90dcd8b6e278c9cb64da040207ac976ffbb964309f396324ac9fe3ed5a",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/motifs/make_jaspar_motif_file.py"
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/motifs/Hocomoco_files/H13CORE_transfac_format_TFsymbols_matched_to_counts_gene_name.transfac",
+    "size": 966802
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/motifs/Hocomoco_files/H13CORE_transfac_format_TFsymbols_matched_to_counts_gene_name_ALL_CAPS.transfac",
+    "size": 966802
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/motifs/Hocomoco_files/filtered_H13CORE_motifs/H13CORE_HSC_expressed_filtered.transfac",
+    "size": 310693
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/motifs/filtered_JASPAR2024_motifs/JASPAR2024_HSC_expressed_filtered.transfac",
+    "size": 325305
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_100kbp_window/02_motifs/05_transfac/motifs.converted.transfac",
+    "size": 45335
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_100kbp_window/02_motifs/06_psem/motifs.psem",
+    "size": 67579
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window/02_motifs/05_transfac/motifs.converted.transfac",
+    "size": 45335
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window/02_motifs/06_psem/motifs.psem",
+    "size": 67579
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs/02_motifs/05_transfac/motifs.converted.transfac",
+    "size": 249162
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs/02_motifs/06_psem/motifs.psem",
+    "size": 370677
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs_Young_over_Old/02_motifs/05_transfac/motifs.converted.transfac",
+    "size": 249162
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_H13CORE_motifs_Young_over_Old/02_motifs/06_psem/motifs.psem",
+    "size": 370677
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_JASPAR2024_all_vert_motifs_Old_over_Young/02_motifs/05_transfac/motifs.converted.transfac",
+    "size": 229405
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_JASPAR2024_all_vert_motifs_Old_over_Young/02_motifs/06_psem/motifs.psem",
+    "size": 332245
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_JASPAR2024_all_vert_motifs_Young_over_Old/02_motifs/05_transfac/motifs.converted.transfac",
+    "size": 229405
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_JASPAR2024_all_vert_motifs_Young_over_Old/02_motifs/06_psem/motifs.psem",
+    "size": 332245
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_expanded_motif_dimers/02_motifs/05_transfac/motifs.converted.transfac",
+    "size": 52788
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_expanded_motif_dimers/02_motifs/06_psem/motifs.psem",
+    "size": 79461
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tools/stare_shim.sh",
+    "size": 1578,
+    "sha256": "adb7867a42a4560012628fbce879d977c0bc88998f2679cbe9fbb4c7dca1aef9",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/tools/stare_shim.sh"
+  },
+  {
+    "type": "directory",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE",
+    "exists": true
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/01_make_stare_contacts_from_h5.sh",
+    "size": 4604,
+    "sha256": "9a5ea8aaac37f87bb0f2cbf6cc4524d9d3983ecd755c21e76a179bb87bbc3c5a",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/01_make_stare_contacts_from_h5.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/02_make_union_summit_peaks_bed.sh",
+    "size": 1676,
+    "sha256": "2cbbc522b16a32ce3a73d6d95cba5472996dc92b06a643a15ac89da8117ed46e",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/02_make_union_summit_peaks_bed.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/03_Add_peak_width_TMM_CPM_to_union_summit_peaks_build_bed.sh",
+    "size": 6276,
+    "sha256": "da00517708f256c15bb20e103d0fb558c2b639f99b368e8ff54a17e1ed2a9711",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/03_Add_peak_width_TMM_CPM_to_union_summit_peaks_build_bed.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/03_Add_peak_width_offsets_CPM_to_union_summit_peaks_build_bed.sh",
+    "size": 9750,
+    "sha256": "a8559a296bb7311d9aa76faa19490d11598d518115cf016c4e0d8ab651054b63",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/03_Add_peak_width_offsets_CPM_to_union_summit_peaks_build_bed.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/04_convert_jaspar_to_transfac_PSCM.sh",
+    "size": 3025,
+    "sha256": "61dc8700edaecaea2216465889e2014700ee0fe3ed680680ab47871a0686d60a",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/04_convert_jaspar_to_transfac_PSCM.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_100kbp_w_1Mbp_m.sh",
+    "size": 5053,
+    "sha256": "92a4fb8f018711b68b4454abf0254fc7ab37f47b745ed33232490ebb67de11a7",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_100kbp_w_1Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_100kbp_w_2Mbp_m.sh",
+    "size": 5053,
+    "sha256": "df64c821cecd36063a0b4f7ed6133c2d711d8da9a1c33e09251c887ec25929b7",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_100kbp_w_2Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_1Mbp_w_1Mbp_m.sh",
+    "size": 5048,
+    "sha256": "224182f3382398659d64ab68cfefa1b2011462df9fa2baeabe77327696e21d3b",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_1Mbp_w_1Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_1Mbp_w_2Mbp_m.sh",
+    "size": 5048,
+    "sha256": "917fa3070bb25ab553fb09ff17ea12d6ce554b672bdb9de24429133da47184d6",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_1Mbp_w_2Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_200kbp_w_1Mbp_m.sh",
+    "size": 5053,
+    "sha256": "cf2c0fa53fb147dd6fb290df51588f02564b42628e7934b43996d7b06d5569d1",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_200kbp_w_1Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_200kbp_w_2Mbp_m.sh",
+    "size": 5053,
+    "sha256": "6f434f7a3e58024b3131f6dffc7c0fe89d7f740c13beb8fe3724ff9880cb956f",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_200kbp_w_2Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_2Mbp_w_2Mbp_m.sh",
+    "size": 5048,
+    "sha256": "9e290e28117f2281b0d3942b460111bc49b32a89d47887de1dd436257246c941",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_2Mbp_w_2Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_3Mbp_w_3Mbp_m.sh",
+    "size": 5048,
+    "sha256": "5d8a781999792f747b42dd8b11ba91077a3aebcbd7ec27798cd203b705614c7d",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_3Mbp_w_3Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_4Mbp_w_4Mbp_m.sh",
+    "size": 5048,
+    "sha256": "a587cef285cf4d806c63ff6295e0fe6f02d69fc9264f68bbe2d064f5181d841d",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_4Mbp_w_4Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_500kbp_w_1Mbp_m.sh",
+    "size": 5053,
+    "sha256": "afabf434a6c833ec6639e686ddb11b71501e8b624635f48d8d69cbadd5042ce7",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_500kbp_w_1Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_500kbp_w_2Mbp_m.sh",
+    "size": 5053,
+    "sha256": "ce3827b0103007389dadfdb3d7e124f6ef1ba67e5ffe95384d717c14f6914a3c",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_500kbp_w_2Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m.sh",
+    "size": 5048,
+    "sha256": "d3c454866e5a0e4f3f9d7f5ba1657e0d1294d8539a603de74e56c23366c70d09",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_H13_motifs.sh",
+    "size": 5074,
+    "sha256": "411d21af539282e8bf0cfb070c695852d832b1743225cb644e88f1e555cd423a",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_H13_motifs.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_H13_motifsV2.sh",
+    "size": 6157,
+    "sha256": "807aa029d9cf3c294d0892edbad8fc372413824b9c85308260f9ec7aee3fdcee",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_H13_motifsV2.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_H13_motifsV2_loess_offsets_CPM.sh",
+    "size": 6223,
+    "sha256": "32a613281cc37bdb07b6ade41f2b1876fb2272618f277c5aa3e1a7eefdeed969",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_H13_motifsV2_loess_offsets_CPM.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_JASPAR2024_all_vert.sh",
+    "size": 6191,
+    "sha256": "598f2f46dc9483810ee69df05d803f306e47020305eed6beed77d5115ad54876",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_JASPAR2024_all_vert.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_JASPAR2024_all_vert_loess_offsets_CPM.sh",
+    "size": 6258,
+    "sha256": "899b52832b552026b53d3284894e5f74afb193c15bb0977e4e95e1a7e3da207f",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_JASPAR2024_all_vert_loess_offsets_CPM.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_100kbp_w_1Mbp_m.sh",
+    "size": 5048,
+    "sha256": "59e17d6b5f827cb45f1e39b3c0d9e24efa15a72141cdf23c45295dff04d6a279",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_100kbp_w_1Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_1Mbp_w_1Mbp_m.sh",
+    "size": 5043,
+    "sha256": "1252fefff14722a9a3528ac5005a8554339e12c70a9e6322f891afbf5ef2727e",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_1Mbp_w_1Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_200kbp_w_1Mbp_m.sh",
+    "size": 5048,
+    "sha256": "1f88c7c604a11af96fe4cf13208de42667feb43760aa79fdbe91aad3502c0695",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_200kbp_w_1Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_500kbp_w_1Mbp_m.sh",
+    "size": 5048,
+    "sha256": "5237b5d1377959eb2a63a76d9ff92911f48eb04c52e7a086fbe79c2460f08e3e",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_500kbp_w_1Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_50kbp_w_1Mbp_m.sh",
+    "size": 5044,
+    "sha256": "9ea58343c458649752420e019c3b9e00c0347ddc6f8e3305a17084c040b29f1a",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_50kbp_w_1Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_5Mbp_w_5Mbp_m.sh",
+    "size": 4964,
+    "sha256": "67e88bce236588074e452b770fca67ddabdce285247defc5c306f7558b8b30b9",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_50kbp_HiC_5Mbp_w_5Mbp_m.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/00_make_id_symbol_map.py",
+    "size": 871,
+    "sha256": "30323bc3681fa1d27a584f934915ae52bae313e634e9a659f10cb943f03dbd83",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/00_make_id_symbol_map.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/01_affinity_mean.py",
+    "size": 1546,
+    "sha256": "152d5b961543d655c7829665e0bbf33d7921997d4f484b64aae2342694ba0f79",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/01_affinity_mean.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/02_aggregate_synonyms.py",
+    "size": 1207,
+    "sha256": "253a96f5f57690443e176dc31e5a76118d3693ba4f91caffa4b109357794e5fa",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/02_aggregate_synonyms.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/03_affinity_ratio.py",
+    "size": 802,
+    "sha256": "2d8876a732e586a69583ccf5527ed04197313a3d1e13a375eca330afa2d838b5",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/03_affinity_ratio.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/04_dynamite_preprocess.py",
+    "size": 1579,
+    "sha256": "0c328386886f4a17b3dae1808b15633900d5d5e955ffbe732e54e6d16448d79c",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/04_dynamite_preprocess.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/05_run_dynamite.sh",
+    "size": 22134,
+    "sha256": "7227f91954cb2c0dddb82f497b79ed41b3600aad9d068f1767b93602fd790a28",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/05_run_dynamite.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/06_filter_coefficients.py",
+    "size": 471,
+    "sha256": "89e6230108b6da340da39fffd7c68e77b778527968384a9288c9e01ff6decc8c",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/06_filter_coefficients.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/07_tf_tg_score.py",
+    "size": 1501,
+    "sha256": "1420e10baea3670beb436a596b6364d22d7bdf947da9dfe8bf9afd272c3834e2",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/07_tf_tg_score.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/08_create_ranking.py",
+    "size": 6018,
+    "sha256": "5ed6c7380ca58bd7a1fd98dbe76609771b8733b70592f7df06da2376fe565182",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/08_create_ranking.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/09_build_tf_mapping_and_annotate.py",
+    "size": 4543,
+    "sha256": "e2a4273338d1b36523353679b3a1547a320b0fe8fe26b6e04e5dac7c7aac8ad4",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/09_build_tf_mapping_and_annotate.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/10_compute_gene_gabc_ratio.py",
+    "size": 3640,
+    "sha256": "77fb69a64e17032e5b9a6e7a9c5a0de324c1e7e7166668e79b6d07b9d0c34fc9",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/10_compute_gene_gabc_ratio.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/11_summarize_top_tfs.py",
+    "size": 11523,
+    "sha256": "b3004da44a8df9c6ddbf453ac90755b5d9504b71603821a78c0fb316cead7370",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/11_summarize_top_tfs.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/12_plot_global_tf_ranking.py",
+    "size": 2496,
+    "sha256": "b0892653a122211bb3007df2952dfa1ea488d8cc1c8bd7f47a0be4434368e601",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/12_plot_global_tf_ranking.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/13_plot_tf_gene_heatmap.py",
+    "size": 1581,
+    "sha256": "93085557eece95263bf0b5cdb4314dc5614f22d923fcb805f0061d7299702e76",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/13_plot_tf_gene_heatmap.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/14_plot_per_tf_panels.py",
+    "size": 7956,
+    "sha256": "aad24e99d99a8c761b0f8a84a3f87c202acb8b5673ab5f29e92b94e095ed31eb",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/14_plot_per_tf_panels.py"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/DYNAMITE.R",
+    "size": 20734,
+    "sha256": "5543997162cfb5dd073a9b11acd7cf0abcce6353ef8dd72293b842dddb5521c2",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/DYNAMITE.R"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_1000000_m_1000000.sh",
+    "size": 10507,
+    "sha256": "652d7f71943dfde4ebbe897cfef477616cae0332613b62d4b350144eb733a016",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_1000000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_1000000_m_2000000.sh",
+    "size": 10507,
+    "sha256": "7acb5ff5d9e77391a231abfbeb6167068e939c6d69f9914eb0939fbab6ec44af",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_1000000_m_2000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_100000_m_1000000.sh",
+    "size": 10504,
+    "sha256": "1b4f57453b24c1edcf21f2486fb2a0ae54fd2f463a9c1cdf43f8386c16286c5c",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_100000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_100000_m_2000000.sh",
+    "size": 10504,
+    "sha256": "de78cb6a60151257a99d2cd2f8dac45838642f6c1e2f0dea8a1fbc77cfae3ae8",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_100000_m_2000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_2000000_m_2000000.sh",
+    "size": 10507,
+    "sha256": "1b561e1cfb232f1972dc72b8ccd47ec558370b1ef87405f22376884ccceee64a",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_2000000_m_2000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_200000_m_1000000.sh",
+    "size": 10504,
+    "sha256": "93bb15c33d80c23c871e77bfbe5b2acf4352f6838cc53f8c4b0c7318f034dc70",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_200000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_200000_m_2000000.sh",
+    "size": 10504,
+    "sha256": "f3f7d7159af80cb2e1067d5e1b13dccd7c32dec1281e61f92acfb8c723b763ce",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_200000_m_2000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_3000000_m_3000000.sh",
+    "size": 10507,
+    "sha256": "f18e26994730b6387c22f4aaee7ad6a00f06e2c0662c62fa83b4ab496041451a",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_3000000_m_3000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_4000000_m_4000000.sh",
+    "size": 10507,
+    "sha256": "af3720231bceb0b1c705ae8a5d23f93f59c778f50b1fb965b83e563e02f12bba",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_4000000_m_4000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000.sh",
+    "size": 10507,
+    "sha256": "acdbdaef3bf5357a07eebb207d7d5d37c314800760c95533d3f83e4976b35768",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifs.sh",
+    "size": 10520,
+    "sha256": "6959e9edf83814f2e0b2d48fd3f1f70d3977accdb58160f618175875f64ee112",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifs.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifsV2_Old_over_Young.sh",
+    "size": 10533,
+    "sha256": "915381b6a3103d1fab3764ccf658ca7eb23bc44594aeba35872c8d68b68d71df",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifsV2_Old_over_Young.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifsV2_Young_over_Old.sh",
+    "size": 10528,
+    "sha256": "a0cd00e6e9dd10b7c98d22dcc2c43308cf115bc587dbc1100ddf871383231492",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifsV2_Young_over_Old.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifs_Young_over_Old.sh",
+    "size": 11781,
+    "sha256": "9239b972b88079d4c500534d35183ffc1437156aac9af53a13f1dec66ad4c5f0",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifs_Young_over_Old.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifs_Young_over_Old_only_known_genes.sh",
+    "size": 11834,
+    "sha256": "d63f5abaf9143d09dbbd7271a40f233d689e4217627f2eb9746379b4154b9dac",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifs_Young_over_Old_only_known_genes.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_JASPAR2024_all_vert_Old_over_Young.sh",
+    "size": 10625,
+    "sha256": "cddb9c96e8b502ee2d1340065b5cb84efa4b3e12d54e69603b33a76d9ec7b8a0",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_JASPAR2024_all_vert_Old_over_Young.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_JASPAR2024_all_vert_Young_over_Old.sh",
+    "size": 10625,
+    "sha256": "c1e0dbf33a5533d12f873ec3a708be7486c015e9b121460e98b4c1b910ca902e",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_JASPAR2024_all_vert_Young_over_Old.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_500000_m_1000000.sh",
+    "size": 10504,
+    "sha256": "168222bd4460260b6efbfcc62a2cde905d3b8c0d80460bb545068e2ea74b756f",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_500000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_500000_m_2000000.sh",
+    "size": 10504,
+    "sha256": "49a23cc381dca4ffc3313a92101453182b7984c99134040a6e7065ab1ad4aa61",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_500000_m_2000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_50000_w_1000000_m_1000000.sh",
+    "size": 10503,
+    "sha256": "03a1570530a8ef3764eebea0bc7dacac59f144b3b7a42f4d26a1dccc79f6d1eb",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_50000_w_1000000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_50000_w_100000_m_1000000.sh",
+    "size": 10500,
+    "sha256": "3822434b1d776925d5f564c8ad3561c8241e99aedfb01fcaeeeb5c12a12af9d6",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_50000_w_100000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_50000_w_200000_m_1000000.sh",
+    "size": 10500,
+    "sha256": "07e39d00707dde70a60d91a35cae0fa670dc6ec02aab6f3542d2b27af98c90fa",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_50000_w_200000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_50000_w_500000_m_1000000.sh",
+    "size": 10500,
+    "sha256": "b1bae50d3c2ed051a73383abb94d205146916fa9a85063cea89f2cd671b2ab33",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_50000_w_500000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_50000_w_50000_m_1000000.sh",
+    "size": 10497,
+    "sha256": "3bfc1790f0ba44065c85b5649d454bffed10fc8b26a4fce11ba17e3a895b3ac7",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_50000_w_50000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_xtra_script_res_50000_w_200000_m_1000000.sh",
+    "size": 5344,
+    "sha256": "ad746999f1cf853eea53de8d25707290f7a56892e3a1bea62541a9974525c143",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_xtra_script_res_50000_w_200000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_xtra_xtra_plotting_script_res_50000_w_200000_m_1000000.sh",
+    "size": 4831,
+    "sha256": "45dc5d364113f692a09b6fc8d42bb65f8a741fe9b12fc9d16858daf85102384b",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_xtra_xtra_plotting_script_res_50000_w_200000_m_1000000.sh"
+  },
+  {
+    "type": "script",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/bin/modified_STARE.sh",
+    "size": 16653,
+    "sha256": "78d01ab77ba95607134a11bef7785a66afd1fb08257eb6bf5cd9960eadd3e37b",
+    "local_path": "historical/discovered/Itokawa_et_al_2022_STARE/bin/modified_STARE.sh"
+  },
+  {
+    "type": "asset",
+    "path": "/vast/projects/Immune_Aging/Itokawa_et_al_2022_STARE/motifs/motifs.transfac",
+    "size": 95101
+  }
+]
