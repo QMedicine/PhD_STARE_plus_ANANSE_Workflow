@@ -1,0 +1,150 @@
+[
+  {
+    "mode": "historical_column_order",
+    "cell_state": "Old_HSC",
+    "replicate": 1,
+    "expected_shape": [
+      73503,
+      759
+    ],
+    "observed_shape": [
+      73266,
+      759
+    ],
+    "same_gene_ids": false,
+    "same_columns": true
+  },
+  {
+    "mode": "historical_column_order",
+    "cell_state": "Old_HSC",
+    "replicate": 2,
+    "expected_shape": [
+      73503,
+      759
+    ],
+    "observed_shape": [
+      73266,
+      759
+    ],
+    "same_gene_ids": false,
+    "same_columns": true
+  },
+  {
+    "mode": "historical_column_order",
+    "cell_state": "Old_HSC",
+    "network_byte_match": false,
+    "expected_network_sha256": "04b7d275e65551fb93a7d52f157e6a3f62039302513b827fac85302053d8ee94",
+    "observed_network_sha256": "d584fdfb8f43db697f9e8c2a73be1734a08153e6caf9743f4edcb794dffe1a8d"
+  },
+  {
+    "mode": "historical_column_order",
+    "cell_state": "Young_HSC",
+    "replicate": 1,
+    "expected_shape": [
+      73599,
+      759
+    ],
+    "observed_shape": [
+      73374,
+      759
+    ],
+    "same_gene_ids": false,
+    "same_columns": true
+  },
+  {
+    "mode": "historical_column_order",
+    "cell_state": "Young_HSC",
+    "replicate": 2,
+    "expected_shape": [
+      73599,
+      759
+    ],
+    "observed_shape": [
+      73374,
+      759
+    ],
+    "same_gene_ids": false,
+    "same_columns": true
+  },
+  {
+    "mode": "historical_column_order",
+    "cell_state": "Young_HSC",
+    "network_byte_match": false,
+    "expected_network_sha256": "31c66fe294329cdc825aa0a6d9fc6c01af185654649f9cbf4c2c79cf82da95eb",
+    "observed_network_sha256": "46188705215b8d3c8206ab6667a86935aca843fb4b56c47ad3470767e771db26"
+  },
+  {
+    "mode": "corrected_column_order",
+    "cell_state": "Old_HSC",
+    "replicate": 1,
+    "expected_shape": [
+      73503,
+      759
+    ],
+    "observed_shape": [
+      73192,
+      759
+    ],
+    "same_gene_ids": false,
+    "same_columns": true
+  },
+  {
+    "mode": "corrected_column_order",
+    "cell_state": "Old_HSC",
+    "replicate": 2,
+    "expected_shape": [
+      73503,
+      759
+    ],
+    "observed_shape": [
+      73192,
+      759
+    ],
+    "same_gene_ids": false,
+    "same_columns": true
+  },
+  {
+    "mode": "corrected_column_order",
+    "cell_state": "Old_HSC",
+    "network_byte_match": false,
+    "expected_network_sha256": "04b7d275e65551fb93a7d52f157e6a3f62039302513b827fac85302053d8ee94",
+    "observed_network_sha256": "d74a92a540cdd91bebeff5d1bc4f4515a2a73fec1099ef4922338b07b38e6937"
+  },
+  {
+    "mode": "corrected_column_order",
+    "cell_state": "Young_HSC",
+    "replicate": 1,
+    "expected_shape": [
+      73599,
+      759
+    ],
+    "observed_shape": [
+      73459,
+      759
+    ],
+    "same_gene_ids": false,
+    "same_columns": true
+  },
+  {
+    "mode": "corrected_column_order",
+    "cell_state": "Young_HSC",
+    "replicate": 2,
+    "expected_shape": [
+      73599,
+      759
+    ],
+    "observed_shape": [
+      73459,
+      759
+    ],
+    "same_gene_ids": false,
+    "same_columns": true
+  },
+  {
+    "mode": "corrected_column_order",
+    "cell_state": "Young_HSC",
+    "network_byte_match": false,
+    "expected_network_sha256": "31c66fe294329cdc825aa0a6d9fc6c01af185654649f9cbf4c2c79cf82da95eb",
+    "observed_network_sha256": "4a58127ef6d17a2b27e4c68415d1a4a21e6fb3e188e7f5b235cc16942033f56a"
+  }
+]

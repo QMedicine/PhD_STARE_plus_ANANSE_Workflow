@@ -1,0 +1,60 @@
+Bootstrap: localimage
+From: /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/python_3.9.18_slim_bookworm_v01.sif
+
+%files
+    /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/raw_tools_v03.tar /opt/raw_tools_v05.tar
+
+%post
+    mkdir -p /opt/raw
+    tar -xf /opt/raw_tools_v05.tar -C /opt/raw
+    rm /opt/raw_tools_v05.tar
+    mv /opt/raw/entrypoints/cutadapt.py /opt/raw/entrypoints/cutadapt_entrypoint
+    ln -s /opt/raw/perl/bin/perl /opt/raw/bin/perl
+    ln -s /opt/raw/java/bin/java /opt/raw/bin/java
+    cat > /opt/raw/bin/cutadapt <<'SH'
+#!/bin/sh
+export PYTHONPATH=/opt/raw/cutadapt_site
+exec /usr/local/bin/python /opt/raw/entrypoints/cutadapt_entrypoint "$@"
+SH
+    cat > /opt/raw/bin/macs3 <<'SH'
+#!/bin/sh
+export PYTHONPATH=/opt/raw/macs3_site
+exec /usr/local/bin/python /opt/raw/entrypoints/macs3.py "$@"
+SH
+    cat > /opt/raw/bin/fastqc <<'SH'
+#!/bin/sh
+exec /opt/raw/perl/bin/perl /opt/raw/fastqc/bin/fastqc "$@"
+SH
+    chmod +x /opt/raw/bin/cutadapt /opt/raw/bin/macs3 /opt/raw/bin/fastqc
+
+%environment
+    export PATH=/opt/raw/bin:/opt/raw/java/bin:$PATH
+    export LD_LIBRARY_PATH=/opt/raw/host-libs
+    export PERL5LIB=/opt/raw/perl/usr/lib64/perl5:/opt/raw/perl/usr/share/perl5:/opt/raw/perl/usr/lib64/perl5/vendor_perl:/opt/raw/perl/usr/share/perl5/vendor_perl
+    export JAVA_HOME=/opt/raw/java
+    export PYTHONNOUSERSITE=1
+
+%test
+    set -eu
+    python -c 'import sys;assert sys.version_info[:3]==(3,9,18)'
+    cutadapt --version
+    macs3 --version
+    STAR --version
+    bowtie2 --version
+    fastqc --version
+    picard_status=0
+    picard_version=$(java -jar /opt/raw/picard/picard.jar MarkDuplicates --version 2>&1) || picard_status=$?
+    test "$picard_status" -le 1
+    test "$picard_version" = 'Version:3.1.1'
+    printf '@HD\tVN:1.6\tSO:coordinate\n@SQ\tSN:1\tLN:1000\n@RG\tID:lib1\tSM:fixture\tLB:fixture\tPL:ILLUMINA\nread1\t0\t1\t101\t42\t20M\t*\t0\t0\tAGCTAGCTAGCTAGCTAGCT\tIIIIIIIIIIIIIIIIIIII\tRG:Z:lib1\nread2\t0\t1\t101\t42\t20M\t*\t0\t0\tAGCTAGCTAGCTAGCTAGCT\tIIIIIIIIIIIIIIIIIIII\tRG:Z:lib1\n' > /tmp/raw_picard_smoke.sam
+    samtools view -b -o /tmp/raw_picard_smoke.bam /tmp/raw_picard_smoke.sam
+    java -Djava.io.tmpdir=/tmp -jar /opt/raw/picard/picard.jar MarkDuplicates I=/tmp/raw_picard_smoke.bam O=/tmp/raw_picard_smoke.dedup.bam M=/tmp/raw_picard_smoke.metrics.txt REMOVE_DUPLICATES=true
+    test "$(samtools view -c /tmp/raw_picard_smoke.dedup.bam)" = 1
+    samtools --version
+    bedtools --version
+    featureCounts -v
+
+%labels
+    workflow phd_stare_plus_ananse_workflow
+    role historical_rna_atac_fastq_tools
+    qualification software_smoke_only_pending_fastq_regression

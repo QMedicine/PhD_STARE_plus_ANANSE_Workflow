@@ -1,0 +1,899 @@
+[
+  {
+    "source": "Old_HSC",
+    "target": "Young_HSC",
+    "component_differences": {
+      "influence_score": 0,
+      "influence_score_raw": 7,
+      "target_score": 7,
+      "target_score_scaled": 0,
+      "G_score": 0,
+      "G_score_scaled": 0,
+      "direct_targets": 0,
+      "factor_fc": 0
+    },
+    "top20_order_identical": false,
+    "same_score_sequence": true,
+    "changed_positions": [
+      {
+        "position": 6,
+        "expected": "NFIC",
+        "observed": "SATB1",
+        "expected_score": 0.9758454106280192,
+        "observed_score": 0.9758454106280192
+      },
+      {
+        "position": 7,
+        "expected": "SATB1",
+        "observed": "NFIC",
+        "expected_score": 0.9758454106280192,
+        "observed_score": 0.9758454106280192
+      },
+      {
+        "position": 214,
+        "expected": "FOXK2",
+        "observed": "ZFP3",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 215,
+        "expected": "ZFP90",
+        "observed": "NFE2L1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 216,
+        "expected": "HIF1A",
+        "observed": "SOX12",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 217,
+        "expected": "RLF",
+        "observed": "JRK",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 218,
+        "expected": "FIZ1",
+        "observed": "ZBTB22",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 219,
+        "expected": "ZXDC",
+        "observed": "PPARD",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 220,
+        "expected": "MYSM1",
+        "observed": "ZFP768",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 221,
+        "expected": "ZKSCAN1",
+        "observed": "AHRR",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 222,
+        "expected": "BCL6B",
+        "observed": "HES5",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 223,
+        "expected": "ZFP46",
+        "observed": "ZFP800",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 224,
+        "expected": "ZFP3",
+        "observed": "ZFP746",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 225,
+        "expected": "FBXL19",
+        "observed": "FOXK2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 226,
+        "expected": "ZSCAN25",
+        "observed": "HOXA2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 227,
+        "expected": "FOXK1",
+        "observed": "PHF21A",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 228,
+        "expected": "RFX5",
+        "observed": "ZFP41",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 229,
+        "expected": "IRF6",
+        "observed": "ESRRA",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 230,
+        "expected": "ZFP768",
+        "observed": "ZFP24",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 231,
+        "expected": "TCF20",
+        "observed": "IRF7",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 232,
+        "expected": "PRDM4",
+        "observed": "ZFP467",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 233,
+        "expected": "BACH1",
+        "observed": "FOXK1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 234,
+        "expected": "GLYR1",
+        "observed": "DACH1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 235,
+        "expected": "STAT2",
+        "observed": "TCF20",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 236,
+        "expected": "ZFP568",
+        "observed": "REST",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 237,
+        "expected": "FOXO1",
+        "observed": "ZFP322A",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 238,
+        "expected": "PPARD",
+        "observed": "ZFP524",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 239,
+        "expected": "IRF7",
+        "observed": "ZFP316",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 240,
+        "expected": "ZBTB49",
+        "observed": "ZFP260",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 241,
+        "expected": "MESP2",
+        "observed": "ZFPM1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 242,
+        "expected": "AHRR",
+        "observed": "HOXA10",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 243,
+        "expected": "ZFP143",
+        "observed": "RFX5",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 244,
+        "expected": "ETV3",
+        "observed": "FOXO1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 245,
+        "expected": "ZFP322A",
+        "observed": "HIF1A",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 246,
+        "expected": "ZBTB20",
+        "observed": "ETV3",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 247,
+        "expected": "IRF2",
+        "observed": "ZFP90",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 248,
+        "expected": "HOXA5",
+        "observed": "MYNN",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 249,
+        "expected": "TIGD5",
+        "observed": "ZKSCAN1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 250,
+        "expected": "NFE2L1",
+        "observed": "ZFP46",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 251,
+        "expected": "ZFP518B",
+        "observed": "ZFP553",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 252,
+        "expected": "ZBTB42",
+        "observed": "ZBTB40",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 253,
+        "expected": "ERF",
+        "observed": "HOXA9",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 254,
+        "expected": "ZFP69",
+        "observed": "BACH1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 255,
+        "expected": "ZFP14",
+        "observed": "SRF",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 256,
+        "expected": "HOXA9",
+        "observed": "ZXDC",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 257,
+        "expected": "ZFP800",
+        "observed": "ZFP382",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 258,
+        "expected": "ZFP652",
+        "observed": "ZFP672",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 259,
+        "expected": "ZFP664",
+        "observed": "IRF9",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 260,
+        "expected": "ZFP746",
+        "observed": "ZFP354A",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 261,
+        "expected": "MSANTD4",
+        "observed": "HOXA5",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 262,
+        "expected": "REST",
+        "observed": "GTF2IRD2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 263,
+        "expected": "GLIS2",
+        "observed": "ZKSCAN5",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 264,
+        "expected": "MYNN",
+        "observed": "ZBTB42",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 265,
+        "expected": "MGA",
+        "observed": "ZBTB24",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 266,
+        "expected": "DMTF1",
+        "observed": "ZSCAN25",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 267,
+        "expected": "ZFP672",
+        "observed": "GLYR1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 268,
+        "expected": "ZFP354A",
+        "observed": "FOXO3",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 269,
+        "expected": "ZBTB22",
+        "observed": "MYSM1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 270,
+        "expected": "GTF2IRD2",
+        "observed": "FBXL19",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 271,
+        "expected": "ZFP382",
+        "observed": "GLIS2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 272,
+        "expected": "ZBTB40",
+        "observed": "BCL6B",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 273,
+        "expected": "HOXA10",
+        "observed": "MESP2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 274,
+        "expected": "ZFP41",
+        "observed": "PRDM4",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 275,
+        "expected": "HES5",
+        "observed": "IRF2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 276,
+        "expected": "ZFP24",
+        "observed": "DMTF1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 277,
+        "expected": "DACH1",
+        "observed": "RLF",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 278,
+        "expected": "IRF9",
+        "observed": "IRF6",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 279,
+        "expected": "ZFP260",
+        "observed": "TIGD5",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 280,
+        "expected": "ZFP467",
+        "observed": "ZBTB49",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 281,
+        "expected": "IRF5",
+        "observed": "ZFP518B",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 282,
+        "expected": "ESRRA",
+        "observed": "ZFP143",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 283,
+        "expected": "PHF21A",
+        "observed": "MSANTD4",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 284,
+        "expected": "FOXO3",
+        "observed": "ZFP69",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 285,
+        "expected": "CAMTA2",
+        "observed": "FIZ1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 286,
+        "expected": "SRF",
+        "observed": "ZBTB20",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 287,
+        "expected": "ZKSCAN5",
+        "observed": "ATMIN",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 288,
+        "expected": "ZSCAN2",
+        "observed": "ERF",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 289,
+        "expected": "HOXA2",
+        "observed": "ZFP647",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 290,
+        "expected": "ZFP647",
+        "observed": "ZFP821",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 291,
+        "expected": "SOX12",
+        "observed": "ZFP14",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 292,
+        "expected": "ZBTB24",
+        "observed": "IRF5",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 293,
+        "expected": "ZFPM1",
+        "observed": "ZFP568",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 294,
+        "expected": "ATMIN",
+        "observed": "CAMTA2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 295,
+        "expected": "ZFP821",
+        "observed": "ZSCAN2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 296,
+        "expected": "ZFP553",
+        "observed": "ZFP652",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 297,
+        "expected": "ZFP316",
+        "observed": "ZFP664",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 298,
+        "expected": "JRK",
+        "observed": "STAT2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 299,
+        "expected": "ZFP524",
+        "observed": "MGA",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      }
+    ]
+  },
+  {
+    "source": "Young_HSC",
+    "target": "Old_HSC",
+    "component_differences": {
+      "influence_score": 0,
+      "influence_score_raw": 3,
+      "target_score": 3,
+      "target_score_scaled": 0,
+      "G_score": 0,
+      "G_score_scaled": 0,
+      "direct_targets": 0,
+      "factor_fc": 0
+    },
+    "top20_order_identical": true,
+    "same_score_sequence": true,
+    "changed_positions": [
+      {
+        "position": 147,
+        "expected": "GATAD2A",
+        "observed": "IRF3",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 148,
+        "expected": "ZFP184",
+        "observed": "XBP1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 150,
+        "expected": "AHCTF1",
+        "observed": "ZFP458",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 151,
+        "expected": "NR1D2",
+        "observed": "GATA2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 152,
+        "expected": "IRF3",
+        "observed": "NFAT5",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 153,
+        "expected": "GATA2",
+        "observed": "E2F8",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 154,
+        "expected": "STAT1",
+        "observed": "HOXA6",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 155,
+        "expected": "ZIK1",
+        "observed": "HSF2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 156,
+        "expected": "MTF1",
+        "observed": "HOXA7",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 157,
+        "expected": "ESRRG",
+        "observed": "HOXB5",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 158,
+        "expected": "TRP53",
+        "observed": "YBX1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 159,
+        "expected": "HSF2",
+        "observed": "NR1D2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 160,
+        "expected": "NFAT5",
+        "observed": "ZFP771",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 161,
+        "expected": "GATA1",
+        "observed": "ZFP184",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 162,
+        "expected": "POU2F2",
+        "observed": "CTCF",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 163,
+        "expected": "E2F8",
+        "observed": "TRP53",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 165,
+        "expected": "XBP1",
+        "observed": "TCF7",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 166,
+        "expected": "ZFP13",
+        "observed": "GATA1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 167,
+        "expected": "HOXB7",
+        "observed": "STAT1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 168,
+        "expected": "TIGD3",
+        "observed": "BATF2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 169,
+        "expected": "ZFP1",
+        "observed": "GATAD2A",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 170,
+        "expected": "ZFP771",
+        "observed": "POU3F1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 171,
+        "expected": "CTCF",
+        "observed": "POU2F2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 172,
+        "expected": "ZFP458",
+        "observed": "PRDM10",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 173,
+        "expected": "HOXB5",
+        "observed": "ZFP13",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 174,
+        "expected": "TCF7",
+        "observed": "ZFP410",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 175,
+        "expected": "POU3F1",
+        "observed": "NACC2",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 176,
+        "expected": "ATF7",
+        "observed": "TIGD3",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 177,
+        "expected": "HOXA7",
+        "observed": "AHCTF1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 178,
+        "expected": "HOXA6",
+        "observed": "MTF1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 179,
+        "expected": "BATF2",
+        "observed": "ATF7",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 180,
+        "expected": "YBX1",
+        "observed": "ZIK1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 181,
+        "expected": "NACC2",
+        "observed": "ESRRG",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 182,
+        "expected": "ZFP410",
+        "observed": "HOXB7",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      },
+      {
+        "position": 183,
+        "expected": "PRDM10",
+        "observed": "ZFP1",
+        "expected_score": 0.0,
+        "observed_score": 0.0
+      }
+    ]
+  }
+]

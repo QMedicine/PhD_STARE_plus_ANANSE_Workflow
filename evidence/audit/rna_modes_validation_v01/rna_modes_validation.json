@@ -1,0 +1,59 @@
+{
+  "historical_mode": [
+    {
+      "path": "recount/selected_counts.csv",
+      "expected_sha256": "7566126cabd67c2fe55a7275e0654b1005d8f5caecff608f8d344b65ea2d8363",
+      "observed_sha256": "7566126cabd67c2fe55a7275e0654b1005d8f5caecff608f8d344b65ea2d8363",
+      "byte_identical": true
+    },
+    {
+      "path": "tpm/counts.tpm.tsv",
+      "expected_sha256": "b51e5c1e08368f7e613e6940dc47498e92293d52870ebd267212e01c854a82b3",
+      "observed_sha256": "b51e5c1e08368f7e613e6940dc47498e92293d52870ebd267212e01c854a82b3",
+      "byte_identical": true
+    },
+    {
+      "path": "tpm/counts.counts_filtered.tsv",
+      "expected_sha256": "29d771000313d2fd78b90f116cbdeb9c18562c8f1704b4e9c71ff55d0387099c",
+      "observed_sha256": "29d771000313d2fd78b90f116cbdeb9c18562c8f1704b4e9c71ff55d0387099c",
+      "byte_identical": true
+    },
+    {
+      "path": "de/Old_HSC_to_Young_HSC/forward.deseq2.tsv",
+      "expected_sha256": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30",
+      "observed_sha256": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30",
+      "byte_identical": true
+    }
+  ],
+  "annotation_mode": {
+    "mode": "annotation_symbol_sum",
+    "historical_equivalence": "NOT_CLAIMED",
+    "n_raw_gene_ids": 78298,
+    "n_kept_gene_ids": 56415,
+    "n_symbols": 56098,
+    "n_collapsed_ids": 317,
+    "sample_order": [
+      "SRR13192301_Old_HSC_Rep1",
+      "SRR13192302_Old_HSC_Rep2",
+      "SRR13192285_Young_HSC_Rep1",
+      "SRR13192286_Young_HSC_Rep2"
+    ],
+    "annotated_count_totals": {
+      "SRR13192301_Old_HSC_Rep1": 12336009,
+      "SRR13192302_Old_HSC_Rep2": 14890958,
+      "SRR13192285_Young_HSC_Rep1": 11728183,
+      "SRR13192286_Young_HSC_Rep2": 14673759
+    },
+    "discarded_unmapped_name_count_totals": {
+      "SRR13192301_Old_HSC_Rep1": 46588,
+      "SRR13192302_Old_HSC_Rep2": 62271,
+      "SRR13192285_Young_HSC_Rep1": 42927,
+      "SRR13192286_Young_HSC_Rep2": 55212
+    },
+    "count_conservation": "EXACT",
+    "mapping": "featureCounts gene_name from the supplied GTF",
+    "lengths": "featureCounts merged exon lengths; the existing TPM port averages lengths per uppercase symbol",
+    "representative_id": "lexicographically first ID, used only to index the summed symbol count"
+  },
+  "status": "PASS_DISTINCT_METHODS_RETAINED"
+}

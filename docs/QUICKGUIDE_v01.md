@@ -13,6 +13,8 @@ Supported draft routes:
 | Stage | Inputs and output boundary |
 |---|---|
 | preflight | Validate samples/contrasts and files; no GRN calculations |
+| raw_prepare | RNA/ATAC FASTQs → alignment/peak checkpoints; pilot subset allowed through raw_sample_names |
+| cooler_estimated_ice | Merged coolers + explicit threshold TSV → exploratory depth-normalized/ICE matrices and diagnostics |
 | rna_recount | RNA BAMs → featureCounts → retained-ID cleanup → TPM/filtering → directional DE |
 | network_replay | Explicit mode/state network manifest + directional DE → influence; qualified upstream provenance must be retained |
 | historical_replay | Saved state affinities + TPM + directional DE → custom GRNs → influence |
@@ -21,4 +23,8 @@ Supported draft routes:
 
 `make_reports=false` explicitly stops publication at GRNs/influence for independent numerical qualification. With reports enabled, the user-selected plotting section retains its filters and fails if any top-20 plot cannot be rendered. Complete reports are currently withheld for the HSC comparisons pending filter revision.
 
-FASTQ processing, independent cooler-to-ICE reconstruction with estimated thresholds, and alternate normalization implementations remain under development. This draft must not silently route these inputs through a different method. All scientific calculations use Apptainer; the cluster launcher loads the pinned Nextflow and Apptainer modules.
+Set `process_fastq=true` to integrate every declared RNA/ATAC FASTQ entry into the selected downstream route; do not use pilot sample selection there. RNA FASTQs require adapters and a STAR index; ATAC FASTQs require a Bowtie2 index, blacklist and effective genome size. Pairing comes from the per-sample TRUE/FALSE field. References and index names are explicit inputs. Historic retained-ID count selection is still an explicit checkpoint in exact RNA reconstruction.
+
+For new datasets without that checkpoint, choose `rna_counts_mode=annotation_symbol_sum`; maps and exon lengths can be derived from featureCounts annotations. This sums all annotated IDs per uppercase symbol and is distinct from the original retained-ID method. Keep this method label in results and reports.
+
+The four-library single-end RNA route has passed exact saved sequence/count/TPM/primary DE regression. Synthetic paired RNA/ATAC runs qualify mate geometry. Real ATAC FASTQ equivalence, raw Hi-C processing, independent cooler-to-ICE reconstruction with estimated thresholds, and alternate normalization implementations remain under development. This draft must not silently route these inputs through a different method. All scientific calculations use Apptainer; the cluster launcher loads the pinned Nextflow and Apptainer modules.

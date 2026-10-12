@@ -6,18 +6,22 @@ Dataset-independent reconstruction of the PhD workflow, qualified using Old and 
 
 Read [the reconstruction plan](docs/RECONSTRUCTION_PLAN_v01.md), [the ATAC ordering evidence](docs/ATAC_ORDERING_DECISION_v01.md), and [software provenance](docs/SOFTWARE_PROVENANCE_v01.md) before running.
 
+Current qualification and remaining limits are in [DEVELOPMENT_STATUS_v02.md](docs/DEVELOPMENT_STATUS_v02.md). Validated historical/corrected GRNs and tables are copied to the durable project directory; complete reports remain withheld by strict plotting failures.
+
 The samplesheet is TSV with `sample_name`, `replicate`, `species`, `assay`, `paired`, `cell_type`, `condition`, `cell_state`, `fastq_1`, `fastq_2`, `bam`, and `peak`. An additional `cooler` field represents the requested cached Hi-C entry. `source2target.tsv` contains only `source` and `target`; labels must match `cell_state` exactly. Pairing is explicit, with TRUE/FALSE values.
 
 Current staged routes:
 
 - `preflight`: validate sample identities, pairing, assay coverage, directions and real file paths.
+- `raw_prepare`: prepare RNA/ATAC FASTQ alignment/peak checkpoints, using samplesheet pairing. This pilot stage does not claim a completed downstream analysis.
+- `cooler_estimated_ice`: prepare explicitly estimated pre-blacklist corrected matrices from merged coolers and a threshold TSV, separate from historical H5 checkpoints.
 - `rna_recount`: recount STAR BAMs with featureCounts 2.0.6; preserve the authenticated historical Ensembl gene selection; reproduce mean-symbol aggregation, merged-length TPM/filtering and DESeq2 1.34.0/ashr.
 - `network_replay`: restart influence from authenticated state networks and directional DE tables.
 - `historical_replay`: feed saved STARE affinities, TPM and directed H13CORE DE tables through the original network converters, ANANSE influence and reports.
 - `atac_historical_hic_checkpoint`: rebuild ATAC/STARE in both modes with saved RNA TPM/DE and corrected H5 checkpoints.
 - `bam_historical_hic_checkpoint`: rebuild ATAC activity in both ordering modes, recount RNA, use explicitly named preserved corrected Hi-C H5 checkpoints, and rerun STARE and influence. This route does not yet prove cooler-to-ICE reproduction.
 
-FASTQ entry routes, cooler-to-ICE reconstruction and alternative normalization choices remain under development. The expired scratch ICE threshold table is an identified gap. `diffhic_norm` describes the requested future diffHic route; diffHic is not used by the historical ICE-to-STARE contact route.
+With `process_fastq=true`, RNA/ATAC FASTQs enter the downstream reconstruction routes alongside BAM inputs. All four historical single-end RNA FASTQs reproduce saved sequence/count outputs and the qualified TPM/primary DE checkpoint exactly. Synthetic paired RNA/ATAC geometry tests use generic labels and qualify mate handling; they do not establish equivalence for biological paired-end data. Real ATAC FASTQ regression, raw Hi-C mapping, cooler-to-ICE reconstruction and alternative normalization choices remain under development. The expired scratch ICE threshold table is an identified gap. `diffhic_norm` describes the requested future diffHic route; diffHic is not used by the historical ICE-to-STARE contact route.
 
 All computation, images, caches, logs and intermediates use `/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow`. Actual launch/manifests are copied to `/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs`. The v02 launcher defaults to preflight; choose a reviewed parameter JSON with `PHDSA_PARAMS_FILE`. Slurm sends END/FAIL mail to the recorded institutional address.
 
@@ -36,3 +40,5 @@ Software runs inside immutable Apptainer images. The host provides Nextflow 26.0
 Reports embed PDF bytes inside HTML and create local browser PDF viewers and download buttons. The user-selected branching section is adapted with generic labels and explicit colour scales. Plotting keeps strict failure for empty filtered subgraphs; complete HSC reports await filter revision. No rank is interpreted as experimentally verified rejuvenation or inhibition.
 
 Workflow labels are supplied by TSV manifests; reusable code contains no HSC/Old/Young label literals. See [generic label settings](docs/GENERIC_LABELS_v01.md) and the [quick guide](docs/QUICKGUIDE_v01.md). Specific study run files and historical scripts preserve their original labels.
+
+For new datasets, annotation_symbol_sum can derive RNA counts, symbol maps and exon lengths without a historical selected-counts file. This is a separately named method; historical_selection remains the PhD default. See [RNA_COUNT_MODES_v01.md](docs/RNA_COUNT_MODES_v01.md).

@@ -1,11 +1,171 @@
 {
   "status": "DEVELOPMENT_INCOMPLETE",
-  "generic_labels": {"literal_study_labels_in_main_config_bin_modules_workflows": 0, "native_contract_tests": 6, "job": "30364431"},
-  "historical_archive": {"verified_files": 306},
-  "rna": {"run": "rna_recount_v08", "job": "30364544", "completed_tasks": 8, "exact_resume_job": "30364640", "cached_tasks": 8, "byte_identical": ["selected_counts.csv", "counts.tpm.tsv", "counts.counts_filtered.tsv", "primary_forward_deseq2.tsv"], "reverse_rule": "Negate primary forward log2FoldChange; independently fitted historical reverse table differs slightly"},
-  "archived_affinity_networks": {"run": "historical_replay_v05", "converter_jobs": ["30364402", "30364404"], "byte_identical_states": ["Old_HSC", "Young_HSC"], "sha256": {"Old_HSC": "04b7d275e65551fb93a7d52f157e6a3f62039302513b827fac85302053d8ee94", "Young_HSC": "31c66fe294329cdc825aa0a6d9fc6c01af185654649f9cbf4c2c79cf82da95eb"}},
-  "hic_container": {"job": "30364235", "functional_contact_export": "PASS"},
-  "atac_normalization": {"job": "30364030", "saved_matrix_numeric_match": "EXACT", "native_rebuilt_mode_comparison": "PENDING"},
-  "plots": {"job": "30364364", "selected_section_rendered": 38, "strict_failures": ["Old_HSC->Young_HSC:SATB1", "Young_HSC->Old_HSC:ARX"], "complete_reports": "WITHHELD_PENDING_FILTER_REVISION"},
-  "pending": ["native influence regression without incompatible full-output flag", "two-mode ATAC/STARE reconstruction regression", "cooler-to-ICE blacklist gap and estimated-threshold route", "FASTQ routes and native qualification", "self-contained final report package validation", "validated final result transfer"]
+  "generic_labels": {
+    "literal_study_labels_in_main_config_bin_modules_workflows": 0,
+    "native_contract_tests": 13,
+    "job": "30367492",
+    "source": "source_v16"
+  },
+  "historical_archive": {
+    "verified_files": 304,
+    "excluded_scientific_fixtures": 2
+  },
+  "rna": {
+    "run": "rna_recount_v08",
+    "job": "30364544",
+    "completed_tasks": 8,
+    "exact_resume_job": "30364640",
+    "cached_tasks": 8,
+    "byte_identical": [
+      "selected_counts.csv",
+      "counts.tpm.tsv",
+      "counts.counts_filtered.tsv",
+      "primary_forward_deseq2.tsv"
+    ],
+    "reverse_rule": "Negate primary forward log2FoldChange; independently fitted historical reverse table differs slightly"
+  },
+  "archived_affinity_networks": {
+    "run": "historical_replay_v05",
+    "converter_jobs": [
+      "30364402",
+      "30364404"
+    ],
+    "byte_identical_states": [
+      "Old_HSC",
+      "Young_HSC"
+    ],
+    "sha256": {
+      "Old_HSC": "04b7d275e65551fb93a7d52f157e6a3f62039302513b827fac85302053d8ee94",
+      "Young_HSC": "31c66fe294329cdc825aa0a6d9fc6c01af185654649f9cbf4c2c79cf82da95eb"
+    }
+  },
+  "hic_container": {
+    "job": "30364235",
+    "functional_contact_export": "PASS"
+  },
+  "atac_normalization": {
+    "job": "30364030",
+    "saved_matrix_numeric_match": "EXACT",
+    "native_rebuilt_mode_comparison": "HISTORICAL_ORDER_EXACT_WITH_SAVED_UNION"
+  },
+  "plots": {
+    "job": "30364364",
+    "selected_section_rendered": 38,
+    "strict_failures": [
+      "Old_HSC->Young_HSC:SATB1",
+      "Young_HSC->Old_HSC:ARX"
+    ],
+    "complete_reports": "WITHHELD_PENDING_FILTER_REVISION"
+  },
+  "pending": [
+    "raw Hi-C custom mapper and historical runtime recovery",
+    "actual ATAC FASTQ equivalence and integrated raw ATAC route",
+    "historical cooler blacklist gap; estimated ICE remains a separate route",
+    "strict top-20 plotting failures and complete HTML qualification"
+  ],
+  "archived_affinity_influence": {
+    "run": "network_replay_v09",
+    "source": "source_v11",
+    "job": "30364743",
+    "differential_edge_ids_and_weights": "EXACT",
+    "normalized_rank_components": "EXACT",
+    "raw_target_score_max_error": 2.220446049250313e-16,
+    "top20_tf_sets": "EXACT",
+    "file_bytes": "NOT_IDENTICAL",
+    "ordering_changes": "TIED_SCORES_ONLY"
+  },
+  "rna_fastq": {
+    "run": "raw_RNA_integration_v14",
+    "source": "source_v14",
+    "job": "30365466",
+    "regression_job": "30365501",
+    "samples": 4,
+    "producer_tasks": 16,
+    "raw_featurecounts_genes_per_sample": 78298,
+    "trimmed_sequence_bytes": "EXACT",
+    "all_raw_gene_counts": "EXACT",
+    "cleaned_counts_TPM_filtered_counts_primary_DE": "BYTE_IDENTICAL",
+    "reverse_signs": "EXACT_NEGATION",
+    "exact_resume_job": "30365502",
+    "cached_tasks": 16
+  },
+  "saved_union_reconstruction": {
+    "run": "atac_saved_union_v12",
+    "job": "30365019",
+    "producer_tasks": 27,
+    "regression_job": "30365372",
+    "historical_affinity_matrices": 4,
+    "historical_affinity_numeric_values": "EXACT",
+    "historical_networks": "BYTE_IDENTICAL",
+    "corrected_mode": "DISTINCT_RESULTS",
+    "influence_validation_job": "30365485",
+    "historical_influence_all_components_this_run": "EXACT",
+    "ranking_bytes": "NOT_IDENTICAL_TIED_ORDER",
+    "copy_job": "30365545",
+    "copy_status": "CHECKSUM_VERIFIED",
+    "copied_files": 38,
+    "copied_bytes": 5618238964,
+    "durable_destination": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/validated_results/atac_saved_union_v12",
+    "reports": "WITHHELD_STRICT_PLOTTING_FAILURE"
+  },
+  "paired_geometry": {
+    "source": "source_v14",
+    "status": "SYNTHETIC_FIXTURES_ONLY",
+    "ATAC": {
+      "run_job": "30365517",
+      "qualification_job": "30365542",
+      "input_fragments": 2000,
+      "proper_mapped_read1": 2000,
+      "fragment_length_min": 250,
+      "fragment_length_max": 450,
+      "summit_count": 2,
+      "peak_geometry": "BAMPE"
+    },
+    "RNA": {
+      "run_job": "30365543",
+      "qualification_job": "30365544",
+      "proper_mapped_read1": 2000,
+      "trimmed_reads_per_mate": [
+        2000,
+        2000
+      ]
+    }
+  },
+  "estimated_ice": {
+    "run": "cooler_estimated_ice_v15",
+    "source": "source_v15",
+    "job": "30366634",
+    "producer_tasks": 6,
+    "status": "ESTIMATED_PRE_BLACKLIST_NOT_HISTORICALLY_AUTHENTICATED",
+    "lower": -3,
+    "upper": 3,
+    "matrix_resolution_guard": "PASSED",
+    "post_correction_values_validation": "FINITE_NONNEGATIVE_SYMMETRIC",
+    "validation_job": "30367281"
+  },
+  "atac_fastq": {
+    "failed_https_job": "30365495",
+    "diagnostic_job": "30366644",
+    "failure": "EXPECTED_SIZE_BUT_MD5_AND_GZIP_CRC_FAILED",
+    "official_ftp_retry_job": "30367215",
+    "dependent_pilot_job": "30368308",
+    "status": "NATIVE_PILOT_RUNNING",
+    "resume_job": "30367334",
+    "resume_status": "FAILED_MD5",
+    "byte_diagnostic_job": "30367635",
+    "different_bytes_between_failed_transfers": 596,
+    "different_chunks": 3,
+    "range_retry_job": "30368276",
+    "range_retry_status": "VERIFIED_ENA_MD5_AND_GZIP_CRC",
+    "regression_job": "30368309"
+  },
+  "rna_count_modes": {
+    "source": "source_v16",
+    "legacy_job": "30367494",
+    "annotation_job": "30367493",
+    "validation_job": "30367636",
+    "legacy_four_checkpoints": "BYTE_IDENTICAL",
+    "annotation_count_conservation": "EXACT",
+    "annotation_mode": "DISTINCT_METHOD_NOT_HISTORICAL_EQUIVALENCE"
+  }
 }

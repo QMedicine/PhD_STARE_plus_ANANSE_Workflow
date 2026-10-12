@@ -55,6 +55,24 @@ process RNA_TPM_FILTER {
     """
 }
 
+process RNA_ANNOTATION_COUNTS {
+    label 'tpm'
+    publishDir { "${params.outdir}/rna/annotation_symbol_sum" }, mode: 'copy'
+    input:
+    path count_files, stageAs: 'counts/*'
+    path samplesheet
+    output:
+    path 'annotation_counts.csv', emit: counts
+    path 'annotation_idmap.tsv', emit: idmap
+    path 'annotation_lengths.tsv', emit: lengths
+    path 'annotation_groups.tsv', emit: groups
+    path 'annotation_counts_provenance.json', emit: provenance
+    script:
+    """
+    annotation_counts.py --samplesheet "${samplesheet}" --counts ${count_files.collect { count -> '"'+count+'"' }.join(' ')}
+    """
+}
+
 process RNA_DESEQ2 {
     publishDir { "${params.outdir}/rna/de/${source}_to_${target}" }, mode: 'copy'
     cpus 1

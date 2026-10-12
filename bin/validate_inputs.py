@@ -14,7 +14,7 @@ def read_tsv(path,required):
     if any(None in r for r in rows):raise ValueError(f'{path}: extra fields')
     return rows
 
-def validate(samplesheet,source2target,reverse=True,check_files=True,header_order=None,data_order=None):
+def validate(samplesheet,source2target,reverse=True,check_files=True,header_order=None,data_order=None,stage=None,process_fastq=False,raw_samples=None):
     samples=read_tsv(samplesheet,REQUIRED)
     identities=set();keys=set();state_meta={};routes=[]
     for i,r in enumerate(samples,2):
@@ -43,26 +43,36 @@ def validate(samplesheet,source2target,reverse=True,check_files=True,header_orde
             if value:
                 if not Path(value).is_absolute() or any(x in value for x in ['\n','\r','\t',"'",'"','`','$']):raise ValueError('Input paths must be safe absolute paths')
                 if check_files and not Path(value).is_file():raise ValueError('Missing file '+value)
+        if stage not in [None,'preflight'] and route=='fastq_1':
+            if r['assay']=='HiC':raise ValueError('Raw Hi-C route requires the missing historical mapper; choose the explicit cooler/H5 checkpoint route')
+            if stage!='raw_prepare' and not process_fastq:raise ValueError('FASTQ entry requires --process_fastq or the raw_prepare pilot stage')
         routes.append(dict(sample_name=r['sample_name'],assay=r['assay'],entry=route))
     for name,order in [('historical_header_samples',header_order),('historical_data_samples',data_order)]:
         if order is not None:
             atac_names={r['sample_name'] for r in samples if r['assay']=='ATAC'}
             if len(order)!=len(atac_names) or set(order)!=atac_names:
                 raise ValueError(name+' must contain each ATAC identity exactly once')
-    transitions=[];seen=set()
+    transitions=[];seen=set();primary_transitions=[];primary_seen=set()
     for r in read_tsv(source2target,['source','target']):
         source,target=r['source'],r['target']
         if source==target or source not in state_meta or target not in state_meta:raise ValueError('Transition labels must match distinct samplesheet cell_state values exactly')
-        if state_meta[source][:2]!=state_meta[target][:2]:raise ValueError('Source and target species/cell_type differ')
+        if state_meta[source][0]!=state_meta[target][0]:raise ValueError('Source and target species differ')
         for state in [source,target]:
             assays={x['assay'] for x in samples if x['cell_state']==state}
             if assays!={'HiC','ATAC','RNA'}:raise ValueError('Each transition state requires HiC, ATAC and RNA')
             for assay in ['RNA','ATAC']:
                 if sum(x['cell_state']==state and x['assay']==assay for x in samples)<2:raise ValueError('At least two biological replicates required for '+assay)
+        primary_key=frozenset([source,target]) if reverse else (source,target)
+        if primary_key not in primary_seen:
+            primary_transitions.append(dict(source=source,target=target));primary_seen.add(primary_key)
         for pair in [(source,target)]+([(target,source)] if reverse else []):
             if pair not in seen:transitions.append(dict(source=pair[0],target=pair[1]));seen.add(pair)
-    return dict(schema_version='0.1.0',samples=samples,transitions=transitions,routes=routes,files_checked=check_files)
+    if raw_samples:
+        eligible={r['sample_name'] for r in samples if r['assay'] in ['RNA','ATAC'] and r['fastq_1']}
+        if stage!='raw_prepare' or len(raw_samples)!=len(set(raw_samples)) or not set(raw_samples).issubset(eligible):raise ValueError('raw_sample_names must identify unique RNA/ATAC FASTQ entries in raw_prepare')
+    return dict(schema_version='0.1.0',samples=samples,transitions=transitions,primary_transitions=primary_transitions,routes=routes,files_checked=check_files)
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--samplesheet',required=True);p.add_argument('--source2target',required=True);p.add_argument('--reverse-contrast',choices=['TRUE','FALSE'],default='TRUE');p.add_argument('--skip-file-check',action='store_true');p.add_argument('--output',required=True);p.add_argument('--header-order',default='');p.add_argument('--data-order',default='')
-    a=p.parse_args();result=validate(a.samplesheet,a.source2target,a.reverse_contrast=='TRUE',not a.skip_file_check,a.header_order.split(',') if a.header_order else None,a.data_order.split(',') if a.data_order else None);Path(a.output).write_text(json.dumps(result,indent=2)+'\n')
+    p=argparse.ArgumentParser();p.add_argument('--samplesheet',required=True);p.add_argument('--source2target',required=True);p.add_argument('--reverse-contrast',choices=['TRUE','FALSE'],default='TRUE');p.add_argument('--skip-file-check',action='store_true');p.add_argument('--output',required=True);p.add_argument('--header-order',default='');p.add_argument('--data-order',default='');p.add_argument('--stage');p.add_argument('--process-fastq',choices=['TRUE','FALSE'],default='FALSE')
+    p.add_argument('--raw-samples',default='')
+    a=p.parse_args();result=validate(a.samplesheet,a.source2target,a.reverse_contrast=='TRUE',not a.skip_file_check,a.header_order.split(',') if a.header_order else None,a.data_order.split(',') if a.data_order else None,a.stage,a.process_fastq=='TRUE',a.raw_samples.split(',') if a.raw_samples else None);Path(a.output).write_text(json.dumps(result,indent=2)+'\n')

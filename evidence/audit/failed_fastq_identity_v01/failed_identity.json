@@ -1,0 +1,24 @@
+{
+  "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/inputs/public_fastq/SRR13186609.fastq.gz.partial",
+  "bytes": 802951710,
+  "md5": "5e8611c4098bed5f408166764de2513e",
+  "sha256": "da073aec5683e41a5254236e32670319d3c65bb03a69e6af19fe2ad964c8ac1a",
+  "expected": {
+    "accession": "SRR13186609",
+    "source": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=SRR13186609&result=read_run&fields=run_accession,fastq_ftp,fastq_md5,fastq_bytes&format=tsv",
+    "retrieved_date": "2026-10-13",
+    "url": "https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR131/009/SRR13186609/SRR13186609.fastq.gz",
+    "md5": "f747dcf29f01f4c2f82847b18da2463c",
+    "bytes": 802951710
+  },
+  "fresh_ena_metadata": "run_accession\tfastq_ftp\tfastq_md5\tfastq_bytes\nSRR13186609\tftp.sra.ebi.ac.uk/vol1/fastq/SRR131/009/SRR13186609/SRR13186609.fastq.gz\tf747dcf29f01f4c2f82847b18da2463c\t802951710\n",
+  "gzip_integrity": false,
+  "gzip_error": "CRC check failed 0xaab73537 != 0x48e5888c",
+  "decoded_bytes": 3191865344,
+  "http_headers": {
+    "Last-Modified": "Tue, 08 Dec 2020 13:41:17 GMT",
+    "ETag": "\"2fdc121e-5b5f418d7d940\"",
+    "Content-Length": "802951710",
+    "Content-Type": "application/x-gzip"
+  }
+}

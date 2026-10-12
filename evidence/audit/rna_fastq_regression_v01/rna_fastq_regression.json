@@ -1,0 +1,11 @@
+{
+  "sample": "SRR13192285_Young_HSC_Rep1",
+  "trimmed_sequence_bytes_identical": true,
+  "expected_decoded_sha256": "1cb5450b9ee4165189e4eaecf0c2000dc47f7e97637893e7cd005baef5255f07",
+  "observed_decoded_sha256": "1cb5450b9ee4165189e4eaecf0c2000dc47f7e97637893e7cd005baef5255f07",
+  "expected_decoded_bytes": 2722932462,
+  "observed_decoded_bytes": 2722932462,
+  "n_featurecounts_genes": 78298,
+  "different_gene_count_values": 0,
+  "counts_exact": true
+}

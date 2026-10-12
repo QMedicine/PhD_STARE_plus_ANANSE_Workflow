@@ -9,3 +9,5 @@ Visual inspection shows a small near-zero-count population separated from the pr
 The software's automatic lower-line values were -5.326644732771318 and -5.247589020217729; these are diagnostic outputs and do not prove the user originally selected them. Estimated correction outputs must carry a reconstructed/estimated status and remain separate from historical corrected matrices.
 
 Scratch diagnostic files: runs/hic_diagnostics_v01_30364457/Old_HSC.diagnostic.png and Young_HSC.diagnostic.png. Image hashes and input manifest are recorded in that run's checksums.sha256. No diagnostic image is committed to Git.
+
+The generic Nextflow stage cooler_estimated_ice was qualified in source_v15 (30366634): merged cooler → H5 → joint smallest-depth normalization → diagnostics/ICE correction using the explicit threshold TSV. Both matrices pass finite/nonnegative/symmetry checks (30367281). Outputs carry ESTIMATED_PRE_BLACKLIST_NOT_HISTORICALLY_AUTHENTICATED provenance and are not automatically substituted into historical GRN reconstruction.

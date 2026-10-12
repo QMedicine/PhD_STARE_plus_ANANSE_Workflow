@@ -1,0 +1,26 @@
+[
+  {
+    "cell_state": "Old_HSC",
+    "n_bins": 27315,
+    "nonzero_entries": 119294566,
+    "min_value": 0.25879076227010206,
+    "max_value": 3046.761278134067,
+    "all_finite": true,
+    "symmetric_within_1e_8": true,
+    "sha256": "18e5a38f641e02ab5aa534e46ba3be8a19e7683812c6b8d2128921a913d29065",
+    "bytes": 484762155,
+    "status": "ESTIMATED_PRE_BLACKLIST_NOT_HISTORICALLY_AUTHENTICATED"
+  },
+  {
+    "cell_state": "Young_HSC",
+    "n_bins": 27315,
+    "nonzero_entries": 70691803,
+    "min_value": 0.5283969034967361,
+    "max_value": 3169.5126412200707,
+    "all_finite": true,
+    "symmetric_within_1e_8": true,
+    "sha256": "5ab5f995d586cf8be3dea15de30c4d7fb8132cf64b5b3873bbd32ded379363dd",
+    "bytes": 292060463,
+    "status": "ESTIMATED_PRE_BLACKLIST_NOT_HISTORICALLY_AUTHENTICATED"
+  }
+]

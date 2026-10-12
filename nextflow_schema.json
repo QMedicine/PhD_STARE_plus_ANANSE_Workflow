@@ -16,7 +16,9 @@
         "historical_replay",
         "bam_historical_hic_checkpoint",
         "atac_historical_hic_checkpoint",
-        "network_replay"
+        "network_replay",
+        "raw_prepare",
+        "cooler_estimated_ice"
       ],
       "default": "preflight"
     },
@@ -27,6 +29,11 @@
     "make_reports": {
       "type": "boolean",
       "default": true
+    },
+    "process_fastq": {
+      "type": "boolean",
+      "default": false,
+      "description": "Process all RNA/ATAC FASTQ entries before the selected downstream stage"
     },
     "atac_modes": {
       "type": "array",
@@ -326,6 +333,117 @@
         "string",
         "null"
       ]
+    },
+    "union_windows": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Explicit authentic named summit-window BED checkpoint, preserving original peak universe"
+    },
+    "raw_tools_container": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rna_adapters": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "star_index": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "bowtie_index": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "raw_sample_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "chromosomes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "atac_excluded_contigs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "atac_contig_filter_mode": {
+      "enum": [
+        "legacy_line_substring",
+        "rname"
+      ],
+      "default": "legacy_line_substring"
+    },
+    "rna_trim_quality": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "rna_min_read_length": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "star_sort_ram": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "atac_mapq": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "atac_genome_size": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "atac_peak_qvalue": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "default": 0.05
+    },
+    "hic_coolers": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ice_thresholds": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rna_counts_mode": {
+      "type": "string",
+      "enum": [
+        "historical_selection",
+        "annotation_symbol_sum"
+      ],
+      "default": "historical_selection"
     }
   },
   "additionalProperties": true

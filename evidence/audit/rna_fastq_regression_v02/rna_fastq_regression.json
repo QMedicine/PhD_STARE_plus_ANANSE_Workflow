@@ -1,0 +1,84 @@
+{
+  "run": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/raw_RNA_integration_v14",
+  "producer_tasks": 16,
+  "raw_samples": [
+    {
+      "sample": "SRR13192301_Old_HSC_Rep1",
+      "trimmed_sequence_bytes_identical": true,
+      "expected_decoded_sha256": "c994233345ccd5dbcac7a168645b754122f3459aef272e12910e266cbca827e6",
+      "observed_decoded_sha256": "c994233345ccd5dbcac7a168645b754122f3459aef272e12910e266cbca827e6",
+      "expected_decoded_bytes": 2960828545,
+      "observed_decoded_bytes": 2960828545,
+      "n_featurecounts_genes": 78298,
+      "different_gene_count_values": 0,
+      "counts_exact": true
+    },
+    {
+      "sample": "SRR13192302_Old_HSC_Rep2",
+      "trimmed_sequence_bytes_identical": true,
+      "expected_decoded_sha256": "c22fde82a77d699c71da46b9ba2821148f271de0de4e14055824ed3fa99e1e44",
+      "observed_decoded_sha256": "c22fde82a77d699c71da46b9ba2821148f271de0de4e14055824ed3fa99e1e44",
+      "expected_decoded_bytes": 3594966631,
+      "observed_decoded_bytes": 3594966631,
+      "n_featurecounts_genes": 78298,
+      "different_gene_count_values": 0,
+      "counts_exact": true
+    },
+    {
+      "sample": "SRR13192285_Young_HSC_Rep1",
+      "trimmed_sequence_bytes_identical": true,
+      "expected_decoded_sha256": "1cb5450b9ee4165189e4eaecf0c2000dc47f7e97637893e7cd005baef5255f07",
+      "observed_decoded_sha256": "1cb5450b9ee4165189e4eaecf0c2000dc47f7e97637893e7cd005baef5255f07",
+      "expected_decoded_bytes": 2722932462,
+      "observed_decoded_bytes": 2722932462,
+      "n_featurecounts_genes": 78298,
+      "different_gene_count_values": 0,
+      "counts_exact": true
+    },
+    {
+      "sample": "SRR13192286_Young_HSC_Rep2",
+      "trimmed_sequence_bytes_identical": true,
+      "expected_decoded_sha256": "a1e23b7cec466442643219ae0d14c62c4f4c823269b2df7051f146fe98e9f925",
+      "observed_decoded_sha256": "a1e23b7cec466442643219ae0d14c62c4f4c823269b2df7051f146fe98e9f925",
+      "expected_decoded_bytes": 3473511659,
+      "observed_decoded_bytes": 3473511659,
+      "n_featurecounts_genes": 78298,
+      "different_gene_count_values": 0,
+      "counts_exact": true
+    }
+  ],
+  "downstream": [
+    {
+      "path": "recount/selected_counts.csv",
+      "expected_sha256": "7566126cabd67c2fe55a7275e0654b1005d8f5caecff608f8d344b65ea2d8363",
+      "observed_sha256": "7566126cabd67c2fe55a7275e0654b1005d8f5caecff608f8d344b65ea2d8363",
+      "byte_identical": true
+    },
+    {
+      "path": "tpm/counts.tpm.tsv",
+      "expected_sha256": "b51e5c1e08368f7e613e6940dc47498e92293d52870ebd267212e01c854a82b3",
+      "observed_sha256": "b51e5c1e08368f7e613e6940dc47498e92293d52870ebd267212e01c854a82b3",
+      "byte_identical": true
+    },
+    {
+      "path": "tpm/counts.counts_filtered.tsv",
+      "expected_sha256": "29d771000313d2fd78b90f116cbdeb9c18562c8f1704b4e9c71ff55d0387099c",
+      "observed_sha256": "29d771000313d2fd78b90f116cbdeb9c18562c8f1704b4e9c71ff55d0387099c",
+      "byte_identical": true
+    },
+    {
+      "path": "de/Old_HSC_to_Young_HSC/forward.deseq2.tsv",
+      "expected_sha256": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30",
+      "observed_sha256": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30",
+      "byte_identical": true
+    }
+  ],
+  "reverse": [
+    {
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "sign_reversal_exact": true
+    }
+  ],
+  "status": "EXACT_SEQUENCE_COUNTS_TPM_PRIMARY_DE"
+}

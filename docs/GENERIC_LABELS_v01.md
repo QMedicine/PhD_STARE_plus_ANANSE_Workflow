@@ -11,3 +11,7 @@ Workflow code reads biological labels from `sample_name`, `cell_type`, `conditio
 Use `launcher_template_v03.sh` with `PHDSA_PROJECT_RUN`, `PHDSA_SOURCE_DIR`, `PHDSA_PARAMS_FILE` and an optional `PHDSA_RUN_ID`. `container_binds` belongs to the run configuration. The WEHI scheduler profile retains institute settings.
 
 Local checks validate renamed macrophage states, both contrast directions, explicit historical column permutations, unknown-state rejection, and the selected plot section. These contract checks do not establish scientific equivalence for a new dataset.
+
+`chromosomes` is an explicit optional reference-specific list; otherwise contact splitting includes observed cis chromosomes. This removes the implicit female-mouse chromosome subset from generic code. `chosen_res` is checked against H5 bin widths before contact export. Reverse contrasts deduplicate explicit reciprocal source2target rows, preserving one primary fit when reverse_contrast is enabled.
+
+Transitions may join different cell types in the same species. Each `cell_state` must still describe consistent metadata across assays. Cross-species transitions require an orthology method and are rejected by this draft. Raw pilot selection must identify real, unique RNA/ATAC FASTQ entries; an unknown name fails rather than silently running no tasks. Reports receive resolved parameters, reference paths and the software lock instead of hard-coded bin sizes, thresholds or comparison labels.

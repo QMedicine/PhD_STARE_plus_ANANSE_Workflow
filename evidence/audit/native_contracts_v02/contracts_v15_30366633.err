@@ -1,0 +1,19 @@
+test_ananse_compatibility_preserves_all_de_values (test_contracts.Contracts.test_ananse_compatibility_preserves_all_de_values) ... ok
+test_both_directions_and_file_routes (test_contracts.Contracts.test_both_directions_and_file_routes) ... ok
+test_explicit_reverse_does_not_duplicate_fits (test_contracts.Contracts.test_explicit_reverse_does_not_duplicate_fits) ... ok
+test_generic_cell_states (test_contracts.Contracts.test_generic_cell_states) ... ok
+test_generic_selected_plot_chunk (test_contracts.Contracts.test_generic_selected_plot_chunk) ... ok
+test_header_and_data_order_modes (test_contracts.Contracts.test_header_and_data_order_modes) ... ok
+test_nonmouse_contacts_and_mixed_aliases (test_contracts.Contracts.test_nonmouse_contacts_and_mixed_aliases) ... ok
+test_report_uses_resolved_parameters_and_checkpoint_scope (test_contracts.Contracts.test_report_uses_resolved_parameters_and_checkpoint_scope) ... ok
+test_transition_between_cell_types (test_contracts.Contracts.test_transition_between_cell_types) ... ok
+test_unknown_raw_sample_rejected (test_contracts.Contracts.test_unknown_raw_sample_rejected) ... ok
+test_unknown_state_rejected (test_contracts.Contracts.test_unknown_state_rejected) ... ok
+test_same_locus_sum_and_distinct_locus_representative (test_count_cleanup.Cleanup.test_same_locus_sum_and_distinct_locus_representative) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.060s
+
+OK
+INFO:numexpr.utils:Note: NumExpr detected 56 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 16.
+INFO:numexpr.utils:NumExpr defaulting to 16 threads.

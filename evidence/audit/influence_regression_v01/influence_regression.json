@@ -1,0 +1,32 @@
+[
+  {
+    "source": "Old_HSC",
+    "target": "Young_HSC",
+    "ranking_same_factor_order": false,
+    "ranking_byte_match": false,
+    "ranking_components_exact": false,
+    "different_component_values": 14,
+    "max_absolute_component_error": 2.220446049250313e-16,
+    "top20_same_factors": true,
+    "differential_same_edges": true,
+    "differential_weights_exact": true,
+    "differential_byte_match": false,
+    "expected_sha256": "9b96bddc7e623353462670b9c1cd47463c0c1fd5abdadd1beda14a6eb190c639",
+    "observed_sha256": "b6cef82f8730ab400848bd2b141b5163f3a4d2721febbcd6875d257ce722d3a8"
+  },
+  {
+    "source": "Young_HSC",
+    "target": "Old_HSC",
+    "ranking_same_factor_order": false,
+    "ranking_byte_match": false,
+    "ranking_components_exact": false,
+    "different_component_values": 6,
+    "max_absolute_component_error": 1.1102230246251565e-16,
+    "top20_same_factors": true,
+    "differential_same_edges": true,
+    "differential_weights_exact": true,
+    "differential_byte_match": false,
+    "expected_sha256": "f784ef0187154e0ec126c4ebdb79009a077baa86f1c526a983e52ece3926c676",
+    "observed_sha256": "063f264c4d375239f9701535a50a6ceefb3656cf1617fa90521d68d86ce3a62e"
+  }
+]

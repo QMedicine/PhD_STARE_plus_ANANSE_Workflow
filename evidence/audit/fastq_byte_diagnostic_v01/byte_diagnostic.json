@@ -1,0 +1,51 @@
+{
+  "paths": [
+    "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/inputs/public_fastq/SRR13186609.fastq.gz.partial",
+    "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/inputs/public_fastq_ftp_v02/SRR13186609.fastq.gz.partial"
+  ],
+  "bytes": 802951710,
+  "md5_in_independent_container": [
+    "5e8611c4098bed5f408166764de2513e",
+    "c949b4cb2270fbe1196cd70170e045f7"
+  ],
+  "different_bytes": 596,
+  "first_different_offsets": [
+    37794384,
+    37794385,
+    37794386,
+    37794387,
+    37794388,
+    37794389,
+    37794390,
+    37794391,
+    37794392,
+    37794393,
+    37794394,
+    37794395,
+    37794396,
+    37794397,
+    37794398,
+    37794399,
+    37794400,
+    37794401,
+    37794402,
+    37794403
+  ],
+  "different_chunks": [
+    {
+      "start": 37748736,
+      "end": 41943040,
+      "different_bytes": 198
+    },
+    {
+      "start": 188743680,
+      "end": 192937984,
+      "different_bytes": 199
+    },
+    {
+      "start": 281018368,
+      "end": 285212672,
+      "different_bytes": 199
+    }
+  ]
+}

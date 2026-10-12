@@ -53,6 +53,13 @@
       "path": "/vast/projects/Immune_Aging/apptainer_singularity_cache/depot.galaxyproject.org-singularity-bedtools-2.31.1--hf5e1c6e_0.img",
       "sha256": "17f608347ebe19d0440a648d89cc17ee915f034351e3bccd0787bcb99303d16b",
       "version": "bedtools 2.31.1"
+    },
+    {
+      "role": "raw_tools",
+      "path": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/raw_tools_v06.sif",
+      "sha256": "906adeab69fb2859d85067d9afc33f052b56db89a107710ee13056926bdcf89b",
+      "version": "Python 3.9.18, Cutadapt 4.8, STAR 2.7.11b, Bowtie2 2.5.3, MACS3 3.0.1, FastQC 0.12.1, Picard 3.1.1, OpenJDK 21.0.2, native BAM tools",
+      "qualification": "Native version/Picard/ps checks passed; all four RNA FASTQs give exact saved sequence/count and qualified TPM/primary DE values; synthetic paired RNA/ATAC geometry passed; actual ATAC FASTQ pilot pending"
     }
   ]
 }

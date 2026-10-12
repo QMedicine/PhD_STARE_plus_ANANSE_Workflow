@@ -1,0 +1,324 @@
+{
+  "status": "QUALIFIED_GRNS_AND_TABLES_REPORTS_INCOMPLETE",
+  "run": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12",
+  "destination": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/validated_results/atac_saved_union_v12",
+  "producer_tasks": 27,
+  "producer_trace_sha256": "7d9e0bc2213c1be041ebd6a8647fb7542fe0dbb5f38d6f1ac1b8472de8b370fd",
+  "modes": {
+    "historical_column_order": {
+      "Old_HSC": {
+        "edges": 34096171,
+        "sha256": "04b7d275e65551fb93a7d52f157e6a3f62039302513b827fac85302053d8ee94",
+        "historical_bytes_exact": true
+      },
+      "Young_HSC": {
+        "edges": 34162273,
+        "sha256": "31c66fe294329cdc825aa0a6d9fc6c01af185654649f9cbf4c2c79cf82da95eb",
+        "historical_bytes_exact": true
+      }
+    },
+    "corrected_column_order": {
+      "Old_HSC": {
+        "edges": 34084535,
+        "sha256": "29fe130b917510b61d6fa4af6a8d7b7f382b107478f427d5827fa60534875adc",
+        "historical_bytes_exact": false
+      },
+      "Young_HSC": {
+        "edges": 34190082,
+        "sha256": "aa10a1cf318f51a2ef86140e28885f2e48e64dd8e16a7853e29d754a3c00166d",
+        "historical_bytes_exact": false
+      }
+    }
+  },
+  "historical_influence": [
+    {
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "component_exact": {
+        "influence_score": true,
+        "influence_score_raw": true,
+        "target_score": true,
+        "target_score_scaled": true,
+        "G_score": true,
+        "G_score_scaled": true,
+        "direct_targets": true,
+        "factor_fc": true
+      },
+      "raw_max_absolute_difference": 0.0,
+      "score_sequence_exact": true,
+      "top20_set_exact": true,
+      "top20_order_exact": false,
+      "diff_edge_ids_exact": true,
+      "diff_weights_exact": true,
+      "ranking_bytes_exact": false,
+      "expected_sha256": "9b96bddc7e623353462670b9c1cd47463c0c1fd5abdadd1beda14a6eb190c639",
+      "observed_sha256": "749d35ffdd27de598728a5434100bd3dafd2f5b72d25eee01ce97f2a423387c2"
+    },
+    {
+      "source": "Young_HSC",
+      "target": "Old_HSC",
+      "component_exact": {
+        "influence_score": true,
+        "influence_score_raw": true,
+        "target_score": true,
+        "target_score_scaled": true,
+        "G_score": true,
+        "G_score_scaled": true,
+        "direct_targets": true,
+        "factor_fc": true
+      },
+      "raw_max_absolute_difference": 0.0,
+      "score_sequence_exact": true,
+      "top20_set_exact": true,
+      "top20_order_exact": true,
+      "diff_edge_ids_exact": true,
+      "diff_weights_exact": true,
+      "ranking_bytes_exact": false,
+      "expected_sha256": "f784ef0187154e0ec126c4ebdb79009a077baa86f1c526a983e52ece3926c676",
+      "observed_sha256": "5a6269b6afa98fdcb51f69abdd228ef73e9e2e3bfb8cf5bf90c5ee92b903accc"
+    }
+  ],
+  "report_status": "WITHHELD_STRICT_PLOTTING_FAILURE",
+  "upstream_scope": "Pre-blacklist ATAC BAMs; preserved summit windows, corrected Hi-C H5, RNA TPM and directional H13CORE DE checkpoints",
+  "files": [
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/networks/Old_HSC/Old_HSC_SYMBOLS.tsv",
+      "relative_path": "historical_column_order/networks/Old_HSC/Old_HSC_SYMBOLS.tsv",
+      "bytes": 1399776725,
+      "sha256": "04b7d275e65551fb93a7d52f157e6a3f62039302513b827fac85302053d8ee94"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/networks/Young_HSC/Young_HSC_SYMBOLS.tsv",
+      "relative_path": "historical_column_order/networks/Young_HSC/Young_HSC_SYMBOLS.tsv",
+      "bytes": 1402418887,
+      "sha256": "31c66fe294329cdc825aa0a6d9fc6c01af185654649f9cbf4c2c79cf82da95eb"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/Old_HSC_to_Young_HSC/tables/de_compatibility.json",
+      "relative_path": "historical_column_order/Old_HSC_to_Young_HSC/tables/de_compatibility.json",
+      "bytes": 294,
+      "sha256": "aa70f9b8f181c9f6043f0af55f9448763a14586ff9165a60d80be1bf7a702504"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/Old_HSC_to_Young_HSC/tables/directed_de.tsv",
+      "relative_path": "historical_column_order/Old_HSC_to_Young_HSC/tables/directed_de.tsv",
+      "bytes": 1305153,
+      "sha256": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/Old_HSC_to_Young_HSC/tables/influence.txt",
+      "relative_path": "historical_column_order/Old_HSC_to_Young_HSC/tables/influence.txt",
+      "bytes": 28755,
+      "sha256": "749d35ffdd27de598728a5434100bd3dafd2f5b72d25eee01ce97f2a423387c2"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/Old_HSC_to_Young_HSC/tables/influence_diffnetwork.tsv",
+      "relative_path": "historical_column_order/Old_HSC_to_Young_HSC/tables/influence_diffnetwork.tsv",
+      "bytes": 1749128,
+      "sha256": "c43d1b7cd1d48f190f30f3af542de45f0f57553c5f4dec1a30ba011f8073d08d"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/Young_HSC_to_Old_HSC/tables/de_compatibility.json",
+      "relative_path": "historical_column_order/Young_HSC_to_Old_HSC/tables/de_compatibility.json",
+      "bytes": 294,
+      "sha256": "342e810841c47c84ce7680828aaa45606e19f0cd7896eeaac674d1425b40ab7e"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/Young_HSC_to_Old_HSC/tables/directed_de.tsv",
+      "relative_path": "historical_column_order/Young_HSC_to_Old_HSC/tables/directed_de.tsv",
+      "bytes": 1305183,
+      "sha256": "81b1b0454786a3ed1af2797e5409f59365678716476971110e20170ddc9e40c2"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/Young_HSC_to_Old_HSC/tables/influence.txt",
+      "relative_path": "historical_column_order/Young_HSC_to_Old_HSC/tables/influence.txt",
+      "bytes": 18700,
+      "sha256": "5a6269b6afa98fdcb51f69abdd228ef73e9e2e3bfb8cf5bf90c5ee92b903accc"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/Young_HSC_to_Old_HSC/tables/influence_diffnetwork.tsv",
+      "relative_path": "historical_column_order/Young_HSC_to_Old_HSC/tables/influence_diffnetwork.tsv",
+      "bytes": 2164506,
+      "sha256": "063fba2009af55b95047064d9eef9ed11a5f7b5c8153687f0cecc94b547c7924"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/atac/column_assignment.json",
+      "relative_path": "historical_column_order/atac/column_assignment.json",
+      "bytes": 412,
+      "sha256": "d18c9220173f914822e1d5e9b522fe25cf8549a6b36c916c6306d3847d0ac4ef"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/atac/loessOffsets_qc.tsv",
+      "relative_path": "historical_column_order/atac/loessOffsets_qc.tsv",
+      "bytes": 333,
+      "sha256": "74dde876dbdde469a72a5d0af6116aed58195a59b2611ebf870c781f3db4ce36"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/historical_column_order/atac/versions.txt",
+      "relative_path": "historical_column_order/atac/versions.txt",
+      "bytes": 87,
+      "sha256": "4e2b2d3ff0e655a007bdb1df76c01d79bd3ce124b9bba2d3b82afbd59ec675c8"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/networks/Old_HSC/Old_HSC_SYMBOLS.tsv",
+      "relative_path": "corrected_column_order/networks/Old_HSC/Old_HSC_SYMBOLS.tsv",
+      "bytes": 1399405879,
+      "sha256": "29fe130b917510b61d6fa4af6a8d7b7f382b107478f427d5827fa60534875adc"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/networks/Young_HSC/Young_HSC_SYMBOLS.tsv",
+      "relative_path": "corrected_column_order/networks/Young_HSC/Young_HSC_SYMBOLS.tsv",
+      "bytes": 1403459327,
+      "sha256": "aa10a1cf318f51a2ef86140e28885f2e48e64dd8e16a7853e29d754a3c00166d"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/Old_HSC_to_Young_HSC/tables/de_compatibility.json",
+      "relative_path": "corrected_column_order/Old_HSC_to_Young_HSC/tables/de_compatibility.json",
+      "bytes": 294,
+      "sha256": "aa70f9b8f181c9f6043f0af55f9448763a14586ff9165a60d80be1bf7a702504"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/Old_HSC_to_Young_HSC/tables/directed_de.tsv",
+      "relative_path": "corrected_column_order/Old_HSC_to_Young_HSC/tables/directed_de.tsv",
+      "bytes": 1305153,
+      "sha256": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/Old_HSC_to_Young_HSC/tables/influence.txt",
+      "relative_path": "corrected_column_order/Old_HSC_to_Young_HSC/tables/influence.txt",
+      "bytes": 29809,
+      "sha256": "168bedb88254929d1d91aa07795db7038dbd538ff8a197b10805ec5b12071a38"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/Old_HSC_to_Young_HSC/tables/influence_diffnetwork.tsv",
+      "relative_path": "corrected_column_order/Old_HSC_to_Young_HSC/tables/influence_diffnetwork.tsv",
+      "bytes": 2165063,
+      "sha256": "c7e60473c1b49124cac74e300a029faa2fe6f18cf9cab6a909ae90cb7b4a7b8f"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/Young_HSC_to_Old_HSC/tables/de_compatibility.json",
+      "relative_path": "corrected_column_order/Young_HSC_to_Old_HSC/tables/de_compatibility.json",
+      "bytes": 294,
+      "sha256": "342e810841c47c84ce7680828aaa45606e19f0cd7896eeaac674d1425b40ab7e"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/Young_HSC_to_Old_HSC/tables/directed_de.tsv",
+      "relative_path": "corrected_column_order/Young_HSC_to_Old_HSC/tables/directed_de.tsv",
+      "bytes": 1305183,
+      "sha256": "81b1b0454786a3ed1af2797e5409f59365678716476971110e20170ddc9e40c2"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/Young_HSC_to_Old_HSC/tables/influence.txt",
+      "relative_path": "corrected_column_order/Young_HSC_to_Old_HSC/tables/influence.txt",
+      "bytes": 18048,
+      "sha256": "8af485376327ba1baae7fdd90ea527d79cf720d03addfcbdff965bed3d2a5646"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/Young_HSC_to_Old_HSC/tables/influence_diffnetwork.tsv",
+      "relative_path": "corrected_column_order/Young_HSC_to_Old_HSC/tables/influence_diffnetwork.tsv",
+      "bytes": 1747459,
+      "sha256": "4056692671a6fa220a5d2aa8edcff5b636bffb6f34e2ad543a42904f3c348933"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/atac/column_assignment.json",
+      "relative_path": "corrected_column_order/atac/column_assignment.json",
+      "bytes": 410,
+      "sha256": "a1d60c0ae0b1dd0f4d8f24b0cfcf55f9105db87981429a77c75e77b5d5589785"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/atac/loessOffsets_qc.tsv",
+      "relative_path": "corrected_column_order/atac/loessOffsets_qc.tsv",
+      "bytes": 333,
+      "sha256": "37a7eadc71a947e6bab3c8798c03d795319ca3a8a6e42f3efadaf8edeeed40ca"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/corrected_column_order/atac/versions.txt",
+      "relative_path": "corrected_column_order/atac/versions.txt",
+      "bytes": 87,
+      "sha256": "4e2b2d3ff0e655a007bdb1df76c01d79bd3ce124b9bba2d3b82afbd59ec675c8"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/provenance/params.json",
+      "relative_path": "provenance/params.json",
+      "bytes": 4483,
+      "sha256": "53a5eefd36bd0e7b85788db0e7966e41af129aff3fdc73bffd32953e945c5877"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/provenance/params.sha256",
+      "relative_path": "provenance/params.sha256",
+      "bytes": 192,
+      "sha256": "277c23cf935c175d48067c4be33ffe3a4cca15d99840af9b29559f5d1088b32f"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/provenance/profile_defaults.config",
+      "relative_path": "provenance/profile_defaults.config",
+      "bytes": 3271,
+      "sha256": "dfe36f26d12142f1e9419a44f955598df50552946ca8ef41787f70d7daf5982a"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/provenance/nextflow_version.txt",
+      "relative_path": "provenance/nextflow_version.txt",
+      "bytes": 163,
+      "sha256": "16e192f84366f585d5073ffb4efecc23b436330577ad9a6b481bc3b0ab3c6911"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/provenance/apptainer_version.txt",
+      "relative_path": "provenance/apptainer_version.txt",
+      "bytes": 24,
+      "sha256": "10b03afc2b093c8cb113879bb3b1952d623f332586752169d5b3ccd1438f5e3a"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/provenance/trace_30365019.tsv",
+      "relative_path": "provenance/trace_30365019.tsv",
+      "bytes": 5082,
+      "sha256": "7d9e0bc2213c1be041ebd6a8647fb7542fe0dbb5f38d6f1ac1b8472de8b370fd"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/atac_saved_union_v12/results/provenance/validated_inputs.json",
+      "relative_path": "provenance/validated_inputs.json",
+      "bytes": 8687,
+      "sha256": "60854510da1a790dfe73527f11312258d15867de876d7eaa3a2a564887cf16c0"
+    },
+    {
+      "source": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/samplesheet_Old_and_Young_HSCs_v01.tsv",
+      "relative_path": "provenance/samplesheet.tsv",
+      "bytes": 3264,
+      "sha256": "2d8077700e61fe43a3b96967153e2e587bbc9d1dc12c76feb999600d2f19c097"
+    },
+    {
+      "source": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/source2target_Old_and_Young_HSCs_v01.tsv",
+      "relative_path": "provenance/source2target.tsv",
+      "bytes": 32,
+      "sha256": "e8f92df8e66375d3b3b8d78dcd857df5c60ff5a1a24fd2fc6fe8325b7b2f32c8"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/source_v14/containers/software_lock_v01.json",
+      "relative_path": "provenance/software_lock.json",
+      "bytes": 3113,
+      "sha256": "ce3d93a556cc359a2bfd3ba04c0bf658e3898f9c87890daaea7cc83bf6d80a68"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/evidence/saved_union_affinity_regression_v01/rebuilt_affinity_regression.json",
+      "relative_path": "provenance/affinity_regression.json",
+      "bytes": 3851,
+      "sha256": "a69cb6d30a6f8ed7b35714b786e99f37479ec57caf42d9b30c9ce75f99508673"
+    },
+    {
+      "source": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/tools/influence_reference_Old_and_Young_HSCs_v01.tsv",
+      "relative_path": "provenance/influence_references.tsv",
+      "bytes": 1006,
+      "sha256": "4d9a1cf3dbc5e3e7212cbb7779fe92c91c8e30388f68d878359110e428cd217f"
+    }
+  ],
+  "generated_tables": [
+    {
+      "path": "top20_components_by_mode.tsv",
+      "sha256": "33d17fb6b8272a4ddaa733daa5fd7c52611c326b8a9880223567963f9118dca2"
+    },
+    {
+      "path": "top20_membership_comparison.tsv",
+      "sha256": "818e8943ba065a74950c39ad3ac2476be3ef7583bcca039b81a5d544f3b4bb3f"
+    }
+  ],
+  "copy_verified": true
+}

@@ -35,12 +35,14 @@ process ANANSE_INFLUENCE {
     tuple val(mode), val(source), val(target), path(source_network), path(target_network), path(de, stageAs: 'directed_de.tsv')
     path gtf
     output:
+    path 'de_compatibility.json', emit: de_compatibility
     tuple val(mode), val(source), val(target), path('influence.txt'), path('influence_diffnetwork.tsv'), path(de), emit: results
     script:
     """
     export XDG_CACHE_HOME="\$PWD/cache"
     mkdir -p "\$XDG_CACHE_HOME"
-    ananse influence -s "${source_network}" -t "${target_network}" -d "${de}" -a "${gtf}" \
+    prepare_ananse_de.py --input "${de}" --output ananse_de.tsv
+    ananse influence -s "${source_network}" -t "${target_network}" -d ananse_de.tsv -a "${gtf}" \
       -i ${params.influence_edges} -o influence.txt -n ${task.cpus}
     """
 }

@@ -1,0 +1,17 @@
+{
+  "status": "PAIRED_GEOMETRY_PASS_SYNTHETIC_ONLY",
+  "assay": "RNA",
+  "run": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/paired_RNA_fixture_v14",
+  "input_fragments": 2000,
+  "proper_mapped_read1": 2000,
+  "observed_fragment_length_min": 250,
+  "observed_fragment_length_max": 450,
+  "generic_states": [
+    "State_1",
+    "State_2"
+  ],
+  "trimmed_reads_per_mate": [
+    2000,
+    2000
+  ]
+}

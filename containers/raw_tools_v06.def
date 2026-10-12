@@ -1,0 +1,21 @@
+Bootstrap: localimage
+From: /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/raw_tools_v05.sif
+
+%files
+    /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/containers/procps_v01.tar /opt/procps_v01.tar
+
+%post
+    tar -xf /opt/procps_v01.tar -C /opt/raw
+    rm /opt/procps_v01.tar
+
+%test
+    set -eu
+    /opt/raw/bin/ps -o pid= -p $$
+    /opt/raw/bin/cutadapt --version
+    /opt/raw/bin/macs3 --version
+    /opt/raw/bin/STAR --version
+    /opt/raw/bin/bowtie2 --version
+    /opt/raw/bin/fastqc --version
+
+%labels
+    role historical_rna_atac_fastq_tools_with_nextflow_metrics

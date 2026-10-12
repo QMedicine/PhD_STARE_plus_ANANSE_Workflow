@@ -8,10 +8,12 @@ process HIC_CONTACTS_FROM_H5 {
     tuple val(state), path(matrix)
     output:
     tuple val(state), path('contacts'), emit: contacts
+    tuple val(state), path('hic_resolution.json'), emit: resolution
     script:
     """
+    validate_hic_resolution.py --matrix "${matrix}" --resolution ${params.chosen_res}
     hicConvertFormat --matrices "${matrix}" --inputFormat h5 --outputFormat ginteractions --outFileName contacts_all
-    split_contacts.py --input contacts_all.tsv --outdir contacts
+    split_contacts.py --input contacts_all.tsv --outdir contacts --chromosomes '${params.chromosomes.join(',')}'
     """
 }
 

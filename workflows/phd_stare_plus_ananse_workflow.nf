@@ -1,6 +1,8 @@
+include { RAW_PREPARE } from './raw_prepare'
+include { HIC_ESTIMATED } from './hic_estimated'
 include { RNA_RECONSTRUCTION } from './rna_reconstruction'
 include { VALIDATE_INPUTS } from '../modules/preflight'
-include { RNA_FEATURECOUNTS; RNA_MERGE_RECOUNT; RNA_TPM_FILTER; RNA_DESEQ2 } from '../modules/rna'
+include { RNA_FEATURECOUNTS; RNA_MERGE_RECOUNT; RNA_ANNOTATION_COUNTS; RNA_TPM_FILTER; RNA_DESEQ2 } from '../modules/rna'
 include { STARE_TO_NETWORK; ANANSE_INFLUENCE } from '../modules/network'
 include { PLOT_TOP20; SELF_CONTAINED_REPORT } from '../modules/report'
 include { ATAC_BLACKLIST; ATAC_UNION_SUMMITS; ATAC_WINDOW_COUNTS; ATAC_ASSEMBLE; ATAC_NORMALIZE } from '../modules/atac'
@@ -13,9 +15,18 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
 
     main:
     VALIDATE_INPUTS(samplesheet, source2target)
+    if (params.stage == 'cooler_estimated_ice') {
+        hic_manifest = VALIDATE_INPUTS.out.manifest.map { json -> new groovy.json.JsonSlurper().parseText(json.text) }
+        HIC_ESTIMATED(hic_manifest)
+    }
+    if (params.stage == 'raw_prepare') {
+        raw_manifest = VALIDATE_INPUTS.out.manifest.map { json -> new groovy.json.JsonSlurper().parseText(json.text) }
+        RAW_PREPARE(raw_manifest)
+    }
     if (params.stage == 'rna_recount') {
         rna_manifest = VALIDATE_INPUTS.out.manifest.map { json -> new groovy.json.JsonSlurper().parseText(json.text) }
-        RNA_RECONSTRUCTION(rna_manifest,samplesheet,source2target)
+        if (params.process_fastq) { RAW_PREPARE(rna_manifest) }
+        RNA_RECONSTRUCTION(rna_manifest,samplesheet,source2target,params.process_fastq ? RAW_PREPARE.out.rna_bam : channel.empty())
     }
     if (params.stage in ['historical_replay','network_replay','bam_historical_hic_checkpoint','atac_historical_hic_checkpoint']) {
         manifest = VALIDATE_INPUTS.out.manifest.map { json -> new groovy.json.JsonSlurper().parseText(json.text) }
@@ -36,30 +47,52 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
                 tuple(row.source, row.target, file(row.path, checkIfExists: true))
             }
         } else {
-            if (!params.hic_checkpoints || !params.selected_counts || !params.gene_lengths) {
-                error 'bam_historical_hic_checkpoint requires --hic_checkpoints, --selected_counts, --gene_lengths'
+            if (!params.hic_checkpoints) {
+                error 'Hi-C checkpoint routes require --hic_checkpoints'
             }
-            atac_samples = manifest.flatMap { m -> m.samples.findAll { it.assay == 'ATAC' }.collect { r ->
+            if (params.process_fastq) { RAW_PREPARE(manifest) }
+            atac_samples = manifest.flatMap { m -> m.samples.findAll { it.assay == 'ATAC' && it.bam }.collect { r ->
                 tuple(r, file(r.bam, checkIfExists: true), file(r.peak, checkIfExists: true))
             } }
-            rna_samples = manifest.flatMap { m -> m.samples.findAll { it.assay == 'RNA' }.collect { r ->
+            rna_samples = manifest.flatMap { m -> m.samples.findAll { it.assay == 'RNA' && it.bam }.collect { r ->
                 tuple(r, file(r.bam, checkIfExists: true))
             } }
+            if (params.process_fastq) {
+                rna_samples = rna_samples.mix(RAW_PREPARE.out.rna_bam)
+                // Raw ATAC output has already undergone the historical blacklist step.
+                raw_atac = RAW_PREPARE.out.atac_bam_peaks
+            }
             if (params.stage == 'atac_historical_hic_checkpoint') {
                 tpm = channel.value(file(params.tpm,checkIfExists:true))
                 de_ch = channel.fromPath(params.de_manifest,checkIfExists:true).splitCsv(header:true,sep:'\t').map { row -> tuple(row.source,row.target,file(row.path,checkIfExists:true)) }
             } else {
                 RNA_FEATURECOUNTS(rna_samples, file(params.gtf, checkIfExists: true))
-                RNA_MERGE_RECOUNT(RNA_FEATURECOUNTS.out.counts.map { meta, counts -> counts }.collect(), file(params.selected_counts, checkIfExists: true))
-                RNA_TPM_FILTER(RNA_MERGE_RECOUNT.out.counts, file(params.gene_lengths, checkIfExists: true), file(params.idmap, checkIfExists: true))
+                if (params.rna_counts_mode == 'historical_selection') {
+                    RNA_MERGE_RECOUNT(RNA_FEATURECOUNTS.out.counts.map { _meta, counts -> counts }.collect(), file(params.selected_counts, checkIfExists: true))
+                    expression_counts = RNA_MERGE_RECOUNT.out.counts
+                    expression_lengths = channel.value(file(params.gene_lengths,checkIfExists:true))
+                    expression_map = channel.value(file(params.idmap,checkIfExists:true))
+                } else {
+                    RNA_ANNOTATION_COUNTS(RNA_FEATURECOUNTS.out.counts.map { _meta, counts -> counts }.collect(),samplesheet)
+                    expression_counts = RNA_ANNOTATION_COUNTS.out.counts
+                    expression_lengths = params.gene_lengths ? channel.value(file(params.gene_lengths,checkIfExists:true)) : RNA_ANNOTATION_COUNTS.out.lengths.first()
+                    expression_map = params.idmap ? channel.value(file(params.idmap,checkIfExists:true)) : RNA_ANNOTATION_COUNTS.out.idmap.first()
+                }
+                RNA_TPM_FILTER(expression_counts, expression_lengths, expression_map)
                 tpm = RNA_TPM_FILTER.out.tpm.first()
-                forward_transitions = Channel.fromPath(params.source2target, checkIfExists: true).splitCsv(header: true, sep: '\t').map { tuple(it.source, it.target) }
+                forward_transitions = manifest.flatMap { m -> m.primary_transitions.collect { r -> tuple(r.source,r.target) } }
                 RNA_DESEQ2(forward_transitions, RNA_TPM_FILTER.out.counts.first(), samplesheet)
                 de_ch = params.reverse_contrast ? RNA_DESEQ2.out.forward.mix(RNA_DESEQ2.out.reverse) : RNA_DESEQ2.out.forward
             }
             ATAC_BLACKLIST(atac_samples, file(params.atac_blacklist, checkIfExists: true))
-            ATAC_UNION_SUMMITS(ATAC_BLACKLIST.out.bam.map { meta, bam, summit -> summit }.collect(), file(params.chrom_sizes, checkIfExists: true), file(params.summit_blacklist, checkIfExists: true))
-            ATAC_WINDOW_COUNTS(ATAC_BLACKLIST.out.bam, ATAC_UNION_SUMMITS.out.windows.first())
+            prepared_atac = params.process_fastq ? ATAC_BLACKLIST.out.bam.mix(raw_atac) : ATAC_BLACKLIST.out.bam
+            if (params.union_windows) {
+                union_windows_ch = channel.value(file(params.union_windows,checkIfExists:true))
+            } else {
+                ATAC_UNION_SUMMITS(prepared_atac.map { _meta,_bam,summit -> summit }.collect(),file(params.chrom_sizes,checkIfExists:true),file(params.summit_blacklist,checkIfExists:true))
+                union_windows_ch = ATAC_UNION_SUMMITS.out.windows.first()
+            }
+            ATAC_WINDOW_COUNTS(prepared_atac,union_windows_ch)
             ATAC_ASSEMBLE(Channel.fromList(params.atac_modes), ATAC_WINDOW_COUNTS.out.counts.collect(), samplesheet)
             ATAC_NORMALIZE(ATAC_ASSEMBLE.out.counts)
             hic_matrices = Channel.fromPath(params.hic_checkpoints, checkIfExists: true).splitCsv(header: true, sep: '\t').map { row -> tuple(row.cell_state, file(row.path, checkIfExists: true)) }
@@ -86,7 +119,8 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
             affinities = STARE_GABC.out.affinities
         }
         if (params.stage != 'network_replay') {
-        STARE_TO_NETWORK(affinities, tpm, file(params.idmap, checkIfExists: true), file(params.gtf, checkIfExists: true), file("${projectDir}/historical/scripts/07_network_conversion/01_STARE_TF_Gene_Affinities_to_ananse_network.py"), file("${projectDir}/historical/scripts/07_network_conversion/02_convert_ensembl_to_symbol.py"))
+        conversion_map = params.stage=='bam_historical_hic_checkpoint' ? expression_map : channel.value(file(params.idmap,checkIfExists:true))
+        STARE_TO_NETWORK(affinities, tpm, conversion_map, file(params.gtf, checkIfExists: true), file("${projectDir}/historical/scripts/07_network_conversion/01_STARE_TF_Gene_Affinities_to_ananse_network.py"), file("${projectDir}/historical/scripts/07_network_conversion/02_convert_ensembl_to_symbol.py"))
         // Value-channel collection is bounded by the number of states; explicit keys drive lookup.
         }
         network_ch = params.stage == 'network_replay' ? replay_networks : STARE_TO_NETWORK.out.network
@@ -108,7 +142,7 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
             tuple(mode,source,target,ranking,diffnet,de,file(params.plot_template ?: "${projectDir}/bin/plot_branching_template.R",checkIfExists:true))
         }
         PLOT_TOP20(plot_inputs)
-        SELF_CONTAINED_REPORT(PLOT_TOP20.out.pdfs, samplesheet)
+        SELF_CONTAINED_REPORT(PLOT_TOP20.out.pdfs, samplesheet, file("${projectDir}/containers/software_lock_v01.json",checkIfExists:true))
         }
     }
 }
