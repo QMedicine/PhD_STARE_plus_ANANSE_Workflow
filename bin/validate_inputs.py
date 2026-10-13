@@ -8,10 +8,11 @@ TOKEN=re.compile(r'^[A-Za-z0-9][A-Za-z0-9_.-]*$')
 def read_tsv(path,required):
     with Path(path).open(newline='') as f:
         reader=csv.DictReader(f,delimiter='\t')
+        if len(set(reader.fieldnames or []))!=len(reader.fieldnames or []):raise ValueError(f'{path}: duplicate column headings')
         if not set(required).issubset(reader.fieldnames or []):raise ValueError(f'{path}: required columns {required}')
         rows=list(reader)
     if not rows:raise ValueError(f'{path}: no rows')
-    if any(None in r for r in rows):raise ValueError(f'{path}: extra fields')
+    if any(None in r or any(v is None for v in r.values()) for r in rows):raise ValueError(f'{path}: extra or missing fields')
     return rows
 
 def hic_library_groups(samples):
@@ -33,11 +34,12 @@ def hic_library_groups(samples):
 
 def validate(samplesheet,source2target,reverse=True,check_files=True,header_order=None,data_order=None,stage=None,process_fastq=False,raw_samples=None):
     samples=read_tsv(samplesheet,REQUIRED)
-    identities=set();keys={};state_meta={};routes=[];pools={}
+    identities=set();keys={};state_meta={};routes=[];pools={};input_owners={}
     for i,r in enumerate(samples,2):
         for key in REQUIRED[:8]:
             if not TOKEN.fullmatch(r[key] or ''):raise ValueError(f'Row {i}: invalid {key}')
         if r['sample_name'] in identities:raise ValueError('Duplicate sample_name '+r['sample_name'])
+        if r['sample_name'] in ['#chrom','start','end','peak_id']:raise ValueError('Sample identity collides with activity annotation columns')
         identities.add(r['sample_name'])
         key=(r['cell_state'],r['assay'],r['replicate'])
         pool=r.get('pool_group','')
@@ -67,6 +69,10 @@ def validate(samplesheet,source2target,reverse=True,check_files=True,header_orde
             if value:
                 if not Path(value).is_absolute() or any(x in value for x in ['\n','\r','\t',"'",'"','`','$']):raise ValueError('Input paths must be safe absolute paths')
                 if check_files and not Path(value).is_file():raise ValueError('Missing file '+value)
+                if name!='peak':
+                    identity=str(Path(value).resolve())
+                    if identity in input_owners:raise ValueError('Input file reused under multiple identities: '+value+' ('+input_owners[identity]+', '+r['sample_name']+':'+name+')')
+                    input_owners[identity]=r['sample_name']+':'+name
         if stage not in [None,'preflight'] and route=='fastq_1':
             if r['assay']=='HiC' and stage not in ['raw_prepare','hic_diffhic_counts','atac_diffhic_hic_contacts','bam_diffhic_hic_contacts']:raise ValueError('Raw Hi-C requires raw_prepare or an explicit diffHic route')
             if stage!='raw_prepare' and not process_fastq:raise ValueError('FASTQ entry requires --process_fastq or the raw_prepare pilot stage')

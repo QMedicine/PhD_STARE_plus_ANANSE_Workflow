@@ -1,0 +1,7 @@
+{
+  "matrix": "O_LTHSC_100000_MMP_combined_replicates_merged_BL_removed_hicNormalize_hicCorrectMatrix.h5",
+  "chosen_res": 100000,
+  "n_bins": 27315,
+  "max_bin_width": 100000,
+  "status": "PASS"
+}

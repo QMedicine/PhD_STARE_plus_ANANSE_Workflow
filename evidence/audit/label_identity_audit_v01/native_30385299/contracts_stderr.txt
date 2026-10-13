@@ -1,0 +1,36 @@
+test_ananse_compatibility_preserves_all_de_values (test_contracts.Contracts.test_ananse_compatibility_preserves_all_de_values) ... ok
+test_blank_pool_assignments_preserve_each_library (test_contracts.Contracts.test_blank_pool_assignments_preserve_each_library) ... ok
+test_both_directions_and_file_routes (test_contracts.Contracts.test_both_directions_and_file_routes) ... ok
+test_conflicting_hic_pool_metadata_rejected (test_contracts.Contracts.test_conflicting_hic_pool_metadata_rejected) ... ok
+test_explicit_hic_pool_and_standalone_name_collision_rejected (test_contracts.Contracts.test_explicit_hic_pool_and_standalone_name_collision_rejected) ... ok
+test_explicit_hic_pooling_preserves_biological_replicates (test_contracts.Contracts.test_explicit_hic_pooling_preserves_biological_replicates) ... ok
+test_explicit_reverse_does_not_duplicate_fits (test_contracts.Contracts.test_explicit_reverse_does_not_duplicate_fits) ... ok
+test_generic_cell_states (test_contracts.Contracts.test_generic_cell_states) ... ok
+test_generic_selected_plot_chunk (test_contracts.Contracts.test_generic_selected_plot_chunk) ... ok
+test_header_and_data_order_modes (test_contracts.Contracts.test_header_and_data_order_modes) ... ok
+test_nonmouse_contacts_and_mixed_aliases (test_contracts.Contracts.test_nonmouse_contacts_and_mixed_aliases) ... ok
+test_report_distinguishes_standalone_libraries_from_explicit_pools (test_contracts.Contracts.test_report_distinguishes_standalone_libraries_from_explicit_pools) ... ok
+test_report_uses_resolved_parameters_and_checkpoint_scope (test_contracts.Contracts.test_report_uses_resolved_parameters_and_checkpoint_scope) ... ok
+test_standalone_hic_fastqs_need_no_pool_column (test_contracts.Contracts.test_standalone_hic_fastqs_need_no_pool_column) ... ok
+test_transition_between_cell_types (test_contracts.Contracts.test_transition_between_cell_types) ... ok
+test_unknown_raw_sample_rejected (test_contracts.Contracts.test_unknown_raw_sample_rejected) ... ok
+test_unknown_state_rejected (test_contracts.Contracts.test_unknown_state_rejected) ... ok
+test_annotation_mode_conserves_counts_and_records_exclusions (test_count_cleanup.Cleanup.test_annotation_mode_conserves_counts_and_records_exclusions) ... /vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/source_label_audit_v41/bin/annotation_counts.py:10: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpvjvagan2/samples.tsv' mode='r' encoding='UTF-8'>
+  samples=[r['sample_name'] for r in csv.DictReader(Path(samplesheet).open(),delimiter='\t') if r['assay']=='RNA']
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_same_locus_sum_and_distinct_locus_representative (test_count_cleanup.Cleanup.test_same_locus_sum_and_distinct_locus_representative) ... ok
+test_ambiguous_transition_requires_explicit_labels (test_label_identity.LabelIdentity.test_ambiguous_transition_requires_explicit_labels) ... ok
+test_atac_shuffled_files_preserve_labels_and_reject_ambiguity (test_label_identity.LabelIdentity.test_atac_shuffled_files_preserve_labels_and_reject_ambiguity) ... ok
+test_de_rejects_row_number_column_and_duplicate_genes (test_label_identity.LabelIdentity.test_de_rejects_row_number_column_and_duplicate_genes) ... ok
+test_manifest_reused_bam_and_duplicate_headings_are_rejected (test_label_identity.LabelIdentity.test_manifest_reused_bam_and_duplicate_headings_are_rejected) ... ok
+test_rna_count_files_shuffled_and_duplicate_or_extra_columns_rejected (test_label_identity.LabelIdentity.test_rna_count_files_shuffled_and_duplicate_or_extra_columns_rejected) ... ok
+test_tpm_conflicting_versioned_aliases_rejected (test_label_identity.LabelIdentity.test_tpm_conflicting_versioned_aliases_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.121s
+
+OK
+INFO:numexpr.utils:Note: detected 96 virtual cores but NumExpr set to maximum of 64, check "NUMEXPR_MAX_THREADS" environment variable.
+INFO:numexpr.utils:Note: NumExpr detected 96 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 16.
+INFO:numexpr.utils:NumExpr defaulting to 16 threads.

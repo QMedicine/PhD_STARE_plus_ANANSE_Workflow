@@ -1,11 +1,20 @@
 #!/usr/bin/env python3
 """Preserve DE data bytes while avoiding ANANSE 0.5.1's named-index mapping bug."""
-import argparse,hashlib,json,shutil
+import argparse,csv,hashlib,json,shutil
 from pathlib import Path
 
 def prepare(source,output):
     source,output=Path(source),Path(output)
     if source.resolve()==output.resolve():raise ValueError('DE compatibility output must be separate from its input')
+    with source.open(newline='') as stream:
+        reader=csv.reader(stream,delimiter='\t');head=next(reader,[])
+        if not head or head[0] not in ['','gene_id','gene_name','Geneid','gene','index']:raise ValueError('DE first column must identify genes')
+        if len(set(head))!=len(head):raise ValueError('Duplicate DE column headings')
+        seen=set()
+        for row in reader:
+            if len(row)!=len(head) or not row[0] or row[0] in seen:raise ValueError('Duplicate, missing or malformed DE gene identities')
+            seen.add(row[0])
+        if not seen:raise ValueError('Empty DE table')
     with source.open('rb') as src,output.open('wb') as dst:
         header=src.readline();fields=header.split(b'\t')
         if len(fields)<3 or b'log2FoldChange' not in fields or not any(f.strip()==b'padj' for f in fields):raise ValueError('DE columns missing')

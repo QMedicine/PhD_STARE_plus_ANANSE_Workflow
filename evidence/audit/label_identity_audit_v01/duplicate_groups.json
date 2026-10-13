@@ -1,0 +1,118 @@
+{
+  "7185f9db3ff1464ba4fff62559ec19cfccbcd26b54ddd6e8935f910e91be7335": [
+    "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/01_HiC_analysis_OvsY_MMP_Hi_Lo_HSC_COsort_index_bam.sh",
+    "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_COsort_index_bam.sh"
+  ],
+  "04ce850d7de0315ad25ecec16509e5c1d68cb142370d960fd7c0205ec00d3abd": [
+    "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/02_HiC_analysis_OvsY_MMP_Hi_Lo_HSC_merge_high_low_bams.sh",
+    "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_Hi_Lo_HSC_merge_high_low_bams.sh"
+  ],
+  "56734d5a14f1d0e1bbd1eeca48bccd994be1436f9c04e5341ff600a15b44fc44": [
+    "historical/discovered/20240603_MMP_Hi_Low_HSCs/Downsample_remove_BL_scripts/HiC_analysis_OvsY_MMP_combined_HSC_generate_unique_read_counts.sh",
+    "historical/discovered/20240603_MMP_Hi_Low_HSCs/HiC_analysis_OvsY_MMP_combined_HSC_generate_unique_read_counts.sh"
+  ],
+  "b42d6df09b3c9a0639f975bc10425747ee4a05303e86f73688ab94f10e09ae73": [
+    "historical/discovered/Itokawa_et_al_2022_ATACseq/Extract_file_paths_to_txt.sh",
+    "historical/raw_support/Itokawa_et_al_2022_ATACseq/Extract_file_paths_to_txt.sh"
+  ],
+  "663bcf5e71769d51a861ff17720b401be5cdb29be734a1bef7e01de58720fe72": [
+    "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_convert_wig_to_bigwig.sh",
+    "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_convert_wig_to_bigwig.sh"
+  ],
+  "f2f1529748dc0c6f8580c8f1ac98a67740d63e788135220af74ddc5fb0f90d2b": [
+    "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array.sh",
+    "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array.sh",
+    "historical/scripts/04_atac_preparation/Itokawa_et_al_2022_ATACseq_job_array.sh",
+    "historical/supplement/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array.sh"
+  ],
+  "76215210f5874fd1193c5baba63ae7ef5406dc7f32a343caace0cd659209f6b6": [
+    "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_deepTools_coverage.sh",
+    "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_deepTools_coverage.sh"
+  ],
+  "f0d158669c5414bb0668c029463ccda91f9a74e9d4334dfa4208544ebdca1a40": [
+    "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_fastqc.sh",
+    "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_fastqc.sh"
+  ],
+  "ef826e0c921d1f4a613a602fdb8cc4a0cfb4695c3e46f2d4a40fd1a18ebe46dc": [
+    "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_remove_blacklist_call_peaks.sh",
+    "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_remove_blacklist_call_peaks.sh",
+    "historical/scripts/04_atac_preparation/Itokawa_et_al_2022_ATACseq_job_array_remove_blacklist_call_peaks.sh",
+    "historical/supplement/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_job_array_remove_blacklist_call_peaks.sh"
+  ],
+  "61e6f37bcd011d5784888db68cb56cd27a5ac11b5ac35b1bb50d06e98e503e6e": [
+    "historical/discovered/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_wiggletools_merge_coverage.sh",
+    "historical/raw_support/Itokawa_et_al_2022_ATACseq/Itokawa_et_al_2022_ATACseq_wiggletools_merge_coverage.sh"
+  ],
+  "9a5ea8aaac37f87bb0f2cbf6cc4524d9d3983ecd755c21e76a179bb87bbc3c5a": [
+    "historical/discovered/Itokawa_et_al_2022_STARE/01_make_stare_contacts_from_h5.sh",
+    "historical/scripts/05_stare_inputs/01_make_stare_contacts_from_h5.sh"
+  ],
+  "2cbbc522b16a32ce3a73d6d95cba5472996dc92b06a643a15ac89da8117ed46e": [
+    "historical/discovered/Itokawa_et_al_2022_STARE/02_make_union_summit_peaks_bed.sh",
+    "historical/scripts/05_stare_inputs/02_make_union_summit_peaks_bed.sh"
+  ],
+  "a8559a296bb7311d9aa76faa19490d11598d518115cf016c4e0d8ab651054b63": [
+    "historical/discovered/Itokawa_et_al_2022_STARE/03_Add_peak_width_offsets_CPM_to_union_summit_peaks_build_bed.sh",
+    "historical/scripts/05_stare_inputs/03_Add_peak_width_offsets_CPM_to_union_summit_peaks_build_bed.sh"
+  ],
+  "61dc8700edaecaea2216465889e2014700ee0fe3ed680680ab47871a0686d60a": [
+    "historical/discovered/Itokawa_et_al_2022_STARE/04_convert_jaspar_to_transfac_PSCM.sh",
+    "historical/scripts/05_stare_inputs/04_convert_jaspar_to_transfac_PSCM.sh"
+  ],
+  "32a613281cc37bdb07b6ade41f2b1876fb2272618f277c5aa3e1a7eefdeed969": [
+    "historical/discovered/Itokawa_et_al_2022_STARE/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_H13_motifsV2_loess_offsets_CPM.sh",
+    "historical/scripts/06_stare/05_run_STARE_100kbp_HiC_5Mbp_w_5Mbp_m_H13_motifsV2_loess_offsets_CPM.sh"
+  ],
+  "78d01ab77ba95607134a11bef7785a66afd1fb08257eb6bf5cd9960eadd3e37b": [
+    "historical/discovered/Itokawa_et_al_2022_STARE/bin/modified_STARE.sh",
+    "historical/scripts/06_stare/modified_STARE.sh"
+  ],
+  "e3bc7f90dcd8b6e278c9cb64da040207ac976ffbb964309f396324ac9fe3ed5a": [
+    "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/make_jaspar_motif_file.py",
+    "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/motifs/make_jaspar_motif_file.py"
+  ],
+  "047c4d41d43070bf700375ea32094143e2268df146caa87651e8ad3bc0e28f3b": [
+    "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_H13CORE_motifs.sh",
+    "historical/scripts/02_rna_tpm_and_de/nextflow_initiator_script_50kbp_window_H13CORE_motifs.sh"
+  ],
+  "0329a758e054181c917ac660f75ca33c7f9e4d01259a8556dec682b9ff1a3707": [
+    "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/nextflow_initiator_script_50kbp_window_H13CORE_motifs_Young_over_Old.sh",
+    "historical/scripts/02_rna_tpm_and_de/nextflow_initiator_script_50kbp_window_H13CORE_motifs_Young_over_Old.sh"
+  ],
+  "e9f2a04f5d3b50ff952193dd283747e46750263290a29dcd2c0a709bfcdef4ff": [
+    "historical/raw_support/03_HiC_analysis_OvsY_MMP_merged_cooler_merge_replicates.sh",
+    "historical/supplement/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs/scripts/03_HiC_analysis_OvsY_MMP_merged_cooler_merge_replicates.sh"
+  ],
+  "101b9b433a6601cfa1ff7f35d9a412e477617f3a8ef4c6e1ffaefe90c3ee3699": [
+    "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_STAR_alignment.sh",
+    "historical/scripts/01_rna_preparation/Itokawa_et_al_2022_RNAseq_job_array_STAR_alignment.sh"
+  ],
+  "d3e8e7df83fdcec1400f254d90c6b738762f14fda25c5d1665e5d48e4762ec1b": [
+    "historical/raw_support/Itokawa_et_al_2022_RNAseq/Itokawa_et_al_2022_RNAseq_job_array_featureCounts.sh",
+    "historical/scripts/01_rna_preparation/Itokawa_et_al_2022_RNAseq_job_array_featureCounts.sh"
+  ],
+  "382264d034c90f2b6724e2613737b2d871cc388e441787560d1235fc7e478e5b": [
+    "historical/scripts/02_rna_tpm_and_de/calculate_tpm.py",
+    "historical/supplement/.nextflow_assets/nf-core/tfactivity/modules/local/counts/calculate_tpm/templates/calculate_tpm.py"
+  ],
+  "804c7e8b6f17ad4446814e2c1879325cdc607514899641a5c8a43a61c5f820e4": [
+    "historical/scripts/02_rna_tpm_and_de/deseq_de.R",
+    "historical/supplement/.nextflow_assets/nf-core/tfactivity/modules/nf-core/deseq2/differential/templates/deseq_de.R"
+  ],
+  "b0de5965e5bc2e170e7991b2a75def05cb61ea758564d8a026e21fa08bf16ecd": [
+    "historical/scripts/03_hic_preparation/04_HiC_analysis_OvsY_MMP_merged_hicConvertFormat_cool_2_h5_for_merged_replicates.sh",
+    "historical/supplement/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs/scripts/04_HiC_analysis_OvsY_MMP_merged_hicConvertFormat_cool_2_h5_for_merged_replicates.sh"
+  ],
+  "cf4667e8610d7efa47556469b027a892b691163172788e51dedb91f2df84373a": [
+    "historical/scripts/03_hic_preparation/05_HiC_analysis_OvsY_MMP_merged_hicNormalize_replicates_merged.sh",
+    "historical/supplement/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs/scripts/05_HiC_analysis_OvsY_MMP_merged_hicNormalize_replicates_merged.sh"
+  ],
+  "b42e3b5d03497b828aac6ab668e3f88b4230d97a484d69427275c6ad6394e6d9": [
+    "historical/scripts/03_hic_preparation/06_HiC_analysis_OvsY_MMP_merged_hicCorrectMatrix_diagnostic_plots_replicates_merged.sh",
+    "historical/supplement/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs/scripts/06_HiC_analysis_OvsY_MMP_merged_hicCorrectMatrix_diagnostic_plots_replicates_merged.sh"
+  ],
+  "4d5a4d44efc825f7bc79993f9259a57d7a2132a0608c0d507fa8958f6d7d5243": [
+    "historical/scripts/03_hic_preparation/07_HiC_analysis_OvsY_MMP_merged_hicCorrectMatrix_correct_replicates_merged.sh",
+    "historical/supplement/20240603_MMP_Hi_Low_HSCs/HiCExplorer_analysis_of_OvsY_MMP_combined_HSCs/scripts/07_HiC_analysis_OvsY_MMP_merged_hicCorrectMatrix_correct_replicates_merged.sh"
+  ]
+}

@@ -6,6 +6,8 @@ Dataset-independent reconstruction of the PhD workflow, qualified using Old and 
 
 Read [the reconstruction plan](docs/RECONSTRUCTION_PLAN_v01.md), [the ATAC ordering evidence](docs/ATAC_ORDERING_DECISION_v01.md), and [software provenance](docs/SOFTWARE_PROVENANCE_v01.md) before running.
 
+The [label-identity audit](docs/LABEL_IDENTITY_AUDIT_v01.md) records additional archived column/contrast hazards, study-metadata checks, current validation guards and native byte-identical checkpoint comparisons.
+
 Current qualification and remaining limits are in [DEVELOPMENT_STATUS_v02.md](docs/DEVELOPMENT_STATUS_v02.md). Validated historical/corrected GRNs and tables are copied to the durable project directory; the updated plotting decision and separate alternate-filter report design are described in [PLOTTING_DEFAULTS_v03.md](docs/PLOTTING_DEFAULTS_v03.md). Original saved-ranking reports and both validated ATAC ordering modes have passed native qualification (12 packages, 252 PDFs); see [current status](docs/DEVELOPMENT_STATUS_v04.md).
 
 The samplesheet is TSV with `sample_name`, `replicate`, `species`, `assay`, `paired`, `cell_type`, `condition`, `cell_state`, `fastq_1`, `fastq_2`, `bam`, and `peak`. An additional `cooler` field represents the requested cached Hi-C entry. `source2target.tsv` contains only `source` and `target`; labels must match `cell_state` exactly. Pairing is explicit, with TRUE/FALSE values.

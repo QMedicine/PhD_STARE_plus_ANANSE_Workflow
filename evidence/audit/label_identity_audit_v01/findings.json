@@ -1,0 +1,183 @@
+[
+  {
+    "id": "L01",
+    "status": "CONFIRMED_SAVED_RESULT_IMPACT",
+    "title": "ATAC condition columns are swapped by independently sorted count filenames",
+    "conclusion": "The same faulty assembly is present in loess-offset and TMM variants. Saved-affinity/network regression authenticates the loess historical mode, not every alternative wrapper. Current corrected mode binds file identities explicitly; historical mode deliberately records the mismatch.",
+    "snippets": [
+      {
+        "path": "historical/scripts/05_stare_inputs/03_Add_peak_width_offsets_CPM_to_union_summit_peaks_build_bed.sh",
+        "start": 25,
+        "end": 33,
+        "source": "declare -a BAMS=(\n  SRR13186609_Young_HSC_B1_Rep1_filtered_no_blacklist.bam\n  SRR13186610_Young_HSC_B1_Rep2_filtered_no_blacklist.bam\n  SRR13186627_Old_HSC_B1_Rep1_filtered_no_blacklist.bam\n  SRR13186628_Old_HSC_B1_Rep2_filtered_no_blacklist.bam\n)\n\n# Column labels (same order as BAMS)\ndeclare -a LABELS=(\"Young_rep1\" \"Young_rep2\" \"Old_rep1\" \"Old_rep2\")"
+      },
+      {
+        "path": "historical/scripts/05_stare_inputs/03_Add_peak_width_offsets_CPM_to_union_summit_peaks_build_bed.sh",
+        "start": 87,
+        "end": 95,
+        "source": "# Assemble count matrix with header\n{\n  printf \"peak_id\"\n  for lab in \"${LABELS[@]}\"; do printf \"\\t%s\" \"$lab\"; done\n  printf \"\\n\"\n  \n  # Use paste on a list of files to assemble the data columns correctly\n  paste <(cut -f4 \"$BEDWIN\") $(find \"$TMP_COUNTS_DIR\" -name \"*.counts\" | sort)\n} > \"$COUNTMAT\""
+      },
+      {
+        "path": "historical/discovered/Itokawa_et_al_2022_STARE/03_Add_peak_width_TMM_CPM_to_union_summit_peaks_build_bed.sh",
+        "start": 87,
+        "end": 95,
+        "source": "# Assemble count matrix with header\n{\n  printf \"peak_id\"\n  for lab in \"${LABELS[@]}\"; do printf \"\\t%s\" \"$lab\"; done\n  printf \"\\n\"\n  \n  # Use paste on a list of files to assemble the data columns correctly\n  paste <(cut -f4 \"$BEDWIN\") $(find \"$TMP_COUNTS_DIR\" -name \"*.counts\" | sort)\n} > \"$COUNTMAT\""
+      }
+    ]
+  },
+  {
+    "id": "L02",
+    "status": "CONFIRMED_ARCHIVE_CODE_DEFECT",
+    "title": "Old STARE gene-level join uses nonexistent and shifted columns",
+    "conclusion": "A join of two seven-column tables has thirteen columns. Old AvgActivity, AvgContact, AvgDistance and Nenh are columns 10, 11, 12 and 13, not 11, 12, 13 and 14. This auxiliary analysis is not called by the Nextflow workflow.",
+    "snippets": [
+      {
+        "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/05_STARE_ABCpp_results_analysis.sh",
+        "start": 55,
+        "end": 70,
+        "source": "zcat \"$GY\" | awk -F'\\t' 'NR>1{printf \"%s\\t%s\\t%s\\t%.6f\\t%.6f\\t%.1f\\t%d\\n\",$1,$2,$3,$6,$7,$8,$5}' | sort -k1,1 > \"$In_Out_Dir\"/Y.gene\n# EnsemblID  GeneName  chr  AvgAct  AvgContact  AvgDistance  Nenh\n\nzcat \"$GO\" | awk -F'\\t' 'NR>1{printf \"%s\\t%s\\t%s\\t%.6f\\t%.6f\\t%.1f\\t%d\\n\",$1,$2,$3,$6,$7,$8,$5}' | sort -k1,1 > \"$In_Out_Dir\"/O.gene\n\njoin -t $'\\t' -1 1 -2 1 \"$In_Out_Dir\"/Y.gene \"$In_Out_Dir\"/O.gene > \"$In_Out_Dir\"/gene.join\n\nawk -F'\\t' 'BEGIN{OFS=\"\\t\"}{\n  id=$1; nameY=$2; chrY=$3;\n  dN=$7-$14; dAct=$4-$11; dCon=$5-$12; dDist=$6-$13;\n  print id,nameY,chrY,dN,dAct,dCon,dDist\n}' \"$In_Out_Dir\"/gene.join | sort -k5,5rn > \"$In_Out_Dir\"/gene.delta.tsv\n# cols: EnsemblID  GeneName  chr  \u0394#Enhancer  \u0394AvgActivity  \u0394AvgContact  \u0394AvgDistance\n\n###################################################################\n#-- Part C) R analysis --#"
+      }
+    ]
+  },
+  {
+    "id": "L03",
+    "status": "CONDITIONAL_ARCHIVE_IDENTITY_DEFECT",
+    "title": "RNA notebook reuses positional gene labels after filtering or changing tables",
+    "conclusion": "Filtering an interior invalid-length gene shifts later numeric row labels when labels are taken from the unfiltered vector. After the known-symbol section overwrites gene_labels, the DE sections select dat_agg instead: different lengths cause an error; equal lengths do not establish identity. Saved notebook execution state is unknown. Current TPM and DE use keyed rows and do not run these sections.",
+    "snippets": [
+      {
+        "path": "historical/raw_support/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final.Rmd",
+        "start": 476,
+        "end": 484,
+        "source": "tpm_dat_agg <- dat_agg %>% filter(is.finite(Length), Length > 0)\n\n# Extract HSC count matrix\nhsc_counts_mat <- tpm_dat_agg %>%\n  select(all_of(hsc_cols)) %>%\n  as.matrix()\nstorage.mode(hsc_counts_mat) <- \"numeric\"\nrownames(hsc_counts_mat) <- gene_labels[match(rownames(hsc_counts_mat), rownames(hsc_counts_mat))] # no-op; keep for clarity\nrownames(hsc_counts_mat) <- gene_labels[match(1:nrow(tpm_dat_agg), 1:nrow(tpm_dat_agg))]"
+      },
+      {
+        "path": "historical/raw_support/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final.Rmd",
+        "start": 548,
+        "end": 556,
+        "source": "tpm_dat_agg_only_known_symbols <- dat_agg_only_known_symbols %>% filter(is.finite(Length), Length > 0)\n\n# Extract HSC count matrix\nhsc_counts_mat <- tpm_dat_agg_only_known_symbols %>%\n  select(all_of(hsc_cols)) %>%\n  as.matrix()\nstorage.mode(hsc_counts_mat) <- \"numeric\"\nrownames(hsc_counts_mat) <- gene_labels[match(rownames(hsc_counts_mat), rownames(hsc_counts_mat))] # no-op; keep for clarity\nrownames(hsc_counts_mat) <- gene_labels[match(1:nrow(tpm_dat_agg_only_known_symbols), 1:nrow(tpm_dat_agg_only_known_symbols))]"
+      },
+      {
+        "path": "historical/raw_support/DESeq2_analysis_of_Itokawa_et_al_2022_RNAseq_STAR_aligned_counts_final.Rmd",
+        "start": 601,
+        "end": 605,
+        "source": "## ===== DESeq2: Old_HSC vs Young_HSC (raw counts, HSC only) =====\n# Subset to HSC columns from the *original* data (even if some Length rows were filtered from TPM)\nhsc_counts_full <- dat_agg %>% select(all_of(hsc_cols)) %>% as.matrix()\nstorage.mode(hsc_counts_full) <- \"integer\"\nrownames(hsc_counts_full) <- gene_labels"
+      }
+    ]
+  },
+  {
+    "id": "L04",
+    "status": "CONDITIONAL_ARCHIVE_SORT_CONTRACT_RISK",
+    "title": "Version-sorted peak keys supplied to lexically ordered join",
+    "conclusion": "peak_1, peak_2, peak_10 is version order, not lexical join order. Native GNU join --check-order rejects the fixture. Identical complete key lists can still join correctly without that option; differing key sets can lose matching rows. The archive lacks pipefail and may retain partial output on errors. No effect on the saved PhD loess activity is asserted; current preparation uses checked BED4 identities.",
+    "snippets": [
+      {
+        "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/03_Add_activity_columns_to_union_peaks.sh",
+        "start": 26,
+        "end": 33,
+        "source": "  local bam=\"$1\" out=\"$2\"\n  bedtools coverage -a \"$UNION\" -b \"$bam\" -counts \\\n    | awk 'BEGIN{OFS=\"\\t\"}{print $4,$NF}' \\\n    | sort -k1,1V > \"$out\"\n}\n\n# Make per-replicate count tables\ncounts \"$Y_BAM1\" y1.c"
+      },
+      {
+        "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/STARE_work/03_Add_activity_columns_to_union_peaks.sh",
+        "start": 51,
+        "end": 68,
+        "source": "\n# Average replicates per condition\njoin -t $'\\t' -1 1 -2 1 y1.norm y2.norm \\\n  | awk -F'\\t' 'BEGIN{OFS=\"\\t\"}{printf \"%s\\t%.6f\\n\",$1, ($2+$3)/2}' \\\n  | sort -k1,1V > young.avg\n\njoin -t $'\\t' -1 1 -2 1 o1.norm o2.norm \\\n  | awk -F'\\t' 'BEGIN{OFS=\"\\t\"}{printf \"%s\\t%.6f\\n\",$1, ($2+$3)/2}' \\\n  | sort -k1,1V > old.avg\n\n# Join activities back onto the BED (sort BED by peak_id with version sort)\njoin -t $'\\t' -1 4 -2 1 <(sort -t $'\\t' -k4,4V \"$UNION\") young.avg \\\n | join -t $'\\t' -1 1 -2 1 - old.avg \\\n | awk -F'\\t' 'BEGIN{OFS=\"\\t\"}{print $2,$3,$4,$1,$5,$6}' \\\n > \"$OUT_TSV\"\n\n# ---- Add header (so STARE_ABCpp uses column names instead of c5/c6) ----\n# If the file already has the exact header, do nothing (idempotent)."
+      }
+    ]
+  },
+  {
+    "id": "L05",
+    "status": "CONFIRMED_ARCHIVE_CONTRAST_INCONSISTENCY",
+    "title": "DYNAMITE reverse comparison retains an Old/Young gABC ratio",
+    "conclusion": "The affinity ratio and DE are Young/Old, but the gABC helper always calculates Old/Young under the same reverse-comparison output prefix. This separate DYNAMITE summary route is not part of STARE+ANANSE inference.",
+    "snippets": [
+      {
+        "path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/10_compute_gene_gabc_ratio.py",
+        "start": 69,
+        "end": 78,
+        "source": "\nold = gene_aggregate(args.abc_old,  args.agg, args.gene_col, args.score_col)\nyou = gene_aggregate(args.abc_young, args.agg, args.gene_col, args.score_col)\n\ncommon = old.join(you, how=\"inner\", lsuffix=\"_old\", rsuffix=\"_young\")\n# Small pseudocount avoids log2(0)\ncommon[\"log2_gabc_ratio\"] = np.log2((common[\"cond_score_old\"] + 1e-12) /\n                                    (common[\"cond_score_young\"] + 1e-12))\ncommon.to_csv(args.out, sep=\"\\t\")"
+      },
+      {
+        "path": "historical/discovered/Itokawa_et_al_2022_STARE/Run_manual_tfactivity_DYNAMITE_ranking/run_manual_tfactivity_res_100000_w_5000000_m_5000000_H13_motifs_Young_over_Old_only_known_genes.sh",
+        "start": 198,
+        "end": 204,
+        "source": "python3 ${PROJ_DIR}/10_compute_gene_gabc_ratio.py \\\n  --abc_old   \"${ABC_OLD_FILES[@]}\" \\\n  --abc_young \"${ABC_YOUNG_FILES[@]}\" \\\n  --agg mean \\\n  --gene-col \"Gene Name\" \\\n  --score-col \"ABC-Score\" \\\n  --out \"${WORK_DIR}/${COND_A}:${COND_B}_${ASSAY}.log2_gabc_ratio.tsv\""
+      }
+    ]
+  },
+  {
+    "id": "L06",
+    "status": "CONDITIONAL_ARCHIVE_POSITIONAL_RISK",
+    "title": "tfactivity extra-count import relies on parallel sample/file lists and row order",
+    "conclusion": "zip does not establish sample identity or equal list lengths; to_list discards gene IDs. An effect requires misordered auxiliary files/rows and is not established for the supplied raw-count route. Current reconstruction consumes per-sample featureCounts tables with keyed sample and gene identities.",
+    "snippets": [
+      {
+        "path": "historical/supplement/.nextflow_assets/nf-core/tfactivity/modules/local/counts/combine/templates/combine.py",
+        "start": 10,
+        "end": 11,
+        "source": "sample_files = dict(zip(\"${samples.join(' ')}\".split(), [\n    pd.read_csv(extra, header=None) for extra in \"${extra_files.join(' ')}\".split()]))"
+      },
+      {
+        "path": "historical/supplement/.nextflow_assets/nf-core/tfactivity/modules/local/counts/combine/templates/combine.py",
+        "start": 28,
+        "end": 30,
+        "source": "    # Convert to numeric to ensure values are not strings - will crash on invalid values\n    counts[sample] = pd.to_numeric(sample_df[0]).to_list()\n"
+      }
+    ]
+  },
+  {
+    "id": "L07",
+    "status": "KNOWN_USER_CORRECTION",
+    "title": "Historical plotting uses JASPAR DE and H13CORE influence",
+    "conclusion": "These are mixed analysis checkpoints, not a demonstrated sign reversal. Current ranking and both plot styles consume the same directional H13CORE DE file, as requested.",
+    "snippets": [
+      {
+        "path": "historical/scripts/09_plots/GRN_plotting_Young2Old.Rmd",
+        "start": 32,
+        "end": 34,
+        "source": "influence_file <- \"/vast/projects/Immune_Aging/Itokawa_et_al_2022_ANANSE/STARE_output_in_ANANSE/STARE_output_in_ANANSE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/TF_Influence_Young2Old/STARE_YoungHSC_to_OldHSC_TF_influence.txt\"\ndiffnet_file   <- \"/vast/projects/Immune_Aging/Itokawa_et_al_2022_ANANSE/STARE_output_in_ANANSE/STARE_output_in_ANANSE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/TF_Influence_Young2Old/STARE_YoungHSC_to_OldHSC_TF_influence_diffnetwork.tsv\"\ndeseq_file     <- \"/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_JASPAR2024_all_vert_motifs_Old_over_Young/01_counts/05_deseq2/A_Young_HSC:B_Old_HSC/A_Young_HSC:B_Old_HSC.deseq2.results.tsv\""
+      },
+      {
+        "path": "historical/scripts/09_plots/GRN_plotting_Old2Young.Rmd",
+        "start": 34,
+        "end": 39,
+        "source": "influence_file <- \"/vast/projects/Immune_Aging/Itokawa_et_al_2022_ANANSE/STARE_output_in_ANANSE/STARE_output_in_ANANSE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/TF_Influence_Old2Young/STARE_OldHSC_to_YoungHSC_TF_influence.txt\"\n\ndiffnet_file   <- \"/vast/projects/Immune_Aging/Itokawa_et_al_2022_ANANSE/STARE_output_in_ANANSE/STARE_output_in_ANANSE_results_100kb_w5000000_m5000000_H13_motifsV2_loess_offsets_CPM/TF_Influence_Old2Young/STARE_OldHSC_to_YoungHSC_TF_influence_diffnetwork.tsv\"\n\ndeseq_file     <- \"/vast/projects/Immune_Aging/Itokawa_et_al_2022_nfcore_tfactivity/tfactivity_results/HSC_50kbp_window_JASPAR2024_all_vert_motifs_Young_over_Old/01_counts/05_deseq2/A_Old_HSC:B_Young_HSC/A_Old_HSC:B_Young_HSC.deseq2.results.tsv\"\n"
+      }
+    ]
+  },
+  {
+    "id": "L08",
+    "status": "CURRENT_GUARDS_ADDED",
+    "title": "Duplicate count files or input paths could conceal a sample association",
+    "conclusion": "ATAC assembly and historical RNA recount previously allowed duplicate dictionary keys to overwrite producers. Current validation rejects duplicate count identities, duplicate headings, duplicate peak/gene IDs, extra count columns, invalid count values, reserved ATAC annotation-column identities, conflicting version-stripped gene aliases, and shared primary read/BAM/cooler paths. Shared peak files remain supported.",
+    "snippets": []
+  },
+  {
+    "id": "L09",
+    "status": "CURRENT_TOOL_FIXED",
+    "title": "Plot-rendering helper ambiguously parsed composite transition names",
+    "conclusion": "The auxiliary render helper previously split A_to_B_to_C at the first separator. It now requires explicit source and target for ambiguous names. The production R plot runner already receives source and target separately.",
+    "snippets": []
+  },
+  {
+    "id": "L10",
+    "status": "UNRESOLVED_SOURCE_METADATA",
+    "title": "Archived ages and mouse-strain spellings need qualified reporting",
+    "conclusion": "Archived Itokawa HSC metadata specifies 20-month-old and 10-week-old RNA/ATAC animals. The in-house Hi-C description specifies approximately 24-month-old animals. Four Hi-C strain cells contain C57BL/7, C57BL/8, C57BL/9 or C57BL/10. These are recorded without silently correcting source metadata or changing conditions; their biological interpretation is not authenticated.",
+    "snippets": []
+  },
+  {
+    "id": "L11",
+    "status": "PRESERVED_MAPPING_POLICY",
+    "title": "Gene/TF alias conversion is many-to-one",
+    "conclusion": "The converter builds symbol-to-ID dictionaries with last-row selection, strips duplicate TF suffixes and the symbol converter takes maximum duplicate-edge probability. This can conflate distinct loci or motif copies, but is a documented part of the exact historical method, not a newly established sample-label swap. No alternative alias-selection policy is introduced in this audit.",
+    "snippets": [
+      {
+        "path": "historical/scripts/07_network_conversion/01_STARE_TF_Gene_Affinities_to_ananse_network.py",
+        "start": 69,
+        "end": 82,
+        "source": "    return _SUFFIX_RE.sub(\"\", str(name))\n\ndef load_id_symbol_map(path):\n    m = pd.read_csv(path, sep=\"\\t\", dtype=str).fillna(\"\")\n    # normalize to UPPER for robust matching\n    m[\"gene_id_uc\"] = m[\"gene_id\"].str.upper()\n    m[\"gene_name_uc\"] = m[\"gene_name\"].str.upper()\n    id2sym = dict(zip(m[\"gene_id_uc\"], m[\"gene_name_uc\"]))\n    sym2id = dict(zip(m[\"gene_name_uc\"], m[\"gene_id_uc\"]))\n    return id2sym, sym2id\n\ndef build_gene_alias_tpm(tpm: pd.Series, id2sym: dict, sym2id: dict) -> pd.Series:\n    \"\"\"\n    Return a TPM series indexed by UPPERCASE aliases so either Ensembl IDs"
+      }
+    ]
+  }
+]

@@ -1,20 +1,23 @@
 #!/usr/bin/env python3
-import argparse,json
+import argparse,json,sys
 from pathlib import Path
 import pandas as pd
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from count_identity import headings,featurecounts
 
 def merge(selection,files,output):
+    headings(selection,',')
     selected=pd.read_csv(selection,index_col=0)
     if selected.index.has_duplicates:raise ValueError('Historical selected Ensembl IDs are duplicated')
     tables={};metadata=None
     for file in files:
         sample=Path(file).name.removesuffix('.featureCounts.txt')
-        table=pd.read_csv(file,sep='\t',comment='#',index_col=0)
-        if table.index.has_duplicates:raise ValueError('featureCounts IDs are duplicated')
-        annotations=table[['gene_name','Chr','Strand','Length']]
+        if sample in tables:raise ValueError('Duplicate RNA count identity '+sample)
+        table,values=featurecounts(file,pd)
+        annotations=table[['gene_name','Chr','Start','End','Strand','Length']]
         if metadata is not None and not annotations.equals(metadata):raise ValueError('featureCounts annotation identities differ')
         metadata=annotations
-        tables[sample]=table.iloc[:,-1]
+        tables[sample]=values
     if set(tables)!=set(selected.columns):raise ValueError('Recount sample identities differ from historical selection')
     raw=pd.DataFrame({s:tables[s] for s in selected.columns})
     if not set(selected.index).issubset(raw.index):raise ValueError('Selected historical genes absent from featureCounts')

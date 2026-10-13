@@ -1,0 +1,22 @@
+[
+  {
+    "count_file": "SRR13192285_Young_HSC_Rep1.featureCounts.txt",
+    "header_bam": "SRR13192285_Young_HSC_Rep1_Aligned.sortedByCoord.out.bam",
+    "sample_identity_matches_bam_basename": true
+  },
+  {
+    "count_file": "SRR13192286_Young_HSC_Rep2.featureCounts.txt",
+    "header_bam": "SRR13192286_Young_HSC_Rep2_Aligned.sortedByCoord.out.bam",
+    "sample_identity_matches_bam_basename": true
+  },
+  {
+    "count_file": "SRR13192301_Old_HSC_Rep1.featureCounts.txt",
+    "header_bam": "SRR13192301_Old_HSC_Rep1_Aligned.sortedByCoord.out.bam",
+    "sample_identity_matches_bam_basename": true
+  },
+  {
+    "count_file": "SRR13192302_Old_HSC_Rep2.featureCounts.txt",
+    "header_bam": "SRR13192302_Old_HSC_Rep2_Aligned.sortedByCoord.out.bam",
+    "sample_identity_matches_bam_basename": true
+  }
+]

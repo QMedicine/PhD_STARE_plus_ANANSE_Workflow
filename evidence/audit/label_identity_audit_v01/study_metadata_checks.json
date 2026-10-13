@@ -1,0 +1,300 @@
+{
+  "status": "PASS_WITH_METADATA_QUALIFICATIONS",
+  "sample_checks": [
+    {
+      "sample": "SRR13192301_Old_HSC_Rep1",
+      "assay": "RNA",
+      "cell_state": "Old_HSC",
+      "archived_age": "20-month-old",
+      "accession_and_replicate_match": true
+    },
+    {
+      "sample": "SRR13192302_Old_HSC_Rep2",
+      "assay": "RNA",
+      "cell_state": "Old_HSC",
+      "archived_age": "20-month-old",
+      "accession_and_replicate_match": true
+    },
+    {
+      "sample": "SRR13192285_Young_HSC_Rep1",
+      "assay": "RNA",
+      "cell_state": "Young_HSC",
+      "archived_age": "10-week-old",
+      "accession_and_replicate_match": true
+    },
+    {
+      "sample": "SRR13192286_Young_HSC_Rep2",
+      "assay": "RNA",
+      "cell_state": "Young_HSC",
+      "archived_age": "10-week-old",
+      "accession_and_replicate_match": true
+    },
+    {
+      "sample": "SRR13186627_Old_HSC_B1_Rep1",
+      "assay": "ATAC",
+      "cell_state": "Old_HSC",
+      "archived_age": "20-month-old",
+      "accession_and_replicate_match": true
+    },
+    {
+      "sample": "SRR13186628_Old_HSC_B1_Rep2",
+      "assay": "ATAC",
+      "cell_state": "Old_HSC",
+      "archived_age": "20-month-old",
+      "accession_and_replicate_match": true
+    },
+    {
+      "sample": "SRR13186609_Young_HSC_B1_Rep1",
+      "assay": "ATAC",
+      "cell_state": "Young_HSC",
+      "archived_age": "10-week-old",
+      "accession_and_replicate_match": true
+    },
+    {
+      "sample": "SRR13186610_Young_HSC_B1_Rep2",
+      "assay": "ATAC",
+      "cell_state": "Young_HSC",
+      "archived_age": "10-week-old",
+      "accession_and_replicate_match": true
+    },
+    {
+      "sample": "O_LTHSC_MMP_High_Rep1",
+      "assay": "HiC",
+      "pool_group": "O_LTHSC_Rep1",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "O_LTHSC_MMP_Low_Rep1",
+      "assay": "HiC",
+      "pool_group": "O_LTHSC_Rep1",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "O_LTHSC_MMP_High_Rep2",
+      "assay": "HiC",
+      "pool_group": "O_LTHSC_Rep2",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "O_LTHSC_MMP_Low_Rep2",
+      "assay": "HiC",
+      "pool_group": "O_LTHSC_Rep2",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "O_LTHSC_MMP_High_Rep3",
+      "assay": "HiC",
+      "pool_group": "O_LTHSC_Rep3",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "O_LTHSC_MMP_Low_Rep3",
+      "assay": "HiC",
+      "pool_group": "O_LTHSC_Rep3",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "Y_LTHSC_MMP_High_Rep1",
+      "assay": "HiC",
+      "pool_group": "Y_LTHSC_Rep1",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "Y_LTHSC_MMP_Low_Rep1",
+      "assay": "HiC",
+      "pool_group": "Y_LTHSC_Rep1",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "Y_LTHSC_MMP_High_Rep2",
+      "assay": "HiC",
+      "pool_group": "Y_LTHSC_Rep2",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "Y_LTHSC_MMP_Low_Rep2",
+      "assay": "HiC",
+      "pool_group": "Y_LTHSC_Rep2",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "Y_LTHSC_MMP_High_Rep3",
+      "assay": "HiC",
+      "pool_group": "Y_LTHSC_Rep3",
+      "experiment_sheet_mates_condition_replicate_match": true
+    },
+    {
+      "sample": "Y_LTHSC_MMP_Low_Rep3",
+      "assay": "HiC",
+      "pool_group": "Y_LTHSC_Rep3",
+      "experiment_sheet_mates_condition_replicate_match": true
+    }
+  ],
+  "historical_csv_checks": [
+    {
+      "path": "historical/supplement/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC_with_union_peaks.csv",
+      "rows_with_accession": 0,
+      "conflicts": []
+    },
+    {
+      "path": "historical/supplement/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC.csv",
+      "rows_with_accession": 4,
+      "conflicts": []
+    },
+    {
+      "path": "historical/supplement/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_HSC_Young_over_Old.csv",
+      "rows_with_accession": 4,
+      "conflicts": []
+    },
+    {
+      "path": "historical/supplement/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_HSC.csv",
+      "rows_with_accession": 4,
+      "conflicts": []
+    },
+    {
+      "path": "historical/supplement/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_bam_HSC.csv",
+      "rows_with_accession": 4,
+      "conflicts": []
+    },
+    {
+      "path": "historical/supplement/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC_Young_over_Old.csv",
+      "rows_with_accession": 4,
+      "conflicts": []
+    },
+    {
+      "path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet.csv",
+      "rows_with_accession": 36,
+      "conflicts": []
+    },
+    {
+      "path": "historical/raw_support/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet_no_B2_BL_removed.csv",
+      "rows_with_accession": 32,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP4.csv",
+      "rows_with_accession": 0,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP1.csv",
+      "rows_with_accession": 0,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP3.csv",
+      "rows_with_accession": 0,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MPP2.csv",
+      "rows_with_accession": 0,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC_with_union_peaks.csv",
+      "rows_with_accession": 0,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_all.csv",
+      "rows_with_accession": 36,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC.csv",
+      "rows_with_accession": 4,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_all.csv",
+      "rows_with_accession": 32,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_CLP.csv",
+      "rows_with_accession": 0,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_GMP.csv",
+      "rows_with_accession": 0,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_HSC_Young_over_Old.csv",
+      "rows_with_accession": 4,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/design_matrix_HSC.csv",
+      "rows_with_accession": 4,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_bam_HSC.csv",
+      "rows_with_accession": 4,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_MEP.csv",
+      "rows_with_accession": 0,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_nfcore_tfactivity/samplesheet_HSC_Young_over_Old.csv",
+      "rows_with_accession": 4,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet.csv",
+      "rows_with_accession": 36,
+      "conflicts": []
+    },
+    {
+      "path": "historical/discovered/Itokawa_et_al_2022_ATACseq/diffbind_samplesheet_no_B2_BL_removed.csv",
+      "rows_with_accession": 32,
+      "conflicts": []
+    }
+  ],
+  "historical_atac_csv_parser": {
+    "rows": 36,
+    "fields": [
+      "Read1",
+      "Read2",
+      "Sample_ID"
+    ],
+    "mismatches": []
+  },
+  "metadata_qualifications": [
+    {
+      "source": "historical/discovered/20240603_MMP_Hi_Low_HSCs/20240603_Experimental_information_quinnS_Hi-C_YandO_MMP_hi_low_HSC.csv",
+      "sample": "O_LTHSC_MMP_High_Rep1",
+      "field": "Mouse.Strain",
+      "archived_value": "C57BL/8",
+      "status": "UNRESOLVED_SOURCE_METADATA_TYPO_OR_BIOLOGICAL_DIFFERENCE"
+    },
+    {
+      "source": "historical/discovered/20240603_MMP_Hi_Low_HSCs/20240603_Experimental_information_quinnS_Hi-C_YandO_MMP_hi_low_HSC.csv",
+      "sample": "O_LTHSC_MMP_Low_Rep2",
+      "field": "Mouse.Strain",
+      "archived_value": "C57BL/7",
+      "status": "UNRESOLVED_SOURCE_METADATA_TYPO_OR_BIOLOGICAL_DIFFERENCE"
+    },
+    {
+      "source": "historical/discovered/20240603_MMP_Hi_Low_HSCs/20240603_Experimental_information_quinnS_Hi-C_YandO_MMP_hi_low_HSC.csv",
+      "sample": "Y_LTHSC_MMP_Low_Rep1",
+      "field": "Mouse.Strain",
+      "archived_value": "C57BL/10",
+      "status": "UNRESOLVED_SOURCE_METADATA_TYPO_OR_BIOLOGICAL_DIFFERENCE"
+    },
+    {
+      "source": "historical/discovered/20240603_MMP_Hi_Low_HSCs/20240603_Experimental_information_quinnS_Hi-C_YandO_MMP_hi_low_HSC.csv",
+      "sample": "Y_LTHSC_MMP_Low_Rep2",
+      "field": "Mouse.Strain",
+      "archived_value": "C57BL/9",
+      "status": "UNRESOLVED_SOURCE_METADATA_TYPO_OR_BIOLOGICAL_DIFFERENCE"
+    }
+  ],
+  "limits": "Archived metadata agrees with declared identities; this does not authenticate physical tube identity or the manual FASTQ merge."
+}

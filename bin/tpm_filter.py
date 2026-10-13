@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """Standalone port of the archived tfactivity mean-aggregation/TPM/filter steps."""
-import argparse,json,platform
+import argparse,json,platform,sys
 from pathlib import Path
 import pandas as pd
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from count_identity import headings
 
 def calculate(counts_file,lengths_file,map_file,min_count=50,min_tpm=0.1,min_count_tf=50,min_tpm_tf=0.1):
+    for path,delimiter in [(counts_file,','),(lengths_file,'\t'),(map_file,'\t')]:headings(path,delimiter)
     mapping=pd.read_csv(map_file,sep='\t',index_col=0)
     lengths=pd.read_csv(lengths_file,sep='\t',index_col=0,usecols=['gene','merged'])
     lengths.columns=['length']
     raw=pd.read_csv(counts_file,index_col=0)
     mapping.index=mapping.index.map(lambda s:s.split('.')[0]);raw.index=raw.index.map(lambda s:s.split('.')[0])
+    if mapping['gene_name'].groupby(level=0).nunique(dropna=False).gt(1).any():raise ValueError('Conflicting gene symbols after Ensembl version stripping')
     aliases=mapping['gene_name'].to_dict()
     existing=mapping['gene_name'].str.upper().tolist()
     index=raw.index.map(lambda x:aliases.get(x,x)).str.upper()

@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "source_snapshot": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/source_label_audit_v40",
+  "checks": [
+    {
+      "check": "corrected_column_order/union_counts.tsv",
+      "observed_sha256": "b7d4ee40e9fe6920391f1ae66825e3d00b97399a0c534f80c4e9080eb6bebb56",
+      "reference_sha256": "b7d4ee40e9fe6920391f1ae66825e3d00b97399a0c534f80c4e9080eb6bebb56",
+      "byte_identical": true
+    },
+    {
+      "check": "corrected_column_order/union_base.tsv",
+      "observed_sha256": "87b63f79eddfd5551170f732bcfc1ce217634abd8bd3fb899029f182d9afb66c",
+      "reference_sha256": "87b63f79eddfd5551170f732bcfc1ce217634abd8bd3fb899029f182d9afb66c",
+      "byte_identical": true
+    },
+    {
+      "check": "corrected_column_order/column_assignment.json",
+      "observed_sha256": "a1d60c0ae0b1dd0f4d8f24b0cfcf55f9105db87981429a77c75e77b5d5589785",
+      "reference_sha256": "a1d60c0ae0b1dd0f4d8f24b0cfcf55f9105db87981429a77c75e77b5d5589785",
+      "byte_identical": true
+    },
+    {
+      "check": "historical_column_order/union_counts.tsv",
+      "observed_sha256": "5495b5089eb125a0d69ab59d49d0ac3b413dfcecc8ec56cd7271f964d8b9b1ef",
+      "reference_sha256": "5495b5089eb125a0d69ab59d49d0ac3b413dfcecc8ec56cd7271f964d8b9b1ef",
+      "byte_identical": true
+    },
+    {
+      "check": "historical_column_order/union_base.tsv",
+      "observed_sha256": "87b63f79eddfd5551170f732bcfc1ce217634abd8bd3fb899029f182d9afb66c",
+      "reference_sha256": "87b63f79eddfd5551170f732bcfc1ce217634abd8bd3fb899029f182d9afb66c",
+      "byte_identical": true
+    },
+    {
+      "check": "historical_column_order/column_assignment.json",
+      "observed_sha256": "d18c9220173f914822e1d5e9b522fe25cf8549a6b36c916c6306d3847d0ac4ef",
+      "reference_sha256": "d18c9220173f914822e1d5e9b522fe25cf8549a6b36c916c6306d3847d0ac4ef",
+      "byte_identical": true
+    },
+    {
+      "check": "RNA selected counts",
+      "observed_sha256": "7566126cabd67c2fe55a7275e0654b1005d8f5caecff608f8d344b65ea2d8363",
+      "reference_sha256": "7566126cabd67c2fe55a7275e0654b1005d8f5caecff608f8d344b65ea2d8363",
+      "byte_identical": true
+    },
+    {
+      "check": "RNA counts.clean.tsv",
+      "observed_sha256": "031ed8d70e4a1e92fbfb568be90df44005edc7d81caca16c77593688113d5712",
+      "reference_sha256": "031ed8d70e4a1e92fbfb568be90df44005edc7d81caca16c77593688113d5712",
+      "byte_identical": true
+    },
+    {
+      "check": "RNA counts.tpm.tsv",
+      "observed_sha256": "b51e5c1e08368f7e613e6940dc47498e92293d52870ebd267212e01c854a82b3",
+      "reference_sha256": "b51e5c1e08368f7e613e6940dc47498e92293d52870ebd267212e01c854a82b3",
+      "byte_identical": true
+    },
+    {
+      "check": "RNA counts.counts_filtered.tsv",
+      "observed_sha256": "29d771000313d2fd78b90f116cbdeb9c18562c8f1704b4e9c71ff55d0387099c",
+      "reference_sha256": "29d771000313d2fd78b90f116cbdeb9c18562c8f1704b4e9c71ff55d0387099c",
+      "byte_identical": true
+    },
+    {
+      "check": "RNA TFs.counts_filtered.tsv",
+      "observed_sha256": "29d771000313d2fd78b90f116cbdeb9c18562c8f1704b4e9c71ff55d0387099c",
+      "reference_sha256": "29d771000313d2fd78b90f116cbdeb9c18562c8f1704b4e9c71ff55d0387099c",
+      "byte_identical": true
+    },
+    {
+      "check": "RNA counts.tpm_filtered.tsv",
+      "observed_sha256": "ea0aaa6c5d8d0bb5e18733ce8bd1734fb6602bb9194db1e0d90e5e44d743bf6b",
+      "reference_sha256": "ea0aaa6c5d8d0bb5e18733ce8bd1734fb6602bb9194db1e0d90e5e44d743bf6b",
+      "byte_identical": true
+    },
+    {
+      "check": "RNA TFs.tpm_filtered.tsv",
+      "observed_sha256": "ea0aaa6c5d8d0bb5e18733ce8bd1734fb6602bb9194db1e0d90e5e44d743bf6b",
+      "reference_sha256": "ea0aaa6c5d8d0bb5e18733ce8bd1734fb6602bb9194db1e0d90e5e44d743bf6b",
+      "byte_identical": true
+    },
+    {
+      "check": "actual_manifest_samplesheet_Old_and_Young_HSCs_v01.tsv",
+      "samples": 14,
+      "distinct_input_paths": true,
+      "transitions": [
+        {
+          "source": "Old_HSC",
+          "target": "Young_HSC"
+        },
+        {
+          "source": "Young_HSC",
+          "target": "Old_HSC"
+        }
+      ]
+    },
+    {
+      "check": "actual_manifest_samplesheet_HiC_full_raw_cohort_v01.tsv",
+      "samples": 20,
+      "distinct_input_paths": true,
+      "transitions": [
+        {
+          "source": "Old_HSC",
+          "target": "Young_HSC"
+        },
+        {
+          "source": "Young_HSC",
+          "target": "Old_HSC"
+        }
+      ]
+    },
+    {
+      "check": "actual_manifest_samplesheet_HiC_single_library_practice_v01.tsv",
+      "samples": 14,
+      "distinct_input_paths": true,
+      "transitions": [
+        {
+          "source": "Old_HSC",
+          "target": "Young_HSC"
+        },
+        {
+          "source": "Young_HSC",
+          "target": "Old_HSC"
+        }
+      ]
+    }
+  ]
+}

@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 """Explicit new-dataset mode: sum annotated gene-symbol counts without a historical selection."""
-import argparse,csv,json,re
+import argparse,csv,json,re,sys
 from pathlib import Path
 import pandas as pd
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from count_identity import featurecounts
 
 def build(samplesheet,files):
     samples=[r['sample_name'] for r in csv.DictReader(Path(samplesheet).open(),delimiter='\t') if r['assay']=='RNA']
+    if not samples or len(set(samples))!=len(samples):raise ValueError('Duplicate or empty RNA manifest identities')
     tables={};metadata=None
     for path in files:
         name=Path(path).name.removesuffix('.featureCounts.txt')
-        table=pd.read_csv(path,sep='\t',comment='#',index_col=0)
+        table,values=featurecounts(path,pd)
         if table.index.has_duplicates or name in tables:raise ValueError('Duplicate count identities')
-        annotation=table[['gene_name','Chr','Strand','Length']]
+        annotation=table[['gene_name','Chr','Start','End','Strand','Length']]
         if metadata is not None and not annotation.equals(metadata):raise ValueError('RNA annotation identities differ')
-        metadata=annotation;tables[name]=table.iloc[:,-1]
+        metadata=annotation;tables[name]=values
     if set(samples)!=set(tables):raise ValueError('RNA count/sample identities differ')
     raw=pd.DataFrame({name:tables[name] for name in samples})
     if raw.isna().any().any() or (raw<0).any().any() or (raw%1!=0).any().any():raise ValueError('Expected nonnegative integer gene counts')

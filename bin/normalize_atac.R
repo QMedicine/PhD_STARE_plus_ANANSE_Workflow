@@ -3,8 +3,10 @@ suppressPackageStartupMessages({library(data.table);library(SummarizedExperiment
 args <- commandArgs(trailingOnly=TRUE)
 stopifnot(length(args)==3)
 C <- fread(args[1]);base <- fread(args[2],col.names=c('#chrom','start','end','peak_id'))
-stopifnot(identical(C$peak_id,base$peak_id))
+stopifnot(identical(C$peak_id,base$peak_id),!anyDuplicated(C$peak_id),!anyDuplicated(names(C)),
+          ncol(C)>1,!any(names(C)[-1] %in% names(base)))
 mat <- as.matrix(C[,-1,with=FALSE]);storage.mode(mat)<-'integer'
+stopifnot(!anyNA(mat),all(mat>=0),all(colSums(mat)>0))
 se <- SummarizedExperiment(assays=list(counts=mat));colData(se)$totals<-colSums(mat)
 se <- normOffsets(se)
 cpm_mat <- calculateCPM(se,use.offsets=TRUE,use.norm.factors=FALSE,log=FALSE,assay.id='counts')
