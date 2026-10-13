@@ -1,0 +1,313 @@
+{
+  "method": "FASTA_first_whitespace_token",
+  "labels_changed": 61,
+  "reference_ids": [
+    {
+      "original": "1 dna:chromosome chromosome:GRCm39:1:1:195154279:1 REF",
+      "sequence_id": "1",
+      "length": 195154279
+    },
+    {
+      "original": "10 dna:chromosome chromosome:GRCm39:10:1:130530862:1 REF",
+      "sequence_id": "10",
+      "length": 130530862
+    },
+    {
+      "original": "11 dna:chromosome chromosome:GRCm39:11:1:121973369:1 REF",
+      "sequence_id": "11",
+      "length": 121973369
+    },
+    {
+      "original": "12 dna:chromosome chromosome:GRCm39:12:1:120092757:1 REF",
+      "sequence_id": "12",
+      "length": 120092757
+    },
+    {
+      "original": "13 dna:chromosome chromosome:GRCm39:13:1:120883175:1 REF",
+      "sequence_id": "13",
+      "length": 120883175
+    },
+    {
+      "original": "14 dna:chromosome chromosome:GRCm39:14:1:125139656:1 REF",
+      "sequence_id": "14",
+      "length": 125139656
+    },
+    {
+      "original": "15 dna:chromosome chromosome:GRCm39:15:1:104073951:1 REF",
+      "sequence_id": "15",
+      "length": 104073951
+    },
+    {
+      "original": "16 dna:chromosome chromosome:GRCm39:16:1:98008968:1 REF",
+      "sequence_id": "16",
+      "length": 98008968
+    },
+    {
+      "original": "17 dna:chromosome chromosome:GRCm39:17:1:95294699:1 REF",
+      "sequence_id": "17",
+      "length": 95294699
+    },
+    {
+      "original": "18 dna:chromosome chromosome:GRCm39:18:1:90720763:1 REF",
+      "sequence_id": "18",
+      "length": 90720763
+    },
+    {
+      "original": "19 dna:chromosome chromosome:GRCm39:19:1:61420004:1 REF",
+      "sequence_id": "19",
+      "length": 61420004
+    },
+    {
+      "original": "2 dna:chromosome chromosome:GRCm39:2:1:181755017:1 REF",
+      "sequence_id": "2",
+      "length": 181755017
+    },
+    {
+      "original": "3 dna:chromosome chromosome:GRCm39:3:1:159745316:1 REF",
+      "sequence_id": "3",
+      "length": 159745316
+    },
+    {
+      "original": "4 dna:chromosome chromosome:GRCm39:4:1:156860686:1 REF",
+      "sequence_id": "4",
+      "length": 156860686
+    },
+    {
+      "original": "5 dna:chromosome chromosome:GRCm39:5:1:151758149:1 REF",
+      "sequence_id": "5",
+      "length": 151758149
+    },
+    {
+      "original": "6 dna:chromosome chromosome:GRCm39:6:1:149588044:1 REF",
+      "sequence_id": "6",
+      "length": 149588044
+    },
+    {
+      "original": "7 dna:chromosome chromosome:GRCm39:7:1:144995196:1 REF",
+      "sequence_id": "7",
+      "length": 144995196
+    },
+    {
+      "original": "8 dna:chromosome chromosome:GRCm39:8:1:130127694:1 REF",
+      "sequence_id": "8",
+      "length": 130127694
+    },
+    {
+      "original": "9 dna:chromosome chromosome:GRCm39:9:1:124359700:1 REF",
+      "sequence_id": "9",
+      "length": 124359700
+    },
+    {
+      "original": "MT dna:chromosome chromosome:GRCm39:MT:1:16299:1 REF",
+      "sequence_id": "MT",
+      "length": 16299
+    },
+    {
+      "original": "X dna:chromosome chromosome:GRCm39:X:1:169476592:1 REF",
+      "sequence_id": "X",
+      "length": 169476592
+    },
+    {
+      "original": "Y dna:chromosome chromosome:GRCm39:Y:1:91455967:1 REF",
+      "sequence_id": "Y",
+      "length": 91455967
+    },
+    {
+      "original": "JH584299.1 dna:scaffold scaffold:GRCm39:JH584299.1:1:953012:1 REF",
+      "sequence_id": "JH584299.1",
+      "length": 953012
+    },
+    {
+      "original": "GL456233.2 dna:scaffold scaffold:GRCm39:GL456233.2:1:559103:1 REF",
+      "sequence_id": "GL456233.2",
+      "length": 559103
+    },
+    {
+      "original": "JH584301.1 dna:scaffold scaffold:GRCm39:JH584301.1:1:259875:1 REF",
+      "sequence_id": "JH584301.1",
+      "length": 259875
+    },
+    {
+      "original": "GL456211.1 dna:scaffold scaffold:GRCm39:GL456211.1:1:241735:1 REF",
+      "sequence_id": "GL456211.1",
+      "length": 241735
+    },
+    {
+      "original": "GL456221.1 dna:scaffold scaffold:GRCm39:GL456221.1:1:206961:1 REF",
+      "sequence_id": "GL456221.1",
+      "length": 206961
+    },
+    {
+      "original": "JH584297.1 dna:scaffold scaffold:GRCm39:JH584297.1:1:205776:1 REF",
+      "sequence_id": "JH584297.1",
+      "length": 205776
+    },
+    {
+      "original": "JH584296.1 dna:scaffold scaffold:GRCm39:JH584296.1:1:199368:1 REF",
+      "sequence_id": "JH584296.1",
+      "length": 199368
+    },
+    {
+      "original": "GL456354.1 dna:scaffold scaffold:GRCm39:GL456354.1:1:195993:1 REF",
+      "sequence_id": "GL456354.1",
+      "length": 195993
+    },
+    {
+      "original": "JH584298.1 dna:scaffold scaffold:GRCm39:JH584298.1:1:184189:1 REF",
+      "sequence_id": "JH584298.1",
+      "length": 184189
+    },
+    {
+      "original": "JH584300.1 dna:scaffold scaffold:GRCm39:JH584300.1:1:182347:1 REF",
+      "sequence_id": "JH584300.1",
+      "length": 182347
+    },
+    {
+      "original": "GL456219.1 dna:scaffold scaffold:GRCm39:GL456219.1:1:175968:1 REF",
+      "sequence_id": "GL456219.1",
+      "length": 175968
+    },
+    {
+      "original": "GL456210.1 dna:scaffold scaffold:GRCm39:GL456210.1:1:169725:1 REF",
+      "sequence_id": "GL456210.1",
+      "length": 169725
+    },
+    {
+      "original": "JH584303.1 dna:scaffold scaffold:GRCm39:JH584303.1:1:158099:1 REF",
+      "sequence_id": "JH584303.1",
+      "length": 158099
+    },
+    {
+      "original": "JH584302.1 dna:scaffold scaffold:GRCm39:JH584302.1:1:155838:1 REF",
+      "sequence_id": "JH584302.1",
+      "length": 155838
+    },
+    {
+      "original": "GL456212.1 dna:scaffold scaffold:GRCm39:GL456212.1:1:153618:1 REF",
+      "sequence_id": "GL456212.1",
+      "length": 153618
+    },
+    {
+      "original": "JH584304.1 dna:scaffold scaffold:GRCm39:JH584304.1:1:114452:1 REF",
+      "sequence_id": "JH584304.1",
+      "length": 114452
+    },
+    {
+      "original": "GL456379.1 dna:scaffold scaffold:GRCm39:GL456379.1:1:72385:1 REF",
+      "sequence_id": "GL456379.1",
+      "length": 72385
+    },
+    {
+      "original": "GL456366.1 dna:scaffold scaffold:GRCm39:GL456366.1:1:47073:1 REF",
+      "sequence_id": "GL456366.1",
+      "length": 47073
+    },
+    {
+      "original": "GL456367.1 dna:scaffold scaffold:GRCm39:GL456367.1:1:42057:1 REF",
+      "sequence_id": "GL456367.1",
+      "length": 42057
+    },
+    {
+      "original": "GL456239.1 dna:scaffold scaffold:GRCm39:GL456239.1:1:40056:1 REF",
+      "sequence_id": "GL456239.1",
+      "length": 40056
+    },
+    {
+      "original": "GL456383.1 dna:scaffold scaffold:GRCm39:GL456383.1:1:38659:1 REF",
+      "sequence_id": "GL456383.1",
+      "length": 38659
+    },
+    {
+      "original": "GL456385.1 dna:scaffold scaffold:GRCm39:GL456385.1:1:35240:1 REF",
+      "sequence_id": "GL456385.1",
+      "length": 35240
+    },
+    {
+      "original": "GL456360.1 dna:scaffold scaffold:GRCm39:GL456360.1:1:31704:1 REF",
+      "sequence_id": "GL456360.1",
+      "length": 31704
+    },
+    {
+      "original": "GL456378.1 dna:scaffold scaffold:GRCm39:GL456378.1:1:31602:1 REF",
+      "sequence_id": "GL456378.1",
+      "length": 31602
+    },
+    {
+      "original": "MU069435.1 dna:scaffold scaffold:GRCm39:MU069435.1:1:31129:1 REF",
+      "sequence_id": "MU069435.1",
+      "length": 31129
+    },
+    {
+      "original": "GL456389.1 dna:scaffold scaffold:GRCm39:GL456389.1:1:28772:1 REF",
+      "sequence_id": "GL456389.1",
+      "length": 28772
+    },
+    {
+      "original": "GL456372.1 dna:scaffold scaffold:GRCm39:GL456372.1:1:28664:1 REF",
+      "sequence_id": "GL456372.1",
+      "length": 28664
+    },
+    {
+      "original": "GL456370.1 dna:scaffold scaffold:GRCm39:GL456370.1:1:26764:1 REF",
+      "sequence_id": "GL456370.1",
+      "length": 26764
+    },
+    {
+      "original": "GL456381.1 dna:scaffold scaffold:GRCm39:GL456381.1:1:25871:1 REF",
+      "sequence_id": "GL456381.1",
+      "length": 25871
+    },
+    {
+      "original": "GL456387.1 dna:scaffold scaffold:GRCm39:GL456387.1:1:24685:1 REF",
+      "sequence_id": "GL456387.1",
+      "length": 24685
+    },
+    {
+      "original": "GL456390.1 dna:scaffold scaffold:GRCm39:GL456390.1:1:24668:1 REF",
+      "sequence_id": "GL456390.1",
+      "length": 24668
+    },
+    {
+      "original": "GL456394.1 dna:scaffold scaffold:GRCm39:GL456394.1:1:24323:1 REF",
+      "sequence_id": "GL456394.1",
+      "length": 24323
+    },
+    {
+      "original": "GL456392.1 dna:scaffold scaffold:GRCm39:GL456392.1:1:23629:1 REF",
+      "sequence_id": "GL456392.1",
+      "length": 23629
+    },
+    {
+      "original": "GL456382.1 dna:scaffold scaffold:GRCm39:GL456382.1:1:23158:1 REF",
+      "sequence_id": "GL456382.1",
+      "length": 23158
+    },
+    {
+      "original": "GL456359.1 dna:scaffold scaffold:GRCm39:GL456359.1:1:22974:1 REF",
+      "sequence_id": "GL456359.1",
+      "length": 22974
+    },
+    {
+      "original": "GL456396.1 dna:scaffold scaffold:GRCm39:GL456396.1:1:21240:1 REF",
+      "sequence_id": "GL456396.1",
+      "length": 21240
+    },
+    {
+      "original": "GL456368.1 dna:scaffold scaffold:GRCm39:GL456368.1:1:20208:1 REF",
+      "sequence_id": "GL456368.1",
+      "length": 20208
+    },
+    {
+      "original": "MU069434.1 dna:scaffold scaffold:GRCm39:MU069434.1:1:8412:1 REF",
+      "sequence_id": "MU069434.1",
+      "length": 8412
+    },
+    {
+      "original": "JH584295.1 dna:scaffold scaffold:GRCm39:JH584295.1:1:1976:1 REF",
+      "sequence_id": "JH584295.1",
+      "length": 1976
+    }
+  ],
+  "coordinates_unchanged": true,
+  "lengths_unchanged": true
+}

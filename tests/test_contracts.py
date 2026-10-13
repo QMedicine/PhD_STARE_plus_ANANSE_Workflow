@@ -10,12 +10,25 @@ prepare=module('prepare','bin/prepare_ananse_de.py')
 contacts=module('contacts','bin/split_contacts.py')
 report=module('report','bin/build_report.py')
 class Contracts(unittest.TestCase):
+ def test_standalone_hic_fastqs_need_no_pool_column(self):
+  result=validate.validate(ROOT/'templates/samplesheet_HiC_single_library_practice_v01.tsv',ROOT/'templates/source2target_Old_and_Young_HSCs_v01.tsv',check_files=False,stage='atac_diffhic_hic_contacts',process_fastq=True)
+  groups=result['hic_library_groups']
+  self.assertEqual(len(groups),6)
+  self.assertTrue(all(g['routing']=='single_library' and not g['merge_required'] and len(g['members'])==1 for g in groups))
+  self.assertTrue(all('pool_group' not in r for r in result['samples']))
+ def test_explicit_hic_pool_and_standalone_name_collision_rejected(self):
+  rows=[dict(assay='HiC',sample_name='component',pool_group='shared',cell_state='State_A',replicate='1'),dict(assay='HiC',sample_name='shared',cell_state='State_B',replicate='2')]
+  with self.assertRaisesRegex(ValueError,'collides'):validate.hic_library_groups(rows)
+ def test_blank_pool_assignments_preserve_each_library(self):
+  rows=[dict(assay='HiC',sample_name='library_'+str(i),pool_group='',cell_state='State_A',replicate=str(i)) for i in [1,2]]
+  self.assertEqual([g['members'] for g in validate.hic_library_groups(rows)],[['library_1'],['library_2']])
  def test_explicit_hic_pooling_preserves_biological_replicates(self):
   result=validate.validate(ROOT/'templates/samplesheet_HiC_full_raw_cohort_v01.tsv',ROOT/'templates/source2target_Old_and_Young_HSCs_v01.tsv',check_files=False)
   hic=[r for r in result['samples'] if r['assay']=='HiC']
   from collections import Counter
   self.assertEqual(len(hic),12);self.assertEqual(len({r['pool_group'] for r in hic}),6)
   self.assertEqual(set(Counter((r['cell_state'],r['replicate']) for r in hic).values()),{2})
+  self.assertTrue(all(g['merge_required'] and len(g['members'])==2 for g in result['hic_library_groups']))
  def test_conflicting_hic_pool_metadata_rejected(self):
   with tempfile.TemporaryDirectory() as tmp:
    path=Path(tmp)/'samples.tsv'
@@ -80,6 +93,14 @@ class Contracts(unittest.TestCase):
   methods,expression=report.methods_text(context)
   self.assertIn('preserved named summit-window BED',methods);self.assertIn('50000-bp bins',methods);self.assertIn('2000000-bp scoring',methods)
   self.assertIn('≥70',expression);self.assertIn('≥80',expression);self.assertNotIn('100-kb',methods)
+ def test_report_distinguishes_standalone_libraries_from_explicit_pools(self):
+  context=dict(stage='atac_diffhic_hic_contacts',union_windows='/data/windows.bed',chosen_res=100000,summit_flank=250,stare_window=5000000,enhancer_window=5000000,gabc_threshold=.02,min_count=50,min_count_tf=50,min_tpm=.1,min_tpm_tf=.1,hic_input_layout='single_library_per_row')
+  methods,_=report.methods_text(context)
+  self.assertIn('without read or BAM pooling',methods)
+  context['hic_input_layout']='explicit_manifest_pools'
+  methods,_=report.methods_text(context)
+  self.assertIn('only where explicitly assigned',methods)
+  self.assertNotIn('without read or BAM pooling',methods)
  def test_ananse_compatibility_preserves_all_de_values(self):
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);previous=Path.cwd();os.chdir(root)

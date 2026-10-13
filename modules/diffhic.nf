@@ -1,5 +1,6 @@
 process DIFFHIC_FRAGMENTS {
     label 'diffhic'
+    publishDir "${params.outdir}/diffhic/reference", mode: 'copy', pattern: 'reference_sequence_ids.json'
     cpus 2
     memory '32 GB'
     time '4h'
@@ -7,9 +8,10 @@ process DIFFHIC_FRAGMENTS {
     path fasta
     output:
     path 'pair_param.rds', emit: fragments
+    path 'reference_sequence_ids.json', emit: reference_ids
     script:
     """
-    diffhic_counts.R fragments "${fasta}" '${params.hic_restriction_sites[0]}' ${params.hic_overhang} pair_param.rds
+    diffhic_counts.R fragments_short_ids "${fasta}" '${params.hic_restriction_sites[0]}' ${params.hic_overhang} pair_param.rds
     """
 }
 

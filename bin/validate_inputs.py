@@ -14,6 +14,23 @@ def read_tsv(path,required):
     if any(None in r for r in rows):raise ValueError(f'{path}: extra fields')
     return rows
 
+def hic_library_groups(samples):
+    """One library per row by default; combine only explicit pool_group members."""
+    groups={}
+    for row in samples:
+        if row['assay']!='HiC':continue
+        pool=row.get('pool_group','')
+        name=pool or row['sample_name']
+        routing='explicit_pool' if pool else 'single_library'
+        if name in groups and groups[name]['routing']!=routing:
+            raise ValueError('Hi-C group identity collides between an explicit pool and a standalone sample: '+name)
+        if name not in groups:
+            groups[name]=dict(library_name=name,routing=routing,cell_state=row['cell_state'],
+                replicate=row['replicate'],members=[])
+        groups[name]['members'].append(row['sample_name'])
+    for group in groups.values():group['merge_required']=len(group['members'])>1
+    return list(groups.values())
+
 def validate(samplesheet,source2target,reverse=True,check_files=True,header_order=None,data_order=None,stage=None,process_fastq=False,raw_samples=None):
     samples=read_tsv(samplesheet,REQUIRED)
     identities=set();keys={};state_meta={};routes=[];pools={}
@@ -77,7 +94,7 @@ def validate(samplesheet,source2target,reverse=True,check_files=True,header_orde
     if raw_samples:
         eligible={r['sample_name'] for r in samples if r['fastq_1']}
         if stage!='raw_prepare' or len(raw_samples)!=len(set(raw_samples)) or not set(raw_samples).issubset(eligible):raise ValueError('raw_sample_names must identify unique FASTQ entries in raw_prepare')
-    return dict(schema_version='0.1.0',samples=samples,transitions=transitions,primary_transitions=primary_transitions,routes=routes,files_checked=check_files)
+    return dict(schema_version='0.1.0',samples=samples,transitions=transitions,primary_transitions=primary_transitions,routes=routes,files_checked=check_files,hic_library_groups=hic_library_groups(samples))
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--samplesheet',required=True);p.add_argument('--source2target',required=True);p.add_argument('--reverse-contrast',choices=['TRUE','FALSE'],default='TRUE');p.add_argument('--skip-file-check',action='store_true');p.add_argument('--output',required=True);p.add_argument('--header-order',default='');p.add_argument('--data-order',default='');p.add_argument('--stage');p.add_argument('--process-fastq',choices=['TRUE','FALSE'],default='FALSE')

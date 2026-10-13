@@ -45,3 +45,7 @@ Workflow labels are supplied by TSV manifests; reusable code contains no HSC/Old
 For new datasets, annotation_symbol_sum can derive RNA counts, symbol maps and exon lengths without a historical selected-counts file. This is a separately named method; historical_selection remains the PhD default. See [RNA_COUNT_MODES_v01.md](docs/RNA_COUNT_MODES_v01.md).
 
 The raw Hi-C fixed-grid connector is described in [RAW_HIC_STARE_CONNECTOR_v01.md](docs/RAW_HIC_STARE_CONNECTOR_v01.md). Current execution and plot-audit boundaries are recorded in [DEVELOPMENT_STATUS_v03.md](docs/DEVELOPMENT_STATUS_v03.md). The laptop plot_audit folder contains the requested comparisons and is excluded from publication.
+
+Regular paired-end Hi-C libraries require no merging or pooling column. See [the standard single-library route](docs/HIC_SINGLE_LIBRARY_INPUT_v01.md) for generic templates and the six-library practice dataset.
+
+The independent-library pilot, reference-header correction and live practice job chain are recorded in [the latest status](docs/DEVELOPMENT_STATUS_v05.md).

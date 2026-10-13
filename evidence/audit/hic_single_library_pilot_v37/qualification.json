@@ -1,0 +1,77 @@
+{
+  "status": "QUALIFIED_SINGLE_LIBRARY_PAIRED_PREFIX_ROUTE",
+  "full_cohort_complete": false,
+  "prefix_records_per_library": 5000,
+  "libraries": [
+    {
+      "sample_name": "O_LTHSC_Rep1",
+      "primary_mates": [
+        5000,
+        5000
+      ],
+      "mapped_primary_mates": [
+        4698,
+        4972
+      ]
+    },
+    {
+      "sample_name": "O_LTHSC_Rep2",
+      "primary_mates": [
+        5000,
+        5000
+      ],
+      "mapped_primary_mates": [
+        4979,
+        4977
+      ]
+    },
+    {
+      "sample_name": "O_LTHSC_Rep3",
+      "primary_mates": [
+        5000,
+        5000
+      ],
+      "mapped_primary_mates": [
+        4985,
+        4981
+      ]
+    },
+    {
+      "sample_name": "Y_LTHSC_Rep1",
+      "primary_mates": [
+        5000,
+        5000
+      ],
+      "mapped_primary_mates": [
+        4972,
+        4979
+      ]
+    },
+    {
+      "sample_name": "Y_LTHSC_Rep2",
+      "primary_mates": [
+        5000,
+        5000
+      ],
+      "mapped_primary_mates": [
+        4973,
+        4980
+      ]
+    },
+    {
+      "sample_name": "Y_LTHSC_Rep3",
+      "primary_mates": [
+        5000,
+        5000
+      ],
+      "mapped_primary_mates": [
+        4977,
+        4972
+      ]
+    }
+  ],
+  "merge_tasks": 0,
+  "retained_pair_libraries": 6,
+  "state_contacts": 2,
+  "method": "diffhic_loess_fixed_grid"
+}

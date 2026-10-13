@@ -1,0 +1,15 @@
+sample_name	replicate	species	assay	paired	cell_type	condition	cell_state	fastq_1	fastq_2	bam	peak
+State_A_HiC_Rep1	1	Mus_musculus	HiC	TRUE	CellType	Condition_A	State_A	/absolute/path/State_A_HiC_Rep1_1.fastq.gz	/absolute/path/State_A_HiC_Rep1_2.fastq.gz		
+State_A_HiC_Rep2	2	Mus_musculus	HiC	TRUE	CellType	Condition_A	State_A	/absolute/path/State_A_HiC_Rep2_1.fastq.gz	/absolute/path/State_A_HiC_Rep2_2.fastq.gz		
+State_A_HiC_Rep3	3	Mus_musculus	HiC	TRUE	CellType	Condition_A	State_A	/absolute/path/State_A_HiC_Rep3_1.fastq.gz	/absolute/path/State_A_HiC_Rep3_2.fastq.gz		
+State_B_HiC_Rep1	1	Mus_musculus	HiC	TRUE	CellType	Condition_B	State_B	/absolute/path/State_B_HiC_Rep1_1.fastq.gz	/absolute/path/State_B_HiC_Rep1_2.fastq.gz		
+State_B_HiC_Rep2	2	Mus_musculus	HiC	TRUE	CellType	Condition_B	State_B	/absolute/path/State_B_HiC_Rep2_1.fastq.gz	/absolute/path/State_B_HiC_Rep2_2.fastq.gz		
+State_B_HiC_Rep3	3	Mus_musculus	HiC	TRUE	CellType	Condition_B	State_B	/absolute/path/State_B_HiC_Rep3_1.fastq.gz	/absolute/path/State_B_HiC_Rep3_2.fastq.gz		
+State_A_RNA_Rep1	1	Mus_musculus	RNA	FALSE	CellType	Condition_A	State_A			/absolute/path/State_A_RNA_Rep1.bam	
+State_A_RNA_Rep2	2	Mus_musculus	RNA	FALSE	CellType	Condition_A	State_A			/absolute/path/State_A_RNA_Rep2.bam	
+State_B_RNA_Rep1	1	Mus_musculus	RNA	FALSE	CellType	Condition_B	State_B			/absolute/path/State_B_RNA_Rep1.bam	
+State_B_RNA_Rep2	2	Mus_musculus	RNA	FALSE	CellType	Condition_B	State_B			/absolute/path/State_B_RNA_Rep2.bam	
+State_A_ATAC_Rep1	1	Mus_musculus	ATAC	FALSE	CellType	Condition_A	State_A			/absolute/path/State_A_ATAC_Rep1.bam	/absolute/path/State_A_ATAC_Rep1.summits.bed
+State_A_ATAC_Rep2	2	Mus_musculus	ATAC	FALSE	CellType	Condition_A	State_A			/absolute/path/State_A_ATAC_Rep2.bam	/absolute/path/State_A_ATAC_Rep2.summits.bed
+State_B_ATAC_Rep1	1	Mus_musculus	ATAC	FALSE	CellType	Condition_B	State_B			/absolute/path/State_B_ATAC_Rep1.bam	/absolute/path/State_B_ATAC_Rep1.summits.bed
+State_B_ATAC_Rep2	2	Mus_musculus	ATAC	FALSE	CellType	Condition_B	State_B			/absolute/path/State_B_ATAC_Rep2.bam	/absolute/path/State_B_ATAC_Rep2.summits.bed

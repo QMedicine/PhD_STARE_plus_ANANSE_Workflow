@@ -18,7 +18,8 @@ def methods_text(context):
         route='ATAC BAMs were recounted against the supplied peak universe; preserved corrected Hi-C H5, RNA TPM and H13CORE DE tables were reused.'
     elif stage in ['atac_diffhic_hic_contacts','bam_diffhic_hic_contacts']:
         expression_route='RNA TPM and directional H13CORE DE tables were reused as checkpoints.' if stage=='atac_diffhic_hic_contacts' else 'RNA counts, TPM and directional DE tables were reconstructed.'
-        route='ATAC BAMs were recounted. '+expression_route+' Hi-C library components were pooled by explicit biological-replicate identities, retaining their duplicate flags. Restriction-fragment assignment used diffHic preparePairs with duplicate exclusion and MAPQ '+esc(str(context.get('hic_mapq',10)))+', followed by prunePairs with maximum fragment length '+esc(str(context.get('hic_max_frag',800)))+' bp and minimum inward/outward distances '+esc(str(context.get('hic_min_inward',1000)))+'/'+esc(str(context.get('hic_min_outward',1000)))+' bp. Retained aligned 5-prime endpoints were counted directly on a zero-based fixed grid. Joint csaw loess offsets informed library CPM, whose arithmetic mean within each cell state supplied STARE contacts. Restriction-site-rounded squareCounts outputs were retained separately and were not projected onto this grid. This separately labelled method does not claim identity to the historical ICE contacts. <a href="https://doi.org/10.1186/s12859-015-0683-0">Lun and Smyth, 2015</a>.'
+        library_route='Hi-C libraries were processed independently without read or BAM pooling; duplicate marking was performed within each supplied complete library.' if context.get('hic_input_layout')=='single_library_per_row' else 'Hi-C components were pooled only where explicitly assigned to the same pool_group and biological replicate, retaining their duplicate flags; standalone libraries passed directly to counting.'
+        route='ATAC BAMs were recounted. '+expression_route+' '+library_route+' Restriction-fragment assignment used diffHic preparePairs with duplicate exclusion and MAPQ '+esc(str(context.get('hic_mapq',10)))+', followed by prunePairs with maximum fragment length '+esc(str(context.get('hic_max_frag',800)))+' bp and minimum inward/outward distances '+esc(str(context.get('hic_min_inward',1000)))+'/'+esc(str(context.get('hic_min_outward',1000)))+' bp. Retained aligned 5-prime endpoints were counted directly on a zero-based fixed grid. Joint csaw loess offsets informed library CPM, whose arithmetic mean within each cell state supplied STARE contacts. Restriction-site-rounded squareCounts outputs were retained separately and were not projected onto this grid. This separately labelled method does not claim identity to the historical ICE contacts. <a href="https://doi.org/10.1186/s12859-015-0683-0">Lun and Smyth, 2015</a>.'
     else:
         route='RNA counts, TPM and DE tables were reconstructed, and ATAC BAMs were recounted. Preserved corrected Hi-C H5 matrices were reused.'
     if context.get('process_fastq'):route+=' RNA/ATAC samples entered through their declared FASTQ or BAM route.'
@@ -34,14 +35,15 @@ def methods_text(context):
 def build_report(source,target,mode,ranking,samplesheet,pdfs,versions,context,software_lock,output):
     esc=html.escape
     resolved=json.loads(Path(context).read_text())
+    with Path(samplesheet).open() as f:
+        samples=list(csv.DictReader(f,delimiter='\t'))
+    resolved['hic_input_layout']='explicit_manifest_pools' if any(r.get('pool_group') for r in samples if r['assay']=='HiC') else 'single_library_per_row'
     methods,expression=methods_text(resolved)
     with Path(ranking).open() as f:
         reader=csv.DictReader(f,delimiter='\t');fields=reader.fieldnames;rows=list(reader)[:20]
     required={'factor','influence_score','target_score_scaled','G_score_scaled'}
     if not required.issubset(fields or []):raise ValueError('Ranking component columns missing')
     if len(rows)!=20:raise ValueError('Expected 20 ranked TFs for the report')
-    with Path(samplesheet).open() as f:
-        samples=list(csv.DictReader(f,delimiter='\t'))
     cards=[];payload={};checksums={}
     plot_settings=json.loads((Path(pdfs)/'plot_settings.json').read_text())
     plot_variant=resolved.get('plot_variant','main')

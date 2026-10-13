@@ -1,0 +1,90 @@
+{
+  "status": "OBSERVED_FULL_QUALIFICATION_RUNNING",
+  "library_pairs": 6,
+  "files": [
+    {
+      "sample_name": "O_LTHSC_Rep1",
+      "mate": "fastq_1",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/O_LTHSC_Rep1_1.fastq.gz",
+      "bytes": 9451995042,
+      "mtime_ns": 1749534911940717460
+    },
+    {
+      "sample_name": "O_LTHSC_Rep1",
+      "mate": "fastq_2",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/O_LTHSC_Rep1_2.fastq.gz",
+      "bytes": 9640845260,
+      "mtime_ns": 1749534931593813962
+    },
+    {
+      "sample_name": "O_LTHSC_Rep2",
+      "mate": "fastq_1",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/O_LTHSC_Rep2_1.fastq.gz",
+      "bytes": 12620535801,
+      "mtime_ns": 1749534957205997186
+    },
+    {
+      "sample_name": "O_LTHSC_Rep2",
+      "mate": "fastq_2",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/O_LTHSC_Rep2_2.fastq.gz",
+      "bytes": 12815917792,
+      "mtime_ns": 1749534982284431987
+    },
+    {
+      "sample_name": "O_LTHSC_Rep3",
+      "mate": "fastq_1",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/O_LTHSC_Rep3_1.fastq.gz",
+      "bytes": 11942246808,
+      "mtime_ns": 1749535006974918507
+    },
+    {
+      "sample_name": "O_LTHSC_Rep3",
+      "mate": "fastq_2",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/O_LTHSC_Rep3_2.fastq.gz",
+      "bytes": 12104917622,
+      "mtime_ns": 1749535030813223452
+    },
+    {
+      "sample_name": "Y_LTHSC_Rep1",
+      "mate": "fastq_1",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/Y_LTHSC_Rep1_1.fastq.gz",
+      "bytes": 5465810520,
+      "mtime_ns": 1749535044025275603
+    },
+    {
+      "sample_name": "Y_LTHSC_Rep1",
+      "mate": "fastq_2",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/Y_LTHSC_Rep1_2.fastq.gz",
+      "bytes": 5536129601,
+      "mtime_ns": 1749535057783987630
+    },
+    {
+      "sample_name": "Y_LTHSC_Rep2",
+      "mate": "fastq_1",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/Y_LTHSC_Rep2_1.fastq.gz",
+      "bytes": 9365636310,
+      "mtime_ns": 1749535078514785009
+    },
+    {
+      "sample_name": "Y_LTHSC_Rep2",
+      "mate": "fastq_2",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/Y_LTHSC_Rep2_2.fastq.gz",
+      "bytes": 9493378290,
+      "mtime_ns": 1749535100140122451
+    },
+    {
+      "sample_name": "Y_LTHSC_Rep3",
+      "mate": "fastq_1",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/Y_LTHSC_Rep3_1.fastq.gz",
+      "bytes": 7685299047,
+      "mtime_ns": 1749535116882174166
+    },
+    {
+      "sample_name": "Y_LTHSC_Rep3",
+      "mate": "fastq_2",
+      "path": "/vast/projects/Immune_Aging/MMP_Hi_Low_combined_HSC_2025/raw_fastq/Y_LTHSC_Rep3_2.fastq.gz",
+      "bytes": 7807260764,
+      "mtime_ns": 1749535133814572450
+    }
+  ]
+}

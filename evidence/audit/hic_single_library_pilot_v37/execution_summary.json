@@ -1,0 +1,26 @@
+{
+  "pilot_job": "30381292",
+  "source": "source_v37",
+  "run": "hic_single_library_pilot_v36",
+  "initial_failure_job": "30381130",
+  "initial_failure": "diffHic retained complete FASTA description instead of the first-token sequence ID",
+  "native_contract_job": "30381131",
+  "native_contract_tests": 18,
+  "native_contract_status": "PASS",
+  "exact_resume_job": "30381446",
+  "exact_resume_tasks": 16,
+  "exact_resume_cached_tasks": 16,
+  "latest_native_contract_job": "30381580",
+  "latest_native_contract_source": "source_v39",
+  "latest_native_contract_tests": 19,
+  "latest_native_contract_status": "PASS",
+  "full_practice_jobs": {
+    "inputs": "30381426",
+    "raw": "30381427",
+    "bam": "30381428",
+    "grn": "30381429",
+    "publish": "30381430",
+    "reports": "30381579"
+  },
+  "old_fraction_count_replacement": "30381432"
+}

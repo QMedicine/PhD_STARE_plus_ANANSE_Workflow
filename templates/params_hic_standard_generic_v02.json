@@ -1,0 +1,23 @@
+{
+  "stage": "hic_diffhic_counts",
+  "samplesheet": "/absolute/path/samplesheet.tsv",
+  "source2target": "/absolute/path/source2target.tsv",
+  "hic_alignment_mode": "diffhic_presplit_standard_compat",
+  "hic_restriction_sites": [
+    "GATC"
+  ],
+  "hic_ligation_signature": "GATCGATC",
+  "bowtie_index": "/absolute/path/bowtie_index_directory",
+  "bowtie_index_name": "genome",
+  "raw_tools_container": "/absolute/path/raw_tools_v07.sif",
+  "hic_raw_container": "/absolute/path/hic_raw_standard_v01.sif",
+  "ananse_container": "/absolute/path/ananse_v03.sif",
+  "raw_sample_names": [],
+  "process_fastq": true,
+  "fasta": "/absolute/path/reference.fa",
+  "diffhic_container": "/absolute/path/r_diffhic_v01.sif",
+  "hic_contacts_from_diffhic": true,
+  "resolutions": "30000,50000,100000",
+  "chosen_res": 100000,
+  "diffhic_norm": "loess_offsets"
+}

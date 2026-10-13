@@ -3,9 +3,21 @@ suppressPackageStartupMessages({library(diffHic);library(csaw);library(jsonlite)
 args<-commandArgs(trailingOnly=TRUE)
 if(length(args)<1)stop('Missing operation')
 operation<-args[1]
-if(operation=='fragments'){
+if(operation %in% c('fragments','fragments_short_ids')){
     stopifnot(length(args)==5)
     fragments<-cutGenome(args[2],args[3],as.integer(args[4]))
+    if(operation=='fragments_short_ids'){
+        old_ids<-seqlevels(fragments)
+        short_ids<-sub('[[:space:]].*$','',old_ids)
+        if(any(!nzchar(short_ids)) || anyDuplicated(short_ids))stop('FASTA first-token sequence IDs are empty or duplicated')
+        old_lengths<-unname(seqlengths(fragments))
+        old_starts<-start(fragments);old_ends<-end(fragments)
+        seqlevels(fragments)<-short_ids
+        if(!identical(old_lengths,unname(seqlengths(fragments))) || !identical(old_starts,start(fragments)) || !identical(old_ends,end(fragments)))stop('Sequence-label normalization changed restriction-site coordinates')
+        write_json(list(method='FASTA_first_whitespace_token',labels_changed=sum(old_ids!=short_ids),
+            reference_ids=data.frame(original=old_ids,sequence_id=short_ids,length=old_lengths),
+            coordinates_unchanged=TRUE,lengths_unchanged=TRUE),'reference_sequence_ids.json',pretty=TRUE,auto_unbox=TRUE)
+    }
     saveRDS(pairParam(fragments),args[5])
 } else if(operation=='prepare'){
     stopifnot(length(args)==10)

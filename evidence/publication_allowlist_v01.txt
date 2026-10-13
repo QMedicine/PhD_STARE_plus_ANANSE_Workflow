@@ -58,7 +58,9 @@ docs/DEVELOPMENT_STATUS_v01.md
 docs/DEVELOPMENT_STATUS_v02.md
 docs/DEVELOPMENT_STATUS_v03.md
 docs/DEVELOPMENT_STATUS_v04.md
+docs/DEVELOPMENT_STATUS_v05.md
 docs/GENERIC_LABELS_v01.md
+docs/HIC_SINGLE_LIBRARY_INPUT_v01.md
 docs/HIC_STANDARD_PRESPLIT_AND_ARIMA_v01.md
 docs/ICE_THRESHOLD_ESTIMATES_v01.md
 docs/INFLUENCE_NUMERICAL_EQUIVALENCE_v01.md
@@ -94,6 +96,11 @@ evidence/audit/failed_fastq_identity_v01/failed_identity.json
 evidence/audit/fastq_byte_diagnostic_v01/byte_diagnostic.json
 evidence/audit/fixed_contacts_fixture_v01/qualification.json
 evidence/audit/hic_presplit_fixture_v01/qualification.json
+evidence/audit/hic_reference_diagnostic_v01/reference_diagnostic.json
+evidence/audit/hic_reference_diagnostic_v01/reference_sequence_ids.json
+evidence/audit/hic_single_library_assets_v01/assets.json
+evidence/audit/hic_single_library_pilot_v37/execution_summary.json
+evidence/audit/hic_single_library_pilot_v37/qualification.json
 evidence/audit/influence_regression_v01/influence_regression.json
 evidence/audit/influence_regression_v01/score_order_detail.json
 evidence/audit/native_contracts_v01/contracts_30364431.err
@@ -493,6 +500,8 @@ templates/hic_coolers_Old_and_Young_HSCs_v01.tsv
 templates/hic_diagnostic_matrices_Old_and_Young_HSCs_v01.tsv
 templates/ice_thresholds_Old_and_Young_HSCs_ESTIMATED_v01.tsv
 templates/influence_reference_Old_and_Young_HSCs_v01.tsv
+templates/launcher_HiC_single_library_practice_v01.sh
+templates/launcher_HiC_single_library_to_STARE_v01.sh
 templates/launcher_Old_and_Young_HSCs_v01.sh
 templates/launcher_Old_and_Young_HSCs_v02.sh
 templates/launcher_study_example_v01.sh
@@ -507,6 +516,8 @@ templates/params_ATAC_fastq_pilot_v05.json
 templates/params_HiC_full_raw_cohort_v01.json
 templates/params_HiC_raw_to_STARE_v01.json
 templates/params_HiC_raw_to_STARE_v02.json
+templates/params_HiC_single_library_full_raw_v01.json
+templates/params_HiC_single_library_to_STARE_v01.json
 templates/params_RNA_fastq_integration_v03.json
 templates/params_RNA_fastq_pilot_v01.json
 templates/params_RNA_fastq_pilot_v02.json
@@ -524,6 +535,7 @@ templates/params_bam_historical_hic_checkpoint_v04.json
 templates/params_cooler_estimated_ice_v01.json
 templates/params_diffhic_counts_generic_v01.json
 templates/params_hic_standard_generic_v01.json
+templates/params_hic_standard_generic_v02.json
 templates/params_historical_replay_v01.json
 templates/params_historical_replay_v02.json
 templates/params_historical_replay_v03.json
@@ -546,6 +558,9 @@ templates/samplesheet_ATAC_fastq_pilot_v02.tsv
 templates/samplesheet_ATAC_fastq_pilot_v03.tsv
 templates/samplesheet_HiC_full_raw_cohort_v01.tsv
 templates/samplesheet_HiC_raw_BAM_checkpoints_v01.tsv
+templates/samplesheet_HiC_single_library_BAM_checkpoints_v01.tsv
+templates/samplesheet_HiC_single_library_practice_v01.tsv
+templates/samplesheet_HiC_single_library_template_v01.tsv
 templates/samplesheet_Old_and_Young_HSCs_v01.tsv
 templates/samplesheet_RNA_fastq_pilot_v01.tsv
 templates/samplesheet_template.tsv
@@ -582,6 +597,7 @@ tools/diagnose_rna_counts_v01.py
 tools/diagnose_rna_duplicate_groups_v01.py
 tools/diagnose_rna_locus_groups_v01.py
 tools/inspect_r_base_v01.sh
+tools/make_hic_single_library_fixture_v01.py
 tools/make_plot_audit_v01.py
 tools/make_run_files_v01.py
 tools/native_acquire_fastq_v01.py
@@ -614,10 +630,14 @@ tools/native_fixed_contacts_stare_smoke_v03.sh
 tools/native_fixed_contacts_stare_smoke_v04.sh
 tools/native_fixed_contacts_stare_smoke_v05.sh
 tools/native_hic_diagnostics_v01.sh
+tools/native_hic_fragment_names_v01.sh
 tools/native_hic_presplit_fixture_v01.sh
 tools/native_hic_qualification_v01.sh
 tools/native_hic_qualification_v02.sh
 tools/native_hic_qualification_v03.sh
+tools/native_hic_reference_diagnostic_v01.sh
+tools/native_hic_single_library_pilot_v01.sh
+tools/native_hic_single_library_reports_v01.sh
 tools/native_influence_regression_v01.py
 tools/native_influence_regression_v01.sh
 tools/native_make_hic_presplit_fixture_v01.py
@@ -630,6 +650,8 @@ tools/native_plot_audit_v03.sh
 tools/native_preserve_source_snapshot_v01.sh
 tools/native_python39_base_v01.sh
 tools/native_qualify_bundle_v01.sh
+tools/native_qualify_hic_libraries_v03.sh
+tools/native_qualify_hic_single_library_results_v01.sh
 tools/native_qualify_paired_geometry_v01.py
 tools/native_qualify_paired_geometry_v01.sh
 tools/native_qualify_raw_hic_bams_v01.sh
@@ -670,6 +692,8 @@ tools/prepare_diffhic_fixture_v01.py
 tools/prepare_fixed_contacts_stare_fixture_v01.py
 tools/prepare_pooling_fixture_v01.py
 tools/prepare_publication_allowlist_v01.py
+tools/qualify_hic_single_library_pilot_v01.py
+tools/qualify_hic_single_library_results_v01.py
 tools/qualify_raw_hic_cohort_v01.py
 tools/qualify_raw_hic_cohort_v02.py
 tools/qualify_raw_hic_results_v01.py
