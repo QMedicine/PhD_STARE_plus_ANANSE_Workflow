@@ -6,3 +6,7 @@
 
 # Preserve verbatim historical source whitespace.
 historical/** -text -whitespace
+
+# Preserve native R and scheduler receipt whitespace without modifying evidence.
+evidence/audit/label_identity_audit_v01/native_*/sacct.txt -whitespace
+evidence/audit/label_identity_audit_v01/native_*/normalization/*/r.log -whitespace
