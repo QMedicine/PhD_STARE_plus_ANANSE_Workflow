@@ -15,48 +15,28 @@ suppressPackageStartupMessages({
   library(patchwork)
 })
 
-# ============================================================
-# 2-step branching subnet plot for ANANSE influence intuition
-#
-# - Uses UNFILTERED diffnetwork for TABLE counts (true ANANSE diffnetwork)
 # - Uses FILTERED diffnetwork for PLOT (min_edge_weight)
-# - Builds outward ego graph (radius=max_steps) around tf_of_interest
-# - Optional outward-edge filter for plotting graph (layer_u < layer_v)
-# - TF nodes squares; gene nodes circles
-# - Node fill is directional log2FC (blue-white-red)
-# - Edge width is either direct edge or 2-step proxy (path2)
-# - Adds:
-#     (1) edge-width legend (via scale_edge_width)
-#     (2) right-side info panel (outside plot border) BELOW the log2FC legend
-#         showing scaled ANANSE scores + true 2-step neighbourhood counts
-#
-# Notes on scores:
-# - ANANSE influence_score_raw = target_score + G_score (raw)
-# - ANANSE influence_score (scaled 0-1) comes from rank/minmax on
-#   target_score_scaled + G_score_scaled.
-#   In this script, we display the scaled values as requested.
-# ============================================================
-
+# Selected final force-directed notebook section; adapters are recorded in provenance.
 # ----------------------------
 # Input files
 # ----------------------------
-influence_file <- "" # supplied by the workflow adapter
+influence_file <- "influence.tsv"
 
-diffnet_file <- "" # supplied by the workflow adapter
+diffnet_file <- "diffnetwork.tsv"
 
-deseq_file <- "" # supplied by the workflow adapter
+deseq_file <- "directional_de.tsv"
 
 
 # ----------------------------
 # User knobs
 # ----------------------------
-tf_of_interest <- "" # supplied by the workflow adapter
+tf_of_interest <- "FOCAL_TF"
 max_steps <- 2
 
-# PLOT edge filter only (table uses the unfiltered diffnetwork)
-min_edge_weight <- 0.01
+# Plot edges only (table uses unfiltered diffnetwork)
+min_edge_weight_plot <- 0.01
 
-# DE definition (used for node colouring; also used for "DE genes reachable (strict)" count)
+# DE definition
 padj_cutoff    <- 0.05
 abs_lfc_cutoff <- 0.25
 
@@ -70,10 +50,13 @@ n_unmatched_genes       <- 25
 # Branching structure
 keep_outward_edges <- TRUE
 
-# Edge width definition:
-#  "edge"  = direct edge weight
-#  "path2" = for non-TF1 edges, width_raw ~ w(TF1->source) * w(source->target) if TF1->source exists
-edge_width_mode <- "path2"
+# Edge width definition
+edge_width_mode <- "path2"  # "edge" or "path2"
+
+# Plot layout (THIS is what fixes the 3-row issue)
+plot_layout <- "nicely"
+plot_seed <- 1              # reproducible force layouts
+tf_y_offset_frac <- 0.20    # move TF a bit upward after centering (0 = centered)
 
 # Aesthetics
 tf_shape    <- 22
@@ -92,28 +75,37 @@ fc_low  <- "blue3"
 fc_mid  <- "white"
 fc_high <- "red3"
 
+# Fixed colour scale across plots
+fc_limits <- c(-2, 2)     # pick your global min/max (e.g. c(-3, 3))
+fc_breaks <- c(-2, -1, 0, 1, 2)   # optional: consistent legend ticks
+
 # Labels
 label_tfs <- TRUE
 label_top_de_genes <- TRUE
 n_label_de_genes <- 25
 
 label_nudge_x <- 0.00
-label_nudge_y <- 0.1
+label_nudge_y <- 0.05
 label_hjust   <- 0.5
-label_vjust   <- -1
+label_vjust   <- -0.25
 label_box_padding_lines <- 0.12
 label_box_radius_lines  <- 0.12
 label_fill_col   <- "white"
-label_fill_alpha <- 0.50
+label_fill_alpha <- 0.90
 label_text_col   <- "black"
 label_border_size <- 0.0
 
+# Right-hand table style
+table_fontsize <- 10
+table_bg_alpha <- 0.0
+
 # Output
-out_dir <- "" # supplied by the workflow adapter
+out_dir <- "plots"
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
-out_pdf <- "" # supplied by the workflow adapter
-out_width <- 12
-out_height <- 9
+
+out_pdf <- file.path(out_dir, paste0("ANANSE_2step_branch_", tf_of_interest, "_", source_label, "_to_", target_label, ".pdf"))
+out_width <- 15
+out_height <- 6
 
 
 # ----------------------------
@@ -123,6 +115,53 @@ stop_if_missing <- function(path) if (!file.exists(path)) stop("File not found: 
 
 msg_counts <- function(label, g) {
   message(label, ": nodes=", vcount(g), " edges=", ecount(g))
+}
+
+# Convert ALL-CAPS symbols to mouse-style Titlecase for DISPLAY ONLY
+mouse_case <- function(x) {
+  x2 <- as.character(x)
+  is_all_caps <- (x2 == toupper(x2)) & grepl("^[A-Z0-9_]+$", x2) & nchar(x2) > 1
+  y <- x2
+  y[is_all_caps] <- {
+    z <- tolower(x2[is_all_caps])
+    paste0(toupper(substr(z, 1, 1)), substr(z, 2, nchar(z)))
+  }
+  y
+}
+
+extract_legend_grob <- function(p) {
+  g <- ggplotGrob(p)
+  idx <- which(vapply(g$grobs, function(x) x$name, character(1)) == "guide-box")
+  if (length(idx) == 0) return(NULL)
+  g$grobs[[idx[1]]]
+}
+
+wrap_grob_plot <- function(grob) {
+  ggplot() + theme_void() + annotation_custom(grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf)
+}
+
+make_table_grob <- function(lines, fontsize = 9, bg_alpha = 0.0) {
+  grobTree(
+    rectGrob(gp = gpar(fill = alpha("white", bg_alpha), col = NA)),
+    textGrob(
+      label = paste(lines, collapse = "\n"),
+      x = unit(0, "npc"), y = unit(1, "npc"),
+      just = c("left", "top"),
+      gp = gpar(fontsize = fontsize)
+    )
+  )
+}
+
+get_plot_coords <- function(g, layout_name, seed = 1) {
+  set.seed(seed)
+  layout_name <- tolower(layout_name)
+  if (layout_name == "nicely") return(layout_nicely(g))
+  if (layout_name == "fr")     return(layout_with_fr(g))
+  if (layout_name == "kk")     return(layout_with_kk(g))
+  if (layout_name == "circle") return(layout_in_circle(g))
+  if (layout_name == "random") return(layout_randomly(g))
+  # fallback
+  layout_nicely(g)
 }
 
 # ----------------------------
@@ -138,14 +177,11 @@ if (!("factor" %in% colnames(inf))) stop("Influence file missing column 'factor'
 diffnet_full <- read_tsv(diffnet_file, show_col_types = FALSE, na = c("", "NA")) %>%
   select(source, target, weight) %>%
   filter(!is.na(source), !is.na(target), !is.na(weight))
-
 if (nrow(diffnet_full) == 0) stop("diffnet_full is empty after reading.")
 
-# filtered copy for plotting only
-diffnet_plot <- diffnet_full %>% filter(weight >= min_edge_weight)
-if (nrow(diffnet_plot) == 0) stop("No edges after min_edge_weight filtering; lower min_edge_weight.")
+diffnet_plot <- diffnet_full %>% filter(weight >= min_edge_weight_plot)
+if (nrow(diffnet_plot) == 0) stop("No plot edges after min_edge_weight_plot filtering; lower it.")
 
-# TF universe: all scored TFs + all sources in the diffnetwork
 tf_universe <- union(unique(inf$factor), unique(diffnet_full$source))
 if (!(tf_of_interest %in% tf_universe)) stop("tf_of_interest not found in TF universe: ", tf_of_interest)
 
@@ -159,79 +195,84 @@ de2 <- de %>%
     is_DE_padj   = !is.na(padj) & (padj <= padj_cutoff)
   )
 
-# ----------------------------
-# TABLE metrics from TRUE ANANSE diffnetwork (unfiltered)
-# ----------------------------
-g_all_table <- graph_from_data_frame(diffnet_full, directed = TRUE)
-E(g_all_table)$weight <- diffnet_full$weight
-
-if (!(tf_of_interest %in% V(g_all_table)$name)) {
-  stop("TF not found in unfiltered diffnetwork graph (table graph): ", tf_of_interest)
-}
-
-# Ego graph within max_steps on the true network
-ego_tbl_vids <- ego(g_all_table, order = max_steps, nodes = tf_of_interest, mode = "out")[[1]]
-g_tbl0 <- induced_subgraph(g_all_table, vids = ego_tbl_vids)
-
-# hop distances (unweighted) for layer counts
-dmat_tbl <- distances(g_tbl0, v = tf_of_interest, to = V(g_tbl0), mode = "out")
-layer_tbl <- as.numeric(dmat_tbl[1, ])
-names(layer_tbl) <- colnames(dmat_tbl)
-
-# total primary/secondary nodes (all node types)
-tbl_direct_targets_total    <- sum(layer_tbl == 1, na.rm = TRUE)
-tbl_secondary_targets_total <- sum(layer_tbl == 2, na.rm = TRUE)
-tbl_targets_within2_total   <- sum(is.finite(layer_tbl) & layer_tbl >= 1 & layer_tbl <= max_steps, na.rm = TRUE)
-
-# DE genes reachable (strict and padj-only), based on DE table overlap with ego nodes
-ego_tbl_nodes <- names(layer_tbl)[is.finite(layer_tbl) & layer_tbl >= 1 & layer_tbl <= max_steps]
-
-tbl_de_strict <- de2 %>% filter(gene_id %in% ego_tbl_nodes, is_DE_strict) %>% nrow()
-tbl_de_padj   <- de2 %>% filter(gene_id %in% ego_tbl_nodes, is_DE_padj)   %>% nrow()
-
-# Pull ANANSE scores for the TF (scaled)
 tf_inf <- inf %>% filter(factor == tf_of_interest) %>% slice(1)
 if (nrow(tf_inf) == 0) stop("TF not found in influence table: ", tf_of_interest)
 
-# ----------------------------
+# ============================================================
+# TABLE metrics from TRUE ANANSE diffnetwork (UNFILTERED)
+# ============================================================
+g_all_table <- graph_from_data_frame(diffnet_full, directed = TRUE)
+v_tbl <- match(tf_of_interest, V(g_all_table)$name)
+if (is.na(v_tbl)) stop("TF not found in unfiltered diffnetwork graph: ", tf_of_interest)
+
+ego_tbl_vids <- ego(g_all_table, order = max_steps, nodes = v_tbl, mode = "out")[[1]]
+g_tbl0 <- induced_subgraph(g_all_table, vids = ego_tbl_vids)
+
+# IMPORTANT: hop distances must be UNWEIGHTED
+dmat_tbl <- distances(
+  g_tbl0,
+  v = match(tf_of_interest, V(g_tbl0)$name),
+  to = V(g_tbl0),
+  mode = "out",
+  weights = NA
+)
+dist_tbl <- as.numeric(dmat_tbl[1, ])
+
+tbl_direct_targets_total    <- sum(dist_tbl == 1, na.rm = TRUE)
+tbl_secondary_targets_total <- sum(dist_tbl == 2, na.rm = TRUE)
+tbl_targets_within2_total   <- sum(dist_tbl >= 1 & dist_tbl <= max_steps, na.rm = TRUE)
+
+reachable_tbl_nodes <- V(g_tbl0)$name[dist_tbl >= 1 & dist_tbl <= max_steps]
+
+tbl_de_strict_nodes <- de2 %>% filter(gene_id %in% reachable_tbl_nodes, is_DE_strict) %>% pull(gene_id)
+tbl_de_padj_nodes   <- de2 %>% filter(gene_id %in% reachable_tbl_nodes, is_DE_padj)   %>% pull(gene_id)
+
+tbl_de_strict <- length(tbl_de_strict_nodes)
+tbl_de_padj   <- length(tbl_de_padj_nodes)
+
+tbl_de_strict_genes_only <- sum(!(tbl_de_strict_nodes %in% tf_universe))
+tbl_de_padj_genes_only   <- sum(!(tbl_de_padj_nodes %in% tf_universe))
+
+message("TABLE sanity: out-degree=", degree(g_all_table, v = v_tbl, mode = "out"),
+        " | ego nodes=", vcount(g_tbl0), " | ego edges=", ecount(g_tbl0),
+        " | direct=", tbl_direct_targets_total, " | secondary=", tbl_secondary_targets_total)
+
+# ============================================================
 # PLOT graph from FILTERED diffnetwork
-# ----------------------------
+# ============================================================
 g_all <- graph_from_data_frame(diffnet_plot, directed = TRUE)
-E(g_all)$weight <- diffnet_plot$weight
 msg_counts("g_all (plot graph, filtered)", g_all)
 
-if (!(tf_of_interest %in% V(g_all)$name)) {
-  stop("TF not found as a node in filtered plot graph. Lower min_edge_weight or use unfiltered for plotting.")
-}
+v_plot <- match(tf_of_interest, V(g_all)$name)
+if (is.na(v_plot)) stop("TF not found in filtered plot graph. Lower min_edge_weight_plot.")
 
-# Ego graph (outward) within max_steps on plot graph
-ego_vids <- ego(g_all, order = max_steps, nodes = tf_of_interest, mode = "out")[[1]]
+ego_vids <- ego(g_all, order = max_steps, nodes = v_plot, mode = "out")[[1]]
 g_sub0 <- induced_subgraph(g_all, vids = ego_vids)
 msg_counts("g_sub0 (plot ego induced)", g_sub0)
+if (ecount(g_sub0) == 0) stop("g_sub0 has 0 edges; lower min_edge_weight_plot.")
 
-if (ecount(g_sub0) == 0) stop("g_sub0 has 0 edges; lower min_edge_weight.")
-
-# Layers with safe name mapping (plot graph)
-dmat <- distances(g_sub0, v = tf_of_interest, to = V(g_sub0), mode = "out")
-layer_vec <- as.numeric(dmat[1, ])
-names(layer_vec) <- colnames(dmat)
+# Hop layers (UNWEIGHTED)
+dmat <- distances(
+  g_sub0,
+  v = match(tf_of_interest, V(g_sub0)$name),
+  to = V(g_sub0),
+  mode = "out",
+  weights = NA
+)
+layer_vec <- as.integer(dmat[1, ])
+names(layer_vec) <- V(g_sub0)$name
 V(g_sub0)$layer <- layer_vec[V(g_sub0)$name]
 
 keep_nodes <- V(g_sub0)$name[is.finite(V(g_sub0)$layer) & V(g_sub0)$layer <= max_steps]
 g_sub <- induced_subgraph(g_sub0, vids = keep_nodes)
 V(g_sub)$layer <- layer_vec[V(g_sub)$name]
 
-message("Layer counts in g_sub (plot graph):")
-print(table(V(g_sub)$layer, useNA = "ifany"))
-
-# Outward-edge filter for plot structure
+# Optional outward-edge filter (keeps branching, reduces back-edges)
 if (isTRUE(keep_outward_edges)) {
   edf <- as_data_frame(g_sub, what = "edges") %>%
     rename(source = from, target = to) %>%
-    mutate(
-      layer_u = layer_vec[source],
-      layer_v = layer_vec[target]
-    )
+    mutate(layer_u = layer_vec[source],
+           layer_v = layer_vec[target])
 
   edf2 <- edf %>%
     filter(is.finite(layer_u), is.finite(layer_v),
@@ -239,7 +280,7 @@ if (isTRUE(keep_outward_edges)) {
            layer_v <= max_steps) %>%
     select(source, target, weight)
 
-  if (nrow(edf2) == 0) stop("Outward-edge filter removed all edges. Set keep_outward_edges=FALSE or lower min_edge_weight.")
+  if (nrow(edf2) == 0) stop("Outward-edge filter removed all plot edges. Disable keep_outward_edges or lower min_edge_weight_plot.")
 
   g_sub <- graph_from_data_frame(
     edf2,
@@ -251,9 +292,7 @@ if (isTRUE(keep_outward_edges)) {
   msg_counts("g_sub (after outward-edge filter)", g_sub)
 }
 
-# ----------------------------
 # Node annotations (plot graph)
-# ----------------------------
 nodes_df <- tibble(name = V(g_sub)$name) %>%
   mutate(
     layer = V(g_sub)$layer,
@@ -265,7 +304,7 @@ nodes_df <- tibble(name = V(g_sub)$name) %>%
   mutate(
     has_deseq = !is.na(log2FoldChange) & !is.na(padj),
     is_DE = dplyr::coalesce(is_DE_strict, FALSE),
-    log2FoldChange = if_else(is_center & !has_deseq, 0, log2FoldChange),
+    log2FoldChange = log2FoldChange,
     has_deseq = if_else(is_center, TRUE, has_deseq)
   )
 
@@ -312,7 +351,7 @@ keep_final_nodes <- nodes_df %>%
 
 g_final <- induced_subgraph(g_sub, vids = keep_final_nodes)
 msg_counts("g_final (plot, after keeping TFs + DE + extras)", g_final)
-if (ecount(g_final) == 0) stop("g_final has 0 edges; relax filters or disable outward edges.")
+if (ecount(g_final) == 0) stop("g_final has 0 plot edges; relax plot filters.")
 
 # Attach vertex attrs
 nodes_df_final <- nodes_df %>% filter(name %in% V(g_final)$name)
@@ -329,13 +368,13 @@ V(g_final)$shape <- ifelse(V(g_final)$node_type == "TF", tf_shape, gene_shape)
 V(g_final)$size  <- ifelse(V(g_final)$is_center, 13,
                            ifelse(V(g_final)$node_type == "TF", 9, 7))
 
-# Labels: TFs + top DE genes by abs_lfc
+# Labels: store DISPLAY labels using mouse_case()
 plot_label <- rep(NA_character_, vcount(g_final))
 names(plot_label) <- V(g_final)$name
 
 if (isTRUE(label_tfs)) {
   tf_names <- V(g_final)$name[V(g_final)$node_type == "TF"]
-  plot_label[tf_names] <- tf_names
+  plot_label[tf_names] <- mouse_case(tf_names)
 }
 if (isTRUE(label_top_de_genes)) {
   de_gene_names <- V(g_final)$name[V(g_final)$node_type == "Gene" & V(g_final)$is_DE %in% TRUE]
@@ -343,16 +382,15 @@ if (isTRUE(label_top_de_genes)) {
   abs_lfc_vec[is.na(abs_lfc_vec)] <- 0
   ord <- order(abs_lfc_vec[match(de_gene_names, V(g_final)$name)], decreasing = TRUE)
   top_genes <- head(de_gene_names[ord], n_label_de_genes)
-  plot_label[top_genes] <- top_genes
+  plot_label[top_genes] <- mouse_case(top_genes)
 }
 V(g_final)$plot_label <- unname(plot_label[V(g_final)$name])
 
-# Edge widths
+# Edge widths (legend uses width_raw)
 edf_final <- as_data_frame(g_final, what = "edges") %>%
   rename(source = from, target = to) %>%
   mutate(abs_weight = abs(weight))
 
-# TF1->X lookup
 tf1_out <- edf_final %>%
   filter(source == tf_of_interest) %>%
   select(target, w_tf1 = abs_weight) %>%
@@ -373,9 +411,7 @@ if (tolower(edge_width_mode) == "path2") {
   edf_final <- edf_final %>% mutate(width_raw = abs_weight)
 }
 
-edf_final <- edf_final %>% mutate(edge_width = rescale(width_raw, to = edge_width_range))
-
-# Rebuild final plot graph with edge attributes + vertex attributes
+# Rebuild plot graph with width_raw + vertex attrs
 vdf <- tibble(
   name           = V(g_final)$name,
   layer          = V(g_final)$layer,
@@ -396,62 +432,23 @@ g_final2 <- graph_from_data_frame(
   vertices = vdf
 )
 
-# Layout
-layers_vec <- V(g_final2)$layer
-names(layers_vec) <- V(g_final2)$name
-
-coords <- tryCatch({
-  sug <- layout_with_sugiyama(g_final2, layers = layers_vec)
-  sug$layout
-}, error = function(e) {
-  message("layout_with_sugiyama failed (", conditionMessage(e), "). Falling back to layout_with_fr().")
-  layout_with_fr(g_final2)
-})
-
-center_idx <- which(V(g_final2)$name == tf_of_interest)
-coords <- sweep(coords, 2, coords[center_idx, ], FUN = "-")
-
-# Drop isolated nodes
+# Drop isolated nodes before layout
 iso <- V(g_final2)[degree(g_final2, mode = "all") == 0]
 if (length(iso) > 0) g_final2 <- delete_vertices(g_final2, iso)
 
-# ----------------------------
-# Build RIGHT-SIDE TABLE panel (outside plot border)
-# (Use scaled values as requested)
-# ----------------------------
-summary_lines <- c(
-  paste0("TF: ", tf_of_interest),
-  paste0("Direct targets (1-step, total): ", tbl_direct_targets_total),
-  paste0("Secondary targets (2-step, total): ", tbl_secondary_targets_total),
-  paste0("Targets within ", max_steps, " steps (total): ", tbl_targets_within2_total),
-  paste0("DE genes reachable (padj & absLFC≥", abs_lfc_cutoff, "): ", tbl_de_strict),
-  paste0("DE genes reachable (padj only): ", tbl_de_padj),
-  "",
-  paste0("target_score_scaled: ", signif(tf_inf$target_score_scaled, 4)),
-  paste0("G_score_scaled: ", signif(tf_inf$G_score_scaled, 4)),
-  paste0("influence_score (scaled): ", signif(tf_inf$influence_score, 4))
-)
+# ---- Force-directed plot layout (fixes the "3 rows" problem) ----
+coords <- get_plot_coords(g_final2, plot_layout, seed = plot_seed)
 
-table_grob <- grobTree(
-  rectGrob(gp = gpar(fill = alpha("white", 0.0), col = NA)),  # borderless
-  textGrob(
-    label = paste(summary_lines, collapse = "\n"),
-    x = unit(0, "npc"), y = unit(1, "npc"),
-    just = c("left", "top"),
-    gp = gpar(fontsize = 9)
-  )
-)
-
-p_table <- ggplot() +
-  theme_void() +
-  annotation_custom(table_grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf)
+# center TF, then move it slightly upward if requested
+center_idx <- match(tf_of_interest, V(g_final2)$name)
+coords <- sweep(coords, 2, coords[center_idx, ], FUN = "-")
+span_y <- diff(range(coords[,2]))
+coords[,2] <- coords[,2] + span_y * tf_y_offset_frac
 
 # ----------------------------
-# Plot (main)
+# Build plot with legends (for extraction)
 # ----------------------------
-p_main <- ggraph(g_final2, layout = "manual", x = coords[,1], y = coords[,2]) +
-
-  # Edges (width legend uses raw widths)
+p_with_legends <- ggraph(g_final2, layout = "manual", x = coords[,1], y = coords[,2]) +
   geom_edge_link(
     aes(edge_width = width_raw),
     colour = edge_col,
@@ -465,8 +462,6 @@ p_main <- ggraph(g_final2, layout = "manual", x = coords[,1], y = coords[,2]) +
     breaks = function(x) pretty(x, n = 5),
     name = "Edge weight"
   ) +
-
-  # non-DE matched genes (grey)
   geom_node_point(
     data = function(x) dplyr::filter(x, node_type == "Gene", has_deseq, !is_DE),
     aes(size = size, shape = shape),
@@ -474,8 +469,6 @@ p_main <- ggraph(g_final2, layout = "manual", x = coords[,1], y = coords[,2]) +
     colour = node_border,
     stroke = 0.6
   ) +
-
-  # unmatched genes (grey85)
   geom_node_point(
     data = function(x) dplyr::filter(x, node_type == "Gene", !has_deseq),
     aes(size = size, shape = shape),
@@ -483,8 +476,6 @@ p_main <- ggraph(g_final2, layout = "manual", x = coords[,1], y = coords[,2]) +
     colour = node_border,
     stroke = 0.6
   ) +
-
-  # TFs + DE genes (directional log2FC)
   geom_node_point(
     data = function(x) dplyr::filter(x, node_type == "TF" | is_DE),
     aes(fill = log2FoldChange, size = size, shape = shape),
@@ -502,8 +493,6 @@ p_main <- ggraph(g_final2, layout = "manual", x = coords[,1], y = coords[,2]) +
     na.value = "grey80",
     name = paste0("log2FC\n(", target_label, " vs ", source_label, ")")
   ) +
-
-  # Labels
   geom_node_label(
     aes(label = plot_label),
     data = function(x) dplyr::filter(x, !is.na(plot_label)),
@@ -518,29 +507,54 @@ p_main <- ggraph(g_final2, layout = "manual", x = coords[,1], y = coords[,2]) +
     label.r = unit(label_box_radius_lines, "lines"),
     show.legend = FALSE
   ) +
-
   theme_void() +
-  ggtitle(paste0(
-    "2-step branching subnet around ", tf_of_interest,
-    " | plot minEdge≥", min_edge_weight,
+  ggtitle(stringr::str_wrap(paste0(
+    "2-step branching subnet around ", mouse_case(tf_of_interest),
+    " | plot minEdge≥", min_edge_weight_plot,
     " | DE: padj≤", padj_cutoff, ", absLFC≥", abs_lfc_cutoff,
     " | outwardEdges=", keep_outward_edges,
-    " | edgeWidth=", edge_width_mode
-  )) +
+    " | edgeWidth=", edge_width_mode,
+    " | layout=", plot_layout
+  ), width = 90)) +
   theme(
     plot.title = element_text(hjust = 0.5, size = 12, face = "bold"),
     legend.position = "right",
     legend.box = "vertical"
   )
 
-# Stack the table under the legends by placing it in a right-side column.
-# The legends live on p_main (right side). We'll give the table its own right column
-# and align heights using patchwork.
-final_plot <- p_main | p_table +
-  plot_layout(widths = c(1, 0.33))
+legend_grob <- extract_legend_grob(p_with_legends)
+if (is.null(legend_grob)) stop("Could not extract legend grob; unexpected.")
+
+p_main <- p_with_legends + theme(legend.position = "none")
+
+# ----------------------------
+# Right-side table (scaled values requested)
+# ----------------------------
+summary_lines <- c(
+  paste0("TF: ", mouse_case(tf_of_interest)),
+  paste0("Direct targets (1-step, total): ", tbl_direct_targets_total),
+  paste0("Secondary targets (2-step, total): ", tbl_secondary_targets_total),
+  paste0("Targets within ", max_steps, " steps (total): ", tbl_targets_within2_total),
+  paste0("DE reachable (padj & absLFC≥", abs_lfc_cutoff, "): ", tbl_de_strict,
+         "  (genes-only: ", tbl_de_strict_genes_only, ")"),
+  paste0("DE reachable (padj only): ", tbl_de_padj,
+         "  (genes-only: ", tbl_de_padj_genes_only, ")"),
+  "",
+  paste0("target_score_scaled: ", signif(tf_inf$target_score_scaled, 4)),
+  paste0("G_score_scaled: ", signif(tf_inf$G_score_scaled, 4)),
+  paste0("influence_score (scaled): ", signif(tf_inf$influence_score, 4))
+)
+
+table_grob <- make_table_grob(summary_lines, fontsize = table_fontsize, bg_alpha = table_bg_alpha)
+
+p_legend <- wrap_grob_plot(legend_grob)
+p_table  <- wrap_grob_plot(table_grob)
+
+right_col <- p_legend / p_table + plot_layout(heights = c(0.62, 0.38))
+final_plot <- p_main | right_col + plot_layout(widths = c(1, 0.36))
 
 # ----------------------------
 # Save
 # ----------------------------
-ggsave(out_pdf, final_plot, width = out_width, height = out_height, device = cairo_pdf)
+ggsave(out_pdf, final_plot, width = out_width, height = out_height, device = cairo_pdf, bg = "white")
 message("Saved plot to: ", out_pdf)

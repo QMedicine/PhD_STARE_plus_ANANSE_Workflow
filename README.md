@@ -6,7 +6,7 @@ Dataset-independent reconstruction of the PhD workflow, qualified using Old and 
 
 Read [the reconstruction plan](docs/RECONSTRUCTION_PLAN_v01.md), [the ATAC ordering evidence](docs/ATAC_ORDERING_DECISION_v01.md), and [software provenance](docs/SOFTWARE_PROVENANCE_v01.md) before running.
 
-Current qualification and remaining limits are in [DEVELOPMENT_STATUS_v02.md](docs/DEVELOPMENT_STATUS_v02.md). Validated historical/corrected GRNs and tables are copied to the durable project directory; complete reports remain withheld by strict plotting failures.
+Current qualification and remaining limits are in [DEVELOPMENT_STATUS_v02.md](docs/DEVELOPMENT_STATUS_v02.md). Validated historical/corrected GRNs and tables are copied to the durable project directory; the updated plotting decision and separate alternate-filter report design are described in [PLOTTING_DEFAULTS_v03.md](docs/PLOTTING_DEFAULTS_v03.md). Original saved-ranking reports and both validated ATAC ordering modes have passed native qualification (12 packages, 252 PDFs); see [current status](docs/DEVELOPMENT_STATUS_v04.md).
 
 The samplesheet is TSV with `sample_name`, `replicate`, `species`, `assay`, `paired`, `cell_type`, `condition`, `cell_state`, `fastq_1`, `fastq_2`, `bam`, and `peak`. An additional `cooler` field represents the requested cached Hi-C entry. `source2target.tsv` contains only `source` and `target`; labels must match `cell_state` exactly. Pairing is explicit, with TRUE/FALSE values.
 
@@ -38,7 +38,7 @@ Historical scripts are copied verbatim and indexed in `historical/manifest_v01.j
 
 Software runs inside immutable Apptainer images. The host provides Nextflow 26.04.3 and Apptainer 1.3.5. Images and scientific payloads are excluded from Git. Build recipes, observed package inventories, checksums and validation evidence are kept in the repository.
 
-Reports embed PDF bytes inside HTML and create local browser PDF viewers and download buttons. The user-selected branching section is adapted with generic labels and explicit colour scales. Plotting keeps strict failure for empty filtered subgraphs; complete HSC reports await filter revision. No rank is interpreted as experimentally verified rejuvenation or inhibition.
+Reports embed PDF bytes inside HTML and create local browser PDF viewers and download buttons. The user-selected branching section is adapted with generic labels and explicit colour scales. Known empty filtered subgraphs produce centred TF warning panels; other plotting errors remain fatal. Main and relaxed-filter packages are separate. No rank is interpreted as experimentally verified rejuvenation or inhibition.
 
 Workflow labels are supplied by TSV manifests; reusable code contains no HSC/Old/Young label literals. See [generic label settings](docs/GENERIC_LABELS_v01.md) and the [quick guide](docs/QUICKGUIDE_v01.md). Specific study run files and historical scripts preserve their original labels.
 

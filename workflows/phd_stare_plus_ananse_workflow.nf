@@ -5,7 +5,7 @@ include { RNA_RECONSTRUCTION } from './rna_reconstruction'
 include { VALIDATE_INPUTS } from '../modules/preflight'
 include { RNA_FEATURECOUNTS; RNA_MERGE_RECOUNT; RNA_ANNOTATION_COUNTS; RNA_TPM_FILTER; RNA_DESEQ2 } from '../modules/rna'
 include { STARE_TO_NETWORK; ANANSE_INFLUENCE } from '../modules/network'
-include { PLOT_TOP20; SELF_CONTAINED_REPORT } from '../modules/report'
+include { PLOT_TOP20; SELF_CONTAINED_REPORT; report_variants } from '../modules/report'
 include { ATAC_BLACKLIST; ATAC_UNION_SUMMITS; ATAC_WINDOW_COUNTS; ATAC_ASSEMBLE; ATAC_NORMALIZE } from '../modules/atac'
 include { HIC_CONTACTS_FROM_H5; STARE_GABC } from '../modules/stare'
 
@@ -150,8 +150,8 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
         }
         ANANSE_INFLUENCE(influence_inputs, file(params.gtf, checkIfExists: true))
         if (params.make_reports) {
-        plot_inputs = ANANSE_INFLUENCE.out.results.map { mode,source,target,ranking,diffnet,de ->
-            tuple(mode,source,target,ranking,diffnet,de,file(params.plot_template ?: "${projectDir}/bin/plot_branching_template.R",checkIfExists:true))
+        plot_inputs = ANANSE_INFLUENCE.out.results.flatMap { mode,source,target,ranking,diffnet,de ->
+            report_variants(mode,source,target,ranking,diffnet,de,file(params.plot_template ?: "${projectDir}/bin/plot_branching_template.R",checkIfExists:true),file("${projectDir}/bin/plot_top10_template.R",checkIfExists:true))
         }
         PLOT_TOP20(plot_inputs)
         SELF_CONTAINED_REPORT(PLOT_TOP20.out.pdfs, samplesheet, file("${projectDir}/containers/software_lock_v01.json",checkIfExists:true))

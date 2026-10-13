@@ -119,10 +119,11 @@
       "default": "loess_offsets"
     },
     "empty_plot_policy": {
+      "type": "string",
       "enum": [
-        "fail"
+        "center_warning"
       ],
-      "default": "fail"
+      "default": "center_warning"
     },
     "plot_settings": {
       "type": "object"
@@ -549,6 +550,44 @@
       "type": "boolean",
       "default": false,
       "description": "Direct fixed-grid retained-pair contact normalization; rounded counts remain separate"
+    },
+    "plot_min_edge_weight": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.01
+    },
+    "plot_padj_cutoff": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "default": 0.05
+    },
+    "plot_abs_lfc_cutoff": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.25
+    },
+    "make_relaxed_reports": {
+      "type": "boolean",
+      "default": true
+    },
+    "relaxed_plot_edge_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 1,
+      "default": 0.1
+    },
+    "relaxed_plot_abs_lfc_cutoff": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0.1
+    },
+    "report_manifest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Report-only entry point manifest: mode, source, target, ranking, diffnetwork and de TSV fields"
     }
   },
   "additionalProperties": true

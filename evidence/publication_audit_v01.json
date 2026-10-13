@@ -1,6 +1,6 @@
 {
-  "allowed_files": 678,
-  "allowed_bytes": 5218656,
+  "allowed_files": 700,
+  "allowed_bytes": 5302923,
   "secret_pattern_matches": 0,
   "status": "PREPARED_NOT_STAGED",
   "excluded_formats": [

@@ -1,0 +1,141 @@
+{
+  "status": "QUALIFIED_SELECTED_REPORTS",
+  "report_count": 4,
+  "pdf_count": 84,
+  "records": [
+    {
+      "mode": "historical_saved_ranking",
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "variant": "alternate_filters_edge_0.00001_padj_0.05_absLFC_0.1",
+      "settings": {
+        "limits": [
+          -2,
+          2
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2
+        ],
+        "min_edge_weight_plot": 1e-05,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.1,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "historical_saved_ranking/Old_HSC_to_Young_HSC/alternate_filters_edge_0.00001_padj_0.05_absLFC_0.1/reports/Old_HSC_to_Young_HSC_historical_saved_ranking_alternate_filters_edge_0.00001_padj_0.05_absLFC_0.1.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 142,
+      "center_only_TFs": [
+        "SATB1"
+      ],
+      "input_sha256": {
+        "ranking": "9b96bddc7e623353462670b9c1cd47463c0c1fd5abdadd1beda14a6eb190c639",
+        "diffnetwork": "c43d1b7cd1d48f190f30f3af542de45f0f57553c5f4dec1a30ba011f8073d08d",
+        "de": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30"
+      }
+    },
+    {
+      "mode": "historical_saved_ranking",
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "variant": "main",
+      "settings": {
+        "limits": [
+          -2,
+          2
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2
+        ],
+        "min_edge_weight_plot": 0.0001,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.2,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "historical_saved_ranking/Old_HSC_to_Young_HSC/main/reports/Old_HSC_to_Young_HSC_historical_saved_ranking_main.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 140,
+      "center_only_TFs": [
+        "SATB1"
+      ],
+      "input_sha256": {
+        "ranking": "9b96bddc7e623353462670b9c1cd47463c0c1fd5abdadd1beda14a6eb190c639",
+        "diffnetwork": "c43d1b7cd1d48f190f30f3af542de45f0f57553c5f4dec1a30ba011f8073d08d",
+        "de": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30"
+      }
+    },
+    {
+      "mode": "historical_saved_ranking",
+      "source": "Young_HSC",
+      "target": "Old_HSC",
+      "variant": "alternate_filters_edge_0.001_padj_0.05_absLFC_0.1",
+      "settings": {
+        "limits": [
+          -2,
+          4
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2,
+          4
+        ],
+        "min_edge_weight_plot": 0.001,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.1,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "historical_saved_ranking/Young_HSC_to_Old_HSC/alternate_filters_edge_0.001_padj_0.05_absLFC_0.1/reports/Young_HSC_to_Old_HSC_historical_saved_ranking_alternate_filters_edge_0.001_padj_0.05_absLFC_0.1.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 142,
+      "center_only_TFs": [
+        "ARX"
+      ],
+      "input_sha256": {
+        "ranking": "f784ef0187154e0ec126c4ebdb79009a077baa86f1c526a983e52ece3926c676",
+        "diffnetwork": "063fba2009af55b95047064d9eef9ed11a5f7b5c8153687f0cecc94b547c7924",
+        "de": "81b1b0454786a3ed1af2797e5409f59365678716476971110e20170ddc9e40c2"
+      }
+    },
+    {
+      "mode": "historical_saved_ranking",
+      "source": "Young_HSC",
+      "target": "Old_HSC",
+      "variant": "main",
+      "settings": {
+        "limits": [
+          -2,
+          4
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2,
+          4
+        ],
+        "min_edge_weight_plot": 0.01,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.25,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "historical_saved_ranking/Young_HSC_to_Old_HSC/main/reports/Young_HSC_to_Old_HSC_historical_saved_ranking_main.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 139,
+      "center_only_TFs": [
+        "ARX"
+      ],
+      "input_sha256": {
+        "ranking": "f784ef0187154e0ec126c4ebdb79009a077baa86f1c526a983e52ece3926c676",
+        "diffnetwork": "063fba2009af55b95047064d9eef9ed11a5f7b5c8153687f0cecc94b547c7924",
+        "de": "81b1b0454786a3ed1af2797e5409f59365678716476971110e20170ddc9e40c2"
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "selection": "User-selected final force-directed branching and top-10 nicely overview",
+  "branching_sources": [
+    {
+      "notebook": "GRN_plotting_Young2Old.Rmd",
+      "lines": [
+        1997,
+        2554
+      ]
+    },
+    {
+      "notebook": "GRN_plotting_Old2Young.Rmd",
+      "lines": [
+        14,
+        571
+      ]
+    }
+  ],
+  "top10_source": {
+    "notebook": "GRN_plotting_Young2Old.Rmd",
+    "lines": [
+      13,
+      471
+    ]
+  },
+  "directional_settings": {
+    "Old_HSC->Young_HSC": {
+      "limits": [
+        -2,
+        2
+      ],
+      "breaks": [
+        -2,
+        -1,
+        0,
+        2
+      ],
+      "min_edge_weight_plot": 0.0001,
+      "padj_cutoff": 0.05,
+      "abs_lfc_cutoff": 0.2
+    },
+    "Young_HSC->Old_HSC": {
+      "limits": [
+        -2,
+        4
+      ],
+      "breaks": [
+        -2,
+        -1,
+        0,
+        2,
+        4
+      ],
+      "min_edge_weight_plot": 0.01,
+      "padj_cutoff": 0.05,
+      "abs_lfc_cutoff": 0.25
+    }
+  },
+  "adapters": [
+    "Generic input paths and source/target labels",
+    "Known no-edge errors produce central warning panel; unexpected errors remain fatal",
+    "Missing focal DE does not become invented zero logFC",
+    "Top-10 width_raw attribute repair",
+    "Top-10 visible TF-square and gene-circle nodes with directional continuous logFC",
+    "Top-10 black edges and translucent displaced labels",
+    "Wrap long focal plot titles to prevent clipping",
+    "Opaque black top-10 edges, all selected labels retained, white PDF backgrounds"
+  ],
+  "alternate_filters": {
+    "edge_multiplier": 0.1,
+    "padj": 0.05,
+    "abs_lfc": 0.1,
+    "ranking_changes": false
+  },
+  "templates": {
+    "bin/plot_branching_template.R": "5cb749a2d459343766328676f0d0b9dc3fb33e20f7d95347099b693ba1aa108e",
+    "bin/plot_top10_template.R": "e30f091a43648f0b55d38b4226fd9b86422ec7a13783ac4d50f7c01fbbfe1118"
+  }
+}

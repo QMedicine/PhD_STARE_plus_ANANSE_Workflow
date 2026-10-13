@@ -43,6 +43,16 @@ def build_report(source,target,mode,ranking,samplesheet,pdfs,versions,context,so
     with Path(samplesheet).open() as f:
         samples=list(csv.DictReader(f,delimiter='\t'))
     cards=[];payload={};checksums={}
+    plot_settings=json.loads((Path(pdfs)/'plot_settings.json').read_text())
+    plot_variant=resolved.get('plot_variant','main')
+    if resolved.get('report_manifest'):
+        methods+=' Report-only rendering reused the supplied ranking and differential-network tables byte for byte; influence inference was not rerun during this report update.'
+    top10=Path(pdfs)/f'ANANSE_top10_{source}_to_{target}.pdf'
+    data=top10.read_bytes()
+    if not data.startswith(b'%PDF-'):raise ValueError(f'Invalid PDF {top10}')
+    payload['top10']={'bytes':base64.b64encode(data).decode(),'name':top10.name}
+    checksums[top10.name]=hashlib.sha256(data).hexdigest()
+    overview='<section><h2>Top 10 TFs and their targets</h2><button type="button" class="show" data-id="top10">Open vector PDF viewer</button> <a class="download" data-id="top10">Download PDF</a><iframe data-id="top10" title="Top 10 TFs and targets" loading="lazy"></iframe></section>'
     for i,row in enumerate(rows,1):
         tf=row['factor'];file=Path(pdfs)/f'ANANSE_2step_branch_{tf}_{source}_to_{target}.pdf'
         data=file.read_bytes()
@@ -58,9 +68,13 @@ def build_report(source,target,mode,ranking,samplesheet,pdfs,versions,context,so
     payload_json=json.dumps(payload).replace("<", chr(92)+"u003c")
     methods+='</p><p>'+expression
     methods+=' <a href="https://doi.org/10.1186/s13059-014-0550-8">Love et al., 2014</a>. ATAC offset normalization follows the csaw implementation, <a href="https://doi.org/10.1093/nar/gkv1191">Lun and Smyth, 2016</a>.'
-    methods+='</p><p>Plots use the selected two-step branching design. Table neighbourhood counts use the unfiltered differential network; displayed edges and gene nodes use the original edge-weight and DE filters. TFs are squares, genes are circles and node fill indicates directional log2 fold change. Edge widths use the original direct-edge or two-step product proxy. The right panel displays scaled influence components and neighbourhood counts. A top-20 TF with no displayed edges causes strict plotting failure and withholds the complete report.'
+    methods+='</p><p>Plots use the selected final force-directed two-step branching design with layout_nicely and seed 1. Table neighbourhood counts use unweighted hops on the unfiltered differential network; displayed edges and gene nodes use the reported display filters. TFs are squares, genes are circles and node fill indicates target-versus-source log2 fold change. Edge widths use the direct-edge or two-step product proxy. The right panel displays scaled influence components and neighbourhood counts. If all displayed edges are removed, the focal TF remains centred and coloured by its directional logFC, with the requested cutoff warning; the actual filter failure reason is retained in plot_status.tsv. Other plotting errors remain fatal. The single top-10 overview retains up to 15 non-TF targets and 15 TF targets per top TF, with black edges and visible nodes coloured by directional logFC, including non-significant genes. Missing DE values are grey. Display filters do not alter rankings or scores.'
+    methods+='</p><h3>Plot filter settings: '+esc(plot_variant)+'</h3><pre>'+esc(json.dumps(plot_settings,indent=2))+'</pre><p>'
     methods+='</p><h3>Resolved run settings and image lock</h3><pre>'+esc(json.dumps(dict(settings=resolved,software_lock=json.loads(Path(software_lock).read_text())),indent=2))+'</pre><p>'
     body=f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>{esc(source)} → {esc(target)}</title><style>body{{font:16px system-ui;max-width:1300px;margin:2em auto;padding:1em;color:#17212b}}table{{border-collapse:collapse;font-size:12px;display:block;overflow:auto}}td,th{{padding:6px;border:1px solid #ccd2d8}}iframe{{width:100%;height:650px;border:1px solid #bbb;display:block;margin-top:1em}}section{{margin:3em 0}}button,a.download{{cursor:pointer;padding:8px}}p{{line-height:1.6}}pre{{white-space:pre-wrap}}</style><h1>{esc(source)} → {esc(target)}</h1><p>phd_stare_plus_ananse_workflow | ATAC mode: <strong>{esc(mode)}</strong> | The same directional DE table supplies ranking and plots.</p><h2>Input samples</h2>{sample_text}<h2>Methods</h2><p>{methods}</p><p>{conversion}</p><p>{ranking_method}</p><h3>Recorded software</h3><pre>{esc(Path(versions).read_text())}</pre><h2>Top 20 TFs and component scores</h2>{table}<h2>Differential GRN plots</h2><p>The PDFs below are stored inside this HTML. The browser PDF viewer preserves vector graphics and selectable text, with zoom controls. Download is available even when the browser has no PDF viewer.</p>{''.join(cards)}<script id="pdf-data" type="application/json">{payload_json}</script><script>const payload=JSON.parse(document.getElementById('pdf-data').textContent), urls={{}};function url(id){{if(!urls[id]){{const data=Uint8Array.from(atob(payload[id].bytes), c=>c.charCodeAt(0));urls[id]=URL.createObjectURL(new Blob([data],{{type:'application/pdf'}}));}}return urls[id];}}document.querySelectorAll('a.download').forEach(a=>{{a.href=url(a.dataset.id);a.download=payload[a.dataset.id].name;}});document.querySelectorAll('button.show').forEach(b=>b.addEventListener('click',()=>{{document.querySelector('iframe[data-id="'+b.dataset.id+'"]').src=url(b.dataset.id)+'#toolbar=1';}}));const observer=new IntersectionObserver(entries=>entries.forEach(e=>{{if(e.isIntersecting){{e.target.src=url(e.target.dataset.id)+'#toolbar=1';observer.unobserve(e.target);}}}}),{{rootMargin:'200px'}});document.querySelectorAll('iframe').forEach(f=>observer.observe(f));</script></html>'''
+    body=body.replace('<h2>Differential GRN plots</h2>',overview+'<h2>Differential GRN plots</h2>')
+    label='Main report' if plot_variant=='main' else 'Alternate filter report: '+plot_variant
+    body=body.replace('</title>',': '+esc(label)+'</title>').replace('</h1>','</h1><p><strong>'+esc(label)+'</strong></p>',1)
     Path(output).write_text(body)
     Path(str(output)+'.pdf_checksums.json').write_text(json.dumps(checksums,indent=2)+'\n')
 

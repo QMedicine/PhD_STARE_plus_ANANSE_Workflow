@@ -1,0 +1,272 @@
+{
+  "status": "QUALIFIED_SELECTED_REPORTS",
+  "report_count": 8,
+  "pdf_count": 168,
+  "records": [
+    {
+      "mode": "corrected_column_order",
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "variant": "alternate_filters_edge_0.00001_padj_0.05_absLFC_0.1",
+      "settings": {
+        "limits": [
+          -2,
+          2
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2
+        ],
+        "min_edge_weight_plot": 1e-05,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.1,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "corrected_column_order/Old_HSC_to_Young_HSC/alternate_filters_edge_0.00001_padj_0.05_absLFC_0.1/reports/Old_HSC_to_Young_HSC_corrected_column_order_alternate_filters_edge_0.00001_padj_0.05_absLFC_0.1.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 141,
+      "center_only_TFs": [],
+      "input_sha256": {
+        "ranking": "168bedb88254929d1d91aa07795db7038dbd538ff8a197b10805ec5b12071a38",
+        "diffnetwork": "c7e60473c1b49124cac74e300a029faa2fe6f18cf9cab6a909ae90cb7b4a7b8f",
+        "de": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30"
+      }
+    },
+    {
+      "mode": "corrected_column_order",
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "variant": "main",
+      "settings": {
+        "limits": [
+          -2,
+          2
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2
+        ],
+        "min_edge_weight_plot": 0.0001,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.2,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "corrected_column_order/Old_HSC_to_Young_HSC/main/reports/Old_HSC_to_Young_HSC_corrected_column_order_main.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 140,
+      "center_only_TFs": [],
+      "input_sha256": {
+        "ranking": "168bedb88254929d1d91aa07795db7038dbd538ff8a197b10805ec5b12071a38",
+        "diffnetwork": "c7e60473c1b49124cac74e300a029faa2fe6f18cf9cab6a909ae90cb7b4a7b8f",
+        "de": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30"
+      }
+    },
+    {
+      "mode": "corrected_column_order",
+      "source": "Young_HSC",
+      "target": "Old_HSC",
+      "variant": "alternate_filters_edge_0.001_padj_0.05_absLFC_0.1",
+      "settings": {
+        "limits": [
+          -2,
+          4
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2,
+          4
+        ],
+        "min_edge_weight_plot": 0.001,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.1,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "corrected_column_order/Young_HSC_to_Old_HSC/alternate_filters_edge_0.001_padj_0.05_absLFC_0.1/reports/Young_HSC_to_Old_HSC_corrected_column_order_alternate_filters_edge_0.001_padj_0.05_absLFC_0.1.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 138,
+      "center_only_TFs": [
+        "ARX"
+      ],
+      "input_sha256": {
+        "ranking": "8af485376327ba1baae7fdd90ea527d79cf720d03addfcbdff965bed3d2a5646",
+        "diffnetwork": "4056692671a6fa220a5d2aa8edcff5b636bffb6f34e2ad543a42904f3c348933",
+        "de": "81b1b0454786a3ed1af2797e5409f59365678716476971110e20170ddc9e40c2"
+      }
+    },
+    {
+      "mode": "corrected_column_order",
+      "source": "Young_HSC",
+      "target": "Old_HSC",
+      "variant": "main",
+      "settings": {
+        "limits": [
+          -2,
+          4
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2,
+          4
+        ],
+        "min_edge_weight_plot": 0.01,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.25,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "corrected_column_order/Young_HSC_to_Old_HSC/main/reports/Young_HSC_to_Old_HSC_corrected_column_order_main.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 137,
+      "center_only_TFs": [
+        "KLF4",
+        "ARX"
+      ],
+      "input_sha256": {
+        "ranking": "8af485376327ba1baae7fdd90ea527d79cf720d03addfcbdff965bed3d2a5646",
+        "diffnetwork": "4056692671a6fa220a5d2aa8edcff5b636bffb6f34e2ad543a42904f3c348933",
+        "de": "81b1b0454786a3ed1af2797e5409f59365678716476971110e20170ddc9e40c2"
+      }
+    },
+    {
+      "mode": "historical_column_order",
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "variant": "alternate_filters_edge_0.00001_padj_0.05_absLFC_0.1",
+      "settings": {
+        "limits": [
+          -2,
+          2
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2
+        ],
+        "min_edge_weight_plot": 1e-05,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.1,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "historical_column_order/Old_HSC_to_Young_HSC/alternate_filters_edge_0.00001_padj_0.05_absLFC_0.1/reports/Old_HSC_to_Young_HSC_historical_column_order_alternate_filters_edge_0.00001_padj_0.05_absLFC_0.1.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 142,
+      "center_only_TFs": [
+        "SATB1"
+      ],
+      "input_sha256": {
+        "ranking": "749d35ffdd27de598728a5434100bd3dafd2f5b72d25eee01ce97f2a423387c2",
+        "diffnetwork": "c43d1b7cd1d48f190f30f3af542de45f0f57553c5f4dec1a30ba011f8073d08d",
+        "de": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30"
+      }
+    },
+    {
+      "mode": "historical_column_order",
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "variant": "main",
+      "settings": {
+        "limits": [
+          -2,
+          2
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2
+        ],
+        "min_edge_weight_plot": 0.0001,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.2,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "historical_column_order/Old_HSC_to_Young_HSC/main/reports/Old_HSC_to_Young_HSC_historical_column_order_main.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 140,
+      "center_only_TFs": [
+        "SATB1"
+      ],
+      "input_sha256": {
+        "ranking": "749d35ffdd27de598728a5434100bd3dafd2f5b72d25eee01ce97f2a423387c2",
+        "diffnetwork": "c43d1b7cd1d48f190f30f3af542de45f0f57553c5f4dec1a30ba011f8073d08d",
+        "de": "b6b36094c8a084355a05b2b334fdfeb78c7607766eeda2b3df9b2e11e2a91a30"
+      }
+    },
+    {
+      "mode": "historical_column_order",
+      "source": "Young_HSC",
+      "target": "Old_HSC",
+      "variant": "alternate_filters_edge_0.001_padj_0.05_absLFC_0.1",
+      "settings": {
+        "limits": [
+          -2,
+          4
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2,
+          4
+        ],
+        "min_edge_weight_plot": 0.001,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.1,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "historical_column_order/Young_HSC_to_Old_HSC/alternate_filters_edge_0.001_padj_0.05_absLFC_0.1/reports/Young_HSC_to_Old_HSC_historical_column_order_alternate_filters_edge_0.001_padj_0.05_absLFC_0.1.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 142,
+      "center_only_TFs": [
+        "ARX"
+      ],
+      "input_sha256": {
+        "ranking": "5a6269b6afa98fdcb51f69abdd228ef73e9e2e3bfb8cf5bf90c5ee92b903accc",
+        "diffnetwork": "063fba2009af55b95047064d9eef9ed11a5f7b5c8153687f0cecc94b547c7924",
+        "de": "81b1b0454786a3ed1af2797e5409f59365678716476971110e20170ddc9e40c2"
+      }
+    },
+    {
+      "mode": "historical_column_order",
+      "source": "Young_HSC",
+      "target": "Old_HSC",
+      "variant": "main",
+      "settings": {
+        "limits": [
+          -2,
+          4
+        ],
+        "breaks": [
+          -2,
+          -1,
+          0,
+          2,
+          4
+        ],
+        "min_edge_weight_plot": 0.01,
+        "padj_cutoff": 0.05,
+        "abs_lfc_cutoff": 0.25,
+        "empty_plot_policy": "center_warning"
+      },
+      "report": "historical_column_order/Young_HSC_to_Old_HSC/main/reports/Young_HSC_to_Old_HSC_historical_column_order_main.html",
+      "pdfs": 21,
+      "overview_gene_nodes": 139,
+      "center_only_TFs": [
+        "ARX"
+      ],
+      "input_sha256": {
+        "ranking": "5a6269b6afa98fdcb51f69abdd228ef73e9e2e3bfb8cf5bf90c5ee92b903accc",
+        "diffnetwork": "063fba2009af55b95047064d9eef9ed11a5f7b5c8153687f0cecc94b547c7924",
+        "de": "81b1b0454786a3ed1af2797e5409f59365678716476971110e20170ddc9e40c2"
+      }
+    }
+  ]
+}

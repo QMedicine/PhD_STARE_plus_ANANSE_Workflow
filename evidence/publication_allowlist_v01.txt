@@ -13,6 +13,7 @@ bin/fixed_grid_helpers.R
 bin/merge_recount.py
 bin/normalize_atac.R
 bin/plot_branching_template.R
+bin/plot_top10_template.R
 bin/plot_top20.R
 bin/prepare_ananse_de.py
 bin/prepare_atac_fastq_headers.py
@@ -56,12 +57,15 @@ docs/COHORT_METADATA_v01.md
 docs/DEVELOPMENT_STATUS_v01.md
 docs/DEVELOPMENT_STATUS_v02.md
 docs/DEVELOPMENT_STATUS_v03.md
+docs/DEVELOPMENT_STATUS_v04.md
 docs/GENERIC_LABELS_v01.md
 docs/HIC_STANDARD_PRESPLIT_AND_ARIMA_v01.md
 docs/ICE_THRESHOLD_ESTIMATES_v01.md
 docs/INFLUENCE_NUMERICAL_EQUIVALENCE_v01.md
 docs/PEAK_UNIVERSE_INVESTIGATION_v01.md
+docs/PLOTTING_DEFAULTS_v03.md
 docs/PLOT_TEMPLATE_PROVENANCE_v02.json
+docs/PLOT_TEMPLATE_PROVENANCE_v03.json
 docs/QUICKGUIDE_v01.md
 docs/RAW_FASTQ_ADAPTERS_v01.md
 docs/RAW_HIC_STARE_CONNECTOR_v01.md
@@ -97,6 +101,7 @@ evidence/audit/native_contracts_v02/contracts_v15_30366633.err
 evidence/audit/native_contracts_v02/contracts_v16_30367492.err
 evidence/audit/native_contracts_v21/native_contracts_v21_30370542.err
 evidence/audit/native_contracts_v28/contracts_v28_30372097.err
+evidence/audit/native_contracts_v30/summary.json
 evidence/audit/paired_geometry_ATAC/paired_geometry.json
 evidence/audit/paired_geometry_RNA/paired_geometry.json
 evidence/audit/plot_audit_v01/qualification.json
@@ -111,6 +116,10 @@ evidence/audit/rna_numerical_regression_v01/forward_de.json
 evidence/audit/rna_numerical_regression_v01/reverse_de.json
 evidence/audit/rna_numerical_regression_v01/unfiltered_tpm.json
 evidence/audit/saved_union_affinity_regression_v01/rebuilt_affinity_regression.json
+evidence/audit/saved_union_selected_reports_v34/pdf_text_summary.json
+evidence/audit/saved_union_selected_reports_v34/qualification_summary.json
+evidence/audit/selected_reports_v32/pdf_text_summary.json
+evidence/audit/selected_reports_v32/qualification_summary.json
 evidence/audit/source_snapshot_v12/source_snapshot_receipt.json
 evidence/audit/tpm_boundary_v01/counts.clean.tsv.comparison.json
 evidence/audit/tpm_boundary_v01/counts.counts_filtered.tsv.comparison.json
@@ -474,6 +483,7 @@ modules/rna.nf
 modules/stare.nf
 nextflow.config
 nextflow_schema.json
+report_replay.nf
 templates/affinities_Old_and_Young_HSCs_v01.tsv
 templates/de_Old_and_Young_HSCs_v01.tsv
 templates/ena_ATAC_pilot_identity_v01.json
@@ -496,6 +506,7 @@ templates/params_ATAC_fastq_pilot_v04.json
 templates/params_ATAC_fastq_pilot_v05.json
 templates/params_HiC_full_raw_cohort_v01.json
 templates/params_HiC_raw_to_STARE_v01.json
+templates/params_HiC_raw_to_STARE_v02.json
 templates/params_RNA_fastq_integration_v03.json
 templates/params_RNA_fastq_pilot_v01.json
 templates/params_RNA_fastq_pilot_v02.json
@@ -505,6 +516,7 @@ templates/params_atac_historical_hic_checkpoint_v03.json
 templates/params_atac_historical_hic_checkpoint_v04.json
 templates/params_atac_saved_union_hic_checkpoint_v01.json
 templates/params_atac_saved_union_hic_checkpoint_v02.json
+templates/params_atac_saved_union_hic_checkpoint_v03.json
 templates/params_bam_historical_hic_checkpoint_v01.json
 templates/params_bam_historical_hic_checkpoint_v02.json
 templates/params_bam_historical_hic_checkpoint_v03.json
@@ -521,12 +533,14 @@ templates/params_preflight_v01.json
 templates/params_preflight_v02.json
 templates/params_preflight_v03.json
 templates/params_preflight_v04.json
+templates/params_report_selected_defaults_v01.json
 templates/params_rna_annotation_mode_v01.json
 templates/params_rna_recount_v01.json
 templates/params_rna_recount_v02.json
 templates/params_rna_recount_v03.json
 templates/params_rna_recount_v04.json
 templates/params_template.json
+templates/report_manifest_selected_defaults_v01.tsv
 templates/samplesheet_ATAC_fastq_pilot_v01.tsv
 templates/samplesheet_ATAC_fastq_pilot_v02.tsv
 templates/samplesheet_ATAC_fastq_pilot_v03.tsv
@@ -560,6 +574,8 @@ tools/build_raw_tools_v04.sh
 tools/build_raw_tools_v05.sh
 tools/build_raw_tools_v06.sh
 tools/build_raw_tools_v07.sh
+tools/build_report_replay_manifest_v01.py
+tools/build_selected_report_index_v01.py
 tools/compare_numeric_tables.py
 tools/diagnose_rna_annotation_groups_v01.py
 tools/diagnose_rna_counts_v01.py
@@ -619,9 +635,11 @@ tools/native_qualify_paired_geometry_v01.sh
 tools/native_qualify_raw_hic_bams_v01.sh
 tools/native_qualify_raw_hic_inputs_v01.sh
 tools/native_qualify_raw_hic_results_v01.sh
+tools/native_qualify_selected_reports_v01.sh
 tools/native_r_regression_v01.sh
 tools/native_r_regression_v02.sh
 tools/native_r_regression_v03.sh
+tools/native_raw_hic_selected_reports_v01.sh
 tools/native_rebuilt_affinity_regression_v01.py
 tools/native_rebuilt_affinity_regression_v01.sh
 tools/native_rna_annotation_diagnostic_v01.sh
@@ -632,8 +650,10 @@ tools/native_rna_fastq_regression_v02.py
 tools/native_rna_fastq_regression_v02.sh
 tools/native_rna_modes_validation_v01.sh
 tools/native_rna_numerical_regression_v01.sh
+tools/native_saved_union_selected_reports_v01.sh
 tools/native_selected_plot_v04.sh
 tools/native_selected_plot_v05.sh
+tools/native_selected_reports_v01.sh
 tools/native_validate_connector_v01.py
 tools/native_validate_diffhic_fixture_v01.R
 tools/native_validate_fixed_contacts_v01.R
@@ -654,6 +674,7 @@ tools/qualify_raw_hic_cohort_v01.py
 tools/qualify_raw_hic_cohort_v02.py
 tools/qualify_raw_hic_results_v01.py
 tools/qualify_result_bundle_v01.py
+tools/qualify_selected_reports_v01.py
 tools/remote_audit_more_v01.py
 tools/remote_current_status_v01.sh
 tools/remote_diffhic_library_closure_v01.R
@@ -671,6 +692,7 @@ tools/run_plot_audit_v01.py
 tools/submit_historical_audit_v01.sh
 tools/tie_and_score_detail_v01.py
 tools/verify_historical_archive.py
+tools/verify_selectable_pdf_text_v01.swift
 workflows/diffhic_counts.nf
 workflows/hic_estimated.nf
 workflows/phd_stare_plus_ananse_workflow.nf

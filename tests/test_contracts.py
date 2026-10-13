@@ -42,7 +42,7 @@ class Contracts(unittest.TestCase):
  def test_generic_selected_plot_chunk(self):
   code=plot.render(ROOT/'bin/plot_branching_template.R','inf.tsv','diff.tsv','de.tsv','TESTTF','plots','Resting_to_Stimulated')
   self.assertIn('deseq_file <- "de.tsv"',code);self.assertIn('max_steps <- 2',code);self.assertIn('device = cairo_pdf',code)
-  self.assertIn('min_edge_weight <- 0.01',code);self.assertIn('source_label <- "Resting"',code)
+  self.assertIn('min_edge_weight_plot <- 0.01',code);self.assertIn('source_label <- "Resting"',code)
   for label in ['HSC','Old','Young','JASPAR2024']:self.assertNotIn(label,code)
  def test_generic_cell_states(self):
   with tempfile.TemporaryDirectory() as tmp:
