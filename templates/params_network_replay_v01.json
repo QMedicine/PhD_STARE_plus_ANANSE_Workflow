@@ -76,5 +76,6 @@
     }
   },
   "make_reports": false,
-  "network_manifest": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/networks_archived_affinity_replay_v01.tsv"
+  "network_manifest": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/networks_archived_affinity_replay_v01.tsv",
+  "tpm_expression_mode": "historical_pooled"
 }

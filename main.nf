@@ -2,6 +2,7 @@ nextflow.enable.dsl=2
 include { PHD_STARE_PLUS_ANANSE_WORKFLOW } from './workflows/phd_stare_plus_ananse_workflow'
 workflow {
     if (!params.samplesheet || !params.source2target) { error '--samplesheet and --source2target are required' }
+    if (!(params.tpm_expression_mode in ['state_specific','historical_pooled'])) { error 'Unsupported --tpm_expression_mode' }
     if (!(params.stage in ['preflight','raw_prepare','hic_diffhic_counts','atac_diffhic_hic_contacts','bam_diffhic_hic_contacts','cooler_estimated_ice','rna_recount','historical_replay','network_replay','bam_historical_hic_checkpoint','atac_historical_hic_checkpoint'])) { error "Unsupported stage: ${params.stage}" }
     ['reverse_contrast','process_fastq','make_reports','make_relaxed_reports','hic_contacts_from_diffhic'].each { name ->
         if (!(params[name] instanceof Boolean)) {

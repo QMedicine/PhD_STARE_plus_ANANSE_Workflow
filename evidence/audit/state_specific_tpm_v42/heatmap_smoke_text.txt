@@ -1,0 +1,35 @@
+pages=1 width_mm=89.958333 height_mm=117.827778
+STARE + ANANSE Results
+TF Rank and RNA expression
+1. GFI1
+2. SATB1
+3. HIF3A
+4. ZBTB18
+5. TEF
+6. NR4A1
+7. TAL1
+8. LYL1
+9. ZFP507
+10. NFIC
+11. MXD4
+12. THRB
+13. HINFP
+14. MAX
+15. SOX30
+16. HES1
+17. RXRB
+18. ZBTB43
+19. KLF3
+20. ATF1
+log2(TPM+1)
+10
+0
+log2FC
+6
+0
+-6
+Grey: missing RNA value
+Old_HSC
+Young_HSC
+Target vs source logFC
+Rows follow influence rank; colour limits shared across contrasts

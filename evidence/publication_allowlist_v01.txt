@@ -14,11 +14,14 @@ bin/fixed_grid_helpers.R
 bin/merge_recount.py
 bin/normalize_atac.R
 bin/plot_branching_template.R
+bin/plot_tf_expression.R
 bin/plot_top10_template.R
 bin/plot_top20.R
 bin/prepare_ananse_de.py
 bin/prepare_atac_fastq_headers.py
 bin/prepare_presplit_mapper.py
+bin/prepare_tf_expression.py
+bin/select_state_tpm.py
 bin/split_contacts.py
 bin/stare_columns.py
 bin/tpm_filter.py
@@ -51,6 +54,7 @@ containers/raw_tools_v05.def
 containers/raw_tools_v06.def
 containers/raw_tools_v07.def
 containers/software_lock_v01.json
+docs/ALTERNATIVE_PROB_EDGE_WEIGHTS_AND_TF_INFLUENCE_COMPONENTS.md
 docs/ANANSE_FLAG_INVESTIGATION_v01.md
 docs/ATAC_ALIGNMENT_PROVENANCE_v01.md
 docs/ATAC_ORDERING_DECISION_v01.md
@@ -79,7 +83,9 @@ docs/RNA_COUNTS_INVESTIGATION_v02.md
 docs/RNA_COUNT_MODES_v01.md
 docs/RNA_NUMERICAL_EQUIVALENCE_v01.md
 docs/SAVED_UNION_REPRODUCTION_v01.md
+docs/SLURM_STATUS_2026-10-14.md
 docs/SOFTWARE_PROVENANCE_v01.md
+docs/STATE_SPECIFIC_TPM_AND_EXPRESSION_HEATMAP_v01.md
 docs/TF_GENE_AFFINITIES_BINDING_PROBABILITIES_AND_RANKING.md
 docs/THIRD_PARTY_CODE_v01.md
 evidence/audit/atac_alignment_diff_v01/summary.json
@@ -151,6 +157,14 @@ evidence/audit/saved_union_selected_reports_v34/qualification_summary.json
 evidence/audit/selected_reports_v32/pdf_text_summary.json
 evidence/audit/selected_reports_v32/qualification_summary.json
 evidence/audit/source_snapshot_v12/source_snapshot_receipt.json
+evidence/audit/state_specific_tpm_v42/arial_font_provenance.json
+evidence/audit/state_specific_tpm_v42/contracts_30414089.err
+evidence/audit/state_specific_tpm_v42/heatmap_smoke_pdf_checks.json
+evidence/audit/state_specific_tpm_v42/heatmap_smoke_text.txt
+evidence/audit/state_specific_tpm_v42/input_receipt.json
+evidence/audit/state_specific_tpm_v42/report_integration_check.json
+evidence/audit/state_specific_tpm_v42/run_record.json
+evidence/audit/state_specific_tpm_v42/smoke_30414090.out
 evidence/audit/tpm_boundary_v01/counts.clean.tsv.comparison.json
 evidence/audit/tpm_boundary_v01/counts.counts_filtered.tsv.comparison.json
 evidence/audit/tpm_boundary_v01/counts.tpm.tsv.comparison.json
@@ -527,6 +541,7 @@ templates/launcher_HiC_single_library_practice_v01.sh
 templates/launcher_HiC_single_library_to_STARE_v01.sh
 templates/launcher_Old_and_Young_HSCs_v01.sh
 templates/launcher_Old_and_Young_HSCs_v02.sh
+templates/launcher_state_specific_tpm_v42.sh
 templates/launcher_study_example_v01.sh
 templates/launcher_study_example_v02.sh
 templates/launcher_template_v03.sh
@@ -574,6 +589,7 @@ templates/params_rna_recount_v01.json
 templates/params_rna_recount_v02.json
 templates/params_rna_recount_v03.json
 templates/params_rna_recount_v04.json
+templates/params_state_specific_tpm_v42.json
 templates/params_template.json
 templates/report_manifest_selected_defaults_v01.tsv
 templates/samplesheet_ATAC_fastq_pilot_v01.tsv
@@ -595,6 +611,7 @@ tests/native_fixed_contacts_stare_smoke.nf
 tests/test_contracts.py
 tests/test_count_cleanup.py
 tests/test_label_identity.py
+tests/test_state_tpm.py
 tools/audit_fetch_requested.py
 tools/audit_label_findings_v01.py
 tools/audit_label_identity_v01.py
@@ -705,6 +722,7 @@ tools/native_saved_union_selected_reports_v01.sh
 tools/native_selected_plot_v04.sh
 tools/native_selected_plot_v05.sh
 tools/native_selected_reports_v01.sh
+tools/native_state_tpm_smoke_v01.sh
 tools/native_validate_connector_v01.py
 tools/native_validate_diffhic_fixture_v01.R
 tools/native_validate_fixed_contacts_v01.R
@@ -728,6 +746,7 @@ tools/qualify_raw_hic_cohort_v02.py
 tools/qualify_raw_hic_results_v01.py
 tools/qualify_result_bundle_v01.py
 tools/qualify_selected_reports_v01.py
+tools/qualify_state_tpm_run_v01.py
 tools/remote_audit_more_v01.py
 tools/remote_current_status_v01.sh
 tools/remote_diffhic_library_closure_v01.R

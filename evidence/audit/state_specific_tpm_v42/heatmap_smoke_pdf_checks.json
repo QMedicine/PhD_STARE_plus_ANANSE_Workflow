@@ -1,0 +1,12 @@
+{
+  "pdf_sha256": "10760099ff700d97afdbeceed7092278443a5f41ad2fb8bb17626d01e1d3598a",
+  "font_base_names": [
+    "RNPVXY+ArialMT"
+  ],
+  "embedded_TrueType": true,
+  "selectable_mapping": true,
+  "requested_width_mm": 90,
+  "observed_width_mm": 89.958333,
+  "observed_height_mm": 117.827778,
+  "inspection": "PDFKit text extraction and local raster inspection; Cairo PDF dimensions are rounded to points"
+}

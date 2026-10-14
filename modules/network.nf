@@ -8,6 +8,7 @@ process STARE_TO_NETWORK {
     input:
     tuple val(mode), val(state), path(affinities, stageAs: 'affinities/*')
     path tpm
+    path samplesheet
     path idmap
     path gtf
     path converter
@@ -15,9 +16,12 @@ process STARE_TO_NETWORK {
     output:
     tuple val(mode), val(state), path("${state}_SYMBOLS.tsv"), emit: network
     path 'raw/network_meta.json', emit: metadata
+    tuple val(mode), val(state), path('tpm_selection.json'), emit: expression_selection
     script:
     """
-    python "${converter}" --stare ${affinities.collect { '"'+it+'"' }.join(' ')} --tpm "${tpm}" \
+    select_state_tpm.py --tpm "${tpm}" --samplesheet "${samplesheet}" --state '${state}' \
+      --mode '${params.tpm_expression_mode}' --output selected_state.tpm.tsv --metadata tpm_selection.json
+    python "${converter}" --stare ${affinities.collect { '"'+it+'"' }.join(' ')} --tpm selected_state.tpm.tsv \
       --idmap "${idmap}" --outdir raw --basename '${state}' --min-binding ${params.min_binding}
     python "${symbol_converter}" --gtf "${gtf}" --out-suffix _SYMBOLS 'raw/${state}.tsv'
     cp 'raw/${state}_SYMBOLS.tsv' '${state}_SYMBOLS.tsv'

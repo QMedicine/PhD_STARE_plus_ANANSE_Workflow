@@ -15,6 +15,6 @@ workflow {
         report_variants(row.mode,row.source,row.target,file(row.ranking,checkIfExists:true),file(row.diffnetwork,checkIfExists:true),file(row.de,checkIfExists:true),
             file("${projectDir}/bin/plot_branching_template.R",checkIfExists:true),file("${projectDir}/bin/plot_top10_template.R",checkIfExists:true))
     }
-    PLOT_TOP20(inputs)
+    PLOT_TOP20(inputs, file(params.tpm,checkIfExists:true), samples, params.heatmap_arial_font ? [file(params.heatmap_arial_font,checkIfExists:true)] : [])
     SELF_CONTAINED_REPORT(PLOT_TOP20.out.pdfs,samples,file("${projectDir}/containers/software_lock_v01.json",checkIfExists:true))
 }

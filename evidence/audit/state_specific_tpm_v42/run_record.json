@@ -1,0 +1,31 @@
+{
+  "native_contract_job": 30414089,
+  "native_smoke_job": 30414090,
+  "initial_run_job": 30414102,
+  "active_run_job": 30414121,
+  "frozen_source": "source_state_tpm_v43",
+  "cached_affinity_run": "atac_saved_union_v12",
+  "current_code_sha256": {
+    "bin/select_state_tpm.py": "b2e5c5562f91e9dff5867ef045f5c5d02e3b97c424d816e188eeddda6ce28477",
+    "bin/prepare_tf_expression.py": "a1e1545613ab648727a0c59476aa1d90409b3bfe7410cf12a1805c765ef49485",
+    "bin/plot_tf_expression.R": "2d3baca5c80a1f7a89d0bd21582757b0af44b35b29d0494bea8e49ca0e76e2c2",
+    "bin/build_report.py": "ea8b97cdee4e103994ddf41e83f3cad2d37d364c8c1db166cc600d8f4bf62da8",
+    "modules/network.nf": "633de1de9cc95b110ef122f054469cbea87a6fc94c191c63061edbe0ec939c4b",
+    "modules/report.nf": "e7767b86f11f93246ce3144f3650a984d4bcc3dd575f088da9349c8d00cb9c4a",
+    "workflows/phd_stare_plus_ananse_workflow.nf": "5bc9c348f72271685a11281fb05660371df205214d7a142d5eab0bd6222d160b",
+    "tools/qualify_state_tpm_run_v01.py": "39cf50a530390dbd9b7899ef10ee70819baf3b861d0876ee4bea46830a49434b"
+  },
+  "methods": {
+    "atac_mode": "corrected_column_order",
+    "tpm_expression_mode": "state_specific",
+    "prob": "B*(0.5+0.5*T)*(0.5+0.5*E)",
+    "influence": "native ANANSE 0.5.1; unchanged"
+  },
+  "status": "RUNNING_NOT_YET_QUALIFIED",
+  "module_initialization_failures": [
+    {
+      "job": 30414102,
+      "reason": "inherited module unload tried unavailable conda; no workflow task executed"
+    }
+  ]
+}

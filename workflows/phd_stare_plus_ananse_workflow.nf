@@ -132,7 +132,7 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
         }
         if (params.stage != 'network_replay') {
         conversion_map = params.stage in ['bam_historical_hic_checkpoint','bam_diffhic_hic_contacts'] ? expression_map : channel.value(file(params.idmap,checkIfExists:true))
-        STARE_TO_NETWORK(affinities, tpm, conversion_map, file(params.gtf, checkIfExists: true), file("${projectDir}/historical/scripts/07_network_conversion/01_STARE_TF_Gene_Affinities_to_ananse_network.py"), file("${projectDir}/historical/scripts/07_network_conversion/02_convert_ensembl_to_symbol.py"))
+        STARE_TO_NETWORK(affinities, tpm, samplesheet, conversion_map, file(params.gtf, checkIfExists: true), file("${projectDir}/historical/scripts/07_network_conversion/01_STARE_TF_Gene_Affinities_to_ananse_network.py"), file("${projectDir}/historical/scripts/07_network_conversion/02_convert_ensembl_to_symbol.py"))
         // Value-channel collection is bounded by the number of states; explicit keys drive lookup.
         }
         network_ch = params.stage == 'network_replay' ? replay_networks : STARE_TO_NETWORK.out.network
@@ -153,7 +153,7 @@ workflow PHD_STARE_PLUS_ANANSE_WORKFLOW {
         plot_inputs = ANANSE_INFLUENCE.out.results.flatMap { mode,source,target,ranking,diffnet,de ->
             report_variants(mode,source,target,ranking,diffnet,de,file(params.plot_template ?: "${projectDir}/bin/plot_branching_template.R",checkIfExists:true),file("${projectDir}/bin/plot_top10_template.R",checkIfExists:true))
         }
-        PLOT_TOP20(plot_inputs)
+        PLOT_TOP20(plot_inputs, params.stage == 'network_replay' ? channel.value(file(params.tpm,checkIfExists:true)) : tpm, samplesheet, params.heatmap_arial_font ? [file(params.heatmap_arial_font,checkIfExists:true)] : [])
         SELF_CONTAINED_REPORT(PLOT_TOP20.out.pdfs, samplesheet, file("${projectDir}/containers/software_lock_v01.json",checkIfExists:true))
         }
     }

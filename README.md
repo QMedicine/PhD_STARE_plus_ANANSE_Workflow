@@ -10,6 +10,10 @@ The [label-identity audit](docs/LABEL_IDENTITY_AUDIT_v01.md) records additional 
 
 [TF–gene affinities, binding probabilities and ranking](docs/TF_GENE_AFFINITIES_BINDING_PROBABILITIES_AND_RANKING.md) explains the scoring equations, illustrative contribution scenarios, scaling and interpretation of network-supported versus expression-supported TFs.
 
+[Alternative edge weights and TF influence components](docs/ALTERNATIVE_PROB_EDGE_WEIGHTS_AND_TF_INFLUENCE_COMPONENTS.md) compares native ANANSE, binding-first expression modulation, additive scoring, motif-activity regression and proposed network-focused ranking weights. These alternatives are documented for discussion and have not been implemented.
+
+[State-specific TPM and expression heatmap](docs/STATE_SPECIFIC_TPM_AND_EXPRESSION_HEATMAP_v01.md) records the implemented TPM-selection correction, current default, explicit historical option, shared plot scales and cached-affinity rerun. Reports now include a 90-mm Arial vector heatmap and top-20 TPM/logFC table.
+
 Current qualification and remaining limits are in [DEVELOPMENT_STATUS_v02.md](docs/DEVELOPMENT_STATUS_v02.md). Validated historical/corrected GRNs and tables are copied to the durable project directory; the updated plotting decision and separate alternate-filter report design are described in [PLOTTING_DEFAULTS_v03.md](docs/PLOTTING_DEFAULTS_v03.md). Original saved-ranking reports and both validated ATAC ordering modes have passed native qualification (12 packages, 252 PDFs); see [current status](docs/DEVELOPMENT_STATUS_v04.md).
 
 The samplesheet is TSV with `sample_name`, `replicate`, `species`, `assay`, `paired`, `cell_type`, `condition`, `cell_state`, `fastq_1`, `fastq_2`, `bam`, and `peak`. An additional `cooler` field represents the requested cached Hi-C entry. `source2target.tsv` contains only `source` and `target`; labels must match `cell_state` exactly. Pairing is explicit, with TRUE/FALSE values.
@@ -53,3 +57,5 @@ The raw Hi-C fixed-grid connector is described in [RAW_HIC_STARE_CONNECTOR_v01.m
 Regular paired-end Hi-C libraries require no merging or pooling column. See [the standard single-library route](docs/HIC_SINGLE_LIBRARY_INPUT_v01.md) for generic templates and the six-library practice dataset.
 
 The independent-library pilot, reference-header correction and live practice job chain are recorded in [the latest status](docs/DEVELOPMENT_STATUS_v05.md).
+
+The [14 October Slurm update](docs/SLURM_STATUS_2026-10-14.md) records completed twelve-component computation, its project-quota publication failure, and the still-running six-library mapping route.

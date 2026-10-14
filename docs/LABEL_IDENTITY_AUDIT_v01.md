@@ -7,6 +7,7 @@ The audit covers every archived and current workflow script in this checkout, in
 | ID | Finding | Evidence and scope | Current workflow |
 |---|---|---|---|
 | L01 | The loess-offset **and TMM** ATAC preparation variants put sorted Old counts under Young headers and vice versa. | Confirmed source defect. The saved loess affinity/network comparisons establish actual historical-result impact; TMM-result impact was not separately tested. | Corrected mode uses explicit sample identities. Historical mode deliberately retains and records the mismatch. |
+| L12 | The custom STARE-to-ANANSE converter averages RNA TPM across source and target states instead of selecting the state of each network. | Confirmed in `load_tpm()` and the shared `EXPR_TPM` input. This loses state-specific expression differences at edge construction; its quantitative ranking impact has not been tested. | State-specific selection is implemented and is the current default. Historical pooled-TPM outputs retain distinct provenance and can be reproduced with the explicit historical_pooled option. |
 | L02 | An older STARE gene-level analysis subtracts the wrong joined columns, including nonexistent column 14. | Confirmed code defect in `STARE_work/05_STARE_ABCpp_results_analysis.sh:63–65`. | This auxiliary analysis is not called. |
 | L03 | The RNA cleanup notebook can reuse gene labels from an unfiltered or different table. | Conditional identity defect: removing an interior invalid-length row shifts subsequent TPM gene labels. Running DE after the known-symbol section can instead fail because the table and label vector have different lengths. Saved execution state is unknown. | TPM aligns by gene identity; DE consumes the corresponding filtered table. These notebook sections are not executed. |
 | L04 | An older peak-activity script uses version sort with lexical `join`. | Ordering-contract risk. Native GNU `join --check-order` rejects the fixture. Complete identical key lists can still work; differing key sets can lose matching rows. No saved PhD-result impact established. | Counts require identical BED4 identities and row order across samples. |
@@ -18,7 +19,28 @@ The audit covers every archived and current workflow script in this checkout, in
 | L10 | Source metadata contains age differences across modalities and four unusual strain spellings. | Itokawa RNA/ATAC HSC rows say **20 months / 10 weeks**; in-house Hi-C descriptions say approximately 24-month-old animals. Four Hi-C strain cells say C57BL/7, /8, /9 or /10. These may be source-sheet typos; biology is not independently authenticated. | Recorded as unresolved metadata qualifications. Conditions and archived metadata were not silently rewritten. |
 | L11 | Gene/TF alias conversion intentionally merges some identifiers. | Historical symbol→ID dictionaries select the last row; suffix stripping and maximum duplicate-edge probability can conflate loci or motif copies. | The historical mapping policy is preserved and explicitly distinguished from accidental sample swapping. Conflicting gene-ID→symbol aliases in the TPM port now fail. |
 
-Exact source snippets and line references for these findings are in [findings.json](../evidence/audit/label_identity_audit_v01/findings.json). Historical files remain unchanged.
+Exact source snippets and line references for L01–L11 are in [findings.json](../evidence/audit/label_identity_audit_v01/findings.json). L12 was added after that audit; its snippet and scope are recorded below. The evidence generator and archived receipt have not been changed. Historical files remain unchanged.
+
+## Historical TPM state selection (L12)
+
+This is separate from the ATAC column-assignment mistake in L01. ATAC values were assigned to the wrong sample labels; RNA values were instead **combined across both cell states**, losing state-specific expression information before scoring edges.
+
+The archived [converter](../historical/scripts/07_network_conversion/01_STARE_TF_Gene_Affinities_to_ananse_network.py), lines 53–60, contains:
+
+```python
+df = pd.read_csv(path, sep="\t", dtype=str)
+gene_col = next((c for c in gene_id_cols if c in df.columns), df.columns[0])
+df = df.set_index(gene_col, drop=False)
+# take mean TPM across any sample columns
+num = df.drop(columns=[gene_col], errors="ignore").apply(pd.to_numeric, errors="coerce")
+tpm = num.mean(axis=1).fillna(0.0)
+tpm.name = "tpm"
+return tpm  # index = genes (IDs or symbols)
+```
+
+The [historical network launcher](../historical/scripts/07_network_conversion/01_Run_STARE_TF_Gene_Affinities_to_ananse_network_H13CORE_loess_offsets.sh) supplies the same four-sample `counts.tpm.tsv` as `EXPR_TPM` to both networks. There is no state or sample-selection argument. For a gene with source TPMs `[1, 1]` and target TPMs `[9, 9]`, both calls therefore receive mean TPM 5, rather than source mean 1 and target mean 9. Binding still differs between the networks, and directional DE still contributes downstream. Expression-scaling extrema can differ with the network gene/TF universe, but that does not recover the missing state selection.
+
+The intended correction selects RNA sample columns by exact samplesheet `sample_name` and `cell_state`, averages replicates within each state, and uses that state's vector for both TF and target expression in its network. The multiplicative edge formula remains the same. See [the main-method specification](TF_GENE_AFFINITIES_BINDING_PROBABILITIES_AND_RANKING.md#41-the-custom-probability-formula). The old code and results remain historical resources. The implemented correction changes the scientific edge calculation and is distinguished from exact reproduction. Native contract tests passed all 28 cases in job 30414089; job 30414090 verified the unchanged multiplicative formula on state-specific expression vectors. The downstream-only corrected-order run is recorded separately in [the implementation and run note](STATE_SPECIFIC_TPM_AND_EXPRESSION_HEATMAP_v01.md).
 
 ## Corrected examples for archived alternatives
 

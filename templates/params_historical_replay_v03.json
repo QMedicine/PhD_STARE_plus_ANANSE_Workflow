@@ -75,5 +75,6 @@
       ]
     }
   },
-  "make_reports": false
+  "make_reports": false,
+  "tpm_expression_mode": "historical_pooled"
 }

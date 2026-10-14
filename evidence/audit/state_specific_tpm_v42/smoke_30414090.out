@@ -1,0 +1,11 @@
+[OK] Wrote:
+  Resting/network.tsv
+  Resting/network.network
+Edges: 4
+[OK] Wrote:
+  Activated/network.tsv
+  Activated/network.network
+Edges: 4
+Verified native multiplicative edge scores after within-state selection: [0.3333333333333333, 0.6428571428571427]
+null device 
+          1 

@@ -14,7 +14,7 @@ def qualify(results,manifest,destination=None):
  root=Path(results);expected=tsv(manifest);records=[]
  for row in expected:
   contrast=row['source']+'_to_'+row['target'];base=root/row['mode']/contrast
-  variants=sorted(p for p in base.iterdir() if p.is_dir())
+  variants=sorted(p for p in base.iterdir() if p.is_dir() and (p/'plots').is_dir())
   if len(variants)!=2 or not (base/'main').is_dir():raise ValueError(f'Expected main and alternate report: {base}')
   de={r['gene_id']:r['log2FoldChange'] for r in tsv(row['de'])}
   ranking=tsv(row['ranking'])[:20]
@@ -29,13 +29,25 @@ def qualify(results,manifest,destination=None):
    match=re.search(r'<script id="pdf-data" type="application/json">(.*?)</script>',body,re.S)
    if match is None:raise ValueError('Embedded PDF payload missing')
    payload=json.loads(match.group(1));checks=json.loads(Path(str(report)+'.pdf_checksums.json').read_text())
-   if set(payload)!={'top10',*map(str,range(1,21))} or len(checks)!=21:raise ValueError('Expected exactly 20 focal and one top10 PDF')
-   if len(list(plots.glob('*.pdf')))!=21:raise ValueError('Unexpected number of source PDFs')
+   has_heatmap='expression' in payload
+   count=22 if has_heatmap else 21
+   expected_payload={'top10',*map(str,range(1,21))}
+   if has_heatmap:expected_payload.add('expression')
+   if set(payload)!=expected_payload or len(checks)!=count:raise ValueError('Unexpected report PDF payloads')
+   if len(list(plots.glob('*.pdf')))!=count:raise ValueError('Unexpected number of source PDFs')
    for entry in payload.values():
     data=base64.b64decode(entry['bytes'],validate=True);pdf=plots/entry['name']
     if not data.startswith(b'%PDF-') or b'%%EOF' not in data[-1024:]:raise ValueError('Invalid PDF payload')
     if hashlib.sha256(data).hexdigest()!=checks[entry['name']] or sha(pdf)!=checks[entry['name']]:raise ValueError('Embedded PDF differs from native plot')
-   if len(re.findall(r'<iframe\b',body))!=21 or len(re.findall(r'data-id="top10" title=',body))!=1:raise ValueError('Expected exactly one top10 viewer and 20 focal viewers')
+   if len(re.findall(r'<iframe\b',body))!=count or len(re.findall(r'data-id="top10" title=',body))!=1:raise ValueError('Unexpected PDF viewer count')
+   if has_heatmap:
+    expression=tsv(plots/'top20_tf_expression.tsv')
+    heatmap=json.loads((plots/'heatmap_settings.json').read_text())
+    if [r['factor'] for r in expression]!=[r['factor'] for r in ranking]:raise ValueError('Heatmap TF ranking mismatch')
+    if heatmap['width_mm']!=90 or heatmap['font_family']!='Arial':raise ValueError('Heatmap size/font mismatch')
+    for r in expression:
+     if r['source']!=row['source'] or r['target']!=row['target']:raise ValueError('Heatmap contrast mismatch')
+     if not math.isclose(float(r['log2FoldChange']),float(de[r['factor']]),rel_tol=1e-12,abs_tol=1e-12):raise ValueError('Heatmap directional logFC mismatch')
    if re.search(r'<(?:script|iframe)\b[^>]*src=["\']https?://',body):raise ValueError('Report requires external assets')
    if html.escape(row['source']) not in body or html.escape(row['target']) not in body:raise ValueError('Contrast labels missing')
    nodes=tsv(plots/'top10_nodes.tsv');gene_count=sum(n['type']=='Gene' for n in nodes)
@@ -47,10 +59,10 @@ def qualify(results,manifest,destination=None):
      if not missing(supplied):raise ValueError('Invented fold change')
     elif missing(supplied) or not math.isclose(float(supplied),float(expected_fc),rel_tol=1e-12,abs_tol=1e-12):raise ValueError(f'Directional logFC mismatch: {n["name"]}')
    records.append(dict(mode=row['mode'],source=row['source'],target=row['target'],variant=variant.name,settings=settings,
-     report=str(report.relative_to(root)),report_sha256=sha(report),pdfs=21,overview_gene_nodes=gene_count,
+     report=str(report.relative_to(root)),report_sha256=sha(report),pdfs=count,overview_gene_nodes=gene_count,
      center_only_TFs=[s['factor'] for s in statuses if s['plot_status']=='CENTER_ONLY_FILTERED_EDGES'],
      input_sha256={k:sha(row[k]) for k in ['ranking','diffnetwork','de']}))
- receipt=dict(status='QUALIFIED_SELECTED_REPORTS',report_count=len(records),pdf_count=21*len(records),records=records)
+ receipt=dict(status='QUALIFIED_SELECTED_REPORTS',report_count=len(records),pdf_count=sum(r['pdfs'] for r in records),records=records)
  (root/'selected_report_qualification.json').write_text(json.dumps(receipt,indent=2)+'\n')
  if destination:
   dest=Path(destination)

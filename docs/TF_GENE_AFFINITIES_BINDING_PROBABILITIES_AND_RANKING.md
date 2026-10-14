@@ -2,6 +2,8 @@
 
 This document explains how accessible chromatin, TF motifs, chromatin contacts and RNA expression contribute to the scores in `phd_stare_plus_ananse_workflow`. It describes the STARE 1.0.5 and ANANSE 0.5.1 implementations used in this reconstruction, including the custom conversion between them. The examples are hypothetical: they explain the equations and do not report measured contributions for the HSC dataset.
 
+The main method uses RNA TPM from the same cell state as each GRN. State-specific selection is implemented in [select_state_tpm.py](../bin/select_state_tpm.py) and called before network conversion. The explicit `historical_pooled` option retains the former expression convention for historical reproduction; `state_specific` is the current default. Existing historical runs retain their original provenance. The historical exception and its source snippet are recorded in the [historical label and identity notes](LABEL_IDENTITY_AUDIT_v01.md#historical-tpm-state-selection-l12). Alternative edge formulas and influence-component weights are discussed in [Alternative ways of calculating “prob” edge weights and TF influence components](ALTERNATIVE_PROB_EDGE_WEIGHTS_AND_TF_INFLUENCE_COMPONENTS.md).
+
 The workflow asks which TFs have a regulatory network that gains support in a **target cell state relative to a source cell state**, and whether the genes in that network change expression. A highly ranked TF may be a useful perturbation candidate even when its own expression change is small or not statistically significant. Conversely, a strongly induced TF can rank highly despite weak network support. The component scores distinguish these explanations.
 
 ## 1. The information passes through several different scores
@@ -13,7 +15,7 @@ The workflow asks which TFs have a regulatory network that gains support in a **
 | Region–gene association | gABC score | ATAC activity, normalized Hi-C contacts, candidate regions and annotated TSSs | Relative support for linking a regulatory region to a gene |
 | Gene–TF association | STARE TF–gene affinity, $F_{f,g}$ | Motif affinity combined with promoter activity or contact-adjusted distal activity | Aggregate regulatory support for TF $f$ acting on gene $g$ |
 | Relative binding profile | Scaled binding, $B_{f,g}$ | Replicate-averaged STARE affinities, min–max scaled separately for each TF | A gene's relative position in that TF's affinity profile |
-| GRN edge | Custom network `prob`, $P_{f,g}$ | Scaled binding and scaled mean TF and target-gene TPM | An expression-modulated regulatory edge score |
+| GRN edge | Custom network `prob`, $P_{f,g}$ | Scaled binding and scaled within-state mean TF and target-gene TPM | An expression-modulated regulatory edge score |
 | Differential GRN edge | Positive target-minus-source edge weight, $\Delta P_{f,g}$ | The two state-specific GRNs | Regulatory support gained in the target state |
 | Network-associated TF score | `target_score` | Differential-edge paths and significant absolute target-gene logFC | How strongly the TF's gaining network connects to changing genes |
 | TF expression score | `G_score` | The focal TF's significant absolute logFC | Support from the TF's own differential expression |
@@ -33,7 +35,7 @@ flowchart TD
     C --> F
     M --> F
     F --> B[Replicate mean and per-TF min-max scaling]
-    E[RNA expression] --> T[Mean TPM expression modifiers]
+    E[RNA expression] --> T[Within-state mean TPM expression modifiers]
     B --> P[State-specific GRN edge scores]
     T --> P
     P --> D[Positive target-minus-source differential GRN]
@@ -175,7 +177,31 @@ This focuses the downstream comparison on **relative gene targeting**. It also l
 
 ### 4.1 The custom probability formula
 
-The converter calculates mean TPM across all sample columns in the supplied RNA table. It matches TFs and target genes to that vector, then min–max scales their expression separately across the TF and target-gene sets. Denote these scaled values by $T_f$ and $E_g$:
+For each cell state $s$, select only RNA samples whose samplesheet `assay` is `RNA` and whose `cell_state` is exactly $s$. Match their `sample_name` values to TPM column names, rather than relying on filename order or condition-specific naming. Average those biological replicate TPMs:
+
+$$
+\overline{TPM}^{\,s}_g=\frac{1}{n_s}\sum_{i\in RNA(s)}TPM_{g,i}.
+$$
+
+The source GRN uses the source-state mean vector; the target GRN uses the target-state mean vector. TFs and target genes are matched to the corresponding vector, then their expression is min–max scaled separately across the TF and target-gene sets within that state. Denote these scaled values by $T^s_f$ and $E^s_g$. The same edge formula is evaluated independently for each state:
+
+$$
+P^s_{f,g}=B^s_{f,g}(0.5+0.5T^s_f)(0.5+0.5E^s_g).
+$$
+
+The following conceptual selection describes the implemented adapter, which validates state/sample identities before applying the existing edge calculation:
+
+```python
+state_samples = samplesheet.loc[
+    (samplesheet["assay"] == "RNA") &
+    (samplesheet["cell_state"] == state), "sample_name"
+].tolist()
+# Require a nonempty, unique list and an exact match to TPM sample columns.
+tpm_state = tpm_table.loc[:, state_samples].mean(axis=1)
+# Match TF/target identities, then scale the two expression sets separately.
+```
+
+Suppressing the state superscript for a single network:
 
 $$
 P_{f,g}=B_{f,g}(0.5+0.5T_f)(0.5+0.5E_g).
@@ -193,7 +219,7 @@ for tf, b in bind.loc[gene].to_dict().items():
     prob = b * (0.5 + 0.5 * te) * boost_target
 ```
 
-These are expression modifiers, not condition-specific expression changes. The same pooled mean-TPM input is used for both states in this method. Its scaling extrema can differ if the network TF/gene sets differ. The separately generated TF-filtered TPM files are not what this converter consumes: it uses the supplied unfiltered TPM table.
+These are state-specific expression-availability modifiers, rather than logFC or DE-significance scores. Expression differences can therefore affect network edges in addition to the separate differential-expression contribution in influence ranking. The modifiers are derived from the unfiltered TPM table after state selection; the separately generated TF-filtered TPM files are not the expression input described here. Scaling within each state remains relative: a uniform proportional change across all its TFs or all its targets can disappear after min–max scaling. Matching the gene/TF universe and recording selected sample columns are necessary for interpretable comparisons.
 
 Both expression multipliers lie between 0.5 and 1, so for a retained edge:
 
@@ -244,14 +270,23 @@ See [influence.py](../historical/software/ananse/influence.py). Missing source e
 
 A large absolute edge in both states is not necessarily influential: probabilities 0.90 and 0.92 yield a differential weight of only 0.02. Probabilities 0.10 and 0.60 yield 0.50. The latter supplies more weight to the gaining-network calculation despite its lower target-state absolute score.
 
-If the expression scaling factors are identical between states, then:
+With state-specific TPM, the unfiltered edge difference is:
+
+$$
+\Delta P_{f,g}=B^{target}_{f,g}(0.5+0.5T^{target}_f)(0.5+0.5E^{target}_g)
+             -B^{source}_{f,g}(0.5+0.5T^{source}_f)(0.5+0.5E^{source}_g).
+$$
+
+Binding-profile changes and expression-availability changes can reinforce or offset one another. For example, doubling binding from 0.4 to 0.8 while target expression falls from 1 to 0, with TF expression fixed at 1, leaves both edge scores at 0.4. The target's repression can subsequently contribute through absolute DE only if a positive differential-network path reaches it; that DE score does not restore a discarded edge.
+
+As a special case, if the scaled expression factors are identical between states, then:
 
 $$
 \Delta P_{f,g}=(0.5+0.5T_f)(0.5+0.5E_g)
               (B^{target}_{f,g}-B^{source}_{f,g})
 $$
 
-before edge filtering. In that case the common TPM modifiers attenuate or preserve binding-profile gains; they do not encode the expression transition. Directional RNA differential expression enters separately in the influence step. This factorization should not be assumed if expression-scaling universes or extrema differ.
+before edge filtering. Only in that special case do common expression factors attenuate or preserve binding-profile gains without encoding the expression transition. The factorization is not the general state-specific calculation. Directional RNA differential expression also enters separately in the influence step.
 
 ## 6. `target_score` combines network support with changing target genes
 
@@ -422,8 +457,8 @@ These are component-sum shares, not the earlier local sensitivities and not caus
 | ATAC accessibility | Activity redistributes among motif-containing regions connected to particular genes; it creates a distinct relative TF–gene profile or moves links across the gABC cutoff | A uniform change across the whole affinity profile can disappear after min–max scaling; accessible regions with poor motif affinity contribute little for that TF |
 | Motif affinity | Strong relative affinity occurs in regions with state-specific activity and plausible target links, making the pattern TF-specific | Motifs lie in weakly active regions, unsupported distal regions, or equally supported regions in both states; related TFs can share similar motifs |
 | Hi-C contacts | Contact allocation supports distal targets, redistributes activity among genes, or changes which links pass the cutoff | Promoter affinity multipliers do not directly use contacts; contact shares near saturation respond little to further proportional increases; coarse bins do not resolve individual regulatory interactions |
-| Target mean RNA expression | Targets lie near the upper expression scaling range and their modifiers change which edges are retained | It is pooled across states in this method and does not encode target induction; the modifier remains at least 0.5 even at its floor |
-| TF mean RNA expression | The TF is near the upper scaled TPM range, preserving more of its binding-derived edge support | Pooled TPM cannot describe a state-specific induction; low scaled expression attenuates rather than eliminates an edge |
+| Target within-state mean RNA expression | Targets lie near the upper expression scaling range; a change in their relative expression reinforces or offsets binding gains and changes retained edges | The modifier remains at least 0.5 at its floor; uniform expression changes can disappear after scaling, and repression can counteract a binding gain |
+| TF within-state mean RNA expression | The TF is near the upper scaled TPM range, preserving more binding-derived support; a change in its relative expression affects all its outgoing edges | Low scaled expression attenuates rather than eliminates an edge; RNA abundance does not directly measure protein activity |
 | Target differential expression | Many reachable genes change significantly, or fewer targets have large changes and strong differential paths | Targets are non-significant or weakly connected; expression changes without gaining network support do not contribute through this branch |
 | Focal TF differential expression | The TF is positively and significantly induced and ranks highly on `G_score` | Its positive change is non-significant, so direct `G_score` is zero; zero/negative logFC excludes it from this comparison altogether |
 
@@ -449,9 +484,9 @@ A high rank nominates a TF for investigation. It does not establish direct occup
 
 For presentations, distinguish three levels: **region evidence → regulatory networks → transition-specific TF prioritization**. Label illustrative 100-point tables as local sensitivities or component-sum shares, rather than measured contributions. Present the two scaled ranking components alongside the final rank so that a network-supported candidate can be distinguished from an expression-supported candidate.
 
-For methods sections, specify the peak universe, normalization, Hi-C resolution, STARE windows/cutoff and motif collection; state that replicate affinities are averaged and min–max scaled per TF; give the custom edge formula and pooled-TPM convention; and report top-edge selection, target-minus-source subtraction, significant absolute target logFC, the positive TF-logFC eligibility gate and dense-rank scaling. Calling the complete procedure “standard ANANSE network inference” would omit the custom STARE edge construction.
+For methods sections, specify the peak universe, normalization, Hi-C resolution, STARE windows/cutoff and motif collection; state that replicate affinities are averaged and min–max scaled per TF; give the custom edge formula and within-state TPM selection/averaging convention; and report top-edge selection, target-minus-source subtraction, significant absolute target logFC, the positive TF-logFC eligibility gate and dense-rank scaling. Describe actual runs according to their recorded implementation, including historical exceptions. Calling the complete procedure “standard ANANSE network inference” would omit the custom STARE edge construction.
 
-Possible future method comparisons include preserving absolute affinity information, replacing extrema-sensitive scaling, using state-specific expression modifiers, testing alternative eligibility rules, normalizing for target-set size, resolving motif-family ambiguity, and estimating uncertainty in links and rankings. These are proposals for separately labelled methods, not changes implemented here. Empirical contribution estimates would require a defined perturbation/ablation analysis that recomputes the affected stages and reports both component-score and rank changes; the illustrative tables cannot substitute for that analysis.
+Possible future method comparisons include preserving absolute affinity information, replacing extrema-sensitive scaling, changing expression-modifier strength, testing alternative eligibility rules, normalizing for target-set size, resolving motif-family ambiguity, and estimating uncertainty in links and rankings. These are proposals for separately labelled methods, not changes implemented here. Empirical contribution estimates would require a defined perturbation/ablation analysis that recomputes the affected stages and reports both component-score and rank changes; the illustrative tables cannot substitute for that analysis.
 
 ## Implementation and reference links
 

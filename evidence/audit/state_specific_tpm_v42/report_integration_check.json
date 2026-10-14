@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "environment": "Local Python 3.9.6 standard library",
+  "scope": "Synthetic HTML assembly contract; not a scientific run or PDF rendering validation",
+  "checks": [
+    "22 PDF payloads and viewers",
+    "heatmap payload bytes preserved",
+    "source and target TPM table headings",
+    "state-specific conversion methods",
+    "no pooled-expression methods statement",
+    "no external script/iframe render assets"
+  ]
+}

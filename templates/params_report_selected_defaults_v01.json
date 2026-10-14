@@ -106,5 +106,6 @@
     "X"
   ],
   "empty_plot_policy": "center_warning",
-  "report_manifest": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/report_manifest_selected_defaults_v01.tsv"
+  "report_manifest": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/report_manifest_selected_defaults_v01.tsv",
+  "tpm_expression_mode": "historical_pooled"
 }

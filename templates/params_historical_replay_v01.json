@@ -47,5 +47,6 @@
   "container_binds": [
     "/vast/projects/Immune_Aging",
     "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow"
-  ]
+  ],
+  "tpm_expression_mode": "historical_pooled"
 }

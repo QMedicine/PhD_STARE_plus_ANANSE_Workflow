@@ -588,6 +588,45 @@
         "null"
       ],
       "description": "Report-only entry point manifest: mode, source, target, ranking, diffnetwork and de TSV fields"
+    },
+    "tpm_expression_mode": {
+      "type": "string",
+      "enum": [
+        "state_specific",
+        "historical_pooled"
+      ],
+      "default": "state_specific"
+    },
+    "heatmap_tpm_limits": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "default": [
+        0,
+        10
+      ]
+    },
+    "heatmap_fc_limits": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "default": [
+        -6,
+        6
+      ]
+    },
+    "heatmap_arial_font": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "An accessible Arial regular font file for embedding in the 90-mm PDF"
     }
   },
   "additionalProperties": true

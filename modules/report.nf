@@ -23,12 +23,24 @@ process PLOT_TOP20 {
     publishDir { "${params.outdir}/${mode}/${source}_to_${target}/${variant}" }, mode: 'copy'
     input:
     tuple val(mode), val(source), val(target), val(variant), val(settings), path(ranking), path(diffnetwork), path(de, stageAs:'directional_de.tsv'), path(notebook), path(top10)
+    path tpm
+    path samplesheet
+    path arial_font
     output:
     tuple val(mode), val(source), val(target), val(variant), path(ranking), path('plots'), path('versions.txt'), emit: pdfs
     script:
     def encoded = groovy.json.JsonOutput.toJson(settings).bytes.encodeBase64().toString()
+    def fontPath = arial_font instanceof List ? (arial_font ? arial_font[0] : null) : arial_font
+    def fontOption = fontPath ? '--font-file "'+fontPath+'"' : ''
     """
     printf '%s' '${encoded}' | base64 -d > plot_settings.json
+    prepare_tf_expression.py --ranking "${ranking}" --de "${de}" --tpm "${tpm}" \
+      --samplesheet "${samplesheet}" --source '${source}' --target '${target}' \
+      --output top20_tf_expression.tsv --settings heatmap_settings.json \
+      --tpm-limits ${params.heatmap_tpm_limits.join(' ')} --fc-limits ${params.heatmap_fc_limits.join(' ')} ${fontOption}
+    mkdir -p plots
+    plot_tf_expression.R top20_tf_expression.tsv heatmap_settings.json plots/TF_rank_RNA_expression.pdf
+    cp top20_tf_expression.tsv heatmap_settings.json plots/
     plot_top20.R "${notebook}" "${ranking}" "${diffnetwork}" "${de}" '${source}' '${target}' plots plot_settings.json "${top10}"
     """
 }
@@ -45,7 +57,7 @@ process SELF_CONTAINED_REPORT {
     path '*.html', emit: html
     path '*.json', emit: checksums
     script:
-    def keys = ['stage','process_fastq','rna_counts_mode','chosen_res','summit_flank','stare_window','enhancer_window','gabc_threshold','min_binding','influence_edges','min_count','min_count_tf','min_tpm','min_tpm_tf','union_windows','reverse_contrast','gtf','fasta','psem','atac_blacklist','hic_checkpoints','hic_contacts_from_diffhic','hic_mapq','hic_chim_dist','hic_max_frag','hic_min_inward','hic_min_outward','hic_restriction_sites','hic_overhang','diffhic_norm','report_manifest','hic_alignment_mode','hic_ligation_signature']
+    def keys = ['stage','process_fastq','rna_counts_mode','chosen_res','summit_flank','stare_window','enhancer_window','gabc_threshold','min_binding','influence_edges','min_count','min_count_tf','min_tpm','min_tpm_tf','union_windows','reverse_contrast','gtf','fasta','psem','atac_blacklist','hic_checkpoints','hic_contacts_from_diffhic','hic_mapq','hic_chim_dist','hic_max_frag','hic_min_inward','hic_min_outward','hic_restriction_sites','hic_overhang','diffhic_norm','report_manifest','hic_alignment_mode','hic_ligation_signature','tpm_expression_mode','heatmap_tpm_limits','heatmap_fc_limits','heatmap_arial_font']
     def context = keys.collectEntries { key -> [(key):params[key]] }
     context.plot_variant = variant
     context.containers = ['ananse','r_plot','tpm','featurecounts','hicexplorer','atac_tools','bedtools','stare','deseq2','raw_tools','hic_raw','diffhic'].collectEntries { role -> [(role):params[role+'_container']] }
