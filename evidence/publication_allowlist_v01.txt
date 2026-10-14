@@ -157,6 +157,7 @@ evidence/audit/saved_union_selected_reports_v34/qualification_summary.json
 evidence/audit/selected_reports_v32/pdf_text_summary.json
 evidence/audit/selected_reports_v32/qualification_summary.json
 evidence/audit/source_snapshot_v12/source_snapshot_receipt.json
+evidence/audit/state_specific_tpm_v42/Young_to_Old_rendering_checks.json
 evidence/audit/state_specific_tpm_v42/arial_font_provenance.json
 evidence/audit/state_specific_tpm_v42/contracts_30414089.err
 evidence/audit/state_specific_tpm_v42/heatmap_smoke_pdf_checks.json
@@ -165,6 +166,7 @@ evidence/audit/state_specific_tpm_v42/input_receipt.json
 evidence/audit/state_specific_tpm_v42/report_integration_check.json
 evidence/audit/state_specific_tpm_v42/run_record.json
 evidence/audit/state_specific_tpm_v42/smoke_30414090.out
+evidence/audit/state_specific_tpm_v42/validation_summary.json
 evidence/audit/tpm_boundary_v01/counts.clean.tsv.comparison.json
 evidence/audit/tpm_boundary_v01/counts.counts_filtered.tsv.comparison.json
 evidence/audit/tpm_boundary_v01/counts.tpm.tsv.comparison.json
@@ -541,6 +543,8 @@ templates/launcher_HiC_single_library_practice_v01.sh
 templates/launcher_HiC_single_library_to_STARE_v01.sh
 templates/launcher_Old_and_Young_HSCs_v01.sh
 templates/launcher_Old_and_Young_HSCs_v02.sh
+templates/launcher_state_specific_reports_v44.sh
+templates/launcher_state_specific_scores_resume_v43.sh
 templates/launcher_state_specific_tpm_v42.sh
 templates/launcher_study_example_v01.sh
 templates/launcher_study_example_v02.sh
@@ -704,6 +708,7 @@ tools/native_qualify_raw_hic_bams_v01.sh
 tools/native_qualify_raw_hic_inputs_v01.sh
 tools/native_qualify_raw_hic_results_v01.sh
 tools/native_qualify_selected_reports_v01.sh
+tools/native_qualify_state_tpm_v44.sh
 tools/native_r_regression_v01.sh
 tools/native_r_regression_v02.sh
 tools/native_r_regression_v03.sh

@@ -1,5 +1,5 @@
 nextflow.enable.dsl=2
-include { PLOT_TOP20; SELF_CONTAINED_REPORT; report_variants } from './modules/report'
+include { PREPARE_TF_EXPRESSION; PLOT_TOP20; SELF_CONTAINED_REPORT; report_variants } from './modules/report'
 // Report-only entry point consumes explicit, previously produced score tables.
 workflow {
     if (!params.report_manifest || !params.samplesheet) { error '--report_manifest and --samplesheet are required' }
@@ -15,6 +15,8 @@ workflow {
         report_variants(row.mode,row.source,row.target,file(row.ranking,checkIfExists:true),file(row.diffnetwork,checkIfExists:true),file(row.de,checkIfExists:true),
             file("${projectDir}/bin/plot_branching_template.R",checkIfExists:true),file("${projectDir}/bin/plot_top10_template.R",checkIfExists:true))
     }
-    PLOT_TOP20(inputs, file(params.tpm,checkIfExists:true), samples, params.heatmap_arial_font ? [file(params.heatmap_arial_font,checkIfExists:true)] : [])
+    report_font = params.heatmap_arial_font ? [file(params.heatmap_arial_font,checkIfExists:true)] : []
+    PREPARE_TF_EXPRESSION(inputs, file(params.tpm,checkIfExists:true), samples, report_font)
+    PLOT_TOP20(PREPARE_TF_EXPRESSION.out.prepared, report_font)
     SELF_CONTAINED_REPORT(PLOT_TOP20.out.pdfs,samples,file("${projectDir}/containers/software_lock_v01.json",checkIfExists:true))
 }

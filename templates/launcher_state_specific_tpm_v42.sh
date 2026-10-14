@@ -12,7 +12,7 @@ module purge
 module load nextflow/26.04.3
 module swap apptainer/1.4.1 apptainer/1.3.5
 TASK_ROOT=/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow
-SOURCE_DIR="$TASK_ROOT/source_state_tpm_v43"
+SOURCE_DIR="$TASK_ROOT/source_state_tpm_reports_v44"
 RUN_DIR="$TASK_ROOT/runs/state_specific_tpm_v42"
 PROJECT_RUN=/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs
 mkdir -p "$RUN_DIR" "$TASK_ROOT/tmp/state_specific_tpm_v42"

@@ -1,0 +1,33 @@
+{
+  "status": "IMPLEMENTATION_VALIDATED_RUN_PENDING",
+  "native_tests": 28,
+  "native_test_skips": 0,
+  "native_test_job": 30414089,
+  "score_and_pdf_smoke_job": 30414090,
+  "local_html_contract": "PASS",
+  "archive_verification": {
+    "copies": 307,
+    "excluded_scientific_fixtures": 2,
+    "status": "PASS"
+  },
+  "nextflow_lint": "PASS",
+  "font": {
+    "family": "Arial",
+    "version": "5.01.2x",
+    "embedded": true
+  },
+  "display_limits": {
+    "log2_TPM_plus1": [
+      0,
+      10
+    ],
+    "log2FC": [
+      -6,
+      6
+    ]
+  },
+  "prob_formula_changed": false,
+  "influence_formula_changed": false,
+  "tpm_sample_selection_corrected": true,
+  "run_job": 30414121
+}

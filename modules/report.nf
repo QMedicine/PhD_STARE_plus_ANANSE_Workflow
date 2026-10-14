@@ -14,6 +14,30 @@ def report_variants(mode, source, target, ranking, diffnet, de, notebook, top10)
     variants
 }
 
+process PREPARE_TF_EXPRESSION {
+    tag "${mode}:${source}->${target}:${variant}"
+    label 'ananse'
+    cpus 1
+    memory '4 GB'
+    time '15m'
+    input:
+    tuple val(mode), val(source), val(target), val(variant), val(settings), path(ranking), path(diffnetwork), path(de, stageAs:'directional_de.tsv'), path(notebook), path(top10)
+    path tpm
+    path samplesheet
+    path arial_font
+    output:
+    tuple val(mode), val(source), val(target), val(variant), val(settings), path(ranking), path(diffnetwork), path(de), path(notebook), path(top10), path('top20_tf_expression.tsv'), path('heatmap_settings.json'), emit: prepared
+    script:
+    def fontPath = arial_font instanceof List ? (arial_font ? arial_font[0] : null) : arial_font
+    def fontOption = fontPath ? '--font-file "'+fontPath+'"' : ''
+    """
+    prepare_tf_expression.py --ranking "${ranking}" --de "${de}" --tpm "${tpm}" \
+      --samplesheet "${samplesheet}" --source '${source}' --target '${target}' \
+      --output top20_tf_expression.tsv --settings heatmap_settings.json \
+      --tpm-limits ${params.heatmap_tpm_limits.join(' ')} --fc-limits ${params.heatmap_fc_limits.join(' ')} ${fontOption}
+    """
+}
+
 process PLOT_TOP20 {
     tag "${mode}:${source}->${target}:${variant}"
     label 'r_plot'
@@ -22,25 +46,17 @@ process PLOT_TOP20 {
     time '8h'
     publishDir { "${params.outdir}/${mode}/${source}_to_${target}/${variant}" }, mode: 'copy'
     input:
-    tuple val(mode), val(source), val(target), val(variant), val(settings), path(ranking), path(diffnetwork), path(de, stageAs:'directional_de.tsv'), path(notebook), path(top10)
-    path tpm
-    path samplesheet
+    tuple val(mode), val(source), val(target), val(variant), val(settings), path(ranking), path(diffnetwork), path(de, stageAs:'directional_de.tsv'), path(notebook), path(top10), path(expression_table), path(heatmap_settings)
     path arial_font
     output:
     tuple val(mode), val(source), val(target), val(variant), path(ranking), path('plots'), path('versions.txt'), emit: pdfs
     script:
     def encoded = groovy.json.JsonOutput.toJson(settings).bytes.encodeBase64().toString()
-    def fontPath = arial_font instanceof List ? (arial_font ? arial_font[0] : null) : arial_font
-    def fontOption = fontPath ? '--font-file "'+fontPath+'"' : ''
     """
     printf '%s' '${encoded}' | base64 -d > plot_settings.json
-    prepare_tf_expression.py --ranking "${ranking}" --de "${de}" --tpm "${tpm}" \
-      --samplesheet "${samplesheet}" --source '${source}' --target '${target}' \
-      --output top20_tf_expression.tsv --settings heatmap_settings.json \
-      --tpm-limits ${params.heatmap_tpm_limits.join(' ')} --fc-limits ${params.heatmap_fc_limits.join(' ')} ${fontOption}
     mkdir -p plots
-    plot_tf_expression.R top20_tf_expression.tsv heatmap_settings.json plots/TF_rank_RNA_expression.pdf
-    cp top20_tf_expression.tsv heatmap_settings.json plots/
+    plot_tf_expression.R "${expression_table}" "${heatmap_settings}" plots/TF_rank_RNA_expression.pdf
+    cp "${expression_table}" "${heatmap_settings}" plots/
     plot_top20.R "${notebook}" "${ranking}" "${diffnetwork}" "${de}" '${source}' '${target}' plots plot_settings.json "${top10}"
     """
 }

@@ -1,0 +1,23 @@
+{
+  "status": "RENDERING_CHECKED_SCIENTIFIC_RELEASE_NOT_YET_QUALIFIED",
+  "report_sha256": "faa4c1b3b8f4c15c0ba066a845dcd66c251e9a78afca2dcbd87e21118293c8ac",
+  "pdf_sha256": "3ebfe1e48477d0d9928fa9f0b99d2b514be32aa570e8edc207d37374b5090c25",
+  "pdf_payload_count": 22,
+  "vector_font": "Embedded ArialMT TrueType",
+  "selectable_text": true,
+  "width_mm": 89.958333,
+  "height_mm": 117.827778,
+  "table_rows": 20,
+  "source": "Young_HSC",
+  "target": "Old_HSC",
+  "limits": {
+    "log2_TPM_plus1": [
+      0,
+      10
+    ],
+    "log2FC": [
+      -6,
+      6
+    ]
+  }
+}

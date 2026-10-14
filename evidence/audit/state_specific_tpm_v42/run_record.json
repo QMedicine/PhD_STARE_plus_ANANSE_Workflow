@@ -21,11 +21,33 @@
     "prob": "B*(0.5+0.5*T)*(0.5+0.5*E)",
     "influence": "native ANANSE 0.5.1; unchanged"
   },
-  "status": "RUNNING_NOT_YET_QUALIFIED",
+  "status": "YOUNG_TO_OLD_REPORT_COMPLETE_OLD_TO_YOUNG_INFLUENCE_RUNNING",
   "module_initialization_failures": [
     {
       "job": 30414102,
-      "reason": "inherited module unload tried unavailable conda; no workflow task executed"
+      "reason": "inherited module unload attempted unavailable conda; no workflow task executed"
     }
-  ]
+  ],
+  "reporting_source": "source_state_tpm_reports_v44",
+  "score_resume_job": 30414304,
+  "Young_to_Old_report_job": 30414286,
+  "Old_to_Young_report_job": 30414334,
+  "qualification_job": 30414335,
+  "report_container_fix": "Python table preparation in ANANSE image; R rendering in R plot image",
+  "score_resume": "Both networks and completed reverse ranking cached; only unfinished native influence reruns",
+  "report_container_failure": {
+    "job": 30414121,
+    "code": 127,
+    "reason": "Python table preparation attempted in R-only container",
+    "repair": "PREPARE_TF_EXPRESSION uses ANANSE Python image; PLOT_TOP20 uses R image"
+  },
+  "score_resume_cli_failure": {
+    "job": 30414264,
+    "reason": "CLI false was not honored in imported workflow; use typed JSON false"
+  },
+  "report_code_sha256": {
+    "modules/report.nf": "39162b23baf1f17a89be63de71ef09004c491f0b2feb164e55f4b7f4d9106134",
+    "report_replay.nf": "526cf2ca8ce757e1205860a517f0b54cf80a01eaac43dbf1fe0a0b1272444e8f",
+    "workflows/phd_stare_plus_ananse_workflow.nf": "97c992a6fdea41466d8f104a4baf5f18f7fea186fdc29bdd0816b01d325c30c7"
+  }
 }
