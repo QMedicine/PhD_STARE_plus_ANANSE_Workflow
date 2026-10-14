@@ -1,5 +1,5 @@
 {
-  "status": "IMPLEMENTATION_VALIDATED_RUN_PENDING",
+  "status": "QUALIFIED_AND_PUBLISHED",
   "native_tests": 28,
   "native_test_skips": 0,
   "native_test_job": 30414089,
@@ -29,5 +29,9 @@
   "prob_formula_changed": false,
   "influence_formula_changed": false,
   "tpm_sample_selection_corrected": true,
-  "run_job": 30414121
+  "run_job": 30414121,
+  "main_reports": 2,
+  "relaxed_display_reports": 2,
+  "embedded_PDFs": 88,
+  "publication_verification_job": 30414459
 }

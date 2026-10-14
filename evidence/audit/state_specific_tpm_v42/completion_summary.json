@@ -1,0 +1,68 @@
+{
+  "status": "QUALIFIED_STATE_SPECIFIC_TPM_CACHED_AFFINITY",
+  "publication_status": "CHECKSUM_VERIFIED_COPY",
+  "receipt_verification": {
+    "status": "VERIFIED_PUBLISHED_STATE_SPECIFIC_TPM_RELEASE",
+    "payload_files": 253,
+    "receipt_sha256": "11a649e39684a44b0f7746f3f6d9d151e16abad1e3a52068d8af92deac01a904",
+    "published_destination": "/vast/projects/Immune_Aging/PhD_STARE_plus_ANANSE_Workflow/Old_and_Young_HSCs/validated_results/state_specific_tpm_v42",
+    "source_receipt": "/vast/scratch/users/stacpoole.q/PhD_STARE_plus_ANANSE_Workflow/runs/state_specific_tpm_v42/results/qualification.json",
+    "self_reference_excluded": true
+  },
+  "networks": [
+    {
+      "state": "Old_HSC",
+      "edges": 34084535,
+      "sha256": "762f3bf1564633a4d25dc2a48fd33b0188d75ebcb6308b62bdb4223748e4fb8a"
+    },
+    {
+      "state": "Young_HSC",
+      "edges": 34190082,
+      "sha256": "69ed9e3da46164ef335a5e182de4828cf29e8cbb0e9e3527b9af1304859266f0"
+    }
+  ],
+  "rankings": [
+    {
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "TFs": 306,
+      "sha256": "0b9b76b2eeec7a68b400f0c37515351a8a1c6557c2f0d6641fcb0edac115de9b"
+    },
+    {
+      "source": "Young_HSC",
+      "target": "Old_HSC",
+      "TFs": 187,
+      "sha256": "ad508fb8d02fae29416ec047938fa7007ee4b86d191212556df21aa1a1b6fec0"
+    }
+  ],
+  "reports": 4,
+  "embedded_pdfs": 88,
+  "report_sha256": [
+    {
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "variant": "alternate_filters_edge_0.00001_padj_0.05_absLFC_0.1",
+      "sha256": "b424b9f462f858f6501a7ec8fd7d63987e28fd190f0699addd42a67fc5372bfd"
+    },
+    {
+      "source": "Old_HSC",
+      "target": "Young_HSC",
+      "variant": "main",
+      "sha256": "438fa9927bcd924bcb4d5e6ba02dc74d10b7b97b1dd4d5fdc53e69647434bd25"
+    },
+    {
+      "source": "Young_HSC",
+      "target": "Old_HSC",
+      "variant": "alternate_filters_edge_0.001_padj_0.05_absLFC_0.1",
+      "sha256": "de5047fa4a3627cb78b9ec425fb4c31e0b418150cfb126bc539ae7c2a4bb0c27"
+    },
+    {
+      "source": "Young_HSC",
+      "target": "Old_HSC",
+      "variant": "main",
+      "sha256": "faa4c1b3b8f4c15c0ba066a845dcd66c251e9a78afca2dcbd87e21118293c8ac"
+    }
+  ],
+  "no_historical_mode": true,
+  "no_alternative_prob_or_influence": true
+}

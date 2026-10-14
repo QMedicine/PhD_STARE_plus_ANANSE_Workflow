@@ -1,0 +1,10 @@
+{
+  "score_resume_job": 30414304,
+  "Young_to_Old_report_job": 30414286,
+  "Old_to_Young_report_job": 30414334,
+  "qualification_job": 30414335,
+  "scoring_source": "source_state_tpm_v43",
+  "reporting_source": "source_state_tpm_reports_v44",
+  "previous_score_resume_job": 30414264,
+  "typed_report_disable": "scores_params.json make_reports=false"
+}

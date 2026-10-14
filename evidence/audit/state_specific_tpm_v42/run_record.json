@@ -21,7 +21,7 @@
     "prob": "B*(0.5+0.5*T)*(0.5+0.5*E)",
     "influence": "native ANANSE 0.5.1; unchanged"
   },
-  "status": "YOUNG_TO_OLD_REPORT_COMPLETE_OLD_TO_YOUNG_INFLUENCE_RUNNING",
+  "status": "QUALIFIED_AND_PUBLISHED",
   "module_initialization_failures": [
     {
       "job": 30414102,
@@ -49,5 +49,7 @@
     "modules/report.nf": "39162b23baf1f17a89be63de71ef09004c491f0b2feb164e55f4b7f4d9106134",
     "report_replay.nf": "526cf2ca8ce757e1205860a517f0b54cf80a01eaac43dbf1fe0a0b1272444e8f",
     "workflows/phd_stare_plus_ananse_workflow.nf": "97c992a6fdea41466d8f104a4baf5f18f7fea186fdc29bdd0816b01d325c30c7"
-  }
+  },
+  "final_receipt_verification_job": 30414459,
+  "scientific_calculation_changes": "Only RNA TPM state selection; multiplicative prob and native influence unchanged"
 }

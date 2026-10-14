@@ -81,7 +81,8 @@ def run(results,params,input_receipt,destination=None):
         if dest.exists():raise ValueError('Refusing to overwrite an existing release')
         try:
             shutil.copytree(root,dest)
-            copied={str(p.relative_to(root)):sha(p) for p in root.rglob('*') if p.is_file()}
+            # The receipt is finalized after copying; exclude its self-reference.
+            copied={str(p.relative_to(root)):sha(p) for p in root.rglob('*') if p.is_file() and p!=out}
             if any(sha(dest/relative)!=digest for relative,digest in copied.items()):raise ValueError('Published bytes differ')
             receipt['publication_status']='CHECKSUM_VERIFIED_COPY'
             receipt['published_destination']=str(dest)

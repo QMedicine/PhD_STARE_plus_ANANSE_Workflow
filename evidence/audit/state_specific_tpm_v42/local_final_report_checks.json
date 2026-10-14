@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "records": [
+    {
+      "contrast": "Old_to_Young",
+      "report_sha256": "438fa9927bcd924bcb4d5e6ba02dc74d10b7b97b1dd4d5fdc53e69647434bd25",
+      "heatmap_pdf_sha256": "a7227aee1b9582678237136cfc58feff375be052dee2877fde3a825e8a61e229",
+      "pdfs": 22,
+      "rows": 20,
+      "width_mm": 89.958333,
+      "height_mm": 117.827778,
+      "embedded_Arial": true,
+      "selectable_text": true
+    },
+    {
+      "contrast": "Young_to_Old",
+      "report_sha256": "faa4c1b3b8f4c15c0ba066a845dcd66c251e9a78afca2dcbd87e21118293c8ac",
+      "heatmap_pdf_sha256": "3ebfe1e48477d0d9928fa9f0b99d2b514be32aa570e8edc207d37374b5090c25",
+      "pdfs": 22,
+      "rows": 20,
+      "width_mm": 89.958333,
+      "height_mm": 117.827778,
+      "embedded_Arial": true,
+      "selectable_text": true
+    }
+  ]
+}

@@ -159,10 +159,16 @@ evidence/audit/selected_reports_v32/qualification_summary.json
 evidence/audit/source_snapshot_v12/source_snapshot_receipt.json
 evidence/audit/state_specific_tpm_v42/Young_to_Old_rendering_checks.json
 evidence/audit/state_specific_tpm_v42/arial_font_provenance.json
+evidence/audit/state_specific_tpm_v42/completion_summary.json
+evidence/audit/state_specific_tpm_v42/continuation_jobs.json
 evidence/audit/state_specific_tpm_v42/contracts_30414089.err
 evidence/audit/state_specific_tpm_v42/heatmap_smoke_pdf_checks.json
 evidence/audit/state_specific_tpm_v42/heatmap_smoke_text.txt
 evidence/audit/state_specific_tpm_v42/input_receipt.json
+evidence/audit/state_specific_tpm_v42/local_final_report_checks.json
+evidence/audit/state_specific_tpm_v42/publication_receipt_check.json
+evidence/audit/state_specific_tpm_v42/qualify_30414335.out
+evidence/audit/state_specific_tpm_v42/receipt_30414459.out
 evidence/audit/state_specific_tpm_v42/report_integration_check.json
 evidence/audit/state_specific_tpm_v42/run_record.json
 evidence/audit/state_specific_tpm_v42/smoke_30414090.out
@@ -644,6 +650,7 @@ tools/diagnose_rna_annotation_groups_v01.py
 tools/diagnose_rna_counts_v01.py
 tools/diagnose_rna_duplicate_groups_v01.py
 tools/diagnose_rna_locus_groups_v01.py
+tools/finalize_state_tpm_receipt_v01.py
 tools/inspect_r_base_v01.sh
 tools/make_hic_single_library_fixture_v01.py
 tools/make_plot_audit_v01.py
@@ -671,6 +678,7 @@ tools/native_estimated_ice_validation_v01.sh
 tools/native_failed_fastq_identity_v01.sh
 tools/native_fastq_byte_diagnostic_v01.sh
 tools/native_fastq_range_retry_v01.sh
+tools/native_finalize_state_tpm_receipt_v01.sh
 tools/native_fixed_contacts_stare_resume_v01.sh
 tools/native_fixed_contacts_stare_smoke_v01.sh
 tools/native_fixed_contacts_stare_smoke_v02.sh
